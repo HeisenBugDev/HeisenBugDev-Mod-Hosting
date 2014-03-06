@@ -1,7 +1,14 @@
 HeisenBugDev Website
 ====================
 
+[![Coverage Status](https://coveralls.io/repos/HeisenBugDev/HeisenBugDev/badge.png)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![Build Status](https://travis-ci.org/HeisenBugDev/HeisenBugDev.png?branch=master)](https://travis-ci.org/HeisenBugDev/HeisenBugDev)[![Code Climate](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev.png)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)
+
 This is the website repo for HeisenBugDev.
+
+# Issues and Trello
+Trello is meant to be used for tracking the **status** of work on something (has someone started on it? Are we about to? Just an idea? Testing?) whereas GH Issues and PRs are for details about that (checklist, dicussions, x needs to be rewritten for y to work, etc).
+
+Here is the Trello board for people who want to see the status of things https://trello.com/b/TSoCaDP5/heisenbugdev
 
 ## Design specs
 
