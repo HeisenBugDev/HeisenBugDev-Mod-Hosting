@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-HeisenbugdevSite::Application.config.secret_key_base = '1ee3d07b6771105262d14a9f4af04a88ea102239ebb4f794b35ea7053443fddb884c5d719baaa637df9b6969f55a34f6e74c9d8561a0d2a1011b210df533aebc'
+HeisenBugDev::Application.config.secret_key_base = '1ee3d07b6771105262d14a9f4af04a88ea102239ebb4f794b35ea7053443fddb884c5d719baaa637df9b6969f55a34f6e74c9d8561a0d2a1011b210df533aebc'

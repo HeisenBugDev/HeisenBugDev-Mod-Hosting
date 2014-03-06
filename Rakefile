@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-HeisenbugdevSite::Application.load_tasks
+HeisenBugDev::Application.load_tasks

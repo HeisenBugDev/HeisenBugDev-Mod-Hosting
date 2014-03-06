@@ -1,2 +1,2 @@
-HeisenbugdevSite::Application.routes.draw do
+HeisenBugDev::Application.routes.draw do
 end
