@@ -1,137 +1,36 @@
-Heisenbugdev Site
-=========
+HeisenBugDev Website
+====================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+This is the website repo for HeisenBugDev.
 
-Diagnostics
--
+## Design specs
 
-This application was built with recipes that are known to work together.
+### API
+The API is the holy grail of this. Everything goes through the API. Don't try to get rid of the API! API API API API API. Anyway...
 
-This application was built with preferences that are NOT known to work
-together.
+Here's a couple use cases:
 
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include these diagnostics:
+Build completes, API is sent the artifacts and a JSON (yay, not XML) file containing the info about the build. More info on that later. File is then uploaded to an external storage place (AWS?). The API also sends info to the Rasterizer and Article Builder telling it that it needs to run.
 
-We’d also like to know if you’ve found combinations of recipes or
-preferences that do work together.
+### Rasterizer
+The rasterizer will take the block textures and do some image magicals to make 3d blocks out of them so that we can automatically update pictures of the blocks on le wiki.
 
-Recipes:
+### Article Builder
+Some blocks share traits which will be auto detected by analyzing the code and then providing info about each block to the API.
 
-* apps4
-* controllers
-* core
-* email
-* extras
-* frontend
-* gems
-* git
-* init
-* models
-* prelaunch
-* railsapps
-* readme
-* routes
-* saas
-* setup
-* testing
-* views
+### Storage Module
+The storage module is in charge of... well... storing stuff. When it is sent a file, it will automatically compare it with the previous file from the last build (info on why later). If it is different, it will store it as a new entry. The .jar files and build info will _always_ be saved as a new entry. The other files such as ones from the Article Builder and Rasterizer will follow the save if changed policy.
 
-Preferences:
+### w3 site
+The www site is all the static pages.
 
-* git: true
-* apps4: none
-* dev_webserver: unicorn
-* prod_webserver: unicorn
-* database: sqlite
-* templates: haml
-* unit_test: rspec
-* integration: cucumber
-* continuous_testing: guard
-* fixtures: factory_girl
-* frontend: foundation5
-* email: none
-* authentication: none
-* authorization: none
-* form_builder: none
-* starter_app: home_app
-* rvmrc: true
-* better_errors: true
+### Wiki
+The wiki page takes advantage of storing all past iterations of documention (rasterizer, article builder). This is the use case:
 
-Ruby on Rails
----
+Say you are a user with v1 of QuantumCraft (v2 is latest). There has been a new feature added in a newer update but you are stuck on the old version. Most wikis don't easily say when feature x was added or give you a page for a specific version of the said mod. The wiki will be able to provide you options to switch the version of the mod to the version you are running so you are not confused to why feature x is not working.
 
-This application requires:
+#### Articles
+Even though a lot of the articles can be automatically built, you can't automate it all. (NOT DONE!)
 
--   Ruby
--   Rails
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Database
----
-
-This application uses SQLite with ActiveRecord.
-
-Development
--
-
--   Template Engine: Haml
--   Testing Framework: RSpec and Factory Girl and Cucumber
--   Front-end Framework: Zurb Foundation 5
--   Form Builder: None
--   Authentication: None
--   Authorization: None
--   Admin: None
-
-
-
-
-
-
- delivery is disabled in development.
-
-Getting Started
-
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Documentation and Support
-
-
-This is the only documentation.
-
-#### Issues
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Similar Projects
--
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-Contributing
---
-
-If you make improvements to this application, please share with others.
-
--   Fork the project on GitHub.
--   Make your feature addition or bug fix.
--   Commit with Git.
--   Send the author a pull request.
-
-If you add functionality to this application, create an alternative
-implementation, or build an application that is similar, please contact
-me and I’ll add a note to the README so that others can find your work.
-
-Credits
---
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-License
---
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+### Downloads
+Um... how do I describe this? Downloads anyone?
