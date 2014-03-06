@@ -9,4 +9,20 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-HeisenBugDev::Application.config.secret_key_base = '1ee3d07b6771105262d14a9f4af04a88ea102239ebb4f794b35ea7053443fddb884c5d719baaa637df9b6969f55a34f6e74c9d8561a0d2a1011b210df533aebc'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+EuphoriaWeb::Application.config.secret_key_base = secure_token
