@@ -25,4 +25,4 @@ def secure_token
   end
 end
 
-EuphoriaWeb::Application.config.secret_key_base = secure_token
+HeisenBugDev::Application.config.secret_key_base = secure_token
