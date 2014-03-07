@@ -28,8 +28,8 @@ Some blocks share traits which will be auto detected by analyzing the code and t
 ### Storage Module
 The storage module is in charge of... well... storing stuff. When it is sent a file, it will automatically compare it with the previous file from the last build (info on why later). If it is different, it will store it as a new entry. The .jar files and build info will _always_ be saved as a new entry. The other files such as ones from the Article Builder and Rasterizer will follow the save if changed policy.
 
-### w3 site
-The www site is all the static pages.
+### Static pages
+Home page, about page...
 
 ### Wiki
 The wiki page takes advantage of storing all past iterations of documention (rasterizer, article builder). This is the use case:
