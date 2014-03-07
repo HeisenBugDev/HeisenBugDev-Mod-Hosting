@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
  */
+
+.left-align {
+  float: right !important;
+}
+
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 2em;
+}
+
+.feature-text {
+  width: auto !important;
+}
