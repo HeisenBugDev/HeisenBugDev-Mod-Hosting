@@ -12,6 +12,7 @@ gem 'foundation-rails', '5.0.3.1'
 gem 'haml-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem "mini_magick"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
