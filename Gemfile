@@ -19,6 +19,7 @@ group :development do
   gem 'guard-cucumber'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-livereload', require: false
   gem 'html2haml'
   gem 'rails_layout'
   gem 'rb-fchange', :require=>false
