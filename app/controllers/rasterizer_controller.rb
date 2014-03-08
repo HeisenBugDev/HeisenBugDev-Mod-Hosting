@@ -1,0 +1,2 @@
+class RasterizerController < ApplicationController
+end
