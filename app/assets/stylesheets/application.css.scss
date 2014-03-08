@@ -44,6 +44,17 @@ p {
   }
 }
 
+.avatars {
+  width: 500px;
+
+  img{
+    width: 250px !important;
+    float: left;
+    position: relative;
+    display: inline-block;
+  }
+}
+
 a {
   color: #e2e2e2;
   font-weight: 500;
