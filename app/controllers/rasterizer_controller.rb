@@ -64,16 +64,20 @@ class RasterizerController < ApplicationController
       c.shear('0x-26')
     end
 
-    side.combine_options 'convert' do |c|
-      c.push(front.path)
+    top.write('top.png')
+    side.write('side.png')
+    front.write('front.png')
+    result = MiniMagick::Image.open('side.png')
+    result.combine_options 'convert' do |c|
+      c.push('front.png')
       c.append.+
-      c.push(top.path)
+      c.push('top.png')
       c.background('none')
       c.layers('merge')
       c.repage.+
       c.scale("#{size}x#{size}")
     end
 
-    send_data(side.to_blob)
+    send_data(result.to_blob)
   end
 end
