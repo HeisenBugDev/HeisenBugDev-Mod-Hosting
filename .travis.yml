@@ -1,8 +1,6 @@
 language: ruby
 rvm:
   - 2.1.1
-service:
-  - imagick
 before_script:
   - cp config/database.yml.travis config/database.yml
 script:
