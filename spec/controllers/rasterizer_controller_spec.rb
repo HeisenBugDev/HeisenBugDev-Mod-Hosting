@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe RasterizerController do
+  good_response = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_top.png",
+          "side" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_side.png",
+          "front" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_front.png"}
   describe "When image is requested via GET" do
     it "should return a UrlGenerationError" do
       expect{get 'index'}.to raise_error(ActionController::UrlGenerationError)
@@ -33,10 +36,7 @@ describe RasterizerController do
 
     describe "with proper parameters" do
       it "should respond with success" do
-        json = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_top.png",
-          "side" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_side.png",
-          "front" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_front.png"}
-        post :create, json
+        post :create, good_response
         response.should be_success
       end
     end
