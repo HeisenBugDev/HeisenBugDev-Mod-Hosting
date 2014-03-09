@@ -7,8 +7,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-gem 'foundation-rails', '5.0.3.1'
+gem 'jbuilder', '~> 2.0'
+gem 'foundation-rails', '~> 5.2'
 gem 'haml-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
@@ -34,7 +34,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'capybara'
   gem 'cucumber-rails', :require=>false
-  gem 'database_cleaner', '1.0.1'
+  gem 'database_cleaner', '~> 1.2'
   gem 'email_spec'
   gem 'launchy'
 end
