@@ -5,7 +5,7 @@ class RasterizerController < ApplicationController
     require 'mini_magick'
 
     size = params[:s].to_i
-    size = 500 if size < 1
+    size = 250 if size < 1
 
     missing_params = []
 
