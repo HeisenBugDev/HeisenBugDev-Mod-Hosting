@@ -7,17 +7,35 @@ class RasterizerController < ApplicationController
     size = params[:s].to_i
     size = 500 if size < 1
 
-    if size > 1000
-      render :json => {:error => 'Size too big! Max size 1000!'}, :status => :bad_request
+    missing_params = []
+
+    [:top, :side, :front].each do |param|
+      missing_params << param if params[param].nil?
+    end
+
+    unless missing_params.empty?
+      render :json => {:error => "parameters are missing or broken!"},
+           :status => :bad_request
       return
     end
-    puts "size: #{size}"
+
+    if size > 1000
+      render :json => {:error => 'Size too big! Max size 1000!'},
+           :status => :bad_request
+      return
+    end
 
     multiplier = size.to_f / 1000.to_f
 
-    top = MiniMagick::Image.open(params[:top])
-    side = MiniMagick::Image.open(params[:side])
-    front = MiniMagick::Image.open(params[:front])
+    begin
+      top = MiniMagick::Image.open(params[:top])
+      side = MiniMagick::Image.open(params[:side])
+      front = MiniMagick::Image.open(params[:front])
+    rescue Errno::ENOENT
+      render :json => {:error => 'One or more files does not exist.'},
+           :status => :failed_dependency
+      return
+    end
 
     x_scale = multiplier * 520
     y_scale = multiplier * 662
