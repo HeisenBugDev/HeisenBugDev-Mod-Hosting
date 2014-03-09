@@ -5,17 +5,15 @@ class RasterizerController < ApplicationController
     require 'mini_magick'
 
     size = params[:s].to_i
-    size ||= 500
+    size = 500 if size < 1
 
     if size > 1000
       render :json => {:error => 'Size too big! Max size 1000!'}
       return
     end
-    puts "#{size}izesdkfjdkjsfkjkd"
+    puts "size: #{size}"
 
     multiplier = size.to_f / 1000.to_f
-    puts "#{multiplier}sjdkfdkj"
-
 
     top = MiniMagick::Image.open(params[:top])
     side = MiniMagick::Image.open(params[:side])
