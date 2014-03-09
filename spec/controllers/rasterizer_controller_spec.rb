@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RasterizerController do
-  good_response = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_top.png",
+  good_request = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_top.png",
           "side" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_side.png",
           "front" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_front.png"}
   describe "When image is requested via GET" do
@@ -36,8 +36,17 @@ describe RasterizerController do
 
     describe "with proper parameters" do
       it "should respond with success" do
-        post :create, good_response
+        post :create, good_request
         response.should be_success
+      end
+    end
+
+    describe "with a size too big" do
+      it "should return 400" do
+        json = good_request.dup
+        json[:s] = 1001
+        post :create, json
+        response.response_code.should eq(400)
       end
     end
   end
