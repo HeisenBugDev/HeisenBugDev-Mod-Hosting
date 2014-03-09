@@ -47,6 +47,7 @@ describe RasterizerController do
         json[:s] = 1001
         post :create, json
         response.response_code.should eq(400)
+        response.body.should_not == nil
       end
     end
   end
