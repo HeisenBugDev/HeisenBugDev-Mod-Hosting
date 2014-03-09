@@ -64,10 +64,15 @@ class RasterizerController < ApplicationController
       c.shear('0x-26')
     end
 
-    side.combine_options 'convert' do |c|
-      c.push(front.path)
+    side.write("#{Dir.tmpdir}/side.png")
+    top.write("#{Dir.tmpdir}/top.png")
+    front.write("#{Dir.tmpdir}/front.png")
+
+    result = MiniMagick::Image.open("#{Dir.tmpdir}/side.png")
+    result.combine_options 'convert' do |c|
+      c.push("#{Dir.tmpdir}/front.png")
       c.append.+
-      c.push(top.path)
+      c.push("#{Dir.tmpdir}/top.png")
       c.background('none')
       c.layers('merge')
       c.repage.+
