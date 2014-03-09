@@ -8,7 +8,7 @@ class RasterizerController < ApplicationController
     size = 500 if size < 1
 
     if size > 1000
-      render :json => {:error => 'Size too big! Max size 1000!'}
+      render :json => {:error => 'Size too big! Max size 1000!'}, :status => :bad_request
       return
     end
     puts "size: #{size}"
