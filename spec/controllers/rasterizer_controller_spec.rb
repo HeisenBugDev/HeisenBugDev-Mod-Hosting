@@ -38,6 +38,7 @@ describe RasterizerController do
       it "should respond with success" do
         post :create, good_request
         response.should be_success
+        response.body.should_not == nil
       end
     end
 
@@ -47,7 +48,6 @@ describe RasterizerController do
         json[:s] = 1001
         post :create, json
         response.response_code.should eq(400)
-        response.body.should_not == nil
       end
     end
   end
