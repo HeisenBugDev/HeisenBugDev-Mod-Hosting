@@ -2,7 +2,7 @@ class RasterizerController < ApplicationController
  skip_before_filter :verify_authenticity_token
 
   def create
-    require 'mini_magick'
+    # require 'mini_magick'
 
     size = params[:s].to_i
     size = 250 if size < 1
@@ -64,20 +64,16 @@ class RasterizerController < ApplicationController
       c.shear('0x-26')
     end
 
-    top.write('top.png')
-    side.write('side.png')
-    front.write('front.png')
-    result = MiniMagick::Image.open('side.png')
-    result.combine_options 'convert' do |c|
-      c.push('front.png')
+    side.combine_options 'convert' do |c|
+      c.push(front.path)
       c.append.+
-      c.push('top.png')
+      c.push(top.path)
       c.background('none')
       c.layers('merge')
       c.repage.+
       c.scale("#{size}x#{size}")
     end
 
-    send_data(result.to_blob)
+    send_data(side.to_blob)
   end
 end

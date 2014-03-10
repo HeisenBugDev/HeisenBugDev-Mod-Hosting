@@ -35,7 +35,12 @@ describe RasterizerController do
     end
 
     describe "with proper parameters" do
+      # image = mock(MiniMagick::Image)
       it "should respond with success" do
+        allow_any_instance_of(MiniMagick::Image).to receive(:combine_options)
+        side = double()
+        side.stub(:combine_options).with('convert')
+        allow(side).to receive(:to_blob) { "Seems legit..." }
         post :create, good_request
         response.should be_success
         response.body.should_not == nil
