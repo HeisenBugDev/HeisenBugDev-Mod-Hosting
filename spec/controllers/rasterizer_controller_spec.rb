@@ -35,7 +35,6 @@ describe RasterizerController do
     end
 
     describe "with proper parameters" do
-      # image = mock(MiniMagick::Image)
       it "should respond with success" do
         allow_any_instance_of(MiniMagick::Image).to receive(:combine_options)
         side = double()
