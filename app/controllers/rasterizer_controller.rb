@@ -1,25 +1,15 @@
 class RasterizerController < ApplicationController
- skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
+  helper RasterizerHelper
 
   def create
     size = params[:s].to_i
     size = 250 if size < 1
 
-    missing_params = []
+    verified_parameters = verify_parameters(params, size)
 
-    [:top, :side, :front].each do |param|
-      missing_params << param if params[param].nil?
-    end
-
-    unless missing_params.empty?
-      render :json => {:error => "parameters are missing or broken!"},
-           :status => :bad_request
-      return
-    end
-
-    if size > 1000
-      render :json => {:error => 'Size too big! Max size 1000!'},
-           :status => :bad_request
+    unless verified_parameters == nil
+      verified_parameters.call
       return
     end
 
@@ -73,5 +63,29 @@ class RasterizerController < ApplicationController
     end
 
     send_data(side.to_blob)
+  end
+
+  private
+
+  def verify_parameters(params, size)
+    missing_params = []
+
+    [:top, :side, :front].each do |param|
+      missing_params << param if params[param].nil?
+    end
+
+    unless missing_params.empty?
+      return proc do
+        render :json => {:error => "parameters are missing or broken!"},
+             :status => :bad_request
+      end
+    end
+
+    if size > 1000
+      return proc do
+        render :json => {:error => 'Size too big! Max size 1000!'},
+             :status => :bad_request
+      end
+    end
   end
 end
