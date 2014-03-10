@@ -11,6 +11,10 @@ Trello is meant to be used for tracking the **status** of work on something (has
 
 Here is the Trello board for people who want to see the status of things https://trello.com/b/TSoCaDP5/heisenbugdev
 
+## Credits
+
+ - "its alright man, don't worry about it" man
+
 ## Design specs
 
 ### API
