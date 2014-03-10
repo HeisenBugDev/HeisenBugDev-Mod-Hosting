@@ -12,7 +12,9 @@ gem 'foundation-rails', '~> 5.2'
 gem 'haml-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem "mini_magick"
 group :development do
+  gem 'ruby_gntp'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
