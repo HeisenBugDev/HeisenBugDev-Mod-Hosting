@@ -2,8 +2,6 @@ class RasterizerController < ApplicationController
  skip_before_filter :verify_authenticity_token
 
   def create
-    # require 'mini_magick'
-
     size = params[:s].to_i
     size = 250 if size < 1
 
