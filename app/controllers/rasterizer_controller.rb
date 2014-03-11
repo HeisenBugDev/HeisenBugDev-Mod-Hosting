@@ -5,8 +5,9 @@ class RasterizerController < ApplicationController
   def create
     size = params[:s].to_i
     size = 250 if size < 1
+    images = { :top => nil, :side => nil, :front => nil }
 
-    verified_parameters = verify_parameters(params, size)
+    verified_parameters = verify_parameters(params, size, images)
 
     unless verified_parameters == nil
       verified_parameters.call
@@ -14,27 +15,16 @@ class RasterizerController < ApplicationController
     end
 
     multiplier = size.to_f / 1000.to_f
-
-    begin
-      top = MiniMagick::Image.open(params[:top])
-      side = MiniMagick::Image.open(params[:side])
-      front = MiniMagick::Image.open(params[:front])
-    rescue Errno::ENOENT
-      render :json => {:error => 'One or more files does not exist.'},
-           :status => :failed_dependency
-      return
-    end
-
     x_scale = multiplier * 520
     y_scale = multiplier * 662
 
-    convert_top(top)
-    convert_side(side)
-    convert_front(front)
+    convert_top(images[:top])
+    convert_side(images[:side])
+    convert_front(images[:front])
 
-    combine_all(side)
+    combine_all(images[:side])
 
-    send_data(side.to_blob)
+    send_data(images[:side].to_blob)
   end
 
   private
@@ -81,7 +71,7 @@ class RasterizerController < ApplicationController
     end
   end
 
-  def verify_parameters(params, size)
+  def verify_parameters(params, size, images)
     missing_params = []
 
     [:top, :side, :front].each do |param|
@@ -99,6 +89,17 @@ class RasterizerController < ApplicationController
       return proc do
         render :json => {:error => 'Size too big! Max size 1000!'},
              :status => :bad_request
+      end
+    end
+
+    begin
+      images[:top] = MiniMagick::Image.open(params[:top])
+      images[:side] = MiniMagick::Image.open(params[:side])
+      images[:front] = MiniMagick::Image.open(params[:front])
+    rescue Errno::ENOENT
+      return proc do
+        render :json => {:error => 'One or more files does not exist.'},
+             :status => :failed_dependency
       end
     end
   end
