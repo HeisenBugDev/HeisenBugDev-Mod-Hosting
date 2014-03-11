@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311164213) do
+ActiveRecord::Schema.define(version: 20140311204240) do
 
   create_table "builds", force: true do |t|
     t.integer  "build_number"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140311164213) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "repo"
+    t.string   "articles_repo"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
