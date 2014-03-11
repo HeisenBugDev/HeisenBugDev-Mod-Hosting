@@ -19,5 +19,13 @@
 require 'spec_helper'
 
 describe Build do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:project) { FactoryGirl.create(:project) }
+  let(:build) { FactoryGirl.create(:build, :project => project) }
+
+  subject { build }
+
+  describe "when build_number is not present" do
+    before { build.build_number = nil }
+    it { should_not be_valid }
+  end
 end
