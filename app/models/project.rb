@@ -17,6 +17,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :repo
   validates_presence_of :description
 
+  validates_uniqueness_of :name
+
   after_initialize :init
 
   def init
