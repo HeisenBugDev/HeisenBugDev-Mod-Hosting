@@ -19,8 +19,8 @@ guard 'rails' do
 end
 
 
-guard :rspec, cmd: 'zeus rspec spec' do
-  watch(%r{^spec/.+_spec\.rb$})
+guard :rspec, cmd: 'zeus rspec' do
+  watch(%r{^spec/.+_spec\.rb$}) { 'spec' }
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
 
