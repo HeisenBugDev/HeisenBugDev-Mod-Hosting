@@ -21,9 +21,9 @@
 FactoryGirl.define do
   factory :build do
     build_number 1
-    version "MyString"
-    commit "MyString"
-    minecraft_version "MyString"
-    project nil
+    version "0.0.1"
+    commit "ce6d688"
+    minecraft_version "1.7.2"
+    project
   end
 end
