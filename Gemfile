@@ -13,6 +13,8 @@ gem 'haml-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem "mini_magick"
+gem 'carrierwave'
+
 group :development do
   gem 'ruby_gntp'
   gem 'better_errors'
