@@ -14,11 +14,8 @@ require 'spec_helper'
 
 describe Project do
   before do
-    @project = Project.new(
-      :name           => "BlockMiner",
-      :repo           => "HeisenBugDev/BlockMiner",
-      :description    => "Mine the blocks and stuff."
-    )
+    @project = FactoryGirl.create(:project)
+    @constructor_init_project = Project.new(:name => "BlockMiner1")
   end
 
   subject { @project }
@@ -36,5 +33,15 @@ describe Project do
   describe "when description is not present" do
     before { @project.description = nil}
     it { should_not be_valid }
+  end
+
+  describe "when repo is not specified" do
+    it "should be defaulted" do
+      expect(@constructor_init_project.repo).to eq("HeisenBugDev/BlockMiner1")
+    end
+  end
+
+  describe "when description is not specified" do
+    specify { @constructor_init_project.description.should_not be_nil}
   end
 end

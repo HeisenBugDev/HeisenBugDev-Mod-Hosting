@@ -13,7 +13,14 @@
 class Project < ActiveRecord::Base
   has_many :builds, :dependent => :destroy
 
-  validates :name, :presence => true
-  validates :repo, :presence => true
-  validates :description, :presence => true
+  validates_presence_of :name
+  validates_presence_of :repo
+  validates_presence_of :description
+
+  after_initialize :init
+
+  def init
+    self.repo ||= "HeisenBugDev/#{self.name}"
+    self.description ||= "Such description! Much information!"
+  end
 end

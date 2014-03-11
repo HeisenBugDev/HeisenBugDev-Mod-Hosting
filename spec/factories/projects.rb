@@ -14,8 +14,8 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-    repo "MyString"
-    description "MyText"
+    name "BlockMiner"
+    repo "HeisenBugDev/BlockMiner"
+    description "Mine the blocks and stuff"
   end
 end
