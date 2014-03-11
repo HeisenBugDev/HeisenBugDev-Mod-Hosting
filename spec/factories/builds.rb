@@ -11,6 +11,10 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #
+# Indexes
+#
+#  index_builds_on_project_id  (project_id)
+#
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
 

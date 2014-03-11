@@ -11,6 +11,10 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #
+# Indexes
+#
+#  index_builds_on_project_id  (project_id)
+#
 
 require 'spec_helper'
 

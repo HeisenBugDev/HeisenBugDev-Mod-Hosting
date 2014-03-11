@@ -2,12 +2,12 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  repo        :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  articles_repo :string(255)
+#  description   :text
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 require 'spec_helper'
@@ -25,8 +25,8 @@ describe Project do
     it { should_not be_valid }
   end
 
-  describe "when repo is not present" do
-    before { @project.repo = nil }
+  describe "when articles_repo is not present" do
+    before { @project.articles_repo = nil }
     it { should_not be_valid }
   end
 
@@ -35,9 +35,9 @@ describe Project do
     it { should_not be_valid }
   end
 
-  describe "when repo is not specified" do
+  describe "when articles_repo is not specified" do
     it "should be defaulted" do
-      expect(@constructor_init_project.repo).to eq("HeisenBugDev/BlockMiner1")
+      expect(@constructor_init_project.articles_repo).to eq("HeisenBugDev/BlockMiner1")
     end
   end
 
