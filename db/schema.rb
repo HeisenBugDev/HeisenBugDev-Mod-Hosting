@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311163651) do
+ActiveRecord::Schema.define(version: 20140311164213) do
+
+  create_table "builds", force: true do |t|
+    t.integer  "build_number"
+    t.string   "version"
+    t.string   "commit"
+    t.string   "minecraft_version"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "builds", ["project_id"], name: "index_builds_on_project_id"
 
   create_table "projects", force: true do |t|
     t.string   "name"
