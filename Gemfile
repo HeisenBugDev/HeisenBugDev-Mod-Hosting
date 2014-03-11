@@ -16,6 +16,7 @@ gem "mini_magick"
 gem 'carrierwave'
 
 group :development do
+  gem "annotate", "~> 2.6.2"
   gem 'ruby_gntp'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
