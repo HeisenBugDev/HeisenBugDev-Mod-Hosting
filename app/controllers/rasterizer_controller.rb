@@ -28,6 +28,47 @@ class RasterizerController < ApplicationController
     x_scale = multiplier * 520
     y_scale = multiplier * 662
 
+    convert_top(top)
+    convert_side(side)
+    convert_front(front)
+
+    combine_all(side)
+
+    send_data(side.to_blob)
+  end
+
+  private
+
+  def combine_all(side)
+    side.combine_options 'convert' do |c|
+      c.push(front.path)
+      c.append.+
+      c.push(top.path)
+      c.background('none')
+      c.layers('merge')
+      c.repage.+
+      c.scale("#{size}x#{size}")
+    end
+  end
+
+  def convert_front(front)
+    front.combine_options do |c|
+      c.brightness_contrast('-20x-18')
+      c.scale("#{x_scale}x#{y_scale}!")
+      c.background('none')
+      c.shear('0x-26')
+    end
+  end
+
+  def convert_side(side)
+    side.combine_options do |c|
+        c.scale("#{x_scale}x#{y_scale}!")
+        c.background('none')
+        c.shear('0x26')
+      end
+  end
+
+  def convert_top(top)
     top.combine_options do |c|
       c.scale("#{x_scale}x#{602 * multiplier}!")
       c.background('none')
@@ -38,34 +79,7 @@ class RasterizerController < ApplicationController
       c.crop("#{2000 * multiplier}x#{602 * multiplier}+0+0")
       c.repage("-1-#{298 * multiplier}")
     end
-
-    side.combine_options do |c|
-      c.scale("#{x_scale}x#{y_scale}!")
-      c.background('none')
-      c.shear('0x26')
-    end
-
-    front.combine_options do |c|
-      c.brightness_contrast('-20x-18')
-      c.scale("#{x_scale}x#{y_scale}!")
-      c.background('none')
-      c.shear('0x-26')
-    end
-
-    side.combine_options 'convert' do |c|
-      c.push(front.path)
-      c.append.+
-      c.push(top.path)
-      c.background('none')
-      c.layers('merge')
-      c.repage.+
-      c.scale("#{size}x#{size}")
-    end
-
-    send_data(side.to_blob)
   end
-
-  private
 
   def verify_parameters(params, size)
     missing_params = []
