@@ -22,18 +22,18 @@ class RasterizerController < ApplicationController
     convert_side(images[:side])
     convert_front(images[:front])
 
-    combine_all(images[:side])
+    combine_all(images)
 
     send_data(images[:side].to_blob)
   end
 
   private
 
-  def combine_all(side)
-    side.combine_options 'convert' do |c|
-      c.push(front.path)
+  def combine_all(images)
+    images[:side].combine_options 'convert' do |c|
+      c.push(images[:front].path)
       c.append.+
-      c.push(top.path)
+      c.push(images[:top].path)
       c.background('none')
       c.layers('merge')
       c.repage.+
@@ -102,5 +102,7 @@ class RasterizerController < ApplicationController
              :status => :failed_dependency
       end
     end
+
+    return
   end
 end
