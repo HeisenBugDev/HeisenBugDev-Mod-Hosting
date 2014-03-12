@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311204240) do
+ActiveRecord::Schema.define(version: 20140312230442) do
+
+  create_table "artifacts", force: true do |t|
+    t.string   "name"
+    t.string   "download_file"
+    t.integer  "build_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "artifacts", ["build_id"], name: "index_artifacts_on_build_id"
 
   create_table "builds", force: true do |t|
     t.integer  "build_number"

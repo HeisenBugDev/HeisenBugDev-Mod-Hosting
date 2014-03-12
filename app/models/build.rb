@@ -18,6 +18,7 @@
 
 class Build < ActiveRecord::Base
   belongs_to :project
+  has_many :artifacts, :dependent => :destroy
 
   validates_presence_of :build_number
   validates_presence_of :version
