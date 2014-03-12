@@ -28,4 +28,19 @@ describe Build do
     before { build.build_number = nil }
     it { should_not be_valid }
   end
+
+  describe "when version is not present" do
+    before { build.version = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when commit is not present" do
+    before { build.commit = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when minecraft_version is not present" do
+    before { build.minecraft_version = nil }
+    it { should_not be_valid }
+  end
 end

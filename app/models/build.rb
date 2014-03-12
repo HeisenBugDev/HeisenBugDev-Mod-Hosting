@@ -20,4 +20,7 @@ class Build < ActiveRecord::Base
   belongs_to :project
 
   validates_presence_of :build_number
+  validates_presence_of :version
+  validates_presence_of :commit
+  validates_presence_of :minecraft_version
 end
