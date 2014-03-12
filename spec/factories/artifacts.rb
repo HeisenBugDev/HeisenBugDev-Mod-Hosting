@@ -18,8 +18,8 @@
 
 FactoryGirl.define do
   factory :artifact do
-    name "MyString"
-    download_file "MyString"
+    name "Universal"
+    download_file "PointMeToTheUrl"
     build nil
   end
 end
