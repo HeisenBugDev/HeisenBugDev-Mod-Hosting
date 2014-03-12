@@ -19,21 +19,9 @@ describe Project do
   end
 
   subject { @project }
-
-  describe "when name is not present" do
-    before { @project.name = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when articles_repo is not present" do
-    before { @project.articles_repo = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when description is not present" do
-    before { @project.description = nil}
-    it { should_not be_valid }
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:articles_repo) }
+  it { should validate_presence_of(:description) }
 
   describe "when articles_repo is not specified" do
     it "should be defaulted" do

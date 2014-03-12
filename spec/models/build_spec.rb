@@ -23,24 +23,8 @@ describe Build do
   let(:build) { FactoryGirl.create(:build, :project => project) }
 
   subject { build }
-
-  describe "when build_number is not present" do
-    before { build.build_number = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when version is not present" do
-    before { build.version = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when commit is not present" do
-    before { build.commit = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when minecraft_version is not present" do
-    before { build.minecraft_version = nil }
-    it { should_not be_valid }
-  end
+  it { should validate_presence_of(:build_number) }
+  it { should validate_presence_of(:version) }
+  it { should validate_presence_of(:commit) }
+  it { should validate_presence_of(:minecraft_version) }
 end
