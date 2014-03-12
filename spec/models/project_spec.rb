@@ -23,6 +23,8 @@ describe Project do
   it { should validate_presence_of(:articles_repo) }
   it { should validate_presence_of(:description) }
 
+  it { should validate_uniqueness_of(:name) }
+
   describe "when articles_repo is not specified" do
     it "should be defaulted" do
       expect(@constructor_init_project.articles_repo).to eq("HeisenBugDev/BlockMiner1")

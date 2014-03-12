@@ -23,8 +23,11 @@ describe Build do
   let(:build) { FactoryGirl.create(:build, :project => project) }
 
   subject { build }
+
   it { should validate_presence_of(:build_number) }
   it { should validate_presence_of(:version) }
   it { should validate_presence_of(:commit) }
   it { should validate_presence_of(:minecraft_version) }
+
+  it { should validate_uniqueness_of(:build_number) }
 end

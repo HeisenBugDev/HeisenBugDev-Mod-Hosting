@@ -19,4 +19,6 @@ class Artifact < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :download_file
+
+  validates_uniqueness_of :name
 end

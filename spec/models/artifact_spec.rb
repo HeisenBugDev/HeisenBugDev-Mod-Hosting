@@ -25,4 +25,5 @@ describe Artifact do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:download_file) }
 
+  it { should validate_uniqueness_of(:name) }
 end
