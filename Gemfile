@@ -35,6 +35,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem "shoulda", "~> 3.5.0"
 end
 
 group :test do
