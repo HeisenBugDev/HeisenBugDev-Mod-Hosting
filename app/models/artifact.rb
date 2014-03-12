@@ -17,6 +17,8 @@
 class Artifact < ActiveRecord::Base
   belongs_to :build
 
+  mount_uploader :artifact, ArtifactUploader
+
   validates_presence_of :name
   validates_presence_of :download_file
 
