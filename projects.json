@@ -1,0 +1,10 @@
+{
+  "projects": [
+    {
+      "QuantumCraft": {
+        "description": "Yet another tech mod that ends in -craft",
+        "repo": "HeisenBugDev/QuantumCraft"
+      }
+    }
+  ]
+}
