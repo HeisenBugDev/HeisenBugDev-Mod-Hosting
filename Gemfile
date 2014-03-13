@@ -25,6 +25,7 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-cucumber'
+  gem 'guard-redis'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload', require: false
