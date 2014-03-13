@@ -33,7 +33,6 @@ guard 'rails' do
   watch(%r{^(config|lib)/.*})
 end
 
-
 guard :rspec, cmd: 'zeus rspec' do
   watch(%r{^spec/.+_spec\.rb$}) { 'spec' }
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
@@ -63,15 +62,4 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
-end
-
-### Guard::Sidekiq
-#  available options:
-#  - :verbose
-#  - :queue (defaults to "default") can be an array
-#  - :concurrency (defaults to 1)
-#  - :timeout
-#  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
-guard 'sidekiq', :environment => 'development' do
-  watch(%r{^workers/(.+)\.rb$})
 end

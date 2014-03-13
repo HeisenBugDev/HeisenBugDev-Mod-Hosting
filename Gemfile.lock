@@ -130,9 +130,6 @@ GEM
     guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
-    guard-sidekiq (0.0.11)
-      guard (>= 1.1)
-      sidekiq
     haml (4.1.0.beta.1)
       tilt
     haml-rails (0.5.3)
@@ -334,7 +331,6 @@ DEPENDENCIES
   guard-rails
   guard-redis
   guard-rspec
-  guard-sidekiq
   haml-rails
   html2haml
   jbuilder (~> 2.0)
