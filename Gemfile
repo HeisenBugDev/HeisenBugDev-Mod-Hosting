@@ -14,6 +14,9 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem "mini_magick"
 gem 'carrierwave'
+gem "sidekiq", "~> 2.17.7"
+gem "sidetiq", "~> 0.5.0"
+gem "sinatra", "~> 1.4.4"
 
 group :development do
   gem "annotate", "~> 2.6.2"
