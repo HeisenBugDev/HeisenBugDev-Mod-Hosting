@@ -1,3 +1,5 @@
+require 'net/https'
+
 class ProjectsWorker
   include Sidekiq::Worker
 
