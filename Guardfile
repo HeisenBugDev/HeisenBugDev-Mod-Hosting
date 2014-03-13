@@ -64,3 +64,14 @@ guard 'livereload' do
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html|png|jpg))).*}) { |m| "/assets/#{m[3]}" }
 end
+
+### Guard::Sidekiq
+#  available options:
+#  - :verbose
+#  - :queue (defaults to "default") can be an array
+#  - :concurrency (defaults to 1)
+#  - :timeout
+#  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
+guard 'sidekiq', :environment => 'development' do
+  watch(%r{^workers/(.+)\.rb$})
+end

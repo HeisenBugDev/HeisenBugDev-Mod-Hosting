@@ -28,6 +28,7 @@ group :development do
   gem 'guard-redis'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-sidekiq'
   gem 'guard-livereload', require: false
   gem 'html2haml'
   gem 'rails_layout'
