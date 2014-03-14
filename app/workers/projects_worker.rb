@@ -4,12 +4,12 @@ require 'json'
 class ProjectsWorker
   include Sidekiq::Worker
 
-  REPO    = 'HeisenBugDev/HeisenBugDev-content'
-  BRANCH  = 'master'
-  FILE    = 'projects.json'
-  GITHUB  = URI("https://raw.github.com/")
-  URN     = "/#{REPO}/#{BRANCH}/#{FILE}"
-
+  REPO      = 'HeisenBugDev/HeisenBugDev-content'
+  BRANCH    = 'master'
+  FILE      = 'projects.json'
+  GITHUB    = URI("https://raw.github.com/")
+  URN       = "/#{REPO}/#{BRANCH}/#{FILE}"
+  @project  = nil
 
   def request_file
     http              = Net::HTTP.new(GITHUB.host, GITHUB.port)
@@ -31,7 +31,13 @@ class ProjectsWorker
     data = data_from_file
 
     data["projects"].each do |key|
-      puts Project.exists?(:name => key[:name.to_s])
+      name = key['name']
+      if Project.exists?(:name => name)
+        @project = Project.find_by_name(name)
+      else
+        @project = Project.new(:name => name)
+      end
+      @project.update(key)
     end
   end
 end
