@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  def update
+  def refresh_projects
     ProjectsWorker.perform_async
     render :text => "Well... it didn't crash so it must be ok."
   end

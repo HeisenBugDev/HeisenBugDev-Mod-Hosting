@@ -3,7 +3,9 @@ HeisenBugDev::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   root 'home#home'
-  resources 'rasterizer', only: [:create]
-  resources 'artifacts', only: [:create]
-  resources 'projects', only: [:update]
+  resources 'rasterizer', :only => [:create]
+  resources 'artifacts',  :only => [:create]
+  resources 'projects',   :only => [:update]
+
+  match '/', :to => 'projects#refresh_projects', :via => 'get'
 end
