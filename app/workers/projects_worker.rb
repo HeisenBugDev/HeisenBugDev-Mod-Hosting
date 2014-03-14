@@ -8,14 +8,12 @@ class ProjectsWorker
   BRANCH    = 'master'
   FILE      = 'projects.json'
   GITHUB    = URI("https://raw.github.com/")
-  URN       = "/#{REPO}/#{BRANCH}/#{FILE}"
-  @project  = nil
 
   def request_file
     http              = Net::HTTP.new(GITHUB.host, GITHUB.port)
     http.use_ssl      = true
     http.verify_mode  = OpenSSL::SSL::VERIFY_NONE
-    request           = Net::HTTP::Get.new(URN)
+    request           = Net::HTTP::Get.new(@urn)
     response          = http.request(request)
   end
 
@@ -27,7 +25,9 @@ class ProjectsWorker
     JSON.parse(file_string)
   end
 
-  def perform
+  def perform(urn = nil)
+    @urn = "/#{REPO}/#{BRANCH}/#{FILE}"
+    @urn = urn unless urn.blank?
     data = data_from_file
 
     data["projects"].each do |key|
