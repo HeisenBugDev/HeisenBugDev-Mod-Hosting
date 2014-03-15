@@ -11,5 +11,19 @@ class BuildsController < ApplicationController
     end
 
     build = Build.new(params.except(:project_name))
+
+    if build.save
+      render :text => "All is good."
+    else
+      render :text => "Something went wrong. (I know, so descriptive)"
+    end
+
+    params[:artifacts].each do |artifact|
+      io = PatchedStringIO.new(Base64.decode64(artifact[:file]))
+      io.original_filename = artifact[:name]
+      artifact = Artifact.new(:build => build)
+      artifact.artifact = io
+      artifact.save
+    end
   end
 end
