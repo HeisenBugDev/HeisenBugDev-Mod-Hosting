@@ -5,5 +5,5 @@ before_script:
   - cp config/database.yml.travis config/database.yml
 script:
   - bundle exec rake db:migrate RAILS_ENV=test
-  - bundle exec rspec -c spec
+  - bundle exec rspec -c spec -fd
   - bundle exec cucumber features
