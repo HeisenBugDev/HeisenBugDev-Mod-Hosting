@@ -10,6 +10,7 @@
 #  project_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  branch            :string(255)
 #
 # Indexes
 #
@@ -23,6 +24,7 @@ FactoryGirl.define do
     build_number 1
     mod_version "0.0.1"
     commit "ce6d688"
+    branch "1337-this-better-be-awesome"
     minecraft_version "1.7.2"
     project
   end

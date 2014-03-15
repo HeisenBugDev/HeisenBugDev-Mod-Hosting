@@ -10,6 +10,7 @@
 #  project_id        :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  branch            :string(255)
 #
 # Indexes
 #
@@ -24,6 +25,7 @@ class Build < ActiveRecord::Base
   validates_presence_of :mod_version
   validates_presence_of :commit
   validates_presence_of :minecraft_version
+  validates_presence_of :branch
 
   validates_uniqueness_of :build_number
 end
