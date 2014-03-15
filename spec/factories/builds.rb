@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  build_number      :integer
-#  version           :string(255)
+#  mod_version       :string(255)
 #  commit            :string(255)
 #  minecraft_version :string(255)
 #  project_id        :integer
@@ -21,7 +21,7 @@
 FactoryGirl.define do
   factory :build do
     build_number 1
-    version "0.0.1"
+    mod_version "0.0.1"
     commit "ce6d688"
     minecraft_version "1.7.2"
     project

@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  build_number      :integer
-#  version           :string(255)
+#  mod_version       :string(255)
 #  commit            :string(255)
 #  minecraft_version :string(255)
 #  project_id        :integer
@@ -25,7 +25,7 @@ describe Build do
   subject { build }
 
   it { should validate_presence_of(:build_number) }
-  it { should validate_presence_of(:version) }
+  it { should validate_presence_of(:mod_version) }
   it { should validate_presence_of(:commit) }
   it { should validate_presence_of(:minecraft_version) }
 

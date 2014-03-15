@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312230442) do
+ActiveRecord::Schema.define(version: 20140315014631) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140312230442) do
 
   create_table "builds", force: true do |t|
     t.integer  "build_number"
-    t.string   "version"
+    t.string   "mod_version"
     t.string   "commit"
     t.string   "minecraft_version"
     t.integer  "project_id"

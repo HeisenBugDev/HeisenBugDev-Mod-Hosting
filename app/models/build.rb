@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  build_number      :integer
-#  version           :string(255)
+#  mod_version       :string(255)
 #  commit            :string(255)
 #  minecraft_version :string(255)
 #  project_id        :integer
@@ -21,7 +21,7 @@ class Build < ActiveRecord::Base
   has_many :artifacts, :dependent => :destroy
 
   validates_presence_of :build_number
-  validates_presence_of :version
+  validates_presence_of :mod_version
   validates_presence_of :commit
   validates_presence_of :minecraft_version
 
