@@ -26,6 +26,7 @@ class Build < ActiveRecord::Base
   validates_presence_of :commit
   validates_presence_of :minecraft_version
   validates_presence_of :branch
+  validates_presence_of :project
 
   validates_uniqueness_of :build_number
 end

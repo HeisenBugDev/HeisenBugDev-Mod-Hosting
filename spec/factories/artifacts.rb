@@ -2,12 +2,12 @@
 #
 # Table name: artifacts
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  download_file :string(255)
-#  build_id      :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  artifact   :string(255)
+#  build_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 # Indexes
 #
@@ -18,8 +18,8 @@
 
 FactoryGirl.define do
   factory :artifact do
-    name "Universal"
-    download_file "PointMeToTheUrl"
+    name "universal"
+    artifact "PointMeToTheUrsdjkfjl"
     build nil
   end
 end

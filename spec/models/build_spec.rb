@@ -30,6 +30,7 @@ describe Build do
   it { should validate_presence_of(:commit) }
   it { should validate_presence_of(:minecraft_version) }
   it { should validate_presence_of(:branch) }
+  it { should validate_presence_of(:project) }
 
   it { should validate_uniqueness_of(:build_number) }
 end

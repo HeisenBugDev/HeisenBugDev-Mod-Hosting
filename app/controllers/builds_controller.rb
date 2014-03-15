@@ -1,4 +1,6 @@
 class BuildsController < ApplicationController
+  protect_from_forgery :except => :create
+
   def create
     name = params[:project_name]
     project = Project.find_by_name(name)
@@ -9,21 +11,25 @@ class BuildsController < ApplicationController
                       "updated. Retry later"
       return
     end
+    build = project.builds.build(upload_params)
 
-    build = Build.new(params.except(:project_name))
-
-    if build.save
+    if build.save!
       render :text => "All is good."
     else
-      render :text => "Something went wrong. (I know, so descriptive)"
+      render :text => "Something went wrong. (I know, so descriptive)", :status => :bad_request
     end
 
     params[:artifacts].each do |artifact|
-      io = PatchedStringIO.new(Base64.decode64(artifact[:file]))
-      io.original_filename = artifact[:name]
-      artifact = Artifact.new(:build => build)
+      io = PatchedStringIO.new(Base64.decode64(artifact[:file_data]))
+      io.original_filename = artifact[:file]
+      artifact = build.artifacts.build(:name => artifact[:name])
       artifact.artifact = io
       artifact.save
     end
+  end
+
+private
+  def upload_params
+    params.require(:build).permit(:build_number, :mod_version, :commit, :minecraft_version, :branch)
   end
 end

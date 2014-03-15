@@ -2,12 +2,12 @@
 #
 # Table name: artifacts
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  download_file :string(255)
-#  build_id      :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  artifact   :string(255)
+#  build_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
 #
 # Indexes
 #
@@ -23,7 +23,6 @@ describe Artifact do
 
   subject { artifact }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:download_file) }
-
-  it { should validate_uniqueness_of(:name) }
+  it { should validate_presence_of(:artifact) }
+  it { should validate_presence_of(:build) }
 end
