@@ -7,9 +7,6 @@ describe ProjectsController do
     end
 
     it "should increase the Project count by 1" do
-      Project.delete_all
-      Project.delete_all
-      Project.delete_all
       expect { ProjectsWorker.drain }.to change(Project, :count).by(1)
     end
   end
@@ -26,5 +23,8 @@ describe ProjectsController do
       expect { ProjectsWorker.drain }.to change{ Project.find_by_name('QuantumCraft').description }.to('Yet another tech mod')
     end
 
+    after do
+      Project.delete_all
+    end
   end
 end
