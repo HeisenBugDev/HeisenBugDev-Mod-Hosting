@@ -26,7 +26,7 @@ class ProjectsWorker
   end
 
   def perform(urn = nil)
-    @urn = "/#{REPO}/#{BRANCH}/#{FILE}"
+    @urn = "/#{REPO}/#{BRANCH}/#{get_file_name}"
     @urn = urn unless urn.blank?
     data = data_from_file
 
@@ -39,5 +39,11 @@ class ProjectsWorker
       end
       @project.update(key)
     end
+  end
+
+private
+  def get_file_name
+    return 'projects_test_env.json' if Rails.env.test?
+    FILE
   end
 end
