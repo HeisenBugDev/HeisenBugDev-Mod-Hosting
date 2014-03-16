@@ -21,7 +21,6 @@ gem "octokit", "~> 2.7.2"
 
 group :development do
   gem 'rubocop'
-  gem 'guard-rubocop'
   gem "annotate", "~> 2.6.2"
   gem 'ruby_gntp'
   gem 'better_errors'
