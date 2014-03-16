@@ -23,6 +23,5 @@ describe Artifact do
 
   subject { artifact }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:artifact) }
   it { should validate_presence_of(:build) }
 end

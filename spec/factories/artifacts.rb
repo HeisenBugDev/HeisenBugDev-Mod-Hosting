@@ -19,7 +19,7 @@
 FactoryGirl.define do
   factory :artifact do
     name "universal"
-    artifact "PointMeToTheUrsdjkfjl"
+    artifact File.open(File.join(Rails.root, 'utils/upload_data/QuantumCraft-deobf-1.7.2-0.7.1.null.jar'))
     build nil
   end
 end

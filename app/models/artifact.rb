@@ -16,11 +16,9 @@
 
 class Artifact < ActiveRecord::Base
   belongs_to :build
-  # attr_accessor :artifact
 
   mount_uploader :artifact, ArtifactUploader
 
   validates_presence_of :name
-  validates_presence_of :artifact
   validates_presence_of :build
 end
