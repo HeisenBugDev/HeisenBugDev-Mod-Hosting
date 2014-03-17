@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :articles_repo
   validates_presence_of :description
+  # validates_presence_of :code_repo
 
   validates_uniqueness_of :name
 

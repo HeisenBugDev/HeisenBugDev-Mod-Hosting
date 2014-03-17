@@ -23,6 +23,7 @@ describe Project do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:articles_repo) }
   it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:code_repo) }
 
   it { should validate_uniqueness_of(:name) }
 
