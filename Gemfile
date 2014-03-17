@@ -19,6 +19,10 @@ gem "sidetiq", "~> 0.5.0"
 gem "sinatra", "~> 1.4.4"
 gem "octokit", "~> 2.7.2"
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
