@@ -8,6 +8,7 @@
 #  description   :text
 #  created_at    :datetime
 #  updated_at    :datetime
+#  code_repo     :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
