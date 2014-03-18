@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ProjectsController do
-  describe "when projects are told to be refreshed" do
+  describe "when projects are told to be refreshed", :order => :defined do
     it "should change the job queue by 1" do
       expect { get :refresh_projects }.to change(ProjectsWorker.jobs, :size).by(1)
     end
