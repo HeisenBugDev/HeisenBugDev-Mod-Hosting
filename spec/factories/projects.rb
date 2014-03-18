@@ -16,7 +16,8 @@
 FactoryGirl.define do
   factory :project do
     name "BlockMiner"
-    articles_repo "HeisenBugDev/BlockMiner"
+    articles_repo "HeisenBugDev/BlockMiner-docs"
+    code_repo "HeisenBugDev/BlockMiner"
     description "Mine the blocks and stuff"
   end
 end
