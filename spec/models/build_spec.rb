@@ -31,6 +31,8 @@ describe Build do
   it { should validate_presence_of(:minecraft_version) }
   it { should validate_presence_of(:branch) }
   it { should validate_presence_of(:project) }
+  it { should allow_value(1, 23, 316).for(:build_number) }
+  it { should_not allow_value(0, -1, -37).for(:build_number) }
 
   it { should validate_uniqueness_of(:build_number) }
 end

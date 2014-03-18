@@ -28,5 +28,10 @@ class Build < ActiveRecord::Base
   validates_presence_of :branch
   validates_presence_of :project
 
+  validates_numericality_of :build_number, :only_integer => true,
+                                           :greater_than => 0,
+                                           :message => "Build number must"\
+                                           "greater than 0"
+
   validates_uniqueness_of :build_number
 end
