@@ -29,7 +29,15 @@ describe Project do
 
   describe "when articles_repo is not specified" do
     it "should be defaulted" do
-      expect(@constructor_init_project.articles_repo).to eq("HeisenBugDev/BlockMiner1")
+      expect(@constructor_init_project.articles_repo).to(
+        eq("HeisenBugDev/BlockMiner1"))
+    end
+  end
+
+  describe "when code_repo is not specified" do
+    it "should be defaulted" do
+      expect(@constructor_init_project.code_repo).to(
+        eq("HeisenBugDev/HeisenBugDev-content"))
     end
   end
 

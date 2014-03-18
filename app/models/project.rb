@@ -26,5 +26,6 @@ class Project < ActiveRecord::Base
   def init
     self.articles_repo ||= "HeisenBugDev/#{self.name}"
     self.description ||= "Such description! Much information!"
+    self.code_repo ||= "HeisenBugDev/HeisenBugDev-content"
   end
 end
