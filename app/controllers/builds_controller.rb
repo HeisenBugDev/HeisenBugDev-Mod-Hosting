@@ -8,15 +8,16 @@ class BuildsController < ApplicationController
     if project.nil?
       ProjectsWorker.perform_async
       render :text => "Project was not found. Project database is being"\
-                      "updated. Retry later"
+                      " updated. Retry later", :status => :accepted
       return
     end
     build = project.builds.build(upload_params)
 
-    if build.save!
+    if build.save
       render :text => "All is good."
     else
-      render :text => "Something went wrong. (I know, so descriptive)", :status => :bad_request
+      render :text => "Something went wrong. (I know, so descriptive)",
+           :status => :bad_request
     end
 
     params[:artifacts].each do |artifact|
