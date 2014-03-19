@@ -38,10 +38,10 @@ describe BuildsController do
           response.response_code.should eq(400)
         end
       end
-    end
 
-    after do
-      Sidekiq::Testing.fake!
+      after do
+        Sidekiq::Testing.fake!
+      end
     end
   end
 end
