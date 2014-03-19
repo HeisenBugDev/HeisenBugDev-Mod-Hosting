@@ -16,8 +16,9 @@ class BuildsController < ApplicationController
     if build.save
       render :text => "All is good."
     else
-      render :text => "Something went wrong. (I know, so descriptive)",
-           :status => :bad_request
+      render :text => "Something went wrong. Parameters may be missing.",
+             :status => :bad_request
+      return
     end
 
     params[:artifacts].each do |artifact|
@@ -31,6 +32,7 @@ class BuildsController < ApplicationController
 
 private
   def upload_params
-    params.require(:build).permit(:build_number, :mod_version, :commit, :minecraft_version, :branch)
+    params.permit(:build_number, :mod_version, :commit,
+                                  :minecraft_version, :branch)
   end
 end
