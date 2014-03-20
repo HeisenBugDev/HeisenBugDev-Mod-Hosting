@@ -43,5 +43,21 @@ describe BuildsController do
         Sidekiq::Testing.fake!
       end
     end
+
+    describe "with good build parameters" do
+      before do
+        FactoryGirl.create(:project, :name => "QuantumCraft")
+      end
+
+      it "should upload the file" do
+        good_json = json.dup
+        good_json[:artifacts] = [{
+          :name => 'universal',
+          :file => 'universal.jar',
+          :file_data => 'ZGF0YWlzY29vbA=='
+        }]
+        expect{ post :create, good_json }.to change(Artifact, :count).by(1)
+      end
+    end
   end
 end
