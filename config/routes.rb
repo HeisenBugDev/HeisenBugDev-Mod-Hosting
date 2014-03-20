@@ -7,5 +7,7 @@ HeisenBugDev::Application.routes.draw do
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
 
+  match '/downloads', :to => 'builds#downloads', :via => 'get'
+
   match '/refresh_projects', :to => 'projects#refresh_projects', :via => 'get'
 end

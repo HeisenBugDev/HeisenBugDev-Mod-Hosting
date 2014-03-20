@@ -1,0 +1,6 @@
+- Project.all.each do |project|
+  = project.name
+  - get_latest_builds(project.name).each do |build|
+    = build.build_number
+    - build.artifacts.each do |artifact|
+      = artifact.artifact_url
