@@ -1,4 +1,5 @@
 HeisenBugDev::Application.routes.draw do
+  devise_for :users
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
