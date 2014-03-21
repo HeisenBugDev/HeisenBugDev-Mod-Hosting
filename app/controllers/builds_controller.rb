@@ -21,6 +21,16 @@ class BuildsController < ApplicationController
       return
     end
 
+    upload_artifacts(build)
+  end
+
+private
+  def upload_params
+    params.permit(:build_number, :mod_version, :commit,
+                                  :minecraft_version, :branch)
+  end
+
+  def upload_artifacts(build)
     params[:artifacts].each do |artifact|
       io = PatchedStringIO.new(Base64.decode64(artifact[:file_data]))
       io.original_filename = artifact[:file]
@@ -28,11 +38,5 @@ class BuildsController < ApplicationController
       artifact.artifact = io
       artifact.save
     end
-  end
-
-private
-  def upload_params
-    params.permit(:build_number, :mod_version, :commit,
-                                  :minecraft_version, :branch)
   end
 end
