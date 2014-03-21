@@ -1,3 +1,13 @@
-- Project.all.each do |project|
-  = project.name
-  = render get_latest_builds(project)
+.large-12.columns
+  - Project.all.each do |project|
+    %h2
+      = project.name
+    %table
+      %thead
+        %tr
+          %th Build
+          %th Mod Version
+          %th Minecraft Version
+          %th Files
+      %tbody
+        = render get_latest_builds(project)
