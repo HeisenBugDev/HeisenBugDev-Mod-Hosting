@@ -18,6 +18,7 @@ gem "sidekiq", "~> 2.17.7"
 gem "sidetiq", "~> 0.5.0"
 gem "sinatra", "~> 1.4.4"
 gem "octokit", "~> 2.7.2"
+gem 'devise'
 
 group :production do
   gem 'rails_12factor'
