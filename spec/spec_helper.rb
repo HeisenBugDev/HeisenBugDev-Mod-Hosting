@@ -14,6 +14,12 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
+
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
   # config.include(EmailSpec::Helpers)
   # config.include(EmailSpec::Matchers)
   # ## Mock Framework
