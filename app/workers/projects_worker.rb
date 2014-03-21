@@ -3,6 +3,9 @@ require 'json'
 
 class ProjectsWorker
   include Sidekiq::Worker
+  include Sidetiq::Schedulable
+
+  recurrence { daily }
 
   REPO      = 'HeisenBugDev/HeisenBugDev-content'
   BRANCH    = 'master'
