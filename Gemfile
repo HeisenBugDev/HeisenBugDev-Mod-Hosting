@@ -20,6 +20,7 @@ gem "sinatra", "~> 1.4.4"
 gem "octokit", "~> 2.7.2"
 gem 'devise'
 gem 'omniauth-github'
+gem 'simple_token_authentication'
 
 group :production do
   gem 'rails_12factor'
