@@ -1,5 +1,7 @@
 class BuildsController < ApplicationController
   acts_as_token_authentication_handler_for User
+  before_filter :authenticate_entity_from_token!, :only => :create
+  before_filter :authenticate_entity!, :only => :create
 
   protect_from_forgery :except => :create
 
