@@ -12,6 +12,10 @@ HeisenBugDev::Application.routes.draw do
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
 
+  namespace :users do
+    match '/update_token', :to => 'token#update', :via => 'put'
+  end
+
   match '/downloads', :to => 'builds#downloads', :via => 'get'
 
   match '/refresh_projects', :to => 'projects#refresh_projects', :via => 'get'

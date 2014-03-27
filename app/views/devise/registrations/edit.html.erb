@@ -1,7 +1,7 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <h3>Authentication token: <%= resource.authentication_token %></h3>
-<%= button_to "Reset token",  %>
+<%= button_to "Reset token", users_update_token_path, method: :put %>
 
 <h3>Cancel my account</h3>
 
