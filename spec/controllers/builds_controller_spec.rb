@@ -8,6 +8,20 @@ describe BuildsController do
            :branch => 'develop',
            :commit => '23wyedfjkk' }
 
+  let(:user) { FactoryGirl.create(:user) }
+
+  before do
+    sign_in user
+  end
+
+  describe "logged out" do
+    it "should not accept it" do
+      sign_out user
+      post :create, json
+      response.should redirect_to(new_user_session_path)
+    end
+  end
+
   describe "Uploading a build" do
     describe "with an invalid project" do
       it "should say to come back later" do

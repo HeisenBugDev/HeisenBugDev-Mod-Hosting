@@ -14,6 +14,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
 
   config.after(:all) do
     if Rails.env.test?
