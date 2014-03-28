@@ -1,6 +1,11 @@
 // add navigation links to this file
 - if user_signed_in?
-  = link_to "Welcome #{current_user.name}", edit_user_registration_path, :class => 'item'
-  = link_to 'Logout', destroy_user_session_path, :method => 'delete', :class => 'item'
+  %li
+    = link_to "Welcome #{current_user.name}", edit_user_registration_path, :class => 'item'
+  %li
+    = link_to 'Sign out', destroy_user_session_path, :method => 'delete', :class => 'item'
 - else
-  = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
+  %li
+    = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
+%li
+  = link_to "Downloads", downloads_path

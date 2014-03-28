@@ -12,6 +12,10 @@
  *= require_self
  */
 
+body {
+  -webkit-font-smoothing: antialiased !important;
+}
+
 .left-align {
   float: left !important;
 }
