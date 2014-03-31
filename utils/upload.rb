@@ -9,7 +9,9 @@ manifest['artifacts'].each do |artifact|
   artifact['file_data'] = Base64.encode64(content)
 end
 
-req = Net::HTTP::Post.new('/builds', 'Content-Type' => 'application/json')
+req = Net::HTTP::Post.new('/builds.json', 'Content-Type' => 'application/json')
+req['X-User-Email'] = ENV['HBD-EMAIL']
+req['X-User-Token'] = ENV['HBD-TOKEN']
 req.body = manifest.to_json
 
 response = Net::HTTP.new('localhost', '3000').start do |http|
