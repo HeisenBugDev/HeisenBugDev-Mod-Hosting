@@ -16,7 +16,7 @@ HeisenBugDev::Application.routes.draw do
     match '/update_token', :to => 'token#update', :via => 'put'
   end
 
-  match '/downloads', :to => 'builds#downloads', :via => 'get'
+  match '/downloads', :to => 'builds#index', :via => 'get'
 
   match '/refresh_projects', :to => 'projects#refresh_projects', :via => 'get'
 end

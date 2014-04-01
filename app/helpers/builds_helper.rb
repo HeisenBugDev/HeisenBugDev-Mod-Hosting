@@ -5,9 +5,7 @@ module BuildsHelper
   # @param  amount = 2 [type] Amount of builds to show
   #
   # @return [Array<Build>] Latest builds
-  def get_latest_builds(project, amount = 3)
-    project.builds.find(:all,
-                        :order => 'build_number DESC',
-                        :limit => amount)
+  def latest_builds(project, amount = nil)
+    project.builds.find(:all, :order => 'build_number DESC', :limit => amount)
   end
 end
