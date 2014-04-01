@@ -14,7 +14,8 @@
 #
 # Indexes
 #
-#  index_builds_on_project_id  (project_id)
+#  index_builds_on_build_number  (build_number)
+#  index_builds_on_project_id    (project_id)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

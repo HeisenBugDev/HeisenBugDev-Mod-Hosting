@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324204248) do
+ActiveRecord::Schema.define(version: 20140401163534) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140324204248) do
     t.string   "branch"
   end
 
+  add_index "builds", ["build_number"], name: "index_builds_on_build_number"
   add_index "builds", ["project_id"], name: "index_builds_on_project_id"
 
   create_table "projects", force: true do |t|
