@@ -1,5 +1,5 @@
 module RasterizerHelper
-  def create
+  def main_post
     size = params[:s].to_i
     size = 250 if size < 1
     images = { :top => nil, :side => nil, :front => nil }
