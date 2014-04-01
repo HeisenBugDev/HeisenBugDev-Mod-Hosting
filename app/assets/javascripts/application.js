@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require foundation
+//= require turbolinks
 //= require_tree .
-$(function() {
-  $(document).foundation();
+$(document).ready(function () {
+  $("div[id^='flash_']").delay(3000).fadeOut(1000);
 });

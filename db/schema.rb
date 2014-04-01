@@ -11,6 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140401163534) do
+
+  create_table "artifacts", force: true do |t|
+    t.string   "name"
+    t.string   "artifact"
+    t.integer  "build_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "artifacts", ["build_id"], name: "index_artifacts_on_build_id"
+
+  create_table "builds", force: true do |t|
+    t.integer  "build_number"
+    t.string   "mod_version"
+    t.string   "commit"
+    t.string   "minecraft_version"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "branch"
+  end
+
+  add_index "builds", ["build_number"], name: "index_builds_on_build_number"
+  add_index "builds", ["project_id"], name: "index_builds_on_project_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.string   "articles_repo"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "code_repo"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "authentication_token"
+  end
+
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -13,12 +13,28 @@ gem 'haml-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem "mini_magick"
+gem 'carrierwave'
+gem "sidekiq", "~> 2.17.7"
+gem "sidetiq", "~> 0.5.0"
+gem "sinatra", "~> 1.4.4"
+gem "octokit", "~> 2.7.2"
+gem 'devise'
+gem 'omniauth-github'
+gem 'simple_token_authentication'
+
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development do
+  gem 'rubocop'
+  gem "annotate", "~> 2.6.2"
   gem 'ruby_gntp'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-cucumber'
+  gem 'guard-redis'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-livereload', require: false
@@ -28,10 +44,13 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem "shoulda", "~> 3.5.0"
 end
+
 group :test do
   gem 'coveralls', require: false
   gem 'capybara'
