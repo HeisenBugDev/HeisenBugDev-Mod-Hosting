@@ -21,6 +21,8 @@ gem "octokit", "~> 2.7.2"
 gem 'devise'
 gem 'omniauth-github'
 gem 'simple_token_authentication'
+gem 'cancancan', '~> 1.7'
+gem "rolify"
 
 group :production do
   gem 'rails_12factor'
