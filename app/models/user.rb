@@ -28,6 +28,7 @@
 #
 
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :projects
   rolify
   acts_as_token_authenticatable
   # Include default devise modules. Others available are:

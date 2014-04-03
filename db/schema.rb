@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402182351) do
+ActiveRecord::Schema.define(version: 20140403164651) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20140402182351) do
     t.datetime "updated_at"
     t.string   "code_repo"
   end
+
+  create_table "projects_users", id: false, force: true do |t|
+    t.integer "user_id",    null: false
+    t.integer "project_id", null: false
+  end
+
+  add_index "projects_users", ["project_id", "user_id"], name: "index_projects_users_on_project_id_and_user_id"
+  add_index "projects_users", ["user_id", "project_id"], name: "index_projects_users_on_user_id_and_project_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
