@@ -29,7 +29,6 @@ describe BuildsController do
         FactoryGirl.create(:project, :name => 'BlockMiner123')
         bad_json = json.dup
         replace_hash_value(bad_json, {:project_name => 'BlockMiner123'})
-        puts bad_json
         post :create, bad_json
         response.response_code.should eq(202)
       end
