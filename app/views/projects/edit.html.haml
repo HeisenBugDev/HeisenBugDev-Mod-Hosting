@@ -1,0 +1,4 @@
+= form_for(@project) do |f|
+  %h1
+    = @project.name
+  = f.autocomplete_field :users, projects_autocomplete_user_name_projects_path

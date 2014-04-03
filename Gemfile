@@ -24,6 +24,7 @@ gem 'simple_token_authentication'
 gem 'cancancan', '~> 1.7'
 gem "rolify"
 gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
 
 group :production do
   gem 'rails_12factor'

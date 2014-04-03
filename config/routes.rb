@@ -1,4 +1,6 @@
 HeisenBugDev::Application.routes.draw do
+  root 'home#home'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
@@ -7,10 +9,14 @@ HeisenBugDev::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'home#home'
+  namespace :projects do
+    get :autocomplete_user_name_projects
+  end
+
   resources 'rasterizer', :only => [:create]
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
+  resources 'projects'
 
   namespace :users do
     match '/update_token', :to => 'token#update', :via => 'put'
