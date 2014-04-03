@@ -9,4 +9,5 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find_by_name(params[:id])
   end
+
 end

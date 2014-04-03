@@ -10,7 +10,7 @@ HeisenBugDev::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   namespace :projects do
-    get :autocomplete_user_name_projects
+    get :autocomplete_user_name
   end
 
   resources 'rasterizer', :only => [:create]
