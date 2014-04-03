@@ -10,9 +10,7 @@
 #
 # @return A hash with that element changed.
 def replace_hash_value(hash, change)
-  new_hash = hash.dup
   change.each do |key, value|
-    new_hash[key] = value
+    hash[key] = value
   end
-  new_hash
 end

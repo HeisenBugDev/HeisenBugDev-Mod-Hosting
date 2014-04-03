@@ -29,6 +29,7 @@ group :production do
 end
 
 group :development do
+  gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
   gem 'ruby_gntp'

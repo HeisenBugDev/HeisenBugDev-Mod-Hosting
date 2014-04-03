@@ -7,7 +7,7 @@ class BuildsController < ApplicationController
 
   def create
     name = params[:project_name]
-    project = Project.find_by_name(name)
+    project = current_user.projects.find_by_name(name)
 
     if project.nil?
       ProjectsWorker.perform_async
@@ -20,7 +20,7 @@ class BuildsController < ApplicationController
     if build.save
       render :text => "All is good."
     else
-      render :text => "Something went wrong. Parameters may be missing.",
+      render :text => build.errors.full_messages,
              :status => :bad_request
       return
     end

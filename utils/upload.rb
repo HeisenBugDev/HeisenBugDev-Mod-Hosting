@@ -1,7 +1,8 @@
 require 'base64'
 require 'json'
 require 'net/http'
-
+require 'dotenv'
+Dotenv.load
 manifest = JSON.parse(IO.read('upload_data/manifest.json'))
 
 manifest['artifacts'].each do |artifact|
