@@ -1,6 +1,2 @@
-= form_for(@project) do |f|
-  %h1
-    = @project.name
-  = f.autocomplete_field :name, projects_autocomplete_user_name_path, :id_element => "#id_element_placeholder"
-  = label_tag :id_element_placeholder, 'Put the id here:'
-  = text_field_tag :id_element_placeholder, ''
+= form_for @project do |f|
+  = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => ''

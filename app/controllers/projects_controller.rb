@@ -10,4 +10,12 @@ class ProjectsController < ApplicationController
     @project = Project.find_by_name(params[:id])
   end
 
+  def update
+    @project = Project.find(params[:id])
+    puts "PARAMS: #{params}"
+    user = User.find_by_name(params[:project][:users])
+    @project.users << user unless @project.users.include?(user)
+    redirect_to root_path
+  end
+
 end
