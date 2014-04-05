@@ -14,8 +14,17 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     puts "PARAMS: #{params}"
     user = User.find_by_name(params[:project][:users])
+    if user.nil?
+      redirect_to :back, :flash => { :warning => 'User does not exist.' }
+      return
+    end
+    old_size = @project.users.size
     @project.users << user unless @project.users.include?(user)
-    redirect_to root_path
+    if old_size == @project.users.size
+
+    end
+    redirect_to :back, :flash => { :notice => 'User added' }
+    return
   end
 
 end
