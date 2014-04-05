@@ -1,7 +1,8 @@
 require 'base64'
 require 'json'
 require 'net/http'
-
+require 'dotenv'
+Dotenv.load
 manifest = JSON.parse(IO.read('upload_data/manifest.json'))
 
 manifest['artifacts'].each do |artifact|
@@ -10,8 +11,8 @@ manifest['artifacts'].each do |artifact|
 end
 
 req = Net::HTTP::Post.new('/builds.json', 'Content-Type' => 'application/json')
-req['X-User-Email'] = ENV['HBD-EMAIL']
-req['X-User-Token'] = ENV['HBD-TOKEN']
+req['X-User-Email'] = ENV['HBD_EMAIL']
+req['X-User-Token'] = ENV['HBD_TOKEN']
 req.body = manifest.to_json
 
 response = Net::HTTP.new('localhost', '3000').start do |http|

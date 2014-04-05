@@ -4,3 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 HeisenBugDev::Application.load_tasks
+
+task :promote_admin => :environment do
+  User.first.add_role :admin
+end

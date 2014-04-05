@@ -21,12 +21,17 @@ gem "octokit", "~> 2.7.2"
 gem 'devise'
 gem 'omniauth-github'
 gem 'simple_token_authentication'
+gem 'cancancan', '~> 1.7'
+gem "rolify"
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
+  gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
   gem 'ruby_gntp'
