@@ -40,8 +40,8 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-cucumber'
   gem 'guard-redis'
-  gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-rails'
   gem 'guard-livereload', require: false
   gem 'html2haml'
   gem 'rails_layout'
