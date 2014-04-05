@@ -7,7 +7,11 @@ class BuildsController < ApplicationController
 
   def create
     name = params[:project_name]
-    project = current_user.projects.find_by_name(name)
+    if can? :manage, :all
+      project = Projects.find_by_name(name)
+    else
+      project = current_user.projects.find_by_name(name)
+    end
 
     if project.nil?
       ProjectsWorker.perform_async

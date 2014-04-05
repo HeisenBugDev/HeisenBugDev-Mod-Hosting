@@ -11,6 +11,7 @@ HeisenBugDev::Application.routes.draw do
 
   namespace :projects do
     get :autocomplete_user_name
+    delete :remove_user
   end
 
   resources 'rasterizer', :only => [:create]

@@ -8,6 +8,9 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find_by_name(params[:id])
+    if !@project.users.include?(current_user) && !can?(:manage, :all)
+      redirect_to :back, :flash => { :warning => 'You do not have permission to view that page' }
+    end
   end
 
   def update
@@ -21,10 +24,19 @@ class ProjectsController < ApplicationController
     old_size = @project.users.size
     @project.users << user unless @project.users.include?(user)
     if old_size == @project.users.size
-
+      redirect_to :back, :flash => { :warning => 'User already existed' }
+      return
     end
     redirect_to :back, :flash => { :notice => 'User added' }
     return
   end
 
+  def remove_user
+    @project = Project.find(params[:project_id])
+    user = User.find(params[:user_id])
+    if user
+      @project.users.delete(user)
+    end
+    redirect_to :back, :flash => { :notice => 'User removed' }
+  end
 end
