@@ -19,6 +19,7 @@
 #
 
 class Build < ActiveRecord::Base
+  resourcify
   belongs_to :project
   has_many :artifacts, :dependent => :destroy
 

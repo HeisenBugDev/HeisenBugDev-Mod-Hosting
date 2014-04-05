@@ -1,0 +1,8 @@
+.large-12.columns
+  %h1
+    = @project.name
+  %h2 Developers
+  - @project.users.each do |developer|
+    = link_to developer.name, developer
+  %h2 Downloads
+  = render 'builds/downloads', project: @project
