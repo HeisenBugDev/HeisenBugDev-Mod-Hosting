@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   autocomplete :user, :name
+  acts_as_token_authentication_handler_for User
+  before_filter :authenticate_entity_from_token!, :except => :refresh_projects
+  before_filter :authenticate_entity!, :except => :refresh_projects
 
   def refresh_projects
     ProjectsWorker.perform_async(params[:urn])
