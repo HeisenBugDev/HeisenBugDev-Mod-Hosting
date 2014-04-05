@@ -12,6 +12,6 @@ module ApplicationHelper
   #
   # @return [Array<Build>] Latest builds
   def latest_builds(project, amount = nil)
-    project.builds.find(:all, :order => 'build_number DESC', :limit => amount)
+    project.builds.order('build_number DESC').limit(amount).all
   end
 end
