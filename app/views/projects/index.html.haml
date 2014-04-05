@@ -1,0 +1,14 @@
+.large-12.columns
+  %h1 Projects
+  - Project.all.each do |project|
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Download
+      %tbody
+        %tr
+          %td
+            = link_to project.name, project
+          %td
+            = link_to 'Download', latest_builds(project, 1)[0].artifacts.find_by_name(:universal).artifact.url

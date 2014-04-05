@@ -1,4 +1,5 @@
 HeisenBugDev::Application.routes.draw do
+  get "users/show"
   root 'home#home'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
@@ -17,6 +18,7 @@ HeisenBugDev::Application.routes.draw do
   resources 'rasterizer', :only => [:create]
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
+  resources 'users'
   resources 'projects'
 
   namespace :users do

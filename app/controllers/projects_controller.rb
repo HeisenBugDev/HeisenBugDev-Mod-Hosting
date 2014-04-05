@@ -10,10 +10,14 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find_by_name(params[:id])
+    @project = Project.find(params[:id])
     if !@project.users.include?(current_user) && !can?(:manage, :all)
       redirect_to :back, :flash => { :warning => 'You do not have permission to view that page' }
     end
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 
   def update

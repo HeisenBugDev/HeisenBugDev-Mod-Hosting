@@ -6,5 +6,5 @@
 - @project.users.each do |user|
   = gravatar_for(user, size: 100)
   = user.name
-  -# - unless current_user == user
-  = link_to 'Remove', projects_remove_user_path(:project_id => @project.id, :user_id => user.id), method: :delete
+  - unless current_user == user
+    = link_to 'Remove', projects_remove_user_path(:project_id => @project.id, :user_id => user.id), method: :delete
