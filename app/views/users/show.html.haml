@@ -6,3 +6,5 @@
     - @user.projects.each do |project|
       %li
         = link_to project.name, project
+        - if can?(:manage, project)
+          = link_to '(edit)', edit_project_path(project)
