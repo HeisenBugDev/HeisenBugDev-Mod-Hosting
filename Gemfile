@@ -24,7 +24,6 @@ gem 'cancancan', '~> 1.7'
 gem "rolify"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
-gem 'rugged', git: 'git://github.com/libgit2/rugged.git', branch: 'development', submodules: true
 
 group :production do
   gem 'rails_12factor'
