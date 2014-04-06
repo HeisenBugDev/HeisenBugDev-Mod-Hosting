@@ -4,11 +4,6 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
   before_filter :authenticate_entity!, :only => [:edit, :update]
 
-  def refresh_projects
-    ProjectsWorker.perform_async(params[:urn])
-    render :text => "Well... it didn't crash so it must be ok."
-  end
-
   def edit
     @project = Project.find(params[:id])
     if !@project.users.include?(current_user) && !can?(:manage, :all)

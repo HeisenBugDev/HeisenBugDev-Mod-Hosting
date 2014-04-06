@@ -30,6 +30,4 @@ HeisenBugDev::Application.routes.draw do
   end
 
   match '/downloads', :to => 'builds#index', :via => 'get'
-
-  match '/refresh_projects', :to => 'projects#refresh_projects', :via => 'get'
 end
