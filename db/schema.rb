@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403185135) do
+ActiveRecord::Schema.define(version: 20140406142841) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140403185135) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "articles_repo"
+    t.string   "wiki_repo"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
   has_many :builds, :dependent => :destroy
 
   validates_presence_of :name
-  validates_presence_of :articles_repo
+  validates_presence_of :wiki_repo
   validates_presence_of :description
   validates_presence_of :code_repo
 
@@ -25,8 +25,8 @@ class Project < ActiveRecord::Base
   after_initialize :init
 
   def init
-    self.articles_repo ||= "HeisenBugDev/#{self.name}"
+    self.code_repo ||= "HeisenBugDev/#{self.name}"
     self.description ||= "Such description! Much information!"
-    self.code_repo ||= "HeisenBugDev/HeisenBugDev-content"
+    self.wiki_repo ||= "HeisenBugDev/HeisenBugDev-content"
   end
 end

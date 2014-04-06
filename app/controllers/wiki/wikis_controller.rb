@@ -1,7 +1,5 @@
-# require_relative '../workers/wiki/article_'
-
 class Wiki::WikisController < ApplicationController
   def index
-    Wiki::ArticleUpdateWorker.perform_async
+    Wiki::RepoUpdateWorker.perform_async(1)
   end
 end
