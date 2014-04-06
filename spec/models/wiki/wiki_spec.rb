@@ -16,5 +16,8 @@
 require 'spec_helper'
 
 describe Wiki::Wiki do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:wiki) { FactoryGirl.create(:wiki_wiki) }
+
+  it { should validate_presence_of(:project) }
+  it { should validate_presence_of(:repo) }
 end
