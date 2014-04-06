@@ -14,11 +14,10 @@ class BuildsController < ApplicationController
     end
 
     if project.nil?
-      ProjectsWorker.perform_async
-      render :text => "Project was not found. Project database is being"\
-                      " updated. Retry later", :status => :accepted
+      render :text => "Project does not exist.", :status => :not_found
       return
     end
+
     build = project.builds.build(upload_params)
 
     if build.save

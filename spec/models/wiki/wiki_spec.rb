@@ -16,7 +16,7 @@
 require 'spec_helper'
 
 describe Wiki::Wiki do
-  subject(:wiki) { FactoryGirl.create(:wiki_wiki) }
+  subject(:wiki) { FactoryGirl.create(:wiki_wiki, project: FactoryGirl.create(:project)) }
 
   it { should validate_presence_of(:project) }
   it { should validate_presence_of(:repo) }

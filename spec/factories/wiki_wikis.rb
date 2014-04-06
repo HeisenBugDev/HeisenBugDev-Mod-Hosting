@@ -17,6 +17,6 @@
 
 FactoryGirl.define do
   factory :wiki_wiki, :class => 'Wiki::Wiki' do
-    project FactoryGirl.create(:project)
+    project nil
   end
 end
