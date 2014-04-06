@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :code_repo
 
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
 
   after_initialize :init
 
