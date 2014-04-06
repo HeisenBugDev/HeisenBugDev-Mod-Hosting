@@ -24,13 +24,14 @@ gem 'cancancan', '~> 1.7'
 gem "rolify"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
-gem 'rugged', '~> 0.19.0'
+gem 'rugged', git: 'git://github.com/libgit2/rugged.git', branch: 'development', submodules: true
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
+  gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"

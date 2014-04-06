@@ -21,6 +21,10 @@ HeisenBugDev::Application.routes.draw do
   resources 'users'
   resources 'projects'
 
+  namespace :wiki do
+    resources 'wikis'
+  end
+
   namespace :users do
     match '/update_token', :to => 'token#update', :via => 'put'
   end
