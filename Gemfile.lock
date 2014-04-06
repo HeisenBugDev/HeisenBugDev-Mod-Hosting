@@ -291,6 +291,7 @@ GEM
     ruby_gntp (0.3.4)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
+    rugged (0.19.0)
     sass (3.2.18)
     sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
@@ -416,6 +417,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   ruby_gntp
+  rugged (~> 0.19.0)
   sass-rails (~> 4.0.0)
   shoulda (~> 3.5.0)
   sidekiq (~> 2.17.7)

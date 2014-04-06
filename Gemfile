@@ -25,6 +25,7 @@ gem 'cancancan', '~> 1.7'
 gem "rolify"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
+gem 'rugged', '~> 0.19.0'
 
 group :production do
   gem 'rails_12factor'
