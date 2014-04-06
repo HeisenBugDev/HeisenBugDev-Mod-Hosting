@@ -2,16 +2,17 @@
 #
 # Table name: projects
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  articles_repo :string(255)
-#  description   :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  code_repo     :string(255)
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  wiki_repo   :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  code_repo   :string(255)
 #
 
 class Project < ActiveRecord::Base
+  has_one :wiki, :class_name => 'Wiki::Wiki', :dependent => :destroy
   has_and_belongs_to_many :users
   has_many :builds, :dependent => :destroy
 

@@ -2,13 +2,13 @@
 #
 # Table name: projects
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  articles_repo :string(255)
-#  description   :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  code_repo     :string(255)
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  wiki_repo   :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  code_repo   :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
