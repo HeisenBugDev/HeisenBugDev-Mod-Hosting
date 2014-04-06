@@ -16,7 +16,7 @@
 class Wiki::Wiki < ActiveRecord::Base
   belongs_to :project
 
-  validates_presence_of :project_id, on: :update
+  validates_presence_of :project, on: :update
   validates_presence_of :repo
 
   after_initialize :init
