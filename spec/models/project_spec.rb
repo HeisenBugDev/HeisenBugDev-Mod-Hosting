@@ -4,7 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
-#  wiki_repo   :string(255)
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
@@ -21,7 +20,7 @@ describe Project do
 
   subject { @project }
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:wiki_repo) }
+  it { should validate_presence_of(:wiki) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:code_repo) }
 
@@ -29,7 +28,7 @@ describe Project do
 
   describe "when articles_repo is not specified" do
     it "should be defaulted" do
-      expect(@constructor_init_project.wiki_repo).to(
+      expect(@constructor_init_project.wiki.repo).to(
         eq("HeisenBugDev/HeisenBugDev-content"))
     end
   end

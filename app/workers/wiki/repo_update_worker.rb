@@ -2,7 +2,7 @@ class Wiki::RepoUpdateWorker
   include Sidekiq::Worker
 
   def perform(project_id)
-    repo = Project.find(project_id).wiki_repo
+    repo = Project.find(project_id).wiki.repo
     # repo_org, repo_name = repo.split('/')
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
     repo_tmp_dir = File.join(tmp_dir, repo)

@@ -6,6 +6,7 @@
 #  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  repo       :string(255)
 #
 # Indexes
 #
@@ -14,4 +15,13 @@
 
 class Wiki::Wiki < ActiveRecord::Base
   belongs_to :project
+
+  validates_presence_of :project
+  validates_presence_of :repo
+
+  after_initialize :init
+
+  def init
+    self.repo ||= "HeisenBugDev/HeisenBugDev-content"
+  end
 end

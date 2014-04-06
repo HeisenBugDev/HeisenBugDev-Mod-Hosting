@@ -4,7 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
-#  wiki_repo   :string(255)
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
@@ -17,7 +16,7 @@ class Project < ActiveRecord::Base
   has_many :builds, :dependent => :destroy
 
   validates_presence_of :name
-  validates_presence_of :wiki_repo
+  validates_presence_of :wiki
   validates_presence_of :description
   validates_presence_of :code_repo
 
@@ -28,6 +27,6 @@ class Project < ActiveRecord::Base
   def init
     self.code_repo ||= "HeisenBugDev/#{self.name}"
     self.description ||= "Such description! Much information!"
-    self.wiki_repo ||= "HeisenBugDev/HeisenBugDev-content"
+    self.wiki ||= Wiki::Wiki.new
   end
 end
