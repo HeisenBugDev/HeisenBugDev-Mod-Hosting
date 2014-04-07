@@ -19,7 +19,7 @@
 FactoryGirl.define do
   factory :wiki_article, :class => 'Wiki::Article' do
     title "MyString"
-    body "MyString"
+    body "Such body. Much article."
     wiki nil
   end
 end
