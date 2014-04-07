@@ -20,4 +20,14 @@ describe Wiki::Wiki do
 
   it { should validate_presence_of(:project) }
   it { should validate_presence_of(:repo) }
+
+ describe "invalid repo format" do
+    before { wiki.repo = 'hai' }
+    it { should_not be_valid }
+  end
+
+  describe "valid repo format" do
+    before { wiki.repo = 'hai/hai' }
+    it { should be_valid }
+  end
 end

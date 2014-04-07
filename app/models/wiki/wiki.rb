@@ -18,6 +18,7 @@ class Wiki::Wiki < ActiveRecord::Base
 
   validates_presence_of :project, on: :update
   validates_presence_of :repo
+  validates_format_of :repo, :with => /(.*)\/(.*)/
 
   after_initialize :init
 

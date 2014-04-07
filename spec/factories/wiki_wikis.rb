@@ -18,5 +18,6 @@
 FactoryGirl.define do
   factory :wiki_wiki, :class => 'Wiki::Wiki' do
     project nil
+    repo 'HeisenBugDev/HBD-Content'
   end
 end

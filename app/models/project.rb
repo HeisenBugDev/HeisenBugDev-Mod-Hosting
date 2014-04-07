@@ -22,6 +22,10 @@ class Project < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :code_repo
 
+  validates_format_of :code_repo, :with => /(.*)\/(.*)/
+
+  validates_length_of :name, :maximum => 40
+
   validates_uniqueness_of :name, :case_sensitive => false
 
   after_initialize :init
