@@ -12,25 +12,19 @@ class Wiki::RepoUpdateWorker
         @old_commit = `git rev-parse HEAD`
         `git pull`
         @new_commit = `git rev-parse HEAD`
+        commits = "#{@old_commit} #{@new_commit}"
+        @files = `git diff --name-only #{commits}`.split("\n")
       end
     else
       FileUtils.mkpath(tmp_dir)
       Dir.chdir(tmp_dir) do
         `git clone https://github.com/#{repo}.git #{repo}`
       end
+      @files = Dir["#{repo_tmp_dir}/**"]
     end
 
-    Dir.chdir(repo_tmp_dir) do
-      commits = "#{@old_commit} #{@new_commit}"
-      puts @changed_files = `git diff --name-only #{commits}`.split("\n")
-    end
-
-    @changed_files.map! do |file|
-      File.absolute_path(File.join(repo_tmp_dir, file))
-    end
-
-    @changed_files.each do |file|
-      Wiki::ArticleUpdatWorker.perform_async(file, project_id)
+    @files.each do |file|
+      Wiki::ArticleUpdateWorker.perform_async(file, project_id)
     end
   end
 end
