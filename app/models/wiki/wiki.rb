@@ -15,6 +15,7 @@
 
 class Wiki::Wiki < ActiveRecord::Base
   belongs_to :project
+  has_many :articles
 
   validates_presence_of :project, on: :update
   validates_presence_of :repo
