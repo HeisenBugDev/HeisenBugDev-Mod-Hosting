@@ -35,5 +35,5 @@ class Build < ActiveRecord::Base
                                            :message => "Build number must"\
                                            "greater than 0"
 
-  validates_uniqueness_of :build_number
+  validates_uniqueness_of :build_number, :scope => :project_id
 end

@@ -35,5 +35,5 @@ describe Build do
   it { should allow_value(1, 23, 316).for(:build_number) }
   it { should_not allow_value(0, -1, -37).for(:build_number) }
 
-  it { should validate_uniqueness_of(:build_number) }
+  it { should validate_uniqueness_of(:build_number).scoped_to(:project_id) }
 end
