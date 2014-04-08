@@ -8,10 +8,12 @@
 #  wiki_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  build_id   :integer
 #
 # Indexes
 #
-#  index_wiki_articles_on_wiki_id  (wiki_id)
+#  index_wiki_articles_on_build_id  (build_id)
+#  index_wiki_articles_on_wiki_id   (wiki_id)
 #
 
 require 'spec_helper'
@@ -25,4 +27,5 @@ describe Wiki::Article do
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
+  it { should validate_presence_of(:wikiA) }
 end
