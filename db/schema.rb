@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408172310) do
+ActiveRecord::Schema.define(version: 20140408222809) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 20140408172310) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "versions", force: true do |t|
+    t.string   "version"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["project_id"], name: "index_versions_on_project_id"
 
   create_table "wiki_articles", force: true do |t|
     t.string   "title"
