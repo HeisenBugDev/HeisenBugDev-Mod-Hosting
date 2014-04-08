@@ -1,6 +1,8 @@
 .large-12.columns
   %h1
     = @project.name
+    - if can? :manage, @project
+      = link_to 'Refresh wiki', edit_wiki_wiki_path(@project.wiki)
   %h2 Developers
   - @project.users.each do |developer|
     = link_to developer.name, developer
