@@ -17,7 +17,7 @@ require 'spec_helper'
 
 describe Version do
   let(:project) { FactoryGirl.create(:project) }
-  let(:version) { FactoryGirl.create(:version) }
+  let(:version) { FactoryGirl.create(:version, :project => project) }
 
   subject { version }
 
