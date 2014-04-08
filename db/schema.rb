@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408222809) do
+ActiveRecord::Schema.define(version: 20140408223801) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140408222809) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "branch"
+    t.integer  "version_id"
   end
 
   add_index "builds", ["build_number"], name: "index_builds_on_build_number"

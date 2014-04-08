@@ -16,6 +16,7 @@ class Project < ActiveRecord::Base
 
   has_and_belongs_to_many :users
   has_many :builds, :dependent => :destroy
+  has_many :versions, :dependent => :destroy
 
   validates_presence_of :name
   validates_presence_of :wiki

@@ -11,6 +11,7 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  branch            :string(255)
+#  version_id        :integer
 #
 # Indexes
 #

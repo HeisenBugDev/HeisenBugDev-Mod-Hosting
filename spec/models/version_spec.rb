@@ -23,4 +23,6 @@ describe Version do
 
   it { should validate_presence_of(:project) }
   it { should validate_presence_of(:version) }
+
+  it { should validate_uniqueness_of(:version).scoped_to(:project_id) }
 end

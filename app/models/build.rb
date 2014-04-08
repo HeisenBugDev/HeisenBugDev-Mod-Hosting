@@ -11,6 +11,7 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  branch            :string(255)
+#  version_id        :integer
 #
 # Indexes
 #
@@ -21,6 +22,7 @@
 class Build < ActiveRecord::Base
   resourcify
   belongs_to :project
+  belongs_to :version
   has_many :artifacts, :dependent => :destroy
   has_many :articles, :dependent => :destroy
 
