@@ -27,7 +27,10 @@ class Wiki::RepoUpdateWorker
 
     @files.each do |file|
       if file.start_with?(start) && File.file?(file)
-        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id)
+        folder_search = file.delete(start)
+        file_or_build = folder_search.match(/\/((b|v).*)\//)[1]
+        # Stuff like v12.3.0 or b233
+        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id, file_or_build)
       end
     end
   end

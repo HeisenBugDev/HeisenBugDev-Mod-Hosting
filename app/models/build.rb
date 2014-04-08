@@ -22,7 +22,7 @@ class Build < ActiveRecord::Base
   resourcify
   belongs_to :project
   has_many :artifacts, :dependent => :destroy
-  has_many :articles :dependent => :destroy
+  has_many :articles, :dependent => :destroy
 
   validates_presence_of :build_number
   validates_presence_of :mod_version

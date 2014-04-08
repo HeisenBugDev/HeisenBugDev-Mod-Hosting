@@ -27,5 +27,5 @@ describe Wiki::Article do
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
-  it { should validate_presence_of(:wikiA) }
+  it { should validate_presence_of(:wiki) }
 end
