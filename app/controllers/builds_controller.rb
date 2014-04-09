@@ -19,6 +19,9 @@ class BuildsController < ApplicationController
     end
 
     build = project.builds.build(upload_params)
+    version = Version.find_or_initialize_by(:project => project,
+          :version => params[:mod_version])
+    build.version = version
 
     if build.save
       render :text => "All is good."
@@ -33,8 +36,7 @@ class BuildsController < ApplicationController
 
 private
   def upload_params
-    params.permit(:build_number, :mod_version, :commit,
-                                  :minecraft_version, :branch)
+    params.permit(:build_number, :commit, :minecraft_version, :branch)
   end
 
   def upload_artifacts(build)

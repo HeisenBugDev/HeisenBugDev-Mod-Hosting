@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408223801) do
+ActiveRecord::Schema.define(version: 20140409000358) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20140408223801) do
 
   create_table "builds", force: true do |t|
     t.integer  "build_number"
-    t.string   "mod_version"
     t.string   "commit"
     t.string   "minecraft_version"
     t.integer  "project_id"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140408223801) do
 
   add_index "builds", ["build_number"], name: "index_builds_on_build_number"
   add_index "builds", ["project_id"], name: "index_builds_on_project_id"
+  add_index "builds", ["version_id"], name: "index_builds_on_version_id"
 
   create_table "projects", force: true do |t|
     t.string   "name"
