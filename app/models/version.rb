@@ -16,7 +16,7 @@
 class Version < ActiveRecord::Base
   belongs_to :project
   has_many :builds, :dependent => :destroy
-  has_many :articles, :dependent => :destroy
+  has_many :articles, :dependent => :destroy, :class_name => 'Wiki::Article'
 
   validates_presence_of :project
   validates_presence_of :version
