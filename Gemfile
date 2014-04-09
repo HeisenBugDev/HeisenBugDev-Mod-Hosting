@@ -30,6 +30,7 @@ group :production do
 end
 
 group :development do
+  gem 'railroady'
   gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'rubocop'

@@ -228,6 +228,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (4.0.3)
       actionmailer (= 4.0.3)
       actionpack (= 4.0.3)
@@ -399,6 +400,7 @@ DEPENDENCIES
   launchy
   mini_magick
   omniauth-github
+  railroady
   rails (= 4.0.3)
   rails3-jquery-autocomplete
   rails_12factor
