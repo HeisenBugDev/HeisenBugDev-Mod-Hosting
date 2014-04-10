@@ -5,7 +5,7 @@ class Wiki::ArticleUpdateWorker
 
   def perform(file, wiki_id, stripped_file, delete=false)
 
-    file_data = File.read(file)
+    file_data = File.read(file) unless delete
     wiki = Wiki::Wiki.find(wiki_id)
 
     # /Users/theron/code/heisenbugdev-site/tmp/wikis/HeisenBugDev/HBD-Testing-Content/projects/blockminer/home.md
@@ -20,31 +20,36 @@ class Wiki::ArticleUpdateWorker
       title.sub!(match[0], '')
     end
 
-    if delete
-      wiki.articles.find_by_title(title).destroy
-    else
-      return if folders[0].nil?
-      sliced_folder = folders[0].dup
-      sliced_folder.slice!(0)
+    return if folders[0].nil?
+    sliced_folder = folders[0].dup
+    sliced_folder.slice!(0)
 
-      case folders[0]
-      when /^v.*/
-        version = wiki.project.versions.find_by_version(sliced_folder)
+    case folders[0]
+    when /^v.*/
+      version = wiki.project.versions.find_by_version(sliced_folder)
 
-        return if version.nil?
-
+      return if version.nil?
+      if delete
+        wiki.articles.find_by_version_id_and_title(version.id, title).destroy
+        return
+      else
         article = wiki.articles.find_or_initialize_by(:version => version,
           :title => title)
 
         article.update_attributes(:body => file_data.to_s)
         article.save!
-      when /^b.*/
-        build = wiki.project.builds.find_by_build_number(sliced_folder)
+      end
+    when /^b.*/
+      build = wiki.project.builds.find_by_build_number(sliced_folder)
 
-        return if build.nil?
+      return if build.nil?
+      if delete
+
+        wiki.articles.find_by_build_id_and_title(build.id, title).destroy
+      else
+
         article = wiki.articles.find_or_initialize_by(:build => build,
           :title => title)
-
         article.update_attributes(:body => file_data.to_s)
         article.save!
       end
