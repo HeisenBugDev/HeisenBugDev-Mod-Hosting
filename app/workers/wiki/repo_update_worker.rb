@@ -1,7 +1,7 @@
 class Wiki::RepoUpdateWorker
   include Sidekiq::Worker
 
-  def perform(wiki_id)
+  def perform(wiki_id, hard_reload)
     wiki = Wiki::Wiki.find(wiki_id)
     repo = wiki.repo
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
@@ -36,6 +36,10 @@ class Wiki::RepoUpdateWorker
       Dir.chdir(tmp_dir) do
         `git clone https://github.com/#{repo}.git #{repo}`
       end
+      @files = Dir["#{repo_tmp_dir}/**/*"]
+    end
+
+    if hard_reload
       @files = Dir["#{repo_tmp_dir}/**/*"]
     end
 

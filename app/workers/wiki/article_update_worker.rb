@@ -20,9 +20,12 @@ class Wiki::ArticleUpdateWorker
       title.sub!(match[0], '')
     end
 
-    return if folders[0].nil?
-    sliced_folder = folders[0].dup
-    sliced_folder.slice!(0)
+    if folders[0].nil?
+      sliced_folder = ''
+    else
+      sliced_folder = folders[0].dup || ''
+      sliced_folder.slice!(0)
+    end
 
     case folders[0]
     when /^v.*/
@@ -31,28 +34,35 @@ class Wiki::ArticleUpdateWorker
       return if version.nil?
       if delete
         wiki.articles.find_by_version_id_and_title(version.id, title).destroy
-        return
       else
         article = wiki.articles.find_or_initialize_by(:version => version,
           :title => title)
 
         article.update_attributes(:body => file_data.to_s)
-        article.save!
+        article.save
       end
     when /^b.*/
       build = wiki.project.builds.find_by_build_number(sliced_folder)
 
       return if build.nil?
       if delete
-
         wiki.articles.find_by_build_id_and_title(build.id, title).destroy
       else
-
         article = wiki.articles.find_or_initialize_by(:build => build,
           :title => title)
         article.update_attributes(:body => file_data.to_s)
-        article.save!
+        article.save
       end
+    else
+      if delete
+        wiki.articles
+          .find_by_title_and_build_id_and_version_id(title, nil, nil).destroy
+      else
+      article = wiki.articles.find_or_initialize_by(:title => title,
+        :build_id => nil, :version_id => nil)
+      article.update_attributes(:body => file_data.to_s)
+      puts article.save
+    end
     end
   end
 end
