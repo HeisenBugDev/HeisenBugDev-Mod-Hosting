@@ -3,7 +3,7 @@ require 'fileutils'
 class Wiki::ArticleUpdateWorker
   include Sidekiq::Worker
 
-  def perform(file, wiki_id, stripped_file)
+  def perform(file, wiki_id, stripped_file, delete=false)
 
     file_data = File.read(file)
     wiki = Wiki::Wiki.find(wiki_id)
@@ -15,22 +15,39 @@ class Wiki::ArticleUpdateWorker
     base_file = stripped_file.reverse.split('/')[0].reverse
     folders = stripped_file.sub(base_file, '').sub('/','').split('/')
 
-    case folders[0]
-    when /^v.*/
-      folders[0].slice!(0)
-      version = wiki.project.versions.find_by_version(folders[0])
-      return if version.nil?
+    title = base_file
+    base_file.scan(/(\.\w*)/).each do |match|
+      title.sub!(match[0], '')
+    end
 
-      article = Wiki::Article.find_or_initialize_by(:wiki => wiki,
-        :version => version)
-      title = base_file
-      base_file.scan(/(\.\w*)/).each do |match|
-        title.sub!(match[0], '')
+    if delete
+      wiki.articles.find_by_title(title).destroy
+    else
+      return if folders[0].nil?
+      sliced_folder = folders[0].dup
+      sliced_folder.slice!(0)
+
+      case folders[0]
+      when /^v.*/
+        version = wiki.project.versions.find_by_version(sliced_folder)
+
+        return if version.nil?
+
+        article = wiki.articles.find_or_initialize_by(:version => version,
+          :title => title)
+
+        article.update_attributes(:body => file_data.to_s)
+        article.save!
+      when /^b.*/
+        build = wiki.project.builds.find_by_build_number(sliced_folder)
+
+        return if build.nil?
+        article = wiki.articles.find_or_initialize_by(:build => build,
+          :title => title)
+
+        article.update_attributes(:body => file_data.to_s)
+        article.save!
       end
-      article.update_attributes(:title => title, :body => file_data.to_s)
-      article.save!
-    when /^b.*/
-      folders[0].slice!(0)
     end
   end
 end
