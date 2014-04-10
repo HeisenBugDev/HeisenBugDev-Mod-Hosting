@@ -58,11 +58,11 @@ class Wiki::ArticleUpdateWorker
         wiki.articles
           .find_by_title_and_build_id_and_version_id(title, nil, nil).destroy
       else
-      article = wiki.articles.find_or_initialize_by(:title => title,
-        :build_id => nil, :version_id => nil)
-      article.update_attributes(:body => file_data.to_s)
-      puts article.save
-    end
+        article = wiki.articles.find_or_initialize_by(:title => title,
+          :build_id => nil, :version_id => nil)
+        article.update_attributes(:body => file_data.to_s)
+        puts article.save
+      end
     end
   end
 end
