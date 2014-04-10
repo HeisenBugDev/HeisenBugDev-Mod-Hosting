@@ -8,7 +8,7 @@ class BuildsController < ApplicationController
   def create
     name = params[:project_name]
     if can? :manage, :all
-      project = Projects.find_by_name(name)
+      project = Project.find_by_name(name)
     else
       project = current_user.projects.find_by_name(name)
     end

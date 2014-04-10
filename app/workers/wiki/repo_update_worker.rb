@@ -14,6 +14,15 @@ class Wiki::RepoUpdateWorker
         @new_commit = `git rev-parse HEAD`
         commits = "#{@old_commit} #{@new_commit}"
         @files = `git diff --name-only #{commits}`.split("\n")
+        @deleted_files = `git diff --diff-filter=D --name-only #{commits}`.split("\n")
+
+        @files.delete_if do |file|
+          if @deleted_files.include? file
+            true
+          else
+            false
+          end
+        end
       end
     else
       FileUtils.mkpath(tmp_dir)
@@ -27,10 +36,9 @@ class Wiki::RepoUpdateWorker
 
     @files.each do |file|
       if file.start_with?(start) && File.file?(file)
-        folder_search = file.delete(start)
-        version_or_build = folder_search.match(/\/((b|v).*)\//)[1]
+        folder_search = file.sub(start, '')
         # Stuff like v12.3.0 or b233
-        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id, version_or_build)
+        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id, folder_search)
       end
     end
   end
