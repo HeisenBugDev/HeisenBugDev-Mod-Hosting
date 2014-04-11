@@ -4,6 +4,12 @@ class Wiki::RepoUpdateWorker
   def perform(wiki_id, hard_reload)
     wiki = Wiki::Wiki.find(wiki_id)
     repo = wiki.repo
+
+    @wikis = [wiki]
+    Wiki::Wiki.where('repo = ?', repo) do |a_wiki|
+      @wikis << a_wiki
+    end
+
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
     repo_tmp_dir = File.join(tmp_dir, repo)
 
@@ -15,7 +21,7 @@ class Wiki::RepoUpdateWorker
         commits = "#{@old_commit.delete("\n")} #{@new_commit.delete("\n")}"
         @files = `git diff --name-only --diff-filter=AM #{commits}`.split("\n")
         @renamed_files = `git diff --name-only --diff-filter=R #{commits}`
-          .split("\n")
+        .split("\n")
         del_file_command = "git diff --diff-filter=D --name-only #{commits}"
         @deleted_files = `#{del_file_command}`.split("\n")
 
@@ -37,22 +43,24 @@ class Wiki::RepoUpdateWorker
       @files = Dir["#{repo_tmp_dir}/**/*"]
     end
 
-    start = File.join(repo_tmp_dir, 'projects', wiki.project.name)
+    @wikis.each do |a_wiki|
+      start = File.join(repo_tmp_dir, 'projects', a_wiki.project.name)
 
-    @files.each do |file|
-      if file.start_with?(start) && File.file?(file)
-        folder_search = file.sub(start, '')
+      @files.each do |file|
+        if file.start_with?(start) && File.file?(file)
+          folder_search = file.sub(start, '')
         # Stuff like v12.3.0 or b233
-        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id, folder_search)
+        Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search)
       end
     end
 
     @deleted_files.each do |file|
       if file.start_with?(start)
         folder_search = file.sub(start, '')
-        Wiki::ArticleUpdateWorker.perform_async(file, wiki_id, folder_search,
+        Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search,
           true)
       end
     end
   end
+end
 end
