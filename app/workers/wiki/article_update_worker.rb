@@ -27,6 +27,27 @@ class Wiki::ArticleUpdateWorker
       sliced_folder.slice!(0)
     end
 
+    if !folders[0].nil? && folders[0].match(/^(v|b).*/)
+      puts "REGEXP MATCHED #{folders[0]}"
+      cat_folders = folders.drop(1)
+      puts "CAT FOLDERS #{cat_folders}"
+    else
+      puts "NO MATCH"
+      cat_folders = folders
+      puts "CAT NO MATCH FODLERS #{cat_folders}"
+    end
+
+    category ||= nil
+    cat_folders.each do |folder|
+      puts "FOLDER #{folder}"
+      if category then cat_id = category.id else cat_id = nil end
+      category = Wiki::Category.find_or_initialize_by(:parent_id => cat_id,
+        :title => folder)
+      category.save
+    end
+
+    if category then cat_id = category.id else cat_id = nil end
+
     case folders[0]
     when /^v.*/
       version = wiki.project.versions.find_by_version(sliced_folder)
@@ -36,7 +57,7 @@ class Wiki::ArticleUpdateWorker
         wiki.articles.find_by_version_id_and_title(version.id, title).destroy
       else
         article = wiki.articles.find_or_initialize_by(:version => version,
-          :title => title)
+          :title => title, :category_id => cat_id)
 
         article.update_attributes(:body => file_data.to_s)
         article.save
@@ -49,7 +70,7 @@ class Wiki::ArticleUpdateWorker
         wiki.articles.find_by_build_id_and_title(build.id, title).destroy
       else
         article = wiki.articles.find_or_initialize_by(:build => build,
-          :title => title)
+          :title => title, :category_id => cat_id)
         article.update_attributes(:body => file_data.to_s)
         article.save
       end
@@ -59,7 +80,7 @@ class Wiki::ArticleUpdateWorker
           .find_by_title_and_build_id_and_version_id(title, nil, nil).destroy
       else
         article = wiki.articles.find_or_initialize_by(:title => title,
-          :build_id => nil, :version_id => nil)
+          :build_id => nil, :version_id => nil, :category_id => cat_id)
         article.update_attributes(:body => file_data.to_s)
         puts article.save
       end
