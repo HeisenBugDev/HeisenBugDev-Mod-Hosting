@@ -7,6 +7,7 @@
 #  parent_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  wiki_id    :integer
 #
 # Indexes
 #

@@ -4,14 +4,9 @@ class Wiki::ArticleUpdateWorker
   include Sidekiq::Worker
 
   def perform(file, wiki_id, stripped_file, delete=false)
-
     file_data = File.read(file) unless delete
     wiki = Wiki::Wiki.find(wiki_id)
 
-    # /Users/theron/code/heisenbugdev-site/tmp/wikis/HeisenBugDev/HBD-Testing-Content/projects/blockminer/home.md
-    # /Users/theron/code/heisenbugdev-site/tmp/wikis/HeisenBugDev/HBD-Testing-Content/projects/blockminer
-    # /Users/theron/code/heisenbugdev-site/tmp/wikis/HeisenBugDev/HBD-Testing-Content/projects/blockminer/v1/ksdjf/home.md
-    # "/v1/ksdjf/sdfdsf/home.md".reverse.split('/')[0].reverse #=> home.md
     base_file = stripped_file.reverse.split('/')[0].reverse
     folders = stripped_file.sub(base_file, '').sub('/','').split('/')
 
@@ -28,21 +23,16 @@ class Wiki::ArticleUpdateWorker
     end
 
     if !folders[0].nil? && folders[0].match(/^(v|b).*/)
-      puts "REGEXP MATCHED #{folders[0]}"
       cat_folders = folders.drop(1)
-      puts "CAT FOLDERS #{cat_folders}"
     else
-      puts "NO MATCH"
       cat_folders = folders
-      puts "CAT NO MATCH FODLERS #{cat_folders}"
     end
 
     category ||= nil
     cat_folders.each do |folder|
-      puts "FOLDER #{folder}"
       if category then cat_id = category.id else cat_id = nil end
       category = Wiki::Category.find_or_initialize_by(:parent_id => cat_id,
-        :title => folder)
+        :title => folder, :wiki_id => wiki.id)
       category.save
     end
 
@@ -82,7 +72,7 @@ class Wiki::ArticleUpdateWorker
         article = wiki.articles.find_or_initialize_by(:title => title,
           :build_id => nil, :version_id => nil, :category_id => cat_id)
         article.update_attributes(:body => file_data.to_s)
-        puts article.save
+        article.save
       end
     end
   end
