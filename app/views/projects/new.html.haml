@@ -4,6 +4,7 @@
 
     = f.text_field :name, :placeholder => :Name, :value => ''
     = f.text_area :description, :placeholder => :Description, :value => ''
+    = f.text_field :subtitle, :placeholder => :'Subtitle (max length 40)', :value => ''
     = f.text_field :code_repo, :placeholder => :'Code Repo', :value => ''
 
     = f.fields_for :wiki do |wiki_f|
