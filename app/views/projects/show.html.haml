@@ -2,8 +2,8 @@
   %h1
     = @project.name
     - if can? :manage, @project
-      = link_to 'Refresh wiki', edit_wiki_wiki_path(@project.wiki)
-      = link_to 'Hard refresh wiki', edit_wiki_wiki_path(@project.wiki, :hard_reload => true)
+      = link_to 'Refresh wiki', wiki_refresh_wiki_path(@project.wiki)
+      = link_to 'Hard refresh wiki', wiki_refresh_wiki_path(:id => @project.wiki.id, :hard_reload => true)
   %h2 Developers
   - @project.users.each do |developer|
     = link_to developer.name, developer

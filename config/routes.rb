@@ -22,7 +22,8 @@ HeisenBugDev::Application.routes.draw do
   resources 'projects'
 
   namespace :wiki do
-    resources 'wikis'
+    get 'refresh_wiki', :to => 'wikis#update_wiki'
+    # get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
   end
 
   namespace :users do

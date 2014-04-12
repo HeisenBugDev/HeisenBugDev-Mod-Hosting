@@ -5,11 +5,11 @@ class Wiki::RepoUpdateWorker
     wiki = Wiki::Wiki.find(wiki_id)
     repo = wiki.repo
 
-    @wikis = [wiki]
-    Wiki::Wiki.where('repo = ?', repo) do |a_wiki|
+    @wikis = []
+    Wiki::Wiki.where('repo = ?', repo).each do |a_wiki|
       @wikis << a_wiki
     end
-
+    puts @wikis
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
     repo_tmp_dir = File.join(tmp_dir, repo)
 
@@ -54,11 +54,13 @@ class Wiki::RepoUpdateWorker
       end
     end
 
-    @deleted_files.each do |file|
-      if file.start_with?(start)
-        folder_search = file.sub(start, '')
-        Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search,
-          true)
+    unless @deleted_files.nil?
+      @deleted_files.each do |file|
+        if file.start_with?(start)
+          folder_search = file.sub(start, '')
+          Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id,
+            folder_search, true)
+        end
       end
     end
   end
