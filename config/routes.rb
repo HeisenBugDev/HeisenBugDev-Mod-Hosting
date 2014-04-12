@@ -1,6 +1,9 @@
 HeisenBugDev::Application.routes.draw do
-  get "users/show"
   root 'home#home'
+
+  namespace :users do
+    put 'update_token', :to => 'token#update'
+  end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
@@ -25,10 +28,6 @@ HeisenBugDev::Application.routes.draw do
     resources 'wikis'
     resources 'articles'
     get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
-  end
-
-  namespace :users do
-    match '/update_token', :to => 'token#update', :via => 'put'
   end
 
   match '/downloads', :to => 'builds#index', :via => 'get'

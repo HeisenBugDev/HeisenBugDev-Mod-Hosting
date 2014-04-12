@@ -14,7 +14,8 @@ class BuildsController < ApplicationController
     end
 
     if project.nil?
-      render :text => "Project does not exist.", :status => :not_found
+      render :text => "Project does not exist or you do not have permission!",
+        :status => :not_found
       return
     end
 
