@@ -1,7 +1,7 @@
 HeisenBugDev Website
 ====================
 
-[![Coverage Status](https://coveralls.io/repos/HeisenBugDev/HeisenBugDev/badge.png)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![Build Status](https://travis-ci.org/HeisenBugDev/HeisenBugDev.png?branch=master)](https://travis-ci.org/HeisenBugDev/HeisenBugDev)[![Code Climate](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev.png)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)[![Dependency Status](https://gemnasium.com/HeisenBugDev/HeisenBugDev.png)](https://gemnasium.com/HeisenBugDev/HeisenBugDev)
+[![Coverage Status](http://img.shields.io/coveralls/HeisenBugDev/HeisenBugDev.svg)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![Build Status](http://img.shields.io/travis/HeisenBugDev/HeisenBugDev.svg)](https://travis-ci.org/HeisenBugDev/HeisenBugDev)[![Code Climate](http://img.shields.io/codeclimate/github/HeisenBugDev/HeisenBugDev.svg)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)[![Dependency Status](http://img.shields.io/gemnasium/HeisenBugDev/HeisenBugDev.svg)](https://gemnasium.com/HeisenBugDev/HeisenBugDev)
 
 
 This is the website repo for HeisenBugDev.
