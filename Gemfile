@@ -17,7 +17,6 @@ gem 'carrierwave'
 gem "sidekiq", "~> 2.17.7"
 gem "sidetiq", "~> 0.5.0"
 gem "sinatra", "~> 1.4.4"
-gem "octokit", "~> 2.7.2"
 gem 'devise'
 gem 'omniauth-github'
 gem 'simple_token_authentication'
@@ -31,6 +30,9 @@ group :production do
 end
 
 group :development do
+  gem 'jazz_hands'
+  gem 'railroady'
+  gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
@@ -40,8 +42,8 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-cucumber'
   gem 'guard-redis'
-  gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-rails'
   gem 'guard-livereload', require: false
   gem 'html2haml'
   gem 'rails_layout'
@@ -51,12 +53,12 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem "shoulda", "~> 3.5.0"
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'coveralls', require: false
   gem 'capybara'
   gem 'cucumber-rails', :require=>false

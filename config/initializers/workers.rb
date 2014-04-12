@@ -1,1 +1,0 @@
-ProjectsWorker.perform_async

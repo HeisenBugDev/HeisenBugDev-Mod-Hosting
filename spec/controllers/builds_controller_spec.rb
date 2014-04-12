@@ -30,24 +30,19 @@ describe BuildsController do
         bad_json = json.dup
         replace_hash_value(bad_json, {:project_name => 'BlockMiner123'})
         post :create, bad_json
-        response.response_code.should eq(202)
+        response.response_code.should eq(404)
       end
     end
     describe "with an invalid project" do
       it "should say to come back later" do
         bad_name = { :project_name => "SwagCraft" }
         post :create, bad_name
-        response.response_code.should eq(202)
+        response.response_code.should eq(404)
       end
     end
 
     describe "with bad build parameters" do
-      before do
-        Sidekiq::Testing.inline!
-        ProjectsWorker.perform_async
-      end
-
-      describe "missing parameters" do
+       describe "missing parameters" do
         it "give me a missing parameters error" do
           name_only_json = { :project_name => 'BlockMiner' }
           post :create, name_only_json
@@ -62,10 +57,6 @@ describe BuildsController do
           post :create, request_json
           response.response_code.should eq(400)
         end
-      end
-
-      after do
-        Sidekiq::Testing.fake!
       end
     end
 

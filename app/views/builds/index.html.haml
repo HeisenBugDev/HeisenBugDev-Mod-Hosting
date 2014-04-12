@@ -1,5 +1,13 @@
-.large-12.columns
+.large-12.small-centered.columns.small-text-center.downloads
+  %h1.huge-text Downloads
+  %h2.text-muted All the files you need to play
   - Project.all.each do |project|
-    %h2
-      = project.name
+    .mod-header
+      .large-6.columns.center
+        .large-4.columns.text-right.show-for-large-up
+          %img.y-center{:src => "http://placehold.it/100x100"}
+        .large-8.columns.text-left
+          %h1.title
+            = project.name
+          %h3.subtitle.show-for-medium-up WHOA Blocks!
     = render 'downloads', project: project

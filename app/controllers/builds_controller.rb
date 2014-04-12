@@ -8,18 +8,20 @@ class BuildsController < ApplicationController
   def create
     name = params[:project_name]
     if can? :manage, :all
-      project = Projects.find_by_name(name)
+      project = Project.find_by_name(name)
     else
       project = current_user.projects.find_by_name(name)
     end
 
     if project.nil?
-      ProjectsWorker.perform_async
-      render :text => "Project was not found. Project database is being"\
-                      " updated. Retry later", :status => :accepted
+      render :text => "Project does not exist.", :status => :not_found
       return
     end
+
     build = project.builds.build(upload_params)
+    version = Version.find_or_initialize_by(:project => project,
+          :version => params[:mod_version])
+    build.version = version
 
     if build.save
       render :text => "All is good."
@@ -34,8 +36,7 @@ class BuildsController < ApplicationController
 
 private
   def upload_params
-    params.permit(:build_number, :mod_version, :commit,
-                                  :minecraft_version, :branch)
+    params.permit(:build_number, :commit, :minecraft_version, :branch)
   end
 
   def upload_artifacts(build)

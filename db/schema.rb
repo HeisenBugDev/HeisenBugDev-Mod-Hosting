@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403185135) do
+ActiveRecord::Schema.define(version: 20140411134134) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -25,21 +25,21 @@ ActiveRecord::Schema.define(version: 20140403185135) do
 
   create_table "builds", force: true do |t|
     t.integer  "build_number"
-    t.string   "mod_version"
     t.string   "commit"
     t.string   "minecraft_version"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "branch"
+    t.integer  "version_id"
   end
 
   add_index "builds", ["build_number"], name: "index_builds_on_build_number"
   add_index "builds", ["project_id"], name: "index_builds_on_project_id"
+  add_index "builds", ["version_id"], name: "index_builds_on_version_id"
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "articles_repo"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,5 +95,49 @@ ActiveRecord::Schema.define(version: 20140403185135) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "versions", force: true do |t|
+    t.string   "version"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "versions", ["project_id"], name: "index_versions_on_project_id"
+
+  create_table "wiki_articles", force: true do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "wiki_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "build_id"
+    t.integer  "version_id"
+    t.string   "category_id"
+  end
+
+  add_index "wiki_articles", ["build_id"], name: "index_wiki_articles_on_build_id"
+  add_index "wiki_articles", ["category_id"], name: "index_wiki_articles_on_category_id"
+  add_index "wiki_articles", ["version_id"], name: "index_wiki_articles_on_version_id"
+  add_index "wiki_articles", ["wiki_id"], name: "index_wiki_articles_on_wiki_id"
+
+  create_table "wiki_categories", force: true do |t|
+    t.string   "title"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "wiki_id"
+  end
+
+  add_index "wiki_categories", ["parent_id"], name: "index_wiki_categories_on_parent_id"
+
+  create_table "wiki_wikis", force: true do |t|
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "repo"
+  end
+
+  add_index "wiki_wikis", ["project_id"], name: "index_wiki_wikis_on_project_id"
 
 end

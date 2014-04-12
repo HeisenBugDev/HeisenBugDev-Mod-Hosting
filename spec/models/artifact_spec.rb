@@ -18,7 +18,9 @@ require 'spec_helper'
 
 describe Artifact do
   let(:project) { FactoryGirl.create(:project) }
-  let(:build) { FactoryGirl.create(:build, :project => project) }
+  let(:version) { FactoryGirl.create(:version, :project => project) }
+  let(:build) { FactoryGirl.create(:build, :project => project,
+    :version => version) }
   let(:artifact) { FactoryGirl.create(:artifact, :build => build) }
 
   subject { artifact }

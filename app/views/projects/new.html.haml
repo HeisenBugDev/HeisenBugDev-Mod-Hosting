@@ -1,0 +1,13 @@
+.large-12.column
+  = form_for @project do |f|
+    = render 'layouts/error_messages', :object => f.object
+
+    = f.text_field :name, :placeholder => :Name, :value => ''
+    = f.text_area :description, :placeholder => :Description, :value => ''
+    = f.text_field :code_repo, :placeholder => :'Code Repo', :value => ''
+
+    = f.fields_for :wiki do |wiki_f|
+      = f.label 'Wiki Repo'
+      = wiki_f.text_field :repo, :placeholder => :wiki_repo
+
+    = f.submit

@@ -4,11 +4,6 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
   before_filter :authenticate_entity!, :only => [:edit, :update]
 
-  def refresh_projects
-    ProjectsWorker.perform_async(params[:urn])
-    render :text => "Well... it didn't crash so it must be ok."
-  end
-
   def edit
     @project = Project.find(params[:id])
     if !@project.users.include?(current_user) && !can?(:manage, :all)
@@ -20,9 +15,35 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def new
+    unless can? :manage, :all
+      redirect_to :back, :flash =>
+        { :warning => 'You do not have permission to view that page' }
+      return
+    end
+
+    @project = Project.new
+    @project.build_wiki
+  end
+
+  def create
+    unless can? :manage, :all
+      redirect_to :back, :flash =>
+        { :warning => 'You do not have permission to view that page' }
+      return
+    end
+
+    @project = Project.new(project_params)
+    if @project.save
+      flash[:success] = "Project created!"
+      redirect_to @project
+    else
+      render 'new'
+    end
+  end
+
   def update
     @project = Project.find(params[:id])
-    puts "PARAMS: #{params}"
     user = User.find_by_name(params[:project][:users])
     if user.nil?
       redirect_to :back, :flash => { :warning => 'User does not exist.' }
@@ -45,5 +66,10 @@ class ProjectsController < ApplicationController
       @project.users.delete(user)
     end
     redirect_to :back, :flash => { :notice => 'User removed' }
+  end
+
+private
+  def project_params
+    params.require(:project).permit(:name, :description, :code_repo, :wiki_attributes => [:repo])
   end
 end

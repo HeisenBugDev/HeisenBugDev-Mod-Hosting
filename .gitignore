@@ -51,6 +51,7 @@ db/*.sqlite3
 /gems
 /public/uploads
 /specifications
+/doc
 rerun.txt
 pickle-email-*.html
 .zeus.sock
