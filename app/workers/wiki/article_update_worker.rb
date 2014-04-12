@@ -3,7 +3,7 @@ require 'fileutils'
 class Wiki::ArticleUpdateWorker
   include Sidekiq::Worker
 
-  def perform(file, wiki_id, stripped_file, delete=false)
+  def perform(file, wiki_id, stripped_file, delete = false)
     file_data = File.read(file) unless delete
     wiki = Wiki::Wiki.find(wiki_id)
 

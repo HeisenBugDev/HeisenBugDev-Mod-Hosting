@@ -49,8 +49,9 @@ class Wiki::RepoUpdateWorker
       @files.each do |file|
         if file.start_with?(start) && File.file?(file)
           folder_search = file.sub(start, '')
-        # Stuff like v12.3.0 or b233
-        Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search)
+          # Stuff like v12.3.0 or b233
+          Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search)
+        end
       end
     end
 
@@ -64,5 +65,4 @@ class Wiki::RepoUpdateWorker
       end
     end
   end
-end
 end
