@@ -21,9 +21,10 @@ HeisenBugDev::Application.routes.draw do
   resources 'users'
   resources 'projects'
 
-  namespace :wiki do
-    get 'refresh_wiki', :to => 'wikis#update_wiki'
-    # get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
+  scope :module => :wiki do
+    resources 'wikis'
+    resources 'articles'
+    get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
   end
 
   namespace :users do

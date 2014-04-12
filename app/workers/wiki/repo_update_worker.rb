@@ -9,7 +9,7 @@ class Wiki::RepoUpdateWorker
     Wiki::Wiki.where('repo = ?', repo).each do |a_wiki|
       @wikis << a_wiki
     end
-    puts @wikis
+
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
     repo_tmp_dir = File.join(tmp_dir, repo)
 
