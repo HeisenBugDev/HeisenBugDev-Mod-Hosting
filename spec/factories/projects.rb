@@ -8,6 +8,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  code_repo   :string(255)
+#  subtitle    :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
@@ -17,5 +18,6 @@ FactoryGirl.define do
     name "BlockMiner"
     code_repo "HeisenBugDev/BlockMiner"
     description "Mine the blocks and stuff"
+    subtitle "Something short and tasty"
   end
 end

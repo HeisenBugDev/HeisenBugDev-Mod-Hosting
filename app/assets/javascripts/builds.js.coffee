@@ -2,9 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 yAlign = ->
-  $(".y-center").css "top", ($(".y-center").parent().parent().height() -
+  value = ($(".y-center").parent().parent().height() -
     $(".y-center").height()) / 2
+  $(".y-center").css "top", value
   return
 
-$(document).ready(yAlign)
-$(document).on('page:load', yAlign)
+$(document).on('ready page:load', yAlign)
