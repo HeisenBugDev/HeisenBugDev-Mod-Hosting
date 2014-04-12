@@ -21,6 +21,11 @@ body {
   float: left !important;
 }
 
+.huge-text {
+  font-size: 4em;
+  height: 1em;
+}
+
 img {
   max-width: 200%;
   max-height: 100%;
@@ -34,7 +39,11 @@ img {
 }
 
 .text-muted {
-  color: #999999;
+  color: #595959;
+}
+
+table {
+  margin: 0 auto;
 }
 
 p {
