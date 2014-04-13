@@ -25,6 +25,7 @@ gem "rolify"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'foundation-icons-sass-rails'
+gem 'foundation_rails_helper'
 
 group :production do
   gem 'rails_12factor'
@@ -33,7 +34,6 @@ end
 group :development do
   gem 'jazz_hands'
   gem 'railroady'
-  gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
