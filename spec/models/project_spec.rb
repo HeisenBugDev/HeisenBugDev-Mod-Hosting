@@ -9,6 +9,7 @@
 #  updated_at  :datetime
 #  code_repo   :string(255)
 #  subtitle    :string(255)
+#  icon        :string(255)
 #
 
 require 'spec_helper'
