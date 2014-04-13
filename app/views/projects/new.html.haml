@@ -8,6 +8,8 @@
     = f.text_field :code_repo, :placeholder => :'Code Repo', :value => ''
 
     = f.file_field :icon
+    = f.label :remote_icon_url
+    = f.text_field :remote_icon_url
 
     = f.fields_for :wiki do |wiki_f|
       = f.label 'Wiki Repo'
