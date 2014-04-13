@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 yAlign = (clazz) ->
   value = ($(".y-center#{clazz}").parent().parent().height() -
-    $(".y-center").height()) / 2
+    $(".y-center#{clazz}").height()) / 2
   $('.y-center').css 'top', value
 
 hiddenData = ->
@@ -12,16 +12,26 @@ hiddenData = ->
 
 imageToCanvas = ->
   canvas = document.createElement("canvas")
-  canvas.width = this.width
-  canvas.height = this.height
   canvas.className = this.className
   ctx = canvas.getContext("2d")
+  if window.devicePixelRatio
+    hidefCanvasWidth = $(canvas).attr("width")
+    hidefCanvasHeight = $(canvas).attr("height")
+    hidefCanvasCssWidth = hidefCanvasWidth
+    hidefCanvasCssHeight = hidefCanvasHeight
+    $(canvas).attr "width", hidefCanvasWidth * window.devicePixelRatio
+    $(canvas).attr "height", hidefCanvasHeight * window.devicePixelRatio
+    $(canvas).css "width", hidefCanvasCssWidth
+    $(canvas).css "height", hidefCanvasCssHeight
+    # ctx.scale window.devicePixelRatio, window.devicePixelRatio
+
   ctx.webkitImageSmoothingEnabled = false
   ctx.imageSmoothingEnabled = false
   ctx.mozImageSmoothingEnabled = false
+
   ctx.drawImage $(this)[0], 0, 0, canvas.width, canvas.height
   $(this)[0].parentNode.replaceChild canvas, $(this)[0]
-  yAlign('.no-aa-image')
+  yAlign('.mod-download-icon.no-aa-image')
 
 removeAA = ->
   $(".no-aa-image").each (i, img) ->
