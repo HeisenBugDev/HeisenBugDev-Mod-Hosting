@@ -35,3 +35,31 @@
     margin-bottom: 0px;
   }
 }
+
+.fi-plus {
+ font-size: 20px;
+
+ &:hover {
+  color: #4a4a4a;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+ }
+}
+
+.fi-minus {
+ font-size: 20px;
+
+ &:hover {
+  color: #4a4a4a;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+ }
+}
+
+.more-artifacts {
+  display: inline-block;
+}
+
+.hide {
+  display: none;
+}
