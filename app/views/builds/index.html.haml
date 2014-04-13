@@ -5,8 +5,7 @@
     .mod-header
       .large-6.columns.center
         .large-4.columns.text-right.show-for-large-up
-          = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon'
-          -# %img.y-center.mod-download-icon{:src => "http://placehold.it/100x100"}
+          = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
         .large-8.columns.text-left
           %h1.title
             = project.name
