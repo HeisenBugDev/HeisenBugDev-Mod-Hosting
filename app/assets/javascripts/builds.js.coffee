@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 yAlign = (clazz) ->
-  value = ($(".y-center#{clazz}").parent().parent().height() -
-    $(".y-center#{clazz}").height()) / 2
+  value = ($(".y-center#{clazz}").parent().parent().outerHeight() - $(".y-center#{clazz}").outerHeight()) / 2
   $('.y-center').css 'top', value
 
 hiddenData = ->
