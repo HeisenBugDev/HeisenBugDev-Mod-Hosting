@@ -6,4 +6,7 @@
   %td
     = build.minecraft_version
   %td
-    = render build.artifacts
+    = render build.artifacts.where(:name => 'universal')
+    .more-artifacts
+      = render build.artifacts.where.not(:name => 'universal')
+    %i.more-artifacts-toggle.fi-plus

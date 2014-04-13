@@ -4,7 +4,25 @@
 yAlign = ->
   $(".y-center").css "top", ($(".y-center").parent().parent().height() -
     $(".y-center").height()) / 2
-  return
 
-$(document).ready(yAlign)
-$(document).on('page:load', yAlign)
+hiddenData = ->
+  $('.more-artifacts').toggle()
+  $('.more-artifacts-toggle').text('More')
+
+readyCalls = ->
+  yAlign()
+  hiddenData()
+
+$(document).ready(readyCalls)
+$(document).on('page:load', readyCalls)
+
+$(document).on 'click', '.more-artifacts-toggle', ->
+  $(this).prev(".more-artifacts").toggle("slide", { direction: "right" })
+
+  $(this).toggleClass 'fi-plus'
+  $(this).toggleClass 'fi-minus'
+
+  if $(this).text() == 'More'
+    $(this).text('Less')
+  else
+    $(this).text('More')
