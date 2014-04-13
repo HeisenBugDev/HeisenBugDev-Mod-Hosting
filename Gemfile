@@ -24,6 +24,7 @@ gem 'cancancan', '~> 1.7'
 gem "rolify"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
+gem 'foundation-icons-sass-rails'
 
 group :production do
   gem 'rails_12factor'
