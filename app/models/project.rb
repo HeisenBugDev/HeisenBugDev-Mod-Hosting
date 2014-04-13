@@ -11,11 +11,18 @@
 #  subtitle    :string(255)
 #  icon        :string(255)
 #
+require 'file_size_validator'
 
 class Project < ActiveRecord::Base
   has_one :wiki, :class_name => 'Wiki::Wiki', :dependent => :destroy
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader
+
+  validates :icon,
+    :presence => true,
+    :file_size => {
+      :maximum => 0.5.megabytes.to_i
+    }
 
   has_and_belongs_to_many :users
   has_many :builds, :dependent => :destroy

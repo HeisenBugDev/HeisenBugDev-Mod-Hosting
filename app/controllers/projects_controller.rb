@@ -71,6 +71,6 @@ class ProjectsController < ApplicationController
 private
   def project_params
     params.require(:project).permit(:subtitle, :name, :description, :code_repo,
-      :wiki_attributes => [:repo])
+      :icon, :wiki_attributes => [:repo])
   end
 end
