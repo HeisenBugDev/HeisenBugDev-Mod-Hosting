@@ -4,7 +4,7 @@
 # 2) you've got a div with the id flash_hook somewhere in your html code
 
 show_ajax_message = (msg, type) ->
-  $("#flash-message").html "<div id='flash-#{type}' class='alert-box #{type} radius'>#{msg}</div>"
+  $("#flash-message").html "<div id='flash-#{type}' class='alert-box #{type} radius'><a href='#' class='close'>&times;</a>#{msg}</div>"
   $("#flash-#{type}").delay(3000).slideUp()
 
 root = exports ? this
