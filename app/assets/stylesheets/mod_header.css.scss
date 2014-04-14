@@ -1,0 +1,26 @@
+.mod-header {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  background-color: #393E54;
+  border-radius:9px;
+  min-height: 100%;
+
+  .subtitle {
+    color: #858895;
+  }
+
+  .title {
+    color: #B3B5BD;
+  }
+}
+
+.y-center {
+  position: relative;
+}
+
+.mod-download-icon {
+  width: 100px;
+  height: 100px;
+  background-color: #D8D8D8;
+  border-radius: 9px;
+}

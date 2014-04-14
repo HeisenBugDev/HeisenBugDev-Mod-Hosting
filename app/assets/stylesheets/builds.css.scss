@@ -1,34 +1,6 @@
 // Place all the styles related to the Builds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.mod-header {
-  margin-top: 2em;
-  margin-bottom: 1em;
-  background-color: #393E54;
-  border-radius:9px;
-  min-height: 100%;
-  overflow-y: hidden;
-
-  .subtitle {
-    color: #858895;
-  }
-
-  .title {
-    color: #B3B5BD;
-  }
-}
-
-.y-center {
-  position: relative;
-}
-
-.mod-download-icon {
-  width: 100px;
-  height: 100px;
-  background-color: #D8D8D8;
-  border-radius: 9px;
-}
-
 .downloads {
   table {
     width: 100%;

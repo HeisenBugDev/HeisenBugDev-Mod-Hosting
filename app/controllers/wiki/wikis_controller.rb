@@ -7,5 +7,7 @@ class Wiki::WikisController < ApplicationController
     else
       Wiki::RepoUpdateWorker.perform_async(params[:id], params[:hard_reload])
     end
+    flash[:notice] = "Successfully queued a refresh."
+    render :nothing => true
   end
 end

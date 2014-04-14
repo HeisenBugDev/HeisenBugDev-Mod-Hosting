@@ -22,7 +22,6 @@ imageToCanvas = ->
     $(canvas).attr "height", hidefCanvasHeight * window.devicePixelRatio
     $(canvas).css "width", hidefCanvasCssWidth
     $(canvas).css "height", hidefCanvasCssHeight
-    # ctx.scale window.devicePixelRatio, window.devicePixelRatio
 
   ctx.webkitImageSmoothingEnabled = false
   ctx.imageSmoothingEnabled = false
