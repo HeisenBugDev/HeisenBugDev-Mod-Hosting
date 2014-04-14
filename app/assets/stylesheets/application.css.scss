@@ -23,6 +23,13 @@ body {
   float: left !important;
 }
 
+.alert-box {
+  position: fixed;
+  right: 10px;
+  top: 55px;
+  z-index: 1;
+}
+
 .huge-text {
   font-size: 4em;
   height: 1em;

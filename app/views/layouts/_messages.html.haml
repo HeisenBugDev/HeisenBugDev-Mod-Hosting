@@ -1,0 +1,5 @@
+-# Rails flash messages styled for Zurb Foundation
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: "alert-box #{name} radius", id: "flash_#{name}" do
+    %a{:href => "#", :class => "close"} &times;
+    = msg

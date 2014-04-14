@@ -6,7 +6,6 @@ class Wiki::WikisController < ApplicationController
         params[:hard_reload]) unless wiki.nil?
     else
       Wiki::RepoUpdateWorker.perform_async(params[:id], params[:hard_reload])
-      redirect_to :back
     end
   end
 end

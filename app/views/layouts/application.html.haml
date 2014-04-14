@@ -13,8 +13,9 @@
   %body
     = render 'layouts/navigation'
     %main{:role => "main"}
-      = display_flash_messages
       .row
+        .text-right
+          = render 'layouts/messages'
         = yield
   :javascript
     $(document).foundation();

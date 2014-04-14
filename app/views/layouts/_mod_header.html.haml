@@ -1,6 +1,15 @@
 .mod-header
   .large-6.columns.center
-    .large-4.columns.text-right.show-for-large-up
+    .large-2.columns.text-left
+      - if can? :manage, project
+        %a.button.dropdown{"data-dropdown" => "drop1", :href => "#"} Edit
+        %br
+          %ul#drop1.f-dropdown{"data-dropdown-content" => ""}
+            %li
+              = link_to 'Refresh wiki', refresh_wiki_path(project.wiki), :remote => true
+            %li
+              = link_to 'Hard refresh wiki', refresh_wiki_path(:id => project.wiki.id, :hard_reload => true), :remote => true
+    .columns.text-right.show-for-large-up{:class => (can?(:manage, project) ? 'large-2' : 'large-4')}
       = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
     .large-8.columns.text-left
       %h1.title

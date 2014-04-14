@@ -17,5 +17,5 @@
 //= require turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {
-  $("div[id^='flash_']").delay(3000).fadeOut(1000);
+  $("div[id^='flash_']").delay(3000).slideUp();
 });
