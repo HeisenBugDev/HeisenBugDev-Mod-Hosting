@@ -1,7 +1,7 @@
 .large-6.columns.center.mod-header
   .large-2.columns.text-left
     - if can? :manage, project
-      %a.button.dropdown{"data-dropdown" => "edit-project", :href => "#", "data-options" => "is_hover:true"} Edit
+      %a.button.dropdown.show-for-large-up{"data-dropdown" => "edit-project", :href => "#", "data-options" => "is_hover:true"} Edit
       %br
         %ul#edit-project.f-dropdown{"data-dropdown-content" => ""}
           %li
