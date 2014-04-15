@@ -40,8 +40,7 @@ readyCalls = ->
   yAlign()
   hiddenData()
 
-$(document).ready(readyCalls)
-$(document).on('page:load', readyCalls)
+$(document).on('ready page:load', readyCalls)
 
 $(document).on 'click', '.more-artifacts-toggle', ->
   $(this).prev(".more-artifacts").toggle("slide", { direction: "right" })
