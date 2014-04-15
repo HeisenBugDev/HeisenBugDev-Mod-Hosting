@@ -12,9 +12,6 @@
     = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
 %li.divider
 %li
-  = nav_link "Downloads", downloads_path
-%li.divider
-%li
   = nav_link "Mods", projects_path
 - if can? :manage, :all
   %li.divider

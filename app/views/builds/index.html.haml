@@ -1,6 +1,0 @@
-.large-12.small-centered.columns.small-text-center.downloads
-  %h1.huge-text Downloads
-  %h2.text-muted All the files you need to play
-  - Project.all.each do |project|
-    = render 'layouts/mod_header', {:project => project}
-    = render 'downloads', project: project
