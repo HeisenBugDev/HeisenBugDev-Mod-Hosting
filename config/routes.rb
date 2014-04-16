@@ -22,12 +22,14 @@ HeisenBugDev::Application.routes.draw do
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
   resources 'users'
-  resources 'projects'
 
-  scope :module => :wiki do
-    resources 'wikis'
-    resources 'articles'
-    get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
+  resources 'projects' do
+    scope :module => :wiki do
+      resources 'wikis' do
+        resources 'articles'
+      end
+      get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
+    end
   end
 
   match '/downloads', :to => 'builds#index', :via => 'get'

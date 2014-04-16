@@ -18,4 +18,4 @@
             - else
               = link_to 'Download', latest_build.artifacts.find_by_name(:universal).artifact.url
           %td
-            = link_to 'Wiki', wiki_path(project.wiki)
+            = link_to 'Wiki', project_wiki_path(project, project.wiki)

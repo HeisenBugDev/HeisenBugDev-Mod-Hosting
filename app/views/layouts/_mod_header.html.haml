@@ -5,9 +5,9 @@
       %br
         %ul#edit-project.f-dropdown{"data-dropdown-content" => ""}
           %li
-            = link_to 'Refresh wiki', refresh_wiki_path(project.wiki), :remote => true, :class => 'refresh-button'
+            = link_to 'Refresh wiki', project_refresh_wiki_path(project, project.wiki), :remote => true, :class => 'refresh-button'
           %li
-            = link_to 'Hard refresh wiki', refresh_wiki_path(:id => project.wiki.id, :hard_reload => true), :remote => true, :class => 'refresh-button'
+            = link_to 'Hard refresh wiki', project_refresh_wiki_path(project, :id => project.wiki.id, :hard_reload => true), :remote => true, :class => 'refresh-button'
   .columns.text-right.show-for-large-up{:class => (can?(:manage, project) ? 'large-2' : 'large-4')}
     = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
   .large-8.columns.text-left
