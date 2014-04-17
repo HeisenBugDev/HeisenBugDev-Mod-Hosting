@@ -18,4 +18,5 @@ root.show_ajax_message = show_ajax_message
 $(document).ajaxComplete (event, request) ->
   msg = request.getResponseHeader("X-Message")
   type = request.getResponseHeader("X-Message-Type")
-  show_ajax_message msg, type
+  if msg
+    show_ajax_message msg, type
