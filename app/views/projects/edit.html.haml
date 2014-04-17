@@ -8,3 +8,14 @@
   = user.name
   - unless current_user == user
     = link_to 'Remove', projects_remove_user_path(:project_id => @project.id, :user_id => user.id), method: :delete
+= form_for @project, :html => {:multipart => true} do |f|
+  = f.text_field :name
+  = f.text_area :description
+  = f.text_field :subtitle
+  = f.text_field :code_repo
+
+  = image_tag @project.icon_url.to_s, :class => 'mod-download-icon no-aa-image'
+  = f.file_field :icon
+  = f.text_field :remote_icon_url
+
+  = f.submit

@@ -45,18 +45,18 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     user = User.find_by_name(params[:project][:users])
-    if user.nil?
-      redirect_to :back, :flash => { :warning => 'User does not exist.' }
+    unless user.nil?
+      old_size = @project.users.size
+      @project.users << user unless @project.users.include?(user)
+      if old_size == @project.users.size
+        redirect_to :back, :flash => { :warning => 'User already existed' }
+        return
+      end
+      redirect_to :back, :flash => { :notice => 'User added' }
       return
     end
-    old_size = @project.users.size
-    @project.users << user unless @project.users.include?(user)
-    if old_size == @project.users.size
-      redirect_to :back, :flash => { :warning => 'User already existed' }
-      return
-    end
-    redirect_to :back, :flash => { :notice => 'User added' }
-    return
+    @project.update_attributes(project_params)
+    redirect_to @project
   end
 
   def remove_user
