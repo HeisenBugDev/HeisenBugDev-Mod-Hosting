@@ -12,6 +12,9 @@
     = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)
 %li.divider
 %li
+  = nav_link "Users", users_path
+%li.divider
+%li
   = nav_link "Mods", projects_path
 - if can? :manage, :all
   %li.divider
@@ -20,4 +23,4 @@
     %ul.dropdown
       %li
         = nav_link 'Add Project', new_project_path
-  %li.divider
+%li.divider
