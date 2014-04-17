@@ -1,10 +1,8 @@
 %h1
   = @user.name
-- unless @user.projects.nil?
+- unless @user.projects.blank?
   %h2 Mods
   %ul#mod
     - @user.projects.each do |project|
       %li
         = link_to project.name, project
-        - if can?(:manage, project)
-          = link_to '(edit)', edit_project_path(project)

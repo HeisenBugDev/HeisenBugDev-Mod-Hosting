@@ -26,6 +26,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'foundation-icons-sass-rails'
 gem 'foundation_rails_helper'
+gem 'will_paginate'
 
 group :production do
   gem 'rails_12factor'
