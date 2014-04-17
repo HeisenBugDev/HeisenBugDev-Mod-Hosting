@@ -14,6 +14,7 @@
   = f.text_field :subtitle
   = f.text_field :code_repo
 
+  %h3 Current icon
   = image_tag @project.icon_url.to_s, :class => 'mod-download-icon no-aa-image'
   = f.file_field :icon
   = f.text_field :remote_icon_url
