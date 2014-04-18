@@ -2,5 +2,5 @@
   %h3
     = link_to user.name, user
     = render user.roles
-    - if can?(:manage, :all) && !user.has_role?(:owner)
+    - if can?(:manage, :all) && !user.has_role?(:owner) && current_user != user
       = link_to "[Delete]", registration_path(user), data: { confirm: "Are you sure?" }, method: :delete

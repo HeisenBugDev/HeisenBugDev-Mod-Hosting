@@ -1,8 +1,9 @@
-%h1
-  = @user.name
-- unless @user.projects.blank?
-  %h2 Mods
-  %ul#mod
-    - @user.projects.each do |project|
-      %li
-        = link_to project.name, project
+.row
+  %h1
+    = @user.name
+  - unless @user.projects.blank?
+    %h2 Mods
+    %ul#mod
+      - @user.projects.each do |project|
+        %li
+          = link_to project.name, project

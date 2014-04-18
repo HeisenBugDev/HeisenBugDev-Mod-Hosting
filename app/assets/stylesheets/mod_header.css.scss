@@ -1,8 +1,8 @@
 .mod-header {
-  margin-top: 2em;
   margin-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   background-color: #393E54;
-  border-radius:9px;
   min-height: 100%;
 
   .subtitle {
@@ -23,4 +23,5 @@
   height: 100px;
   background-color: #D8D8D8;
   border-radius: 9px;
+  padding: 8px;
 }
