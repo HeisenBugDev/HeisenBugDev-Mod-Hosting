@@ -10,4 +10,11 @@ class Wiki::WikisController < ApplicationController
     flash[:notice] = "Successfully queued a refresh."
     render :nothing => true
   end
+
+  def show
+    wiki = Wiki::Wiki.find(params[:id])
+    project = wiki.id
+    article = wiki.articles.first
+    redirect_to project_wiki_article_path(project, wiki, article)
+  end
 end

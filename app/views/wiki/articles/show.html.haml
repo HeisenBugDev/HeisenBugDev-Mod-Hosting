@@ -1,3 +1,15 @@
-%h1
-  = @article.title
-= @article.body
+= render 'layouts/mod_header', {:project => @article.wiki.project}
+.large-4.columns
+  %ul.side-nav#wiki-nav
+    - get_articles.each do |article|
+      %li
+        %h4= render article
+    - get_categories.each do |category|
+      %li.wiki-nav
+        %h4= render category
+.large-8.columns
+  %h1
+    %u
+      #{@article.title.capitalize}
+  :plain
+    #{GitHub::Markdown.render(@article.body)}

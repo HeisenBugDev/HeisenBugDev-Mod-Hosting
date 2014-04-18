@@ -1,3 +1,11 @@
 // Place all the styles related to the wiki/wiki controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#wiki-nav {
+  color: #B3B5BD !important;
+  background-color: #393E54;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: -15px;
+  border-radius:9px;
+}

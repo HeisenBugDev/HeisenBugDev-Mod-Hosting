@@ -1,6 +1,8 @@
-= category.title
-- category.articles.each do |article|
-  = render article
+%h4= category.title.capitalize
+%ul
+  - category.articles.each do |article|
+    %li
+      %h5= render article
 - unless category.subcategories.nil?
   - category.subcategories.each do |sub_cat|
     = render sub_cat
