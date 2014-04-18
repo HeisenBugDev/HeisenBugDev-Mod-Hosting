@@ -1,9 +1,9 @@
 = render 'layouts/mod_header', {:project => @project}
 .large-12.columns
   .row
-    %h2.blue-text Developers
+    %h3.blue-text Developers
     - @project.users.each do |developer|
       %span.has-top.tip-left{'data-tooltip' => true, :title => developer.name, 'data-options' => 'disable_for_touch:true'}
         = link_to(gravatar_for(developer, :size => 50, :class => 'developer-icon'), developer)
-    %h2.blue-text Downloads
+    %h3.blue-text Downloads
     = render 'builds/downloads', project: @project
