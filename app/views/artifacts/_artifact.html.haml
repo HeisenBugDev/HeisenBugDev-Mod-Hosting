@@ -1,2 +1,2 @@
 %li
-  = link_to artifact.name, artifact.artifact.url
+  = link_to "#{artifact.name} (#{file_size(artifact.artifact)})", artifact.artifact.url
