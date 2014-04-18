@@ -5,9 +5,9 @@
 show_ajax_message = (msg, type) ->
   $("#flash-message").html "<div id='flash-#{type}' class='alert-box #{type}'><a href='#' class='close'>&times;</a>#{msg}</div>"
   width = 250
-  right = (($(document).width() - $('#top-bar').width()) / 2)
+  left = (($(document).width() - $('#top-bar').width()) / 2)
   top = $('#top-bar').height() + 15
-  $("#flash-#{type}").css 'right', right
+  $("#flash-#{type}").css 'left', left
   $("#flash-#{type}").css 'top', top
   $("#flash-#{type}").css 'width', width
   $("#flash-#{type}").delay(3000).slideUp()

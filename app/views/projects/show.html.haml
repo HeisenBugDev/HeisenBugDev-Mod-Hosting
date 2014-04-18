@@ -1,9 +1,21 @@
 = render 'layouts/mod_header', {:project => @project}
 .large-12.columns
   .row
-    %h3.blue-text Developers
-    - @project.users.each do |developer|
-      %span.has-top.tip-left{'data-tooltip' => true, :title => developer.name, 'data-options' => 'disable_for_touch:true'}
-        = link_to(gravatar_for(developer, :size => 50, :class => 'developer-icon'), developer)
-    %h3.blue-text Downloads
-    = render 'builds/downloads', project: @project
+    .large-3.columns
+      %h3.blue-text Developers
+      - @project.users.each do |developer|
+        %span.has-top.tip-left{'data-tooltip' => true, :title => developer.name, 'data-options' => 'disable_for_touch:true'}
+          = link_to(gravatar_for(developer, :size => 50, :class => 'developer-icon'), developer)
+      - latest_build = latest_builds(@project, 1)[0]
+      - unless latest_build.nil?
+        %h3.blue-text Download
+        = link_to latest_build.artifacts.find_by_name(:universal).artifact.url, :class => 'button split' do
+          Latest
+          %span#more-downloads{"data-dropdown" => "drop"}
+    .large-9.columns
+      = simple_format(@project.description)
+      #downloads.hide
+        %hr
+        %a{:id => 'downloads'}
+        %h3.blue-text Downloads
+        = render 'builds/downloads', project: @project

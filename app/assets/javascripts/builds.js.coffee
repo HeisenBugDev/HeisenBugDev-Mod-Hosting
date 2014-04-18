@@ -41,14 +41,3 @@ readyCalls = ->
   hiddenData()
 
 $(document).on('ready page:load', readyCalls)
-
-$(document).on 'click', '.more-artifacts-toggle', ->
-  $(this).prev(".more-artifacts").toggle("slide", { direction: "right" })
-
-  $(this).toggleClass 'fi-plus'
-  $(this).toggleClass 'fi-minus'
-
-  if $(this).text() == 'More'
-    $(this).text('Less')
-  else
-    $(this).text('More')

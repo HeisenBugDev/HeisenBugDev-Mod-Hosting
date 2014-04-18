@@ -1,12 +1,11 @@
+
 %tr
+  %td= build.build_number
+  %td= build.version.version
+  %td= build.minecraft_version
   %td
-    = build.build_number
+    %a.button.small.dropdown{:href => "#", 'data-dropdown'=> "build#{build.build_number}", "data-options" => "is_hover:true"} Files
+    %ul.f-dropdown{:id => "build#{build.build_number}", 'data-dropdown-content' => true}
+      = render build.artifacts
   %td
-    = build.version.version
-  %td
-    = build.minecraft_version
-  %td
-    = render build.artifacts.where(:name => 'universal')
-    .more-artifacts
-      = render build.artifacts.where.not(:name => 'universal')
-    %i.more-artifacts-toggle.fi-plus
+    %a.button.small{:href => "https://github.com/#{build.project.code_repo}/commit/#{build.commit}"} #{build.commit[0..7]}
