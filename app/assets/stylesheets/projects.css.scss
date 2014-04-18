@@ -1,3 +1,20 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.developer-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+
+.blue-text {
+  color: #008CBA;
+}
