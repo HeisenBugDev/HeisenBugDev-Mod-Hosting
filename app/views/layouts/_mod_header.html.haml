@@ -1,5 +1,12 @@
 .large-6.columns.center.mod-header
   .row
+    .columns.text-right.show-for-large-up.large-2
+      = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
+    .large-8.columns.text-left
+      %h1.title
+        = project.name
+      %h3.subtitle.show-for-medium-up
+        = project.subtitle
     .large-2.columns.text-left
       - if can? :manage, project
         %a.button.dropdown.show-for-large-up{"data-dropdown" => "edit-project", :href => "#", "data-options" => "is_hover:true"} Edit
@@ -13,10 +20,3 @@
               = link_to 'Edit', edit_project_path(project)
       - unless project.wiki.articles.first.nil?
         = link_to 'Wiki', project_wiki_path(project, project.wiki), :class => 'button show-for-large-up wiki-button'
-    .columns.text-right.show-for-large-up.large-2
-      = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
-    .large-8.columns.text-left
-      %h1.title
-        = project.name
-      %h3.subtitle.show-for-medium-up
-        = project.subtitle
