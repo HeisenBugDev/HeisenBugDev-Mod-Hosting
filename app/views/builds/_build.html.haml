@@ -8,4 +8,4 @@
     %ul.f-dropdown{:id => "build#{build.build_number}", 'data-dropdown-content' => true}
       = render build.artifacts
   %td
-    %a.button.small{:href => "https://github.com/#{build.project.code_repo}/commit/#{build.commit}"} #{build.commit[0..7]}
+    %a.button.small{:href => changes_link(build)} #{build.commit[0..7]}
