@@ -4,7 +4,8 @@ module BuildsHelper
   end
 
   def prev_commit(build)
-    prev_build = build.project.builds.order('build_number DESC').where('build_number < ?', build.build_number).first
+    prev_build = build.project.builds.order('build_number DESC')
+      .where('build_number < ?', build.build_number).first
     prev_build.commit unless prev_build.nil?
   end
 
