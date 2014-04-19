@@ -1,20 +1,9 @@
 .large-12.columns
-  .row
-    %h1 Mods
-    %table
-      %thead
-        %tr
-          %th Name
-          %th Download
-          %th Wiki
-      %tbody
-        - Project.all.each do |project|
-          - latest_build = latest_builds(project, 1)[0]
-          %tr
-            %td
-              = link_to project.name, project
-            %td
-              - if latest_build.nil?
-                None
-              - else
-                = link_to 'Download', latest_build.artifacts.find_by_name(:universal).artifact.url
+  %h1.text-center Mods
+  %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
+    - Project.all.each do |project|
+      %li
+        .panel
+          = image_tag project.icon, :class => 'mod-icon no-aa-image'
+          %h2= link_to project.name, project
+          %h3= project.subtitle
