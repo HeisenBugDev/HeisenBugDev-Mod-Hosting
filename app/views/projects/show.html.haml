@@ -5,11 +5,13 @@
       %h3.blue-text Developers
       #developers
         = render 'developers'
-      %a#add-dev Add dev
-      #add-dev-form.hide
-        = form_for @project, :remote => true do |f|
-          = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => ''
-          = f.submit
+      - if can? :modify, @project
+        #add-dev-set
+          %a.button.thin-button.thin-bottom-margin#add-dev Add dev
+          #add-dev-form.hide
+            = form_for @project, :remote => true do |f|
+              = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => '', :class => 'thin-bottom-margin radius'
+              = f.submit 'Add', :class => 'button success radius thin-button thin-bottom-margin'
       - latest_build = latest_builds(@project, 1)[0]
       - unless latest_build.nil?
         - latest_artifact = latest_build.artifacts.find_by_name(:universal).artifact

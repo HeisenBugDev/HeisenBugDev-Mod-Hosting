@@ -10,8 +10,13 @@ $(document).on 'click', '#more-downloads', ->
     location.hash = '#downloads'
 
 $(document).on 'click', '#add-dev', ->
-  $('#add-dev-form').toggleClass('hide')
+  $('#add-dev-form').fadeToggle(50)
+  $('input#project_users').focus()
 
 $(document).ready ->
   $('#add-dev-form').on 'ajax:success', (e, data, status, xhr) ->
-    $('#add-dev-form').toggleClass('hide')
+    $('input#project_users').val('')
+
+$(document).on "click", (e) ->
+  formClick = $("#add-dev-form").has($(e.target)).length || $(e.target).is("#add-dev")
+  $("#add-dev-form").fadeOut 50 unless formClick

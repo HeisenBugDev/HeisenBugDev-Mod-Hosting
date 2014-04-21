@@ -14,6 +14,39 @@
   }
 }
 
+#add-dev-set {
+  margin-top: 5px;
+}
+
+#add-dev {
+  width: 100%;
+}
+
+#add-dev-form {
+  position: absolute;
+  width: 88%;
+  z-index: 1;
+  background-color: #393E54;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.thin-button {
+  padding: 4% !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+
+.thin-bottom-margin {
+  margin-bottom: 2% !important;
+}
+
+ul.ui-autocomplete {
+  .ui-menu-item {
+    position: static;
+  }
+}
+
 .mod-icon {
   width: 75px;
   height: 75px;

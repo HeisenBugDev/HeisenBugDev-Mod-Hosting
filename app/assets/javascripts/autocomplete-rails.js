@@ -150,6 +150,7 @@
             }
           });
           jQuery(e).trigger('railsAutocomplete.select', ui);
+          $(this).parents("form").submit();  // this will submit the form.
           return false;
         }
       });

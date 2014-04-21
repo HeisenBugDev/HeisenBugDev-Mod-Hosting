@@ -13,7 +13,9 @@ Here is the Trello board for people who want to see the status of things https:/
 
 ## Credits
 
- - "its alright man, don't worry about it" man
+ - ["its alright man, don't worry about it" man](https://github.com/adzankich)
+ - [The real programming taco](https://github.com/solojavier)
+ - [He say Godzilla](https://github.com/XixeBombilla)
 
 ## Design specs
 
