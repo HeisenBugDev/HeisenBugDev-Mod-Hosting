@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @users = @project.users
   end
 
   def new
@@ -49,14 +50,17 @@ class ProjectsController < ApplicationController
       old_size = @project.users.size
       @project.users << user unless @project.users.include?(user)
       if old_size == @project.users.size
-        redirect_to :back, :flash => { :warning => 'User already existed' }
-        return
+        flash[:warning] = 'User already added'
+      else
+        flash[:success] = 'User added'
       end
-      redirect_to :back, :flash => { :notice => 'User added' }
+      @users = @project.users
+      respond_to do |format|
+        format.js
+      end
       return
     end
     @project.update_attributes(project_params)
-    redirect_to @project
   end
 
   def remove_user

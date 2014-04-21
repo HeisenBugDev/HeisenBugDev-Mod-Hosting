@@ -3,13 +3,13 @@
   .row
     .large-3.columns
       %h3.blue-text Developers
-      - @project.users.each do |developer|
-        %span.has-top.tip-left{'data-tooltip' => true, :title => developer.name, 'data-options' => 'disable_for_touch:true'}
-          = link_to(gravatar_for(developer, :size => 50, :class => 'developer-icon'), developer)
+      #developers
+        = render 'developers'
       %a#add-dev Add dev
       #add-dev-form.hide
-        = form_for @project do |f|
+        = form_for @project, :remote => true do |f|
           = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => ''
+          = f.submit
       - latest_build = latest_builds(@project, 1)[0]
       - unless latest_build.nil?
         - latest_artifact = latest_build.artifacts.find_by_name(:universal).artifact

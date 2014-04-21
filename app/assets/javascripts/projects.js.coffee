@@ -11,3 +11,7 @@ $(document).on 'click', '#more-downloads', ->
 
 $(document).on 'click', '#add-dev', ->
   $('#add-dev-form').toggleClass('hide')
+
+$(document).ready ->
+  $('#add-dev-form').on 'ajax:success', (e, data, status, xhr) ->
+    $('#add-dev-form').toggleClass('hide')

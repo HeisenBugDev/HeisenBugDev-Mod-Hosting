@@ -1,9 +1,7 @@
 module ApplicationHelper
   def gravatar_for(user, options = { size: 200 })
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar #{options[:class]}")
+    gravatar_image_tag(user.email, alt: user.name, class: "gravatar #{options[:class]}", :gravatar => { :size => size })
   end
 
   # Gets the latest builds in descending order
@@ -21,5 +19,13 @@ module ApplicationHelper
     content_tag(:li, :class => class_name) do
       link_to link_text, link_path
     end
+  end
+
+  def single_quoter!(string)
+    string.gsub!('"', "'")
+  end
+
+  def remove_newlines!(string)
+    string.delete!("\n")
   end
 end

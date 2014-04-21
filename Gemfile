@@ -28,6 +28,7 @@ gem 'foundation-icons-sass-rails'
 gem 'foundation_rails_helper'
 gem 'will_paginate'
 gem 'github-markdown', :require => 'github/markdown'
+gem 'gravatar_image_tag'
 
 group :production do
   gem 'rails_12factor'
