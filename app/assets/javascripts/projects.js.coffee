@@ -8,3 +8,6 @@ $(document).on 'click', '#more-downloads', ->
     location.hash = ''
   else
     location.hash = '#downloads'
+
+$(document).on 'click', '#add-dev', ->
+  $('#add-dev-form').toggleClass('hide')

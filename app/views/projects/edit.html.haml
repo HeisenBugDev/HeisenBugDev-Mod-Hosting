@@ -1,8 +1,6 @@
 .row
   %h1
     = @project.name
-  = form_for @project do |f|
-    = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => ''
   %h2 Users
   - @project.users.each do |user|
     = gravatar_for(user, size: 100)

@@ -15,6 +15,10 @@ show_ajax_message = (msg, type) ->
 root = exports ? this
 root.show_ajax_message = show_ajax_message
 
+$(document).on 'ready page:load' , ->
+  # A blank ajax request to get the latest notices.
+  $.ajax('/')
+
 $(document).ajaxComplete (event, request) ->
   msg = request.getResponseHeader("X-Message")
   type = request.getResponseHeader("X-Message-Type")
