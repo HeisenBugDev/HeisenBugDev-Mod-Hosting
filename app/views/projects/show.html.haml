@@ -20,7 +20,7 @@
           Latest (#{file_size(latest_artifact)})
           %span#more-downloads{"data-dropdown" => "drop"}
     .large-9.columns
-      = simple_format(@project.description)
+      = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea
       #downloads.hide
         %hr
         %a{:id => 'downloads'}
