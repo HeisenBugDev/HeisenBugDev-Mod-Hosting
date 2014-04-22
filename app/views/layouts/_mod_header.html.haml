@@ -8,9 +8,8 @@
         %a.close-reveal-modal &#215;
         = form_for project, :html => {:multipart => true}, :remote => true do |f|
           %h3 Change icon
-          = image_tag project.icon_url.to_s, :class => 'mod-download-icon no-aa-image'
+          %h5 Max size 500kb
           = f.file_field :icon
-          = f.text_field :remote_icon_url
 
           = f.submit
     .large-8.columns.text-left
