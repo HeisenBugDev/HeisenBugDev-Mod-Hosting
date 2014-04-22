@@ -2,7 +2,8 @@
   .row
     .columns.text-right.show-for-large-up.large-2
       %a{:href => "#", 'data-reveal-id' => 'edit-image'}
-        = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
+        .hundred-square{'data-tooltip' => true, 'title' => 'Click to change'}
+          = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
       #edit-image.reveal-modal.tiny{'data-reveal' => true}
         %a.close-reveal-modal &#215;
         = form_for project, :html => {:multipart => true}, :remote => true do |f|
