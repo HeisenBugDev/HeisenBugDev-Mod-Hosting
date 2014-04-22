@@ -36,7 +36,6 @@ removeAA = ->
     img.onload = imageToCanvas
 
 readyCalls = ->
-  console.log 'hfsdfjsd'
   removeAA()
   yAlign()
   hiddenData()
