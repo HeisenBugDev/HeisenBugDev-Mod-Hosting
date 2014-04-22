@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.remotipart
 //= require best_in_place
 //= require foundation
 //= require turbolinks

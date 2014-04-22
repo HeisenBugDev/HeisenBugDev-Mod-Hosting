@@ -2,7 +2,6 @@
   %h1
     = @project.name
   = form_for @project, :html => {:multipart => true} do |f|
-    = f.text_area :description
     = f.text_field :code_repo
 
     %h3 Current icon

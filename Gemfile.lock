@@ -323,6 +323,7 @@ GEM
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rolify (3.4.0)
@@ -478,6 +479,7 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
+  remotipart
   rolify
   rspec-rails
   rubocop

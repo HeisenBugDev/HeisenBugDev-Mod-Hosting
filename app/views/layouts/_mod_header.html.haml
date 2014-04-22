@@ -1,7 +1,17 @@
-.large-6.columns.center.mod-header
+.large-6.columns.center.mod-header#mod-header
   .row
     .columns.text-right.show-for-large-up.large-2
-      = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
+      %a{:href => "#", 'data-reveal-id' => 'edit-image'}
+        = image_tag project.icon_url.to_s, :class => 'y-center mod-download-icon no-aa-image'
+      #edit-image.reveal-modal.tiny{'data-reveal' => true}
+        %a.close-reveal-modal &#215;
+        = form_for project, :html => {:multipart => true}, :remote => true do |f|
+          %h3 Change icon
+          = image_tag project.icon_url.to_s, :class => 'mod-download-icon no-aa-image'
+          = f.file_field :icon
+          = f.text_field :remote_icon_url
+
+          = f.submit
     .large-8.columns.text-left
       %h1.title
         = project.name

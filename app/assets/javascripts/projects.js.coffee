@@ -23,3 +23,5 @@ $(document).on "click", (e) ->
 
 $(document).on "keydown", "textarea", (e) ->
   $(this).parents("form").submit()  if e.keyCode is 13 and (e.metaKey or e.ctrlKey)
+
+$(document).foundation('reveal', {animation_speed: 100})
