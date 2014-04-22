@@ -18,7 +18,7 @@
   margin-top: 5px;
 }
 
-#add-dev {
+.full-width {
   width: 100%;
 }
 
@@ -66,6 +66,22 @@ ul.ui-autocomplete {
   color: #008CBA;
 }
 
+.code-repo {
+  background: image-url('octocat-favicon.png') no-repeat left;
+  background-size: 16px 16px;
+  padding-left: 20px;
+}
+
+.code-repo-outer {
+  padding: 10px;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
 .best_in_place {
   display: inline-block;
   cursor: pointer;
@@ -85,7 +101,9 @@ ul.ui-autocomplete {
       margin-bottom: 0;
     }
   }
+}
 
+.best_in_place_direct {
   &:hover {
     background-color: #CCCCCC;
     border-radius: 8px;

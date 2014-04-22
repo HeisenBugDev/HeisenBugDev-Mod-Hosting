@@ -7,7 +7,7 @@
         = render 'developers'
       - if can? :modify, @project
         #add-dev-set
-          %a.button.thin-button.thin-bottom-margin#add-dev Add dev
+          %a.button.thin-button.thin-bottom-margin.full-width#add-dev Add dev
           #add-dev-form.hide
             = form_for @project, :remote => true do |f|
               = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => '', :class => 'thin-bottom-margin radius'
@@ -19,8 +19,16 @@
         = link_to latest_artifact.url, :class => 'button small split' do
           Latest (#{file_size(latest_artifact)})
           %span#more-downloads{"data-dropdown" => "drop"}
+      %h3.blue-text Info
+      - if can? :modify, @project
+        #edit-code-repo.thin-button.thin-bottom-margin.button.full-width Edit
+      = link_to "https://github.com/#{@project.code_repo}" do
+        .code-repo-outer
+          .code-repo
+            = best_in_place_if can?(:modify, @project), @project, :code_repo, :activator => '#edit-code-repo'
+        -# = best_in_place_if can?(:modify, @project), @project, :code_repo
     .large-9.columns
-      = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea
+      = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea, :classes => ['best_in_place_direct']
       #downloads.hide
         %hr
         %a{:id => 'downloads'}

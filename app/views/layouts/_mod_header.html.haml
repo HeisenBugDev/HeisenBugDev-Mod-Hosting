@@ -21,7 +21,7 @@
       %h1.title
         = project.name
       %h3.subtitle.show-for-medium-up
-        = best_in_place_if can?(:modify, project), project, :subtitle
+        = best_in_place_if can?(:modify, project), project, :subtitle, :classes => ['best_in_place_direct']
     .large-2.columns.text-left
       - if can? :manage, project
         %a.button.dropdown.show-for-large-up{"data-dropdown" => "edit-project", :href => "#", "data-options" => "is_hover:true"} Edit
