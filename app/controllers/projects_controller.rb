@@ -69,7 +69,11 @@ class ProjectsController < ApplicationController
     if user
       @project.users.delete(user)
     end
-    redirect_to :back, :flash => { :notice => 'User removed' }
+    flash[:success] = 'User removed'
+    @users = @project.users
+    respond_to do |format|
+      format.js { render :action => 'update' }
+    end
   end
 
 private
