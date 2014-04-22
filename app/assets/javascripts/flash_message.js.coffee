@@ -17,7 +17,7 @@ root.show_ajax_message = show_ajax_message
 
 $(document).on 'ready page:load' , ->
   # A blank ajax request to get the latest notices.
-  $.ajax('/')
+  $.ajax('/flashes')
 
 $(document).ajaxComplete (event, request) ->
   msg = request.getResponseHeader("X-Message")

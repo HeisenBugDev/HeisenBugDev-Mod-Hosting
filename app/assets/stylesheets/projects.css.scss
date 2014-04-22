@@ -65,3 +65,31 @@ ul.ui-autocomplete {
 .blue-text {
   color: #008CBA;
 }
+
+.best_in_place {
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+
+  form {
+    input {
+      font-size: 20px;
+      border-radius: 9px;
+      margin-bottom: 0;
+    }
+    textarea {
+      font-size: 20px;
+      border-radius: 9px;
+      min-width: 100px !important;
+      resize: none;
+      margin-bottom: 0;
+    }
+  }
+
+  &:hover {
+    background-color: #CCCCCC;
+    border-radius: 8px;
+    margin: -10px;
+    padding: 10px;
+  }
+}

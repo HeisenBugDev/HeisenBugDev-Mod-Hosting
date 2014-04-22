@@ -22,6 +22,7 @@ HeisenBugDev::Application.routes.draw do
   resources 'artifacts',  :only => [:create]
   resources 'builds',     :only => [:create]
   resources 'users'
+  resources 'flashes',    :only => [:index]
 
   resources 'projects' do
     scope :module => :wiki do
