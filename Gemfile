@@ -29,6 +29,7 @@ gem 'foundation_rails_helper'
 gem 'will_paginate'
 gem 'github-markdown', :require => 'github/markdown'
 gem 'gravatar_image_tag'
+gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 
 group :production do
   gem 'rails_12factor'

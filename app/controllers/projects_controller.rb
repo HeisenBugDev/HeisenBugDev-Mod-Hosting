@@ -60,7 +60,16 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    @project.update_attributes(project_params)
+
+    respond_to do |format|
+      if @project.update_attributes(project_params)
+        format.html
+        format.json { respond_with_bip(@project) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@project) }
+      end
+    end
   end
 
   def remove_user
