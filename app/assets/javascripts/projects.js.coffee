@@ -25,3 +25,9 @@ $(document).on "keydown", "textarea", (e) ->
   $(this).parents("form").submit()  if e.keyCode is 13 and (e.metaKey or e.ctrlKey)
 
 $(document).foundation('reveal', {animation_speed: 100})
+
+$ ->
+  $('span[class$=-repo]').parent().mouseover ->
+    $(this).width($(this).find('span').width() + 20) if $(this).find('span').width() > 200
+  $('span[class$=-repo]').parent().mouseout ->
+    $(this).css('width', '') if $(this).width() > 220
