@@ -21,12 +21,16 @@
           %span#more-downloads{"data-dropdown" => "drop"}
       %h3.blue-text Info
       - if can? :modify, @project
-        #edit-code-repo.thin-button.thin-bottom-margin.button.full-width Edit
+        = link_to 'Edit', edit_project_path(@project), :class => 'thin-button thin-bottom-margin button full-width'
       = link_to "https://github.com/#{@project.code_repo}" do
-        .code-repo-outer
+        .repo-outer
           .code-repo
-            = best_in_place_if can?(:modify, @project), @project, :code_repo, :activator => '#edit-code-repo'
-        -# = best_in_place_if can?(:modify, @project), @project, :code_repo
+            = @project.code_repo
+      = link_to "https://github.com/#{@project.wiki.repo}" do
+        .repo-outer
+          .wiki-repo
+            %span
+              = @project.wiki.repo
     .large-9.columns
       = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea, :classes => ['best_in_place_direct']
       #downloads.hide

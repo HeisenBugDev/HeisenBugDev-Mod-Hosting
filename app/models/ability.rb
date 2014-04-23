@@ -8,6 +8,7 @@ class Ability
     else
       can :read, :all
       can :manage, Project, :id => user.project_ids
+      can :manage, Wiki::Wiki, :project_id => user.project_ids
     end
     # Define abilities for the passed in user here. For example:
     #

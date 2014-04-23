@@ -72,13 +72,23 @@ ul.ui-autocomplete {
   padding-left: 20px;
 }
 
-.code-repo-outer {
+.wiki-repo {
+  background: image-url('wiki-favicon.svg') no-repeat left;
+  background-size: 16px 16px;
+  padding-left: 20px;
+}
+
+.repo-outer {
   padding: 10px;
   background-color: #e6e6e6;
   border-radius: 5px;
+  white-space:nowrap;
+  overflow:hidden;
+  margin-bottom: 5px;
 
   &:hover {
     background-color: #ddd;
+    overflow: visible;
   }
 }
 
