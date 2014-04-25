@@ -24,3 +24,6 @@ $(document).ajaxComplete (event, request) ->
   type = request.getResponseHeader("X-Message-Type")
   if msg
     show_ajax_message msg, type
+
+$(document).on 'best_in_place:error', (event, request, error) ->
+  show_ajax_message(JSON.parse(request.responseText)[0], 'error')
