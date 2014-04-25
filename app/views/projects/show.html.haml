@@ -21,15 +21,12 @@
           %span#more-downloads{"data-dropdown" => "drop"}
       %h3.blue-text Info
       - if can? :modify, @project
-        = link_to 'Edit', edit_project_path(@project), :class => 'thin-button thin-bottom-margin button full-width'
-      = link_to "https://github.com/#{@project.code_repo}" do
-        .repo-outer
-          %span.code-repo
-            = @project.code_repo
-      = link_to "https://github.com/#{@project.wiki.repo}" do
-        .repo-outer
-          %span.wiki-repo
-            = @project.wiki.repo
+        %a{:href => "#", 'data-reveal-id' => 'repo-control'} Edit
+        #repo-control.reveal-modal.tiny{'data-reveal' => true}
+          %a.close-reveal-modal &#215;
+          = render 'repo_controls'
+        -# # = link_to 'Edit', edit_project_path(@project), :class => 'thin-button thin-bottom-margin button full-width'
+      = render 'repo_info'
     .large-9.columns
       = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea, :classes => ['best_in_place_direct']
       #downloads.hide
