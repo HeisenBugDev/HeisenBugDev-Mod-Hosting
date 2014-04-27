@@ -3,8 +3,9 @@ HeisenBugDev Website
 
 [![Coverage Status](http://img.shields.io/coveralls/HeisenBugDev/HeisenBugDev.svg)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![Build Status](http://img.shields.io/travis/HeisenBugDev/HeisenBugDev.svg)](https://travis-ci.org/HeisenBugDev/HeisenBugDev)[![Code Climate](http://img.shields.io/codeclimate/github/HeisenBugDev/HeisenBugDev.svg)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)[![Dependency Status](http://img.shields.io/gemnasium/HeisenBugDev/HeisenBugDev.svg)](https://gemnasium.com/HeisenBugDev/HeisenBugDev)
 
+This is the website repo for HeisenBugDev. Which will be going live very soon. If you are a developer, please create an issue to the right so we can get you ready to switch to the system.
 
-This is the website repo for HeisenBugDev.
+# Got a question? Create a GitHub issue!
 
 # Wut the wut?
 HeisenBugDev is a community led website that is hosted by us (similar to rubygems.org) It is meant to be 100% free and developers who put their mod on the system get NO ADS for any of it. It has easy integration with a build system such as Travis-CI or Jenkins so you can automatically publish your builds. It also has a wiki which can have pages tied to a specific version or build of a mod.
