@@ -6,6 +6,16 @@ HeisenBugDev Website
 
 This is the website repo for HeisenBugDev.
 
+# Wut the wut?
+HeisenBugDev is a community led website that is hosted by us (similar to rubygems.org) It is meant to be 100% free and developers who put their mod on the system get NO ADS for any of it. It has easy integration with a build system such as Travis-CI or Jenkins so you can automatically publish your builds. It also has a wiki which can have pages tied to a specific version or build of a mod.
+
+# FAQ
+**Like CurseForge?**
+NO! It is far faster, prettier, and less evil! CurseForge is bloated and run by Curse which doesn't care what you think. HeisenBugDev is built on _your_ ideas!
+
+**Ads suck**
+We are going to try to use adsense in a way that doesn't bother you. If you are a developer and put your mod on the website, you will see no ads when you login. Also, we try to give back the money the ads bring in to you.
+
 # Issues and Trello
 Trello is meant to be used for tracking the **status** of work on something (has someone started on it? Are we about to? Just an idea? Testing?) whereas GH Issues and PRs are for details about that (checklist, dicussions, x needs to be rewritten for y to work, etc).
 
@@ -20,8 +30,6 @@ Here is the Trello board for people who want to see the status of things https:/
 ## Design specs
 
 ### API
-The API is the holy grail of this. Everything goes through the API. Don't try to get rid of the API! API API API API API. Anyway...
-
 Here's a couple use cases:
 
 Build completes, API is sent the artifacts and a JSON (yay, not XML) file containing the info about the build. More info on that later. File is then uploaded to an external storage place (AWS?). The API also sends info to the Rasterizer and Article Builder telling it that it needs to run.
