@@ -6,5 +6,7 @@
       %th Minecraft Version
       %th Files
       %th Changes
+      - if can? :edit, project
+        %th State
   %tbody
     = render latest_builds(project)

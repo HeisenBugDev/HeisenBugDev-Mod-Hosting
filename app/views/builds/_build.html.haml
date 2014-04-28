@@ -1,5 +1,4 @@
-
-%tr
+%tr{:id => "build-#{build.id}"}
   %td= build.build_number
   %td= build.version.version
   %td= build.minecraft_version
@@ -9,3 +8,11 @@
       = render build.artifacts
   %td
     %a.button.small{:href => changes_link(build)} #{build.commit[0..7]}
+  - if can? :edit, build
+    %td
+      = build.build_state
+      %a.dropdown.button.small{'data-dropdown' => "build-state-#{build.id}", "data-options" => "is_hover:true"} Change
+      %ul.f-dropdown{'data-dropdown-content' => true, :id => "build-state-#{build.id}"}
+        - BuildsHelper::STATE_NAMES.each do |state|
+          %li
+            = link_to state, build_path(build, :state => state), :remote => true, :method => :patch

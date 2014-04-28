@@ -1,4 +1,7 @@
 module BuildsHelper
+  attr_reader :STATE_NAMES
+  STATE_NAMES = ['hi', 'hai']
+
   def file_size(artifact)
     number_to_human_size(artifact.file.size)
   end

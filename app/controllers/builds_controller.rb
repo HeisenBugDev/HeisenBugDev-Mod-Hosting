@@ -5,6 +5,17 @@ class BuildsController < ApplicationController
 
   protect_from_forgery :except => :create
 
+  def update
+    @build = Build.find(params[:id])
+    @build.build_state = params[:state]
+    @build.save
+    # respond_to do |format|
+    #   format.js
+    # end
+    flash[:notice] = 'test'
+    render :text => 'hello'
+  end
+
   def create
     name = params[:project_name]
     if can? :manage, :all
