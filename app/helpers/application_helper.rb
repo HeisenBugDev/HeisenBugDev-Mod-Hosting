@@ -13,6 +13,10 @@ module ApplicationHelper
     project.builds.order('build_number DESC').limit(amount).to_a
   end
 
+  def latest_stable(project)
+    project.builds.order('build_number DESC').limit(1).where.not(:build_state => 'bugged').to_a[0]
+  end
+
   def nav_link(link_text, link_path)
     class_name = current_page?(link_path) ? 'active item' : 'item'
 
@@ -21,11 +25,11 @@ module ApplicationHelper
     end
   end
 
-  def single_quoter!(string)
-    string.gsub!('"', "'")
+  def single_quoter(string)
+    string.gsub('"', "'")
   end
 
-  def remove_newlines!(string)
+  def remove_newlines(string)
     string.delete!("\n")
   end
 end

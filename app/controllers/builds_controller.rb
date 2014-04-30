@@ -9,6 +9,7 @@ class BuildsController < ApplicationController
     @build = Build.find(params[:id])
     @build.build_state = params[:state]
     @build.save
+    @project = @build.project
     flash[:notice] = 'Updated'
 
     respond_to do |format|

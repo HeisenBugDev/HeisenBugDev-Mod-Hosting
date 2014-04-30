@@ -44,8 +44,7 @@ readyCalls = ->
   hiddenData()
   hideBugged()
 
-$(document).on('ready page:load', readyCalls)
-
-$ ->
   $('#bug-toggler').click ->
     $('.bugged').toggle()
+
+$(document).on('ready page:load', readyCalls)
