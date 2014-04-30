@@ -86,11 +86,17 @@ ul.ui-autocomplete {
   overflow:hidden;
   margin-bottom: 5px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 
   &:hover {
     background-color: #ddd;
     overflow: visible;
   }
+}
+
+.state-label {
+  position: relative;
 }
 
 .best_in_place {

@@ -9,11 +9,11 @@ class BuildsController < ApplicationController
     @build = Build.find(params[:id])
     @build.build_state = params[:state]
     @build.save
-    # respond_to do |format|
-    #   format.js
-    # end
-    flash[:notice] = 'test'
-    render :text => 'hello'
+    flash[:notice] = 'Updated'
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create

@@ -1,17 +1,18 @@
-%tr{:id => "build-#{build.id}"}
-  %td= build.build_number
+%tr.build{:id => "build-#{build.id}", :class => "#{build.build_state}"}
+  %td
+    = build.build_number
+    %span.label.secondary{:class => "#{build.build_state}-label"}= build.build_state
   %td= build.version.version
   %td= build.minecraft_version
   %td
-    %a.button.small.dropdown{:href => "#", 'data-dropdown'=> "build#{build.build_number}", "data-options" => "is_hover:true"} Files
+    %a.button.small.dropdown{:href => "#", 'data-dropdown'=> "build#{build.build_number}", "data-options" => data_options(build), :class => dropdown_classes(build)} Files
     %ul.f-dropdown{:id => "build#{build.build_number}", 'data-dropdown-content' => true}
       = render build.artifacts
   %td
-    %a.button.small{:href => changes_link(build)} #{build.commit[0..7]}
+    %a.button.small{:href => changes_link(build), :class => dropdown_classes(build)} #{build.commit[0..7]}
   - if can? :edit, build
     %td
-      = build.build_state
-      %a.dropdown.button.small{'data-dropdown' => "build-state-#{build.id}", "data-options" => "is_hover:true"} Change
+      %a.dropdown.button.small{'data-dropdown' => "build-state-#{build.id}", "data-options" => 'is_hover:true', :class => dropdown_classes(build)} Change
       %ul.f-dropdown{'data-dropdown-content' => true, :id => "build-state-#{build.id}"}
         - BuildsHelper::STATE_NAMES.each do |state|
           %li
