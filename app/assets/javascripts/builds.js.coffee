@@ -44,6 +44,12 @@ readyCalls = ->
   hiddenData()
   hideBugged()
 
+  $('.artifact-link').click ->
+    href = $(this).attr('href')
+    $.ajax({url: $(this).attr('download_counter_url')}).done ->
+      window.location.href = href
+    false
+
   $('#bug-toggler').click ->
     $('.bugged').toggle()
 

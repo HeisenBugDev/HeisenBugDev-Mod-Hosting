@@ -70,9 +70,11 @@ class BuildsController < ApplicationController
     @artifact = Artifact.find(params[:artifact_id])
     puts "FIRST NUM #{@artifact.downloads}"
     @artifact.increment!(:downloads)
+    @build = @artifact.build
     puts "SECOND NUM #{@artifact.downloads}"
-    send_file @artifact.artifact.file.path
+    respond_to { |format| format.js }
   end
+
 private
   def upload_params
     params.permit(:build_number, :commit, :minecraft_version, :branch)

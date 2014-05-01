@@ -1,4 +1,3 @@
 $("#build-<%= @build.id %>").replaceWith("<%= raw(remove_newlines(single_quoter(render(@build)))) %>")
-$("#download-sidebar").replaceWith("<%= raw(remove_newlines(single_quoter(render(:partial => 'projects/download_sidebar')))) %>")
 $(document).foundation();
 $(document).trigger('page:load');
