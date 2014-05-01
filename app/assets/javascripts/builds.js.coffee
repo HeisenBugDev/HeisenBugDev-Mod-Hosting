@@ -44,7 +44,8 @@ readyCalls = ->
   hiddenData()
   hideBugged()
 
-  $('.artifact-link').click ->
+  $('.artifact-link').click (e) ->
+    return true if $(e.target).is('#more-downloads')
     href = $(this).attr('href')
     $.ajax({url: $(this).attr('download_counter_url')}).done ->
       window.location.href = href

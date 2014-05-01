@@ -68,11 +68,13 @@ class BuildsController < ApplicationController
 
   def download
     @artifact = Artifact.find(params[:artifact_id])
-    puts "FIRST NUM #{@artifact.downloads}"
     @artifact.increment!(:downloads)
     @build = @artifact.build
-    puts "SECOND NUM #{@artifact.downloads}"
-    respond_to { |format| format.js }
+    @project = @build.project
+
+    respond_to do |format|
+      format.js { render :action => 'update' }
+    end
   end
 
 private
