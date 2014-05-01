@@ -7,6 +7,8 @@ class BuildsController < ApplicationController
 
   def update
     @build = Build.find(params[:id])
+    @build = nil unless can?(:update, @build)
+
     @build.build_state = params[:state]
     @build.save
     @project = @build.project
@@ -19,8 +21,11 @@ class BuildsController < ApplicationController
 
   def destroy
     @build = Build.find(params[:id])
+    @build = nil unless can?(:destroy, @build)
     @project = @build.project
-    if @build.destroy
+    if @build.nil?
+      flash[:warning] = 'You do not have permission to do that!'
+    elsif @build.destroy
       flash[:success] = 'Deleted build.'
     else
       flash[:error] = 'Build not deleted.'

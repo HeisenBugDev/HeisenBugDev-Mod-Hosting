@@ -5,6 +5,6 @@
     %ul.f-dropdown{:id => "developer-#{developer.id}", 'data-dropdown-content' => true}
       %li
         = link_to 'View', developer
-      - if can?(:manage, @project) && current_user.name != developer.name
+      - if can?(:manage, @project) && current_user.name != developer.name || can?(:manage, :all)
         %li
           = link_to 'Remove', projects_remove_user_path(:project_id => @project.id, :user_id => developer.id), method: :delete, remote: true
