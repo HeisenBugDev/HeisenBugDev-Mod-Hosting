@@ -20,7 +20,7 @@ HeisenBugDev::Application.routes.draw do
 
   resources 'rasterizer', :only => [:create]
   resources 'artifacts',  :only => [:create]
-  resources 'builds',     :only => [:create, :update]
+  resources 'builds',     :only => [:create, :update, :destroy]
   resources 'users'
   resources 'flashes',    :only => [:index]
 

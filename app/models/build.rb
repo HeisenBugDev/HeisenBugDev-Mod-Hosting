@@ -21,6 +21,8 @@
 #
 
 class Build < ActiveRecord::Base
+  after_initialize :init
+
   resourcify
   belongs_to :project
   belongs_to :version
@@ -41,4 +43,8 @@ class Build < ActiveRecord::Base
                                            "greater than 0"
 
   validates_uniqueness_of :build_number, :scope => :project_id
+
+  def init
+    self.build_state ||= 'normal'
+  end
 end

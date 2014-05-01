@@ -17,6 +17,20 @@ class BuildsController < ApplicationController
     end
   end
 
+  def destroy
+    @build = Build.find(params[:id])
+    @project = @build.project
+    if @build.destroy
+      flash[:success] = 'Deleted build.'
+    else
+      flash[:error] = 'Build not deleted.'
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     name = params[:project_name]
     if can? :manage, :all
