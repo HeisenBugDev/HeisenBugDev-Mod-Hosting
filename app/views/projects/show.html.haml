@@ -12,13 +12,7 @@
             = form_for @project, :remote => true do |f|
               = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => '', :class => 'thin-bottom-margin radius'
               = f.submit 'Add', :class => 'button success radius thin-button thin-bottom-margin'
-      - latest_build = latest_builds(@project, 1)[0]
-      - unless latest_build.nil?
-        - latest_artifact = latest_build.artifacts.find_by_name(:universal).artifact
-        %h3.blue-text Download
-        = link_to latest_artifact.url, :class => 'button small split full-width' do
-          Latest (#{file_size(latest_artifact)})
-          %span#more-downloads{"data-dropdown" => "drop"}
+      = render 'download_sidebar'
       %h3.blue-text Info
       - if can? :modify, @project
         %a.thin-button.thin-bottom-margin.button.full-width{:href => "#", 'data-reveal-id' => 'repo-control'} Edit

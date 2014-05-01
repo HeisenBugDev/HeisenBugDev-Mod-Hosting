@@ -1,10 +1,14 @@
-%table
-  %thead
-    %tr
-      %th Build
-      %th Version
-      %th Minecraft Version
-      %th Files
-      %th Changes
-  %tbody
-    = render latest_builds(project)
+.downloads
+  %span.button.small.secondary#bug-toggler Show bugged builds
+  %table
+    %thead
+      %tr
+        %th Build
+        %th Version
+        %th Minecraft Version
+        %th Files
+        %th Changes
+        - if can? :edit, project
+          %th Change State
+    %tbody
+      = render latest_builds(project)

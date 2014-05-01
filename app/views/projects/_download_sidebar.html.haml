@@ -1,0 +1,12 @@
+#download-sidebar
+  - latest_build = latest_stable(@project)
+  %h3.blue-text Download
+  - if latest_build.nil?
+    %a.button.small.split.full-width.disabled
+      None
+      %span#more-downloads{"data-dropdown" => "drop"}
+  - else
+    - latest_artifact = latest_build.artifacts.find_by_name(:universal).artifact
+    = link_to latest_artifact.url, :class => 'button small split full-width' do
+      Latest (#{file_size(latest_artifact)})
+      %span#more-downloads{"data-dropdown" => "drop"}

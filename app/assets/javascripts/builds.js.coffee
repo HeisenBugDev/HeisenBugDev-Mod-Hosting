@@ -35,9 +35,16 @@ removeAA = ->
   $(".no-aa-image").each (i, img) ->
     img.onload = imageToCanvas
 
+hideBugged = ->
+  $('.bugged').toggleClass 'hide'
+
 readyCalls = ->
   removeAA()
   yAlign()
   hiddenData()
+  hideBugged()
+
+  $('#bug-toggler').click ->
+    $('.bugged').toggle()
 
 $(document).on('ready page:load', readyCalls)

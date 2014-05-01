@@ -1,4 +1,7 @@
 module BuildsHelper
+  attr_reader :STATE_NAMES
+  STATE_NAMES = ['beta', 'bugged', 'release', 'normal']
+
   def file_size(artifact)
     number_to_human_size(artifact.file.size)
   end
@@ -18,5 +21,17 @@ module BuildsHelper
       path_postfix = "compare/#{build.commit}...#{prev_commit}"
     end
     "#{root_path}#{path_postfix}"
+  end
+
+  def dropdown_classes(build)
+    if build.build_state == 'bugged'
+      'disabled alert'
+    end
+  end
+
+  def data_options(build)
+    unless build.build_state == 'bugged'
+      'is_hover:true'
+    end
   end
 end
