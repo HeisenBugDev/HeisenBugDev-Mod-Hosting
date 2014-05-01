@@ -1,5 +1,6 @@
 %li
   = link_to artifact.artifact.url, :download_counter_url => download_path(artifact), :class => 'artifact-link' do
     #{artifact.name}
-    %span.label #{artifact.downloads} DLs
-    %span.label.secondary #{file_size(artifact.artifact)}
+    %div{:style => 'float: right'}
+      %span.label #{artifact.downloads} DLs
+      %span.label.secondary #{file_size(artifact.artifact)}
