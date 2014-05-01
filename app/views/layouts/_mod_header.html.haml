@@ -20,6 +20,7 @@
     .large-8.columns.text-left
       %h1.title
         = project.name
+        %span.button.disabled.thin-bottom-margin #{project.downloads} Downloads
       %h3.subtitle.show-for-medium-up
         = best_in_place_if can?(:modify, project), project, :subtitle, :classes => ['best_in_place_direct']
     .large-2.columns.text-left

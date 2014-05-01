@@ -47,4 +47,8 @@ class Build < ActiveRecord::Base
   def init
     self.build_state ||= 'normal'
   end
+
+  def downloads
+    self.artifacts.sum('downloads')
+  end
 end

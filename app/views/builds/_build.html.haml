@@ -3,6 +3,7 @@
     = build.build_number
     %span.label.secondary{:class => "#{build.build_state}-label"}= build.build_state
     %span.label.secondary #{time_ago_in_words(build.created_at)} ago
+    %span.label #{build.downloads} DLs
   %td= build.version.version
   %td= build.minecraft_version
   %td
