@@ -36,7 +36,7 @@ removeAA = ->
     img.onload = imageToCanvas
 
 hideBugged = ->
-  $('.bugged').toggleClass 'hide'
+  $('.bugged').addClass 'hide'
 
 readyCalls = ->
   removeAA()
