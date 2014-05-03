@@ -51,6 +51,9 @@ deploy:
     steps:
         - heroku-deploy:
             key-name: HEROKU_DEPLOY
+        - script:
+            name: Update database
+            code: heroku run rake db:migrate --app $TARGET_NAME
     after-steps:
      - wouter/irc-notify:
         server: irc.esper.net
