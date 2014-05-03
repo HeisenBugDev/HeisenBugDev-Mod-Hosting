@@ -63,6 +63,10 @@ group :development, :test do
   gem "shoulda", "~> 3.5.0"
 end
 
+group :production, :test do
+  gem 'pg'
+end
+
 group :test do
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
