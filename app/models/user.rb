@@ -29,6 +29,8 @@
 #
 
 class User < ActiveRecord::Base
+  BETA_USERS = %w(hunterboerner)
+  before_validation :beta_user?
   has_and_belongs_to_many :projects
   rolify
   acts_as_token_authenticatable
@@ -37,7 +39,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable,
   :omniauthable, :omniauth_providers => [:github]
-
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -46,6 +47,12 @@ class User < ActiveRecord::Base
       if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
+    end
+  end
+
+  def beta_user?
+    unless BETA_USERS.include?(name)
+      errors.add :name, 'Not on the beta list'
     end
   end
 
