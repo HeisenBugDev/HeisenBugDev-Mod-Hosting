@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
   private
   def beta_logged_in
-    render :text => 'Closed beta only. Visit HeisenBugDev/HeisenBugDev
+    unless Rails.env.test?
+      render :text => 'Closed beta only. Visit HeisenBugDev/HeisenBugDev
       on GitHub to request access.' if current_user.nil?
+    end
   end
 
   def flash_to_headers
