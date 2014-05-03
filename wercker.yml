@@ -54,7 +54,7 @@ deploy:
             install-toolbelt: true
         - script:
             name: Update database
-            code: heroku run rake db:migrate --app $TARGET_NAME
+            code: heroku run rake db:migrate --app $HEROKU_APP_NAME
     after-steps:
      - wouter/irc-notify:
         server: irc.esper.net
