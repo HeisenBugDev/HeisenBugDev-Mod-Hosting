@@ -1,4 +1,5 @@
 class BuildsController < ApplicationController
+  skip_before_filter :beta_logged_in, :only => [:create]
   acts_as_token_authentication_handler_for User
   before_filter :authenticate_entity_from_token!, :only => :create
   before_filter :authenticate_entity!, :only => :create
