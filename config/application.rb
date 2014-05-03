@@ -25,6 +25,10 @@ module HeisenBugDev
       g.helper_specs false
     end
 
+    config.to_prepare do
+      Devise::SessionsController.skip_before_filter :beta_logged_in
+    end
+
     config.i18n.enforce_available_locales = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
