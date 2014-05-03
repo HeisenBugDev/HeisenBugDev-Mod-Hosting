@@ -1,4 +1,6 @@
 box: wercker/rvm
+services:
+  - wercker/postgresql
 # Build definition
 # See the Rails section on the wercker devcenter:
 # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
