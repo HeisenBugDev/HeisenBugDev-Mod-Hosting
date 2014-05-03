@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @users = @project.users
   end
 
   def new
@@ -49,14 +50,30 @@ class ProjectsController < ApplicationController
       old_size = @project.users.size
       @project.users << user unless @project.users.include?(user)
       if old_size == @project.users.size
-        redirect_to :back, :flash => { :warning => 'User already existed' }
-        return
+        flash[:warning] = 'User already added'
+      else
+        flash[:success] = 'User added'
       end
-      redirect_to :back, :flash => { :notice => 'User added' }
+      @users = @project.users
+      respond_to do |format|
+        format.js
+      end
       return
     end
-    @project.update_attributes(project_params)
-    redirect_to @project
+    @users = @project.users
+    respond_to do |format|
+      old_icon = Digest::SHA1.hexdigest(@project.icon.read)
+      if @project.update_attributes(project_params)
+        @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read))
+        format.html
+        format.json { respond_with_bip(@project) }
+        format.js
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@project) }
+        format.js
+      end
+    end
   end
 
   def remove_user
@@ -65,7 +82,11 @@ class ProjectsController < ApplicationController
     if user
       @project.users.delete(user)
     end
-    redirect_to :back, :flash => { :notice => 'User removed' }
+    flash[:success] = 'User removed'
+    @users = @project.users
+    respond_to do |format|
+      format.js { render :action => 'update' }
+    end
   end
 
 private

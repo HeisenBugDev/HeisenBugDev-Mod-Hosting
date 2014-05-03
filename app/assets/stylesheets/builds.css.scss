@@ -1,9 +1,11 @@
 // Place all the styles related to the Builds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .downloads {
   table {
     width: 100%;
+    border-spacing: 0;
   }
   .button {
     margin-bottom: 0px;
@@ -36,4 +38,36 @@
 
 .hide {
   display: none;
+}
+
+.state-label {
+  position: absolute;
+}
+
+.beta {
+  background-color: #B0E7E7 !important;
+}
+
+.beta-label {
+  background-color: #83d7ff !important;
+}
+
+.release {
+  background-color: #87C0A6 !important;
+}
+
+.release-label {
+  background-color: #36c05e !important;
+}
+
+.bugged {
+  background-color: #FF8982 !important;
+}
+
+.bugged-label {
+  background-color: #ff4e57 !important;
+}
+
+.normal {
+  background-color: inherit;
 }

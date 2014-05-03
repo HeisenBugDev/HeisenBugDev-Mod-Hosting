@@ -20,8 +20,12 @@ HeisenBugDev::Application.routes.draw do
 
   resources 'rasterizer', :only => [:create]
   resources 'artifacts',  :only => [:create]
-  resources 'builds',     :only => [:create]
+
+  resources 'builds'
+  get '/builds/:artifact_id/download', :to => 'builds#download', :as => :download
+
   resources 'users'
+  resources 'flashes',    :only => [:index]
 
   resources 'projects' do
     scope :module => :wiki do

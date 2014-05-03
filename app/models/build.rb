@@ -11,6 +11,7 @@
 #  updated_at        :datetime
 #  branch            :string(255)
 #  version_id        :integer
+#  build_state       :string(255)
 #
 # Indexes
 #
@@ -20,6 +21,8 @@
 #
 
 class Build < ActiveRecord::Base
+  after_initialize :init
+
   resourcify
   belongs_to :project
   belongs_to :version
@@ -40,4 +43,12 @@ class Build < ActiveRecord::Base
                                            "greater than 0"
 
   validates_uniqueness_of :build_number, :scope => :project_id
+
+  def init
+    self.build_state ||= 'normal'
+  end
+
+  def downloads
+    self.artifacts.sum('downloads')
+  end
 end

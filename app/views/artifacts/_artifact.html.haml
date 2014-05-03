@@ -1,1 +1,6 @@
-= link_to artifact.name, artifact.artifact.url, :class => 'button small radius'
+%li
+  = link_to artifact.artifact.url, :download_counter_url => download_path(artifact), :class => 'artifact-link' do
+    #{artifact.name}
+    %div{:style => 'float: right'}
+      %span.label #{artifact.downloads} DLs
+      %span.label.secondary #{file_size(artifact.artifact)}

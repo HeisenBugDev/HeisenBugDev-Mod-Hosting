@@ -1,22 +1,9 @@
-%h1
-  = @project.name
-= form_for @project do |f|
-  = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => ''
-%h2 Users
-- @project.users.each do |user|
-  = gravatar_for(user, size: 100)
-  = user.name
-  - unless current_user == user
-    = link_to 'Remove', projects_remove_user_path(:project_id => @project.id, :user_id => user.id), method: :delete
-= form_for @project, :html => {:multipart => true} do |f|
-  = f.text_field :name
-  = f.text_area :description
-  = f.text_field :subtitle
-  = f.text_field :code_repo
-
-  %h3 Current icon
-  = image_tag @project.icon_url.to_s, :class => 'mod-download-icon no-aa-image'
-  = f.file_field :icon
-  = f.text_field :remote_icon_url
-
-  = f.submit
+.row
+  %h1
+    = @project.name
+  = form_for @project, :html => {:multipart => true} do |f|
+    = f.text_field :code_repo
+    = f.fields_for :wiki do |wiki_f|
+      = f.label 'Wiki Repo'
+      = wiki_f.text_field :repo, :placeholder => :wiki_repo, :label => false
+    = f.submit

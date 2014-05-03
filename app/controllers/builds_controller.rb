@@ -5,6 +5,37 @@ class BuildsController < ApplicationController
 
   protect_from_forgery :except => :create
 
+  def update
+    @build = Build.find(params[:id])
+    @build = nil unless can?(:update, @build)
+
+    @build.build_state = params[:state]
+    @build.save
+    @project = @build.project
+    flash[:notice] = 'Updated'
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def destroy
+    @build = Build.find(params[:id])
+    @build = nil unless can?(:destroy, @build)
+    @project = @build.project
+    if @build.nil?
+      flash[:warning] = 'You do not have permission to do that!'
+    elsif @build.destroy
+      flash[:success] = 'Deleted build.'
+    else
+      flash[:error] = 'Build not deleted.'
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     name = params[:project_name]
     if can? :manage, :all
@@ -33,6 +64,17 @@ class BuildsController < ApplicationController
     end
 
     upload_artifacts(build)
+  end
+
+  def download
+    @artifact = Artifact.find(params[:artifact_id])
+    @artifact.increment!(:downloads)
+    @build = @artifact.build
+    @project = @build.project
+
+    respond_to do |format|
+      format.js { render :action => 'update' }
+    end
   end
 
 private

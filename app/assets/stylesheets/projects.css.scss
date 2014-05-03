@@ -1,3 +1,135 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.developer-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+#add-dev-set {
+  margin-top: 5px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#add-dev-form {
+  position: absolute;
+  width: 88%;
+  z-index: 1;
+  background-color: #393E54;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.thin-button {
+  padding: 4% !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+
+.skinny-button {
+  padding-left: 2% !important;
+  padding-right: 10% !important;
+}
+
+.thin-bottom-margin {
+  margin-bottom: 2% !important;
+}
+
+ul.ui-autocomplete {
+  .ui-menu-item {
+    position: static;
+  }
+}
+
+#dev-dropdown {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+
+.mod-icon {
+  width: 75px;
+  height: 75px;
+  background-color: #D8D8D8;
+  border-radius: 9px;
+  padding: 8px;
+  display: inline;
+}
+
+.blue-text {
+  color: #008CBA;
+}
+
+.code-repo {
+  background: image-url('octocat-favicon.png') no-repeat left;
+  background-size: 16px 16px;
+  padding-left: 20px;
+}
+
+.wiki-repo {
+  background: image-url('wiki-favicon.svg') no-repeat left;
+  background-size: 16px 16px;
+  padding-left: 20px;
+}
+
+.repo-outer {
+  padding: 10px;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  white-space:nowrap;
+  overflow:hidden;
+  margin-bottom: 5px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    background-color: #ddd;
+    overflow: visible;
+  }
+}
+
+.state-label {
+  position: relative;
+}
+
+.best_in_place {
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+
+  form {
+    input {
+      font-size: 20px;
+      border-radius: 9px;
+      margin-bottom: 0;
+    }
+    textarea {
+      font-size: 20px;
+      border-radius: 9px;
+      min-width: 100px !important;
+      resize: none;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.best_in_place_direct {
+  &:hover {
+    background-color: #CCCCCC;
+    border-radius: 8px;
+    margin: -10px;
+    padding: 10px;
+  }
+}

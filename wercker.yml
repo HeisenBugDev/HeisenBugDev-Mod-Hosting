@@ -1,4 +1,6 @@
 box: wercker/rvm
+services:
+  - wercker/postgresql
 # Build definition
 # See the Rails section on the wercker devcenter:
 # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
@@ -39,3 +41,23 @@ build:
         - script:
             name: cucumber
             code: bundle exec cucumber features
+    after-steps:
+     - wouter/irc-notify:
+        server: irc.esper.net
+        port: 6667
+        nickname: wercker
+        channel: hesienbugdev
+deploy:
+    steps:
+        - heroku-deploy:
+            key-name: HEROKU_DEPLOY
+            install-toolbelt: true
+        - script:
+            name: Update database
+            code: heroku run rake db:migrate --app $HEROKU_APP_NAME
+    after-steps:
+     - wouter/irc-notify:
+        server: irc.esper.net
+        port: 6667
+        nickname: wercker
+        channel: hesienbugdev

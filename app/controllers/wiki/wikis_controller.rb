@@ -14,7 +14,8 @@ class Wiki::WikisController < ApplicationController
   def show
     wiki = Wiki::Wiki.find(params[:id])
     project = wiki.id
-    article = wiki.articles.first
+    article = wiki.articles.find_by_title('home')
+    article = wiki.articles.first if article.nil?
     redirect_to project_wiki_article_path(project, wiki, article)
   end
 end

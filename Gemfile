@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 gem 'rails', '4.0.3'
-gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -28,12 +27,16 @@ gem 'foundation-icons-sass-rails'
 gem 'foundation_rails_helper'
 gem 'will_paginate'
 gem 'github-markdown', :require => 'github/markdown'
+gem 'gravatar_image_tag'
+gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
+gem 'remotipart'
 
 group :production do
   gem 'rails_12factor'
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'jazz_hands'
   gem 'railroady'
   gem 'dotenv-rails'
@@ -58,6 +61,10 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem "shoulda", "~> 3.5.0"
+end
+
+group :production, :test do
+  gem 'pg'
 end
 
 group :test do

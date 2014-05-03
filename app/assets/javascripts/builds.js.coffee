@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 yAlign = (clazz) ->
-  value = ($(".y-center#{clazz}").parent().parent().outerHeight() - $(".y-center#{clazz}").outerHeight()) / 2
+  value = ($(".y-center#{clazz}").parent().parent().parent().parent().outerHeight() - $(".y-center#{clazz}").outerHeight()) / 2
   $('.y-center').css 'top', value
 
 hiddenData = ->
@@ -35,20 +35,23 @@ removeAA = ->
   $(".no-aa-image").each (i, img) ->
     img.onload = imageToCanvas
 
+hideBugged = ->
+  $('.bugged').addClass 'hide'
+
 readyCalls = ->
   removeAA()
   yAlign()
   hiddenData()
+  hideBugged()
+
+  $('.artifact-link').click (e) ->
+    return true if $(e.target).is('#more-downloads')
+    href = $(this).attr('href')
+    $.ajax({url: $(this).attr('download_counter_url')}).done ->
+      window.location.href = href
+    false
+
+  $('#bug-toggler').click ->
+    $('.bugged').toggle()
 
 $(document).on('ready page:load', readyCalls)
-
-$(document).on 'click', '.more-artifacts-toggle', ->
-  $(this).prev(".more-artifacts").toggle("slide", { direction: "right" })
-
-  $(this).toggleClass 'fi-plus'
-  $(this).toggleClass 'fi-minus'
-
-  if $(this).text() == 'More'
-    $(this).text('Less')
-  else
-    $(this).text('More')

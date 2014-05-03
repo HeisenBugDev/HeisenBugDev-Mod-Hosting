@@ -1,4 +1,4 @@
-.large-12.column
+.row
   = form_for @project, :html => {:multipart => true} do |f|
     = f.text_field :name, :placeholder => :Name, :value => '', :label => false
     = f.text_area :description, :placeholder => :Description, :value => '', :label => false

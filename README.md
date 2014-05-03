@@ -1,7 +1,7 @@
 HeisenBugDev Website
 ====================
 
-[![Coverage Status](http://img.shields.io/coveralls/HeisenBugDev/HeisenBugDev.svg)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![Build Status](http://img.shields.io/travis/HeisenBugDev/HeisenBugDev.svg)](https://travis-ci.org/HeisenBugDev/HeisenBugDev)[![Code Climate](http://img.shields.io/codeclimate/github/HeisenBugDev/HeisenBugDev.svg)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)[![Dependency Status](http://img.shields.io/gemnasium/HeisenBugDev/HeisenBugDev.svg)](https://gemnasium.com/HeisenBugDev/HeisenBugDev)
+[![Coverage Status](http://img.shields.io/coveralls/HeisenBugDev/HeisenBugDev.svg)](https://coveralls.io/r/HeisenBugDev/HeisenBugDev)[![wercker status](https://app.wercker.com/status/d64aeb104dcec3c74915e0d27104af5f/m/ "wercker status")](https://app.wercker.com/project/bykey/d64aeb104dcec3c74915e0d27104af5f)[![Code Climate](http://img.shields.io/codeclimate/github/HeisenBugDev/HeisenBugDev.svg)](https://codeclimate.com/github/HeisenBugDev/HeisenBugDev)[![Dependency Status](http://img.shields.io/gemnasium/HeisenBugDev/HeisenBugDev.svg)](https://gemnasium.com/HeisenBugDev/HeisenBugDev)
 
 This is the website repo for HeisenBugDev. Which will be going live very soon. If you are a developer, please create an issue to the right so we can get you ready to switch to the system.
 
@@ -24,7 +24,9 @@ Here is the Trello board for people who want to see the status of things https:/
 
 ## Credits
 
- - "its alright man, don't worry about it" man
+ - ["its alright man, don't worry about it" man](https://github.com/adzankich)
+ - [The real programming taco](https://github.com/solojavier)
+ - [He say Godzilla](https://github.com/XixeBombilla)
 
 ## Design specs
 

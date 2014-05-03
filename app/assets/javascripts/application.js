@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.remotipart
+//= require best_in_place
 //= require foundation
 //= require turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {
   $("div[id^='flash_']").delay(3000).slideUp();
+  jQuery(".best_in_place").best_in_place();
 });

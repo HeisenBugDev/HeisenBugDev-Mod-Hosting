@@ -66,7 +66,7 @@
           jQuery.getJSON( jQuery(e).attr('data-autocomplete'), params, function() {
             if(arguments[0].length == 0) {
               arguments[0] = []
-              arguments[0][0] = { id: "", label: "no existing match" }
+              arguments[0][0] = { id: "", label: "" }
             }
             jQuery(arguments[0]).each(function(i, el) {
               var obj = {};
@@ -150,6 +150,7 @@
             }
           });
           jQuery(e).trigger('railsAutocomplete.select', ui);
+          $(this).parents("form").submit();  // this will submit the form.
           return false;
         }
       });

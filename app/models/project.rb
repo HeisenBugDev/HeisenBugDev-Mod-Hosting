@@ -48,4 +48,8 @@ class Project < ActiveRecord::Base
     self.description ||= "Such description! Much information!"
     self.wiki ||= Wiki::Wiki.new
   end
+
+  def downloads
+    self.builds.collect{|b| b.downloads }.sum
+  end
 end
