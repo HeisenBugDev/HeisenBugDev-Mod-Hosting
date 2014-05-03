@@ -41,3 +41,7 @@ build:
         - script:
             name: cucumber
             code: bundle exec cucumber features
+deploy:
+    steps:
+        - heroku-deploy:
+            key-name: HEROKU_DEPLOY
