@@ -63,7 +63,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem "shoulda", "~> 3.5.0"
+  gem "shoulda-matchers", "~> 2.5.0"
 end
 
 group :production, :test do
