@@ -27,7 +27,7 @@ describe Project do
   it { should validate_presence_of(:code_repo) }
   it { should validate_presence_of(:subtitle) }
 
-  it { should ensure_length_of(:name).is_at_most(20) }
+  it { should ensure_length_of(:name).is_at_most(30) }
   it { should ensure_length_of(:subtitle).is_at_most(40) }
 
   it { should validate_uniqueness_of(:name) }
