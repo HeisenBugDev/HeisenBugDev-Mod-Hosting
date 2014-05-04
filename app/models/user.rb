@@ -29,7 +29,8 @@
 #
 
 class User < ActiveRecord::Base
-  BETA_USERS = %w(hunterboerner forkk)
+  BETA_USERS = %w(hunterboerner forkk sammko k2b6s9j eydamos abrarsyed jadar
+    trainerguy22 matalcdev xelitexirish orochimarufan)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
   rolify
