@@ -42,7 +42,7 @@ build:
             name: cucumber
             code: bundle exec cucumber features
     after-steps:
-     - wouter/irc-notify:
+     - linyows/ikachan:
         server: irc.esper.net
         port: 6667
         nickname: wercker
