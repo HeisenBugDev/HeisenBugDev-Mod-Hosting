@@ -42,7 +42,7 @@ build:
             name: cucumber
             code: bundle exec cucumber features
     after-steps:
-     - linyows/ikachan:
+     - wouter/irc-notify:
         server: irc.esper.net
         port: 6667
         channel: hesienbugdev
