@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       old_icon = Digest::SHA1.hexdigest(@project.icon.read)
       if @project.update_attributes(project_params)
-        @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read))
+        @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read.to_s))
         format.html
         format.json { respond_with_bip(@project) }
         format.js
