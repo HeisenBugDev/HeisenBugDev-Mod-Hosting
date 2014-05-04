@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def email_required?
-    super && provider.blank?
+    false
   end
 
   def self.new_with_session(params, session)
