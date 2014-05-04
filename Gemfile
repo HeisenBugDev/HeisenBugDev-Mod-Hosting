@@ -32,6 +32,7 @@ gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 gem 'remotipart'
 
 group :production do
+  gem 'newrelic_rpm'
   gem 'fog', '~> 1.22.0'
   gem 'rails_12factor'
 end
