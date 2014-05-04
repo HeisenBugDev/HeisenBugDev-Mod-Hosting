@@ -46,6 +46,7 @@ build:
         server: irc.esper.net
         port: 6667
         channel: hesienbugdev
+        nickname: wercker
 deploy:
     steps:
         - heroku-deploy:
