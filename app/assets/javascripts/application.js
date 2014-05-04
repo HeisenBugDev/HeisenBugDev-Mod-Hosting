@@ -17,6 +17,7 @@
 //= require best_in_place
 //= require foundation
 //= require turbolinks
+//= require google-analytics-turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {
   $("div[id^='flash_']").delay(3000).slideUp();
