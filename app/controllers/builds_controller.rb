@@ -51,6 +51,13 @@ class BuildsController < ApplicationController
       return
     end
 
+    if params[:build_number].blank?
+      latest = latest_builds(project, 1)
+      num = latest.build_number unless latest.nil?
+      num ||= 1
+      params[:build_number] = num
+    end
+
     build = project.builds.build(upload_params)
     version = Version.find_or_initialize_by(:project => project,
           :version => params[:mod_version])
