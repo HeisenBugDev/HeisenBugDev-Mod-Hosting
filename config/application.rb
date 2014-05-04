@@ -28,6 +28,7 @@ module HeisenBugDev
     config.to_prepare do
       Devise::SessionsController.skip_before_filter :beta_logged_in
     end
+    config.assets.initialize_on_precompile = false
 
     config.i18n.enforce_available_locales = true
     # Settings in config/environments/* take precedence over those specified here.
