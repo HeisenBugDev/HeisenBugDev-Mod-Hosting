@@ -45,7 +45,6 @@ build:
      - linyows/ikachan:
         server: irc.esper.net
         port: 6667
-        nickname: wercker
         channel: hesienbugdev
 deploy:
     steps:
