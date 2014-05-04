@@ -45,8 +45,8 @@ build:
      - wouter/irc-notify:
         server: irc.esper.net
         port: 6667
-        nickname: wercker
         channel: hesienbugdev
+        nickname: wercker
 deploy:
     steps:
         - heroku-deploy:
