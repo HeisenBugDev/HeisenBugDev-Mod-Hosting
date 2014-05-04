@@ -3,6 +3,7 @@ class BuildsController < ApplicationController
   acts_as_token_authentication_handler_for User
   before_filter :authenticate_entity_from_token!, :only => :create
   before_filter :authenticate_entity!, :only => :create
+  include ApplicationHelper
 
   protect_from_forgery :except => :create
 
@@ -52,7 +53,7 @@ class BuildsController < ApplicationController
     end
 
     if params[:build_number].blank?
-      latest = latest_builds(project, 1)
+      latest = latest_builds(project, 1)[0]
       num = latest.build_number unless latest.nil?
       num ||= 1
       params[:build_number] = num

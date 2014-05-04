@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe RasterizerController do
-  good_request = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_top.png",
-          "side" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_side.png",
-          "front" => "https://raw.github.com/HeisenBugDev/QuantumCraft/develop/src/main/resources/assets/quantumcraft/textures/blocks/machineIOF_front.png"}
+  good_request = {"top" => "https://raw.github.com/HeisenBugDev/QuantumCraft/master/src/main/resources/assets/quantumcraft/textures/blocks/machine_ion_forge_top.png",
+          "side" => "https://raw.github.com/HeisenBugDev/QuantumCraft/master/src/main/resources/assets/quantumcraft/textures/blocks/machine_ion_forge_side.png",
+          "front" => "https://raw.github.com/HeisenBugDev/QuantumCraft/master/src/main/resources/assets/quantumcraft/textures/blocks/machine_ion_forge_front.png"}
   describe "When image is requested via GET" do
     it "should return a UrlGenerationError" do
       expect{get 'index'}.to raise_error(ActionController::UrlGenerationError)
