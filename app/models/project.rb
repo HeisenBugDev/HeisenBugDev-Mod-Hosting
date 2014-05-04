@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
 
   validates_format_of :code_repo, :with => /(.*)\/(.*)/
 
-  validates_length_of :name, :maximum => 20
+  validates_length_of :name, :maximum => 30
   validates_length_of :subtitle, :maximum => 40
 
   validates_uniqueness_of :name, :case_sensitive => false
