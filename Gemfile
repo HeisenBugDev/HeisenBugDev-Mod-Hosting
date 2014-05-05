@@ -32,6 +32,7 @@ gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 gem 'remotipart'
 
 group :production do
+  gem 'pg'
   gem 'google-analytics-turbolinks'
   gem "bugsnag"
   gem 'newrelic_rpm'
@@ -68,7 +69,6 @@ group :development, :test do
 end
 
 group :production, :test do
-  gem 'pg'
 end
 
 group :test do
