@@ -54,7 +54,7 @@ class BuildsController < ApplicationController
 
     if params[:build_number].blank?
       latest = latest_builds(project, 1)[0]
-      num = latest.build_number unless latest.nil?
+      num = latest.build_number + 1 unless latest.nil?
       num ||= 1
       params[:build_number] = num
     end
