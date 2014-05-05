@@ -30,10 +30,10 @@ gem 'github-markdown', :require => 'github/markdown'
 gem 'gravatar_image_tag'
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 gem 'remotipart'
+gem 'google-analytics-turbolinks'
 
 group :production do
   gem 'pg'
-  gem 'google-analytics-turbolinks'
   gem "bugsnag"
   gem 'newrelic_rpm'
   gem 'fog', '~> 1.22.0'

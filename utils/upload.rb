@@ -15,7 +15,7 @@ req['X-User-Email'] = ENV['HBD_EMAIL']
 req['X-User-Token'] = ENV['HBD_TOKEN']
 req.body = manifest.to_json
 
-response = Net::HTTP.new('localhost', '3000').start do |http|
+response = Net::HTTP.new('localhost', '8080').start do |http|
   http.request(req)
 end
 

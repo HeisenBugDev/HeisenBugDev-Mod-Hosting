@@ -10,5 +10,5 @@
     - latest_file = latest_artifact.artifact
     = link_to latest_file.url, :class => 'button small split full-width skinny-button artifact-link', :download_counter_url => download_path(latest_artifact) do
       Latest
-      (#{file_size(latest_file)} | #{latest_artifact.downloads} DLs)
+      (#{number_to_human_size(latest_artifact.file_size)} | #{latest_artifact.downloads} DLs)
       %span#more-downloads{"data-dropdown" => "drop"}
