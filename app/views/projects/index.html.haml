@@ -1,7 +1,7 @@
 .large-12.columns
   %h1.text-center Mods
   %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
-    - Project.all.each do |project|
+    - Project.find_each do |project|
       %li
         .panel
           = image_tag project.icon, :class => 'mod-icon no-aa-image'
