@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  downloads  :integer
+#  file_size  :string(255)
 #
 # Indexes
 #

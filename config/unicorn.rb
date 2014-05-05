@@ -1,4 +1,4 @@
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 2)
 timeout 15
 preload_app true
 
@@ -7,7 +7,7 @@ before_fork do |server, worker|
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
     Process.kill 'QUIT', Process.pid
   end
-
+  @sidekiq_pid ||= spawn("bundle exec sidekiq -c 2") if ENV['RAILS_ENV'] == 'production'
   defined?(ActiveRecord::Base) and
       ActiveRecord::Base.connection.disconnect!
 end

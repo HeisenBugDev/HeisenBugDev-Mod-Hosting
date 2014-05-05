@@ -3,4 +3,4 @@
     #{artifact.name}
     %div{:style => 'float: right'}
       %span.label #{artifact.downloads} DLs
-      %span.label.secondary #{file_size(artifact.artifact)}
+      %span.label.secondary #{number_to_human_size(artifact.file_size)}

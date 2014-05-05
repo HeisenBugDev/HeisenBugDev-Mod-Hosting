@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  downloads  :integer
+#  file_size  :string(255)
 #
 # Indexes
 #
@@ -22,4 +23,14 @@ class Artifact < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :build
+
+  before_save :update_artifact_attributes
+
+  private
+
+  def update_artifact_attributes
+    if artifact.present? && artifact_changed?
+      self.file_size = artifact.file.size
+    end
+  end
 end
