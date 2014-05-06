@@ -6,7 +6,7 @@ Devise.setup do |config|
 
   if Rails.env.production?
     config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'],
-      {:scope => 'email, offline_access', :client_options => {:ssl =>
+      {:scope => 'user:email, offline_access', :client_options => {:ssl =>
         {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   else
     config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
