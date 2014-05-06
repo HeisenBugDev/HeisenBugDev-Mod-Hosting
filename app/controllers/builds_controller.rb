@@ -77,16 +77,17 @@ class BuildsController < ApplicationController
 
   def download
     @project = Project.find(params[:project_id])
-
+    file_type = params[:file_type]
+    file_type ||= 'universal'
     if params[:artifact_id]
       @artifact = Artifact.find(params[:artifact_id])
       @build = @artifact.build
     elsif params[:build_id]
       @build = Build.find(params[:build_id])
-      @artifact = @build.artifacts.find_by_name('universal')
+      @artifact = @build.artifacts.find_by_name(file_type)
     else
       @build = latest_builds(@project, 1)[0]
-      @artifact = @build.artifacts.find_by_name('universal')
+      @artifact = @build.artifacts.find_by_name(file_type)
     end
 
     @artifact.increment!(:downloads)
