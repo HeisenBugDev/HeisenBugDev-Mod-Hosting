@@ -76,13 +76,24 @@ class BuildsController < ApplicationController
   end
 
   def download
-    @artifact = Artifact.find(params[:artifact_id])
+    @project = Project.find(params[:project_id])
+
+    if params[:artifact_id]
+      @artifact = Artifact.find(params[:artifact_id])
+      @build = @artifact.build
+    elsif params[:build_id]
+      @build = Build.find(params[:build_id])
+      @artifact = @build.artifacts.find_by_name('universal')
+    else
+      @build = latest_builds(@project, 1)[0]
+      @artifact = @build.artifacts.find_by_name('universal')
+    end
+
     @artifact.increment!(:downloads)
-    @build = @artifact.build
-    @project = @build.project
 
     respond_to do |format|
       format.js { render :action => 'update' }
+      format.all { redirect_to @artifact.artifact.url }
     end
   end
 

@@ -21,13 +21,22 @@ HeisenBugDev::Application.routes.draw do
   resources 'rasterizer', :only => [:create]
   resources 'artifacts',  :only => [:create]
 
-  resources 'builds'
-  get '/builds/:artifact_id/download', :to => 'builds#download', :as => :download
-
   resources 'users'
   resources 'flashes',    :only => [:index]
 
+  resources 'builds', :only => [:create]
+
   resources 'projects' do
+    resources 'builds', :except => [:create] do
+      resources 'artifacts', :only => [] do
+        get 'download', :to => 'builds#download', :as => :download
+      end
+
+      get 'download', :to => 'builds#download', :as => :download
+    end
+
+    get 'download', :to => 'builds#download', :as => :download
+
     scope :module => :wiki do
       resources 'wikis' do
         resources 'articles'
@@ -35,6 +44,4 @@ HeisenBugDev::Application.routes.draw do
       get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
     end
   end
-
-  match '/downloads', :to => 'builds#index', :via => 'get'
 end
