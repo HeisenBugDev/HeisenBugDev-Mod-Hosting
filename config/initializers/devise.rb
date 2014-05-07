@@ -6,10 +6,10 @@ Devise.setup do |config|
 
   if Rails.env.production?
     config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'],
-      {:scope => 'email, offline_access', :client_options => {:ssl =>
+      {:scope => 'user:email, offline_access', :client_options => {:ssl =>
         {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   else
-    config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
+    config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], {:scope => 'user:email'}
   end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
