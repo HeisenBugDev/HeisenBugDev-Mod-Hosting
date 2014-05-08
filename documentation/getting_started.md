@@ -47,6 +47,9 @@ The console will tell you which port to connect on.
 
 The console will tell you which port to connect on.
 
+### First user
+Login to the app. Go to your terminal and run the command: `rake promote_admin` and `rake promote_owner` This makes the first user (you) admin and owner, giving you all rights.
+
 ## Problems?
 
 Create a ticket!
