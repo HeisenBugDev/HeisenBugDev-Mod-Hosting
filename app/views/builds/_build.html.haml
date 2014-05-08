@@ -18,6 +18,6 @@
       %ul.f-dropdown{'data-dropdown-content' => true, :id => "build-state-#{build.id}"}
         - BuildsHelper::STATE_NAMES.each do |state|
           %li
-            = link_to state, build_path(build, :state => state), :remote => true, :method => :patch
+            = link_to state, project_build_path(build.project, build, :state => state), :remote => true, :method => :patch
         %li
-          = link_to 'Delete', build_path(build), data: { confirm: "Are you sure?" }, :method => :delete, :remote => true
+          = link_to 'Delete', project_build_path(build.project, build), data: { confirm: "Are you sure?" }, :method => :delete, :remote => true
