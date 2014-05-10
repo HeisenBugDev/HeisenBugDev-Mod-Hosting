@@ -32,11 +32,3 @@ $ ->
       $(this).width($(this).find('span').width() + 20) if $(this).find('span').width() > 200
     $('span[class$=-repo]').parent().mouseout ->
       $(this).css('width', '') if $(this).width() > 220
-    sidebar = $('#left-sidebar')
-    sidebarWidth = sidebar.width()
-    windowWidth = $(document).width()
-    sidebar.width(windowWidth / 2)
-    newWidth = sidebar.width() - sidebarWidth
-    sidebar.css 'margin-left', -newWidth
-    sidebar.css 'padding-left', newWidth
-    sidebar.height($(document).height())
