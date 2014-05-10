@@ -89,6 +89,15 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def downloads
+    @project = Project.find(params[:project_id])
+    @branch = params[:branch]
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 private
   def project_params
     params.require(:project).permit(:subtitle, :name, :description, :code_repo,
