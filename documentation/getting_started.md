@@ -29,20 +29,23 @@ GITHUB_KEY=***********************
 GITHUB_SECRET=***************************************
 ```
 
-Continue by choosing the path you want:
-
-### No tests
-
-- Open up 2 terminals
-- Run `redis-server` (on mac) in one. For Linux, you must call
+### For Linux users
+The next section requires that you have the ```redis``` package installed. To do so, run the following commands:
 ```bash
 wget http://download.redis.io/releases/redis-2.8.9.tar.gz
 tar xzf redis-2.8.9.tar.gz
 cd redis.2.8.9
 make
 ```
-after redis has compiled, you can cd to the src folder and run ```./redis-server```
-- Run `rails server` in the other.
+To use the command ```./redis-server```, you must first cd into the src directory (redis-2.8.9/src).
+
+Continue by choosing the path you want:
+
+### No tests
+
+- Open up 2 terminals
+- Run ```redis-server``` on macs, or ```./redis-server``` on Linux distros in one.
+- Run ```rails server``` in the other.
 
 The console will tell you which port to connect on.
 
