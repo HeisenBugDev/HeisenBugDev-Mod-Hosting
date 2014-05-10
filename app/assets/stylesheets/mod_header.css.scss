@@ -3,7 +3,7 @@
   margin-bottom: 1em;
   padding-top: 1em;
   padding-bottom: 1em;
-  background-color: #393E54;
+  background-color: #314f6b;
   min-height: 100%;
 
   .subtitle {
@@ -13,10 +13,24 @@
   .title {
     color: #B3B5BD;
   }
+
+  h1, h3 {
+    height: 1.5em;
+    margin: 0px !important;
+  }
 }
 
 .y-center {
   position: relative;
+}
+
+.icon-column {
+  padding-left: 0;
+  width: 100px;
+}
+
+.title-column {
+  float: left !important;
 }
 
 .mod-download-icon {
@@ -30,5 +44,4 @@
 .hundred-square {
   width: 100px;
   height: 100px;
-  float: right;
 }

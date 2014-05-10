@@ -68,8 +68,9 @@ ul.ui-autocomplete {
 }
 
 .blue-text {
-  color: #008CBA;
-  border-bottom: 1px solid #04A7A7;
+  font-weight: 500;
+  color: #3b3877;
+  border-bottom: 2px solid #3b3877;
 }
 
 .code-repo {
@@ -86,7 +87,8 @@ ul.ui-autocomplete {
 
 .repo-outer {
   padding: 10px;
-  background-color: #e6e6e6;
+  border-bottom: 2px solid #8e5a26;
+  background-color: #fece8f;
   border-radius: 5px;
   white-space:nowrap;
   overflow:hidden;
@@ -96,7 +98,7 @@ ul.ui-autocomplete {
   z-index: 1;
 
   &:hover {
-    background-color: #ddd;
+    background-color: #ecb06b;
     overflow: visible;
   }
 }
@@ -138,5 +140,5 @@ ul.ui-autocomplete {
 #left-sidebar {
   margin-top: -100px;
   padding-top: 100px;
-  background-color: #c7e6ea;
+  background-color: #c28c4d;
 }
