@@ -63,12 +63,16 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_github_oauth(auth)
-    where(auth.slice(:provider, :uid, :email)).first_or_create do |user|
+    user = where(auth.slice(:provider, :uid, :email)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email unless auth.info.email.nil?
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.nickname # assuming the user model has a name
     end
+
+    user.email = auth.info.email
+    user.save
+    user
   end
 end
