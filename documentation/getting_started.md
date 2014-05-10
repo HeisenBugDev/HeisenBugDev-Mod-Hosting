@@ -8,6 +8,7 @@ _If you are on Windows™, curl up into a ball and cry. Know that by trying to g
 
 - Install [rvm](http://rvm.io) to manage your rubies.
 - Clone the repo.
+- Copy config/database.yml.example to config/database.yml
 - Open a terminal, cd to the folder, and run `bundle install --without production`
 - install redis (on mac it's `brew install redis` assuming you have homebrew)
 - Run `rake db:migrate` (you may have to do `rake db:create` first)
