@@ -34,7 +34,14 @@ Continue by choosing the path you want:
 ### No tests
 
 - Open up 2 terminals
-- Run `redis-server` (on mac) in one.
+- Run `redis-server` (on mac) in one. For Linux, you must call
+```bash
+wget http://download.redis.io/releases/redis-2.8.9.tar.gz
+tar xzf redis-2.8.9.tar.gz
+cd redis.2.8.9
+make
+```
+after redis has compiled, you can cd to the src folder and run ```./redis-server```
 - Run `rails server` in the other.
 
 The console will tell you which port to connect on.
