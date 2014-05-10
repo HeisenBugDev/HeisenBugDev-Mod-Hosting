@@ -29,23 +29,26 @@ GITHUB_KEY=***********************
 GITHUB_SECRET=***************************************
 ```
 
-### Installing Redis for Linux
-The next section requires that you have the ```redis``` package installed. To do so, run the following commands:
+### Installing Redis
+The next section requires that you have the ```redis``` package installed. If you are on a Linux distro, run the following commands:
 ```bash
 wget http://download.redis.io/releases/redis-2.8.9.tar.gz
 tar xzf redis-2.8.9.tar.gz
 cd redis.2.8.9
 make
 ```
+Finally, run the command ```./redis-server``` (you must cd into the redis-2.8.9/src directory)
 
-###Installing Homebrew for Macs
-If you are on a mac, you should have Homebrew installed. If not, here are instructions:
-First off, you need to make sure you have command line tools for xcode installed. If you don't, run
-```xcode-select --install``` from the terminal.
-next, simply run ```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"``` from the terminal.
-
-
-To use the command ```./redis-server```, you must first cd into the src directory (redis-2.8.9/src).
+If you are on a Mac with homebrew, simply run ```brew install redis```.
+If you don't have homebrew, download the latest version of redis from http://download.redis.io
+cd to the download directory and run ```make test``` to see if you can cleanly install redis.
+If you can, run ```make```
+Next, you'll have to move the directories that were created to the usr/bin directory:
+```bash
+sudo mv src/redis-server /usr/bin
+sudo mv src/redis-cli /usr/bin
+```
+Finally, run the command ```redis-server``` (from the redis.2.8.9/src directory)
 
 Continue by choosing the path you want:
 
