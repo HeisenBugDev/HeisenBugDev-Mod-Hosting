@@ -24,7 +24,7 @@ make
 Finally, run the command `./redis-server` (you must cd into the redis-2.8.9/src directory)
 
 #### Mac
-If you are on a Mac with homebrew, simply run `brew install redis`.
+If you are on a Mac make sure you have homebrew installed, then run `brew install redis`.
 Finally, run the command `redis-server`
 
 
