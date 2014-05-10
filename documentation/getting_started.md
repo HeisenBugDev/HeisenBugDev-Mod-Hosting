@@ -14,18 +14,18 @@ _If you are on Windows™, curl up into a ball and cry. Know that by trying to g
 ### Install Redis
 
 #### Linux
-The next section requires that you have the ```redis``` package installed. If you are on a Linux distro, run the following commands:
+The next section requires that you have the `redis` package installed. If you are on a Linux distro, run the following commands:
 ```bash
 wget http://download.redis.io/releases/redis-2.8.9.tar.gz
 tar xzf redis-2.8.9.tar.gz
 cd redis.2.8.9
 make
 ```
-Finally, run the command ```./redis-server``` (you must cd into the redis-2.8.9/src directory)
+Finally, run the command `./redis-server` (you must cd into the redis-2.8.9/src directory)
 
 #### Mac
-If you are on a Mac with homebrew, simply run ```brew install redis```.
-Finally, run the command ```redis-server``
+If you are on a Mac with homebrew, simply run `brew install redis`.
+Finally, run the command `redis-server`
 
 
 - Run `rake db:migrate` (you may have to do `rake db:create` first)
