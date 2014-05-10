@@ -13,7 +13,7 @@ $(document).on 'click', '#add-dev', ->
   $('#add-dev-form').fadeToggle(50)
   $('input#project_users').focus()
 
-$(document).ready ->
+$(document).on 'ready page:load', ->
   $('#add-dev-form').on 'ajax:success', (e, data, status, xhr) ->
     $('input#project_users').val('')
 
@@ -32,3 +32,11 @@ $ ->
       $(this).width($(this).find('span').width() + 20) if $(this).find('span').width() > 200
     $('span[class$=-repo]').parent().mouseout ->
       $(this).css('width', '') if $(this).width() > 220
+    sidebar = $('#left-sidebar')
+    sidebarWidth = sidebar.width()
+    windowWidth = $(document).width()
+    sidebar.width(windowWidth / 2)
+    newWidth = sidebar.width() - sidebarWidth
+    sidebar.css 'margin-left', -newWidth
+    sidebar.css 'padding-left', newWidth
+    sidebar.height($(document).height())

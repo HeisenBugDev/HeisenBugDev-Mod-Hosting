@@ -69,6 +69,7 @@ ul.ui-autocomplete {
 
 .blue-text {
   color: #008CBA;
+  border-bottom: 1px solid #04A7A7;
 }
 
 .code-repo {
@@ -132,4 +133,10 @@ ul.ui-autocomplete {
     margin: -10px;
     padding: 10px;
   }
+}
+
+#left-sidebar {
+  margin-top: -100px;
+  padding-top: 100px;
+  background-color: #c7e6ea;
 }
