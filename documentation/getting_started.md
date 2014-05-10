@@ -10,9 +10,25 @@ _If you are on Windows™, curl up into a ball and cry. Know that by trying to g
 - Clone the repo.
 - Copy config/database.yml.example to config/database.yml
 - Open a terminal, cd to the folder, and run `bundle install --without production`
-- install redis (on mac it's `brew install redis` assuming you have homebrew)
-- Run `rake db:migrate` (you may have to do `rake db:create` first)
 
+### Install Redis
+
+#### Linux
+The next section requires that you have the ```redis``` package installed. If you are on a Linux distro, run the following commands:
+```bash
+wget http://download.redis.io/releases/redis-2.8.9.tar.gz
+tar xzf redis-2.8.9.tar.gz
+cd redis.2.8.9
+make
+```
+Finally, run the command ```./redis-server``` (you must cd into the redis-2.8.9/src directory)
+
+#### Mac
+If you are on a Mac with homebrew, simply run ```brew install redis```.
+Finally, run the command ```redis-server``
+
+
+- Run `rake db:migrate` (you may have to do `rake db:create` first)
 
 ### Setup a GitHub app
 - Go to your GitHub settings.
@@ -30,28 +46,7 @@ GITHUB_KEY=***********************
 GITHUB_SECRET=***************************************
 ```
 
-### Installing Redis
-The next section requires that you have the ```redis``` package installed. If you are on a Linux distro, run the following commands:
-```bash
-wget http://download.redis.io/releases/redis-2.8.9.tar.gz
-tar xzf redis-2.8.9.tar.gz
-cd redis.2.8.9
-make
-```
-Finally, run the command ```./redis-server``` (you must cd into the redis-2.8.9/src directory)
-
-If you are on a Mac with homebrew, simply run ```brew install redis```.
-If you don't have homebrew, download the latest version of redis from http://download.redis.io
-cd to the download directory and run ```make test``` to see if you can cleanly install redis.
-If you can, run ```make```
-Next, you'll have to move the directories that were created to the usr/bin directory:
-```bash
-sudo mv src/redis-server /usr/bin
-sudo mv src/redis-cli /usr/bin
-```
-Finally, run the command ```redis-server``` (from the redis.2.8.9/src directory)
-
-Continue by choosing the path you want:
+**Continue by choosing the path you want:**
 
 ### No tests
 
