@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
     [:error, :warning, :notice].each do |type|
       return flash[type] unless flash[type].blank?
     end
-    # if we don't return something here, the above code will return "error, warning, notice"
+    # if we don't return something here, the above code will return "error,
+    # warning, notice"
     ''
   end
 
