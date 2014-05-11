@@ -44,7 +44,7 @@ module HeisenBugDev
     end
 
     if Puma.respond_to?(:cli_config)
-      ::Platform.set_db_connection_pool_size! Puma.cli_config.options.fetch(:max_threads)
+      ::HeisenBugDev.set_db_connection_pool_size! Puma.cli_config.options.fetch(:max_threads)
     end
 
     config.to_prepare do
