@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
     return unless request.xhr?
     msg = flash_message
     # replace german umlaute encoded in utf-8 to html escaped ones
-    msg = msg.gsub("ä", "&auml;").gsub("ü", "&uuml;").gsub("ö", "&ouml;")
-      .gsub("Ä", "&Auml;").gsub("Ü", "&Uuml;").gsub("Ö", "&Ouml;")
-      .gsub("ß", "&szlig;")
+    msg = msg.gsub('ä', '&auml;').gsub('ü', '&uuml;').gsub('ö', '&ouml;').
+      gsub('Ä', '&Auml;').gsub('Ü', '&Uuml;').gsub('Ö', '&Ouml;').
+      gsub('ß', '&szlig;')
     response.headers['X-Message'] = msg
-    response.headers["X-Message-Type"] = flash_type.to_s
+    response.headers['X-Message-Type'] = flash_type.to_s
 
     flash.discard # don't want the flash to appear when you reload page
   end
@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
     [:error, :warning, :notice].each do |type|
       return flash[type] unless flash[type].blank?
     end
-    # if we don't return something here, the above code will return "error,
-    # warning, notice"
+    # if we don't return something here, the above code will return 'error,
+    # warning, notice'
     ''
   end
 
