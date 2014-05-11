@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   def flash_to_headers
     return unless request.xhr?
     msg = flash_message
-    #replace german umlaute encoded in utf-8 to html escaped ones
-    msg = msg.gsub("ä","&auml;").gsub("ü","&uuml;").gsub("ö","&ouml;")
-      .gsub("Ä","&Auml;").gsub("Ü","&Uuml;").gsub("Ö","&Ouml;")
-      .gsub("ß","&szlig;")
+    # replace german umlaute encoded in utf-8 to html escaped ones
+    msg = msg.gsub("ä", "&auml;").gsub("ü", "&uuml;").gsub("ö", "&ouml;")
+      .gsub("Ä", "&Auml;").gsub("Ü", "&Uuml;").gsub("Ö", "&Ouml;")
+      .gsub("ß", "&szlig;")
     response.headers['X-Message'] = msg
     response.headers["X-Message-Type"] = flash_type.to_s
 
@@ -35,13 +35,15 @@ class ApplicationController < ActionController::Base
   end
 
   def flash_type
-    #:keep will instruct the js to not update or remove the shown message.
-    #just write flash[:keep] = true (or any other value) in your controller code
+    # :keep will instruct the js to not update or remove the shown message.
+    # just write flash[:keep] = true (or any other value)
+    # in your controller code
     [:error, :warning, :notice, :keep].each do |type|
       return type unless flash[type].blank?
     end
-    #don't return the array from above which would happen if we don't have an explicit return statement
-    #returning :empty will also allow you to easily know that no flash message was transmitted
-    return :empty
+    # don't return the array from above which would happen if we don't have an
+    # explicit return statement returning :empty will also allow you to easily
+    # know that no flash message was transmitted
+    :empty
   end
 end
