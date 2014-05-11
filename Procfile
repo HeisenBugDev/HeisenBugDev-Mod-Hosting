@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -c 4:8
+web: bundle exec puma -p $PORT -t 4:8
