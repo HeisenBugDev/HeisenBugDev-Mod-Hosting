@@ -9,12 +9,22 @@ module ApplicationHelper
   # @param  amount = 2 [type] Amount of builds to show
   #
   # @return [Array<Build>] Latest builds
-  def latest_builds(project, amount = 5)
-    project.builds.order('build_number DESC').limit(amount).to_a
+  def latest_builds(project, amount = 5, branch = 'master')
+    query = project.builds.order('build_number DESC').limit(amount)
+
+    if branch.nil?
+      query.to_a
+    else
+      query.where(:branch => branch).to_a
+    end
   end
 
   def latest_stable(project)
     project.builds.order('build_number DESC').limit(1).where.not(:build_state => 'bugged').to_a[0]
+  end
+
+  def branches(project)
+    project.builds.pluck(:branch).uniq
   end
 
   def nav_link(link_text, link_path)

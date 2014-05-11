@@ -34,8 +34,8 @@ HeisenBugDev::Application.routes.draw do
 
       get 'download', :to => 'builds#download', :as => :download
     end
-
     get 'download', :to => 'builds#download', :as => :download
+    get :downloads
 
     scope :module => :wiki do
       resources 'wikis' do

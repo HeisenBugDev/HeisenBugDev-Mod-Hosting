@@ -1,14 +1,20 @@
 .downloads
+  %a.button.dropdown{'data-dropdown' => 'branches-switch', "data-options" => 'is_hover:true'} Switch Branch
+  %ul.f-dropdown#branches-switch{'data-dropdown-content' => true}
+    - branches(project).each do |branch|
+      %li
+        = link_to branch, project_downloads_path(project, :branch => branch), :remote => true
   %span.button.small.secondary#bug-toggler Show bugged builds
   %table
     %thead
       %tr
         %th Build
         %th Version
+        %th Branch
         %th Minecraft Version
         %th Files
         %th Changes
         - if can? :edit, project
           %th Change State
     %tbody
-      = render latest_builds(project)
+      = render latest_builds(project, 5, branch)

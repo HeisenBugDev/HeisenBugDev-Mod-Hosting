@@ -5,6 +5,7 @@
     %span.label.secondary #{time_ago_in_words(build.created_at)} ago
     %span.label #{build.downloads} DLs
   %td= build.version.version
+  %td= build.branch
   %td= build.minecraft_version
   %td
     %a.button.small.dropdown{:href => "#", 'data-dropdown'=> "build#{build.build_number}", "data-options" => data_options(build), :class => dropdown_classes(build)} Files
