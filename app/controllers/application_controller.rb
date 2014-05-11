@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       return flash[type] unless flash[type].blank?
     end
     # if we don't return something here, the above code will return "error, warning, notice"
-    return ''
+    ''
   end
 
   def flash_type
