@@ -9,8 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'foundation-rails', '~> 5.2'
 gem 'haml-rails'
-gem 'unicorn'
-gem 'unicorn-rails'
+gem 'puma'
 gem "mini_magick"
 gem 'carrierwave'
 gem "sidekiq", "~> 2.17.7"
