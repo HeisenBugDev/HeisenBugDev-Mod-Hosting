@@ -37,6 +37,7 @@ Finally, run the command `redis-server`
 - Fill out the fields. Authorization callback URL should be the local URL of your app (localhost:PORT)
 
 Example of it filled out:
+# CHANGE 8080 to 3000! This is old!
 ![Example setup](http://i.imgur.com/GloFH69.png)
 
 - Create a file called .env in the root folder of your HeisenBugDev clone. Add the GitHub app keys to it. Example:
