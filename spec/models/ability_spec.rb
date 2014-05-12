@@ -19,7 +19,7 @@ describe "User" do
         before do
           project.users << user
         end
-        it { should be_able_to(:manage, project) }
+        it { should be_able_to(:edit, project) }
       end
     end
   end
