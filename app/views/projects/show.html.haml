@@ -1,29 +1,35 @@
 = render 'layouts/mod_header', {:project => @project}
 .large-12.columns
   .row
-    .large-3.columns#left-sidebar
-      %h3.blue-text Developers
-      #developers
-        = render 'developers'
-      - if can? :modify, @project
-        #add-dev-set
-          %a.button.thin-button.thin-bottom-margin.full-width#add-dev Add dev
-          #add-dev-form.hide
-            = form_for @project, :remote => true do |f|
-              = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => '', :class => 'thin-bottom-margin radius'
-              = f.submit 'Add', :class => 'button success radius thin-button thin-bottom-margin'
+    .large-4.columns#left-sidebar
+      #developers.panel
+        %h3
+          Developers
+          - if can? :edit, @project
+            %i#add-dev.general.fi-plus
+        #developers-list
+          = render 'developers'
+        - if can? :edit, @project
+          #add-dev-set
+            #add-dev-form.hide
+              = form_for @project, :remote => true do |f|
+                = f.autocomplete_field :users, projects_autocomplete_user_name_path, :placeholder => 'Username', :value => '', :class => 'thin-bottom-margin radius'
+                = f.submit 'Add', :class => 'button success radius thin-button thin-bottom-margin'
       = render 'download_sidebar'
-      %h3.blue-text Info
-      - if can? :modify, @project
-        %a.thin-button.thin-bottom-margin.button.full-width{:href => "#", 'data-reveal-id' => 'repo-control'} Edit
-        #repo-control.reveal-modal.tiny{'data-reveal' => true}
-          %a.close-reveal-modal &#215;
-          = render 'repo_controls'
-      = render 'repo_info'
-    .large-9.columns
-      = best_in_place_if can?(:modify, @project), @project, :description, :display_with => :simple_format, :type => :textarea, :classes => ['best_in_place_direct']
+      #info.panel
+        %h3
+          Info
+          - if can? :edit, @project
+            %i.general.fi-wrench{'data-reveal-id' => 'repo-control'}
+        - if can? :edit, @project
+          #repo-control.reveal-modal.tiny{'data-reveal' => true}
+            %a.close-reveal-modal &#215;
+            = render 'repo_controls'
+        = render 'repo_info'
+    .large-8.columns
+      = best_in_place_if can?(:edit, @project), @project, :description, :display_with => :simple_format, :type => :textarea, :classes => ['best_in_place_direct']
       #downloads.hide
         %hr
         %a{:id => 'downloads'}
-        %h3.blue-text Downloads
+        %h3 Downloads
         = render 'builds/downloads', project: @project

@@ -1,4 +1,4 @@
-$('#developers').html("<%= raw(remove_newlines(single_quoter(render(:partial => 'developers')))) %>")
+$('#developers-list').html("<%= raw(remove_newlines(single_quoter(render(:partial => 'developers')))) %>")
 <% if @new_image %>
 $('#mod-header').replaceWith("<%= raw(remove_newlines(single_quoter(render(:partial => 'layouts/mod_header', :locals => {:project => @project})))) %>")
 <% end %>

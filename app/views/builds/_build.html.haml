@@ -19,5 +19,6 @@
         - BuildsHelper::STATE_NAMES.each do |state|
           %li
             = link_to state, project_build_path(build.project, build, :state => state), :remote => true, :method => :patch
-        %li
-          = link_to 'Delete', project_build_path(build.project, build), data: { confirm: "Are you sure?" }, :method => :delete, :remote => true
+        - if can? :destroy, build
+          %li
+            = link_to 'Delete', project_build_path(build.project, build), data: { confirm: "Are you sure?" }, :method => :delete, :remote => true

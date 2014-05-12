@@ -87,9 +87,7 @@ ul.ui-autocomplete {
 
 .repo-outer {
   padding: 10px;
-  border-bottom: 2px solid #8e5a26;
-  background-color: #fece8f;
-  border-radius: 5px;
+  background-color: #5f7b92;
   white-space:nowrap;
   overflow:hidden;
   margin-bottom: 5px;
@@ -98,8 +96,12 @@ ul.ui-autocomplete {
   z-index: 1;
 
   &:hover {
-    background-color: #ecb06b;
+    background-color: #3a5875;
     overflow: visible;
+  }
+
+  span {
+    color: #eaeaea;
   }
 }
 
@@ -137,6 +139,19 @@ ul.ui-autocomplete {
   }
 }
 
-#left-sidebar {
-  background-color: #c28c4d;
+.fi-wrench:hover {
+  color: #868686;
+}
+
+.fi-plus:hover {
+  color: #868686;
+}
+
+.panel{
+  border-style: solid;
+  border-width: 0;
+  border-color: #d9d9d9;
+  margin-bottom: 1.25em;
+  padding: 1.25em;
+  background: #f2f2f2;
 }

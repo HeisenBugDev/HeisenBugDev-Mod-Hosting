@@ -37,8 +37,6 @@ body {
 img {
   max-width: 200%;
   max-height: 100%;
-  ///width: auto !important;
-  //height: auto !important;
 }
 
 .wrapper {
@@ -75,14 +73,27 @@ p {
   }
 }
 
-a {
-  font-weight: bold;
-  text-decoration: none;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+// a {
+//   font-weight: bold;
+//   text-decoration: none;
+//   -webkit-transition: color 0.3s ease;
+//   transition: color 0.3s ease;
+
+//   &:hover {
+//     color: #036484;
+//   }
+// }
+
+
+.button {
+  background-color: #5f7b92;
+  transition: initial;
+  -webkit-transition: initial;
 
   &:hover {
-    color: #036484;
+    transition: initial;
+    -webkit-transition: initial;
+    background-color: #3a5875;
   }
 }
 
@@ -113,4 +124,5 @@ main {
   padding-bottom: 2em;
   padding-right: 0 !important;
   padding-left: 0 !important;
+  background: white;
 }
