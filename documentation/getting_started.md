@@ -8,10 +8,27 @@ _If you are on Windows™, curl up into a ball and cry. Know that by trying to g
 
 - Install [rvm](http://rvm.io) to manage your rubies.
 - Clone the repo.
+- Copy config/database.yml.example to config/database.yml
 - Open a terminal, cd to the folder, and run `bundle install --without production`
-- install redis (on mac it's `brew install redis` assuming you have homebrew)
-- Run `rake db:migrate` (you may have to do `rake db:create` first)
 
+### Install Redis
+
+#### Linux
+The next section requires that you have the `redis` package installed. If you are on a Linux distro, run the following commands:
+```bash
+wget http://download.redis.io/releases/redis-2.8.9.tar.gz
+tar xzf redis-2.8.9.tar.gz
+cd redis.2.8.9
+make
+```
+Finally, run the command `./redis-server` (you must cd into the redis-2.8.9/src directory)
+
+#### Mac
+If you are on a Mac make sure you have homebrew installed, then run `brew install redis`.
+Finally, run the command `redis-server`
+
+
+- Run `rake db:migrate` (you may have to do `rake db:create` first)
 
 ### Setup a GitHub app
 - Go to your GitHub settings.
@@ -29,13 +46,13 @@ GITHUB_KEY=***********************
 GITHUB_SECRET=***************************************
 ```
 
-Continue by choosing the path you want:
+**Continue by choosing the path you want:**
 
 ### No tests
 
 - Open up 2 terminals
-- Run `redis-server` (on mac) in one.
-- Run `rails server` in the other.
+- Run ```redis-server``` on macs, or ```./redis-server``` on Linux distros in one.
+- Run ```rails server``` in the other.
 
 The console will tell you which port to connect on.
 

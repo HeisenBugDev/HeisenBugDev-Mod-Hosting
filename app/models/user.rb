@@ -29,7 +29,8 @@
 
 class User < ActiveRecord::Base
   BETA_USERS = %w(hunterboerner forkk sammko k2b6s9j eydamos abrarsyed jadar
-    trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend endershadow HotelCalifornia).map(&:downcase)
+    trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
+    endershadow HotelCalifornia thejereman13).map(&:downcase)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
   rolify
@@ -63,12 +64,16 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_github_oauth(auth)
-    where(auth.slice(:provider, :uid, :email)).first_or_create do |user|
+    user = where(auth.slice(:provider, :uid, :email)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email unless auth.info.email.nil?
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.nickname # assuming the user model has a name
     end
+
+    user.email = auth.info.email
+    user.save
+    user
   end
 end
