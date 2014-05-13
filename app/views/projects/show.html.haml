@@ -4,9 +4,9 @@
     .large-4.columns#left-sidebar
       #developers.panel
         %h3
-          Developers
           - if can? :edit, @project
             %i#add-dev.general.fi-plus
+          Developers
         #developers-list
           = render 'developers'
         - if can? :edit, @project
@@ -18,9 +18,9 @@
       = render 'download_sidebar'
       #info.panel
         %h3
-          Info
           - if can? :edit, @project
             %i.general.fi-wrench{'data-reveal-id' => 'repo-control'}
+          Info
         - if can? :edit, @project
           #repo-control.reveal-modal.tiny{'data-reveal' => true}
             %a.close-reveal-modal &#215;
