@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
       gsub('ß', '&szlig;')
     response.headers['X-Message'] = msg
     response.headers['X-Message-Type'] = flash_type.to_s
-    puts "LE MESSAGE #{msg}"
     flash.discard # don't want the flash to appear when you reload page
   end
 
