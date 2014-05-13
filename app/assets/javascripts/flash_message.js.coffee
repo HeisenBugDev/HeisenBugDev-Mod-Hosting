@@ -7,7 +7,7 @@ show_ajax_message = (msg, type) ->
   width = 250
   left = (($(document).width() - $('#top-bar').width()) / 2)
   top = $('#top-bar').height() + 15
-  $("#flash-#{type}").css 'left', left
+  $("#flash-#{type}").css 'right', left
   $("#flash-#{type}").css 'top', top
   $("#flash-#{type}").css 'width', width
   $("#flash-#{type}").delay(3000).slideUp()
@@ -22,6 +22,7 @@ $(document).on 'ready page:load' , ->
 $(document).ajaxComplete (event, request) ->
   msg = request.getResponseHeader("X-Message")
   type = request.getResponseHeader("X-Message-Type")
+  console.log msg
   if msg
     show_ajax_message msg, type
 
