@@ -86,7 +86,7 @@ class BuildsController < ApplicationController
       @build = Build.find(params[:build_id])
       @artifact = @build.artifacts.find_by_name(file_type)
     else
-      @build = latest_builds(@project, 1)[0]
+      @build = latest_stable(@project)
       @artifact = @build.artifacts.find_by_name(file_type)
     end
 

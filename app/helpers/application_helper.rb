@@ -20,7 +20,14 @@ module ApplicationHelper
   end
 
   def latest_stable(project)
-    project.builds.order('build_number DESC').limit(1).where.not(:build_state => 'bugged').to_a[0]
+    query = project.builds.order('build_number DESC').limit(1).
+      where.not(:build_state => 'bugged')
+
+    if query.where(:branch => :master).blank?
+      query.to_a[0]
+    else
+      query.where(:branch => :master).to_a[0]
+    end
   end
 
   def branches(project)
