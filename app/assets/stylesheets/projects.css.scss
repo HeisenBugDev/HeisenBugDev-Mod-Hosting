@@ -154,11 +154,11 @@ ul.ui-autocomplete {
   }
 }
 
-.fi-wrench {
+.fi-wrench.circle-icon {
   @include circle-icon;
 }
 
-.fi-plus {
+.fi-plus.circle-icon {
   @include circle-icon;
   padding-right: 8px;
   padding-left: 8px;

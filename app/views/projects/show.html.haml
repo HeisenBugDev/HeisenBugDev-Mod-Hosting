@@ -5,7 +5,7 @@
       #developers.panel
         %h3
           - if can? :edit, @project
-            %i#add-dev.general.fi-plus
+            %i#add-dev.general.fi-plus.circle-icon
           Developers
         #developers-list
           = render 'developers'
@@ -19,7 +19,7 @@
       #info.panel
         %h3
           - if can? :edit, @project
-            %i.general.fi-wrench{'data-reveal-id' => 'repo-control'}
+            %i.general.fi-wrench.circle-icon{'data-reveal-id' => 'repo-control'}
           Info
         - if can? :edit, @project
           #repo-control.reveal-modal.tiny{'data-reveal' => true}

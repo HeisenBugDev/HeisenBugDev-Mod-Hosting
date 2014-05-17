@@ -30,8 +30,8 @@ body {
 }
 
 .huge-text {
-  font-size: 5em;
-  height: 1em;
+  font-size: 7vw;
+  max-height: 1em;
 }
 
 img {
@@ -122,7 +122,6 @@ p {
 }
 
 main {
-  padding-bottom: 2em;
   padding-right: 0 !important;
   padding-left: 0 !important;
   background: white;
