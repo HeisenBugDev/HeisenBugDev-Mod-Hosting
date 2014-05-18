@@ -1,12 +1,12 @@
 $blue-bg: #3a5875;
 $bright-gray: #E9E9E9;
+$orange-bg: #98642f;
 
 .hero {
   background-color: $blue-bg;
 }
 
 .hero-title {
-  // margin-bottom: -0.5em;
   margin-bottom: -2vw;
   color: #e5e5e5;
 }
@@ -24,11 +24,29 @@ $bright-gray: #E9E9E9;
 }
 
 .primary-row {
-  background-color: #98642f;
+  background-color: $orange-bg;
+
+  .blended-link {
+    color: inherit;
+    text-decoration:underline;
+
+    &:hover {
+      color: $blue-bg;
+    }
+  }
 }
 
 .secondary-row {
   background-color: $blue-bg;
+
+  .blended-link {
+    color: inherit;
+    text-decoration:underline;
+
+    &:hover {
+      color: $orange-bg;
+    }
+  }
 }
 
 .row-header {
