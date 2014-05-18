@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
   private
   def beta_logged_in
     unless Rails.env.test?
-      render :text => 'Closed beta only. Visit HeisenBugDev/HeisenBugDev
-      on GitHub to request access.' if current_user.nil?
+      redirect_to root_path if current_user.nil?
     end
   end
 
