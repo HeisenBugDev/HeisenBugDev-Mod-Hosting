@@ -1,0 +1,75 @@
+$blue-bg: #3a5875;
+$bright-gray: #E9E9E9;
+$orange-bg: #98642f;
+
+.hero {
+  background-color: $blue-bg;
+}
+
+.hero-title {
+  margin-bottom: -2vw;
+  color: #e5e5e5;
+}
+
+.hero-subtitle {
+  margin-top: -3em;
+  color: $bright-gray;
+}
+
+.hero-image {
+  padding-bottom: 50px;
+  width: 100%;
+  height: 100%;
+  max-height: initial;
+}
+
+.primary-row {
+  background-color: $orange-bg;
+
+  .blended-link {
+    color: inherit;
+    text-decoration:underline;
+
+    &:hover {
+      color: $blue-bg;
+    }
+  }
+}
+
+.secondary-row {
+  background-color: $blue-bg;
+
+  .blended-link {
+    color: inherit;
+    text-decoration:underline;
+
+    &:hover {
+      color: $orange-bg;
+    }
+  }
+}
+
+.row-header {
+  color: $bright-gray;
+}
+
+.primary-row .row-subheader {
+  color: black;
+}
+
+.secondary-row .row-subheader {
+  color: black;
+}
+
+.feature-icon {
+  font-size: 60pt;
+  color: #071728;
+}
+
+.feature-subtitle {
+  color: $bright-gray;
+}
+
+.feature-title {
+  color: $bright-gray;
+}

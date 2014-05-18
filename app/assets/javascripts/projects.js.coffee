@@ -13,7 +13,7 @@ $(document).on 'click', '#add-dev', ->
   $('#add-dev-form').fadeToggle(50)
   $('input#project_users').focus()
 
-$(document).ready ->
+$(document).on 'ready page:load', ->
   $('#add-dev-form').on 'ajax:success', (e, data, status, xhr) ->
     $('input#project_users').val('')
 

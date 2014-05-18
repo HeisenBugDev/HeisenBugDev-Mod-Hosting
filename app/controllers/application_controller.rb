@@ -1,15 +1,14 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery
   before_filter :beta_logged_in
   after_filter :flash_to_headers
 
   private
   def beta_logged_in
     unless Rails.env.test?
-      render :text => 'Closed beta only. Visit HeisenBugDev/HeisenBugDev
-      on GitHub to request access.' if current_user.nil?
+      redirect_to root_path if current_user.nil?
     end
   end
 
@@ -22,7 +21,6 @@ class ApplicationController < ActionController::Base
       gsub('ß', '&szlig;')
     response.headers['X-Message'] = msg
     response.headers['X-Message-Type'] = flash_type.to_s
-
     flash.discard # don't want the flash to appear when you reload page
   end
 

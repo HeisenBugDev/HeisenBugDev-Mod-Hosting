@@ -68,7 +68,9 @@ ul.ui-autocomplete {
 }
 
 .blue-text {
-  color: #008CBA;
+  font-weight: 500;
+  color: #3b3877;
+  border-bottom: 2px solid #3b3877;
 }
 
 .code-repo {
@@ -85,8 +87,8 @@ ul.ui-autocomplete {
 
 .repo-outer {
   padding: 10px;
-  background-color: #e6e6e6;
-  border-radius: 5px;
+  background-color: #5f7b92;
+  border-bottom: 1px solid #213d59;
   white-space:nowrap;
   overflow:hidden;
   margin-bottom: 5px;
@@ -95,8 +97,12 @@ ul.ui-autocomplete {
   z-index: 1;
 
   &:hover {
-    background-color: #ddd;
+    background-color: #3a5875;
     overflow: visible;
+  }
+
+  span {
+    color: #eaeaea;
   }
 }
 
@@ -132,4 +138,37 @@ ul.ui-autocomplete {
     margin: -10px;
     padding: 10px;
   }
+}
+
+@mixin circle-icon {
+  color: white;
+  background-color: black;
+  padding: 2px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 50%;
+
+  &:hover {
+    color: #868686;
+    background-color: #363636;
+  }
+}
+
+.fi-wrench.circle-icon {
+  @include circle-icon;
+}
+
+.fi-plus.circle-icon {
+  @include circle-icon;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.panel{
+  border-style: solid;
+  border-width: 0;
+  border-color: #d9d9d9;
+  margin-bottom: 1.25em;
+  padding: 1.25em;
+  background: #f2f2f2;
 }
