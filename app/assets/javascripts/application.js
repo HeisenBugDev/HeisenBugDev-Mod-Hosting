@@ -20,6 +20,5 @@
 //= require google-analytics-turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {
-  $("div[id^='flash_']").delay(3000).slideUp();
   jQuery(".best_in_place").best_in_place();
 });

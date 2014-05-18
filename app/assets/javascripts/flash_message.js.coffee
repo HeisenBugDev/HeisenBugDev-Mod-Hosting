@@ -22,7 +22,6 @@ $(document).on 'ready page:load' , ->
 $(document).ajaxComplete (event, request) ->
   msg = request.getResponseHeader("X-Message")
   type = request.getResponseHeader("X-Message-Type")
-  console.log msg
   if msg
     show_ajax_message msg, type
 
