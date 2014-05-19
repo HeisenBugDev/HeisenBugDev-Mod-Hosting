@@ -30,7 +30,7 @@
 class User < ActiveRecord::Base
   BETA_USERS = %w(hunterboerner forkk sammko k2b6s9j eydamos abrarsyed jadar
     trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
-    endershadow HotelCalifornia thejereman13).map(&:downcase)
+    endershadow HotelCalifornia thejereman13 XixeBombilla).map(&:downcase)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
   rolify
