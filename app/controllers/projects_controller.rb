@@ -30,7 +30,8 @@ class ProjectsController < ApplicationController
   def create
     unless can? :manage, :all
       redirect_to :back, :flash =>
-        { :warning => 'You do not have permission to view that page' }
+        { :warning => 'You do not have permission to view that page' },
+        :status => :unauthorized
       return
     end
 
