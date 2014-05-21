@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     unless can? :manage, :all
       redirect_to :back, :flash =>
         { :warning => 'You do not have permission to view that page' },
-          :status => :unauthorized
+          :status  => :unauthorized
       return
     end
 
