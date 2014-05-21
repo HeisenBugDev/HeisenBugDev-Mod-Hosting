@@ -23,9 +23,14 @@ describe ProjectsController do
 
     project = FactoryGirl.build(:project)
     project_json = JSON.parse(project.to_json)
-    project_json[:wiki_attributes] = {:repo => 'HeisenBugDev/HBD-Content'}
-    project_json[:icon] = Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec',
-      'factories', 'files', 'crystal_quantonium.png'))
+    project_json[:wiki_attributes] = { :repo => 'HeisenBugDev/HBD-Content' }
+    project_json[:icon] = Rack::Test::UploadedFile.new(File.join(
+      Rails.root,
+      'spec',
+      'factories',
+      'files',
+      'crystal_quantonium.png'
+    ))
 
     it "should create a project" do
       expect {post :create, {:project => project_json}}.

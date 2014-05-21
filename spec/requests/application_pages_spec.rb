@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe "Application pages" do
+describe 'Application pages' do
 end

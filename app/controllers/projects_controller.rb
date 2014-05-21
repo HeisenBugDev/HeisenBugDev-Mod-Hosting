@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     unless can? :manage, :all
       redirect_to :back, :flash =>
         { :warning => 'You do not have permission to view that page' },
-        :status => :unauthorized
+          :status => :unauthorized
       return
     end
 
@@ -101,7 +101,13 @@ class ProjectsController < ApplicationController
 
 private
   def project_params
-    params.require(:project).permit(:subtitle, :name, :description, :icon,
-      :code_repo, :wiki_attributes => [:repo])
+    params.require(:project).permit(
+      :subtitle,
+      :name,
+      :description,
+      :icon,
+      :code_repo,
+      :wiki_attributes => [:repo]
+    )
   end
 end
