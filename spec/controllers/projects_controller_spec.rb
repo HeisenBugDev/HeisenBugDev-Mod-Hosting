@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ProjectsController do
   let(:user) { FactoryGirl.create(:user) }
+  let(:project) { FactoryGirl.create(:project) }
 
   describe 'creating a project without permissions' do
     before do
@@ -37,4 +38,38 @@ describe ProjectsController do
         to change(Project, :count).by(1)
     end
   end
+
+  describe "Editing a project without permissions" do
+    before do
+      sign_in user
+      request.env['HTTP_REFERER'] = 'where_i_came_from'
+    end
+
+    it "should return unauthorized" do
+      edit_json = {
+        :id => project.id
+      }
+
+      post :update, edit_json
+      response.response_code.should eq(401)
+    end
+  end
+
+  # describe "Editing a project with permissions" do
+  #   before do
+  #     user.projects << project
+  #     sign_in user
+  #   end
+
+  #   describe "Adding a user" do
+  #     it "should respond with success" do
+  #       user_add_json = {
+  #         :id => project.id
+  #       }
+
+  #       post :create, user_add_json
+  #       response.should be_success
+  #     end
+  #   end
+  # end
 end

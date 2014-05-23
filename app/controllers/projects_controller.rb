@@ -46,6 +46,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+
+    unless can? :edit, @project
+      redirect_to :back, :status => :unauthorized
+      return
+    end
+
     user = User.find_by_name(params[:project][:users])
     unless user.nil?
       old_size = @project.users.size
