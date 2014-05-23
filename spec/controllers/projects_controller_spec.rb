@@ -39,13 +39,13 @@ describe ProjectsController do
     end
   end
 
-  describe "Editing a project without permissions" do
+  describe 'Editing a project without permissions' do
     before do
       sign_in user
       request.env['HTTP_REFERER'] = 'where_i_came_from'
     end
 
-    it "should return unauthorized" do
+    it 'should return unauthorized' do
       edit_json = {
         :id => project.id
       }
@@ -55,21 +55,21 @@ describe ProjectsController do
     end
   end
 
-  # describe "Editing a project with permissions" do
-  #   before do
-  #     user.projects << project
-  #     sign_in user
-  #   end
+  describe 'Editing a project with permissions' do
+    before do
+      user.projects << project
+      sign_in user
+    end
 
-  #   describe "Adding a user" do
-  #     it "should respond with success" do
-  #       user_add_json = {
-  #         :id => project.id
-  #       }
+    describe 'Adding a user' do
+      it 'should respond with success' do
+        user_add_json = {
+          :id => project.id
+        }
 
-  #       post :create, user_add_json
-  #       response.should be_success
-  #     end
-  #   end
-  # end
+        post :create, user_add_json
+        response.should be_success
+      end
+    end
+  end
 end
