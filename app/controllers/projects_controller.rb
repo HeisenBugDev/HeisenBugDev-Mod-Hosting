@@ -64,6 +64,7 @@ class ProjectsController < ApplicationController
       @users = @project.users
       respond_to do |format|
         format.js
+        format.all { render :text => 'It worked!' }
       end
       return
     end
