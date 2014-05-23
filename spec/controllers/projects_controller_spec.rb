@@ -58,11 +58,14 @@ describe ProjectsController do
   describe 'Editing a project with permissions' do
     before do
       user.projects << project
-      @other_user = FactoryGirl.create(:user, :name => 'Bill')
       sign_in user
     end
 
     describe 'Adding a user' do
+      before do
+        @other_user = FactoryGirl.create(:user, :name => 'Bill')
+      end
+
       it 'should respond with success' do
         user_add_json = {
           :id => project.id,
