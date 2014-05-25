@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ProjectsController do
   let(:user) { FactoryGirl.create(:user) }
   let(:project) { FactoryGirl.create(:project) }
+  let(:wiki) { FactoryGirl.create(:wiki_wiki, :project => project) }
 
   describe 'creating a project without permissions' do
     before do
@@ -75,6 +76,26 @@ describe ProjectsController do
         }
 
         post :update, user_add_json
+        response.should be_success
+      end
+    end
+
+    describe 'Changing the code_repo' do
+      it 'should change the repo attribute', :js => true do
+        code_repo_change_json = {
+          :id => project.id,
+          :project => {
+            :code_repo => 'hai/hai',
+            :wiki_attributes => {
+              :repo => 'jsdkf/jksdf',
+              :id => project.wiki.id
+            }
+          }
+        }
+        puts code_repo_change_json
+        expect { post :update, code_repo_change_json }.to change(project, :code_repo)
+        puts "code repo #{project.code_repo}"
+        puts response.response_code
         response.should be_success
       end
     end
