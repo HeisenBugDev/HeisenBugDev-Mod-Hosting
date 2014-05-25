@@ -17,7 +17,6 @@ if defined?(CarrierWave)
       config.storage = :file
     else
       config.storage = :fog
-      puts "ENV KEYS #{ENV['HBD_AWS_KEY']} SECRET: #{ENV['HBD_AWS_SECRET']}"
       config.fog_credentials = {
         :provider               => 'AWS',                        # required
         :aws_access_key_id      => ENV['HBD_AWS_KEY'],                        # required
