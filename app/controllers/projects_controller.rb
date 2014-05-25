@@ -71,15 +71,12 @@ class ProjectsController < ApplicationController
     @users = @project.users
     respond_to do |format|
       old_icon = Digest::SHA1.hexdigest(@project.icon.read)
-      puts project_params
       if @project.update_attributes(project_params)
-        puts "wait a minute"
         @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read.to_s))
         format.json { respond_with_bip(@project) }
         format.js
         format.all { render :text => 'Updated' }
       else
-        puts "i shouldn't be here"
         format.json { respond_with_bip(@project) }
         format.js
         format.all { render :action => "edit" }

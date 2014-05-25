@@ -51,7 +51,7 @@ describe ProjectsController do
         :id => project.id
       }
 
-      post :update, edit_json
+      put :update, edit_json
       response.response_code.should eq(401)
     end
   end
@@ -75,7 +75,7 @@ describe ProjectsController do
           }
         }
 
-        post :update, user_add_json
+        put :update, user_add_json
         response.should be_success
       end
     end
@@ -92,10 +92,12 @@ describe ProjectsController do
             }
           }
         }
-        puts code_repo_change_json
-        expect { post :update, code_repo_change_json }.to change(project, :code_repo)
-        puts "code repo #{project.code_repo}"
-        puts response.response_code
+
+        expect do
+          put :update, code_repo_change_json
+          project.reload
+        end.to change(project, :code_repo)
+
         response.should be_success
       end
     end
