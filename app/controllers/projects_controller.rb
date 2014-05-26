@@ -30,7 +30,8 @@ class ProjectsController < ApplicationController
   def create
     unless can? :manage, :all
       redirect_to :back, :flash =>
-        { :warning => 'You do not have permission to view that page' }
+        { :warning => 'You do not have permission to view that page' },
+          :status  => :unauthorized
       return
     end
 
@@ -45,6 +46,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+
+    unless can? :edit, @project
+      redirect_to :back, :status => :unauthorized
+      return
+    end
+
     user = User.find_by_name(params[:project][:users])
     unless user.nil?
       old_size = @project.users.size
@@ -57,21 +64,23 @@ class ProjectsController < ApplicationController
       @users = @project.users
       respond_to do |format|
         format.js
+        format.all { render :text => 'It worked!' }
       end
       return
     end
     @users = @project.users
     respond_to do |format|
       old_icon = Digest::SHA1.hexdigest(@project.icon.read)
+
       if @project.update_attributes(project_params)
         @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read.to_s))
-        format.html
         format.json { respond_with_bip(@project) }
         format.js
+        format.all { render :text => 'Updated' }
       else
-        format.html { render :action => "edit" }
         format.json { respond_with_bip(@project) }
         format.js
+        format.all { render :action => "edit" }
       end
     end
   end
@@ -100,7 +109,13 @@ class ProjectsController < ApplicationController
 
 private
   def project_params
-    params.require(:project).permit(:subtitle, :name, :description, :code_repo,
-      :icon, :wiki_attributes => [:repo])
+    params.require(:project).permit(
+      :subtitle,
+      :name,
+      :description,
+      :icon,
+      :code_repo,
+      :wiki_attributes => [:repo]
+    )
   end
 end

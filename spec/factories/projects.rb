@@ -19,7 +19,8 @@ FactoryGirl.define do
     code_repo "HeisenBugDev/BlockMiner"
     description "Mine the blocks and stuff"
     subtitle "Something short and tasty"
-    # icon { fixture_file_upload("files/crystal_quantonium.png", "image/png") }
+
+    # Warning: icon will be a string, not a file!
     icon { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec',
       'factories', 'files', 'crystal_quantonium.png')) }
   end
