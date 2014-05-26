@@ -41,18 +41,38 @@ describe ProjectsController do
   end
 
   describe 'Editing a project without permissions' do
-    before do
-      sign_in user
-      request.env['HTTP_REFERER'] = 'where_i_came_from'
+    describe "update action" do
+      before do
+        sign_in user
+        request.env['HTTP_REFERER'] = 'where_i_came_from'
+      end
+
+      it 'should return unauthorized' do
+        edit_json = {
+          :id => project.id
+        }
+
+        put :update, edit_json
+        response.response_code.should eq(401)
+      end
     end
 
-    it 'should return unauthorized' do
-      edit_json = {
-        :id => project.id
-      }
+    describe "adding a user" do
+      before do
+        @other_user = FactoryGirl.create(:user, :name => 'Bill')
+      end
 
-      put :update, edit_json
-      response.response_code.should eq(401)
+      it 'should respond with success' do
+        user_add_json = {
+          :id => project.id,
+          :project => {
+            :users => [@other_user.name]
+          }
+        }
+
+        put :update, user_add_json
+        response.response_code.should eq(302)
+      end
     end
   end
 
@@ -77,6 +97,20 @@ describe ProjectsController do
 
         put :update, user_add_json
         response.should be_success
+      end
+    end
+
+    describe "removing a user" do
+      it "should remove the user" do
+        user_remove_json = {
+          :format => 'js',
+          :project_id => project.id,
+          :user_id => user.id
+        }
+
+        expect do
+          post :remove_user, user_remove_json
+        end.to change(project.users, :count).by(-1)
       end
     end
 
