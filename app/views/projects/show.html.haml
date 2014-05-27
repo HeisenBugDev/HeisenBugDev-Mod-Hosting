@@ -7,7 +7,7 @@
           - if can? :edit, @project
             %i#add-dev.general.fi-plus.circle-icon
           Developers
-          = link_to 'refresh wiki', project_refresh_wiki_path(@project, @project.wiki)
+          - # = link_to 'refresh wiki', project_refresh_wiki_path(@project, @project.wiki)
         #developers-list
           = render 'developers'
         - if can? :edit, @project
