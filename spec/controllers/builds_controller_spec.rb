@@ -35,6 +35,7 @@ describe BuildsController do
         response.response_code.should eq(404)
       end
     end
+
     describe "with an invalid project" do
       it "should say to come back later" do
         bad_name = { :project_name => "SwagCraft" }
@@ -44,7 +45,7 @@ describe BuildsController do
     end
 
     describe "with bad build parameters" do
-       describe "missing parameters" do
+      describe "missing parameters" do
         it "give me a missing parameters error" do
           name_only_json = { :project_name => 'BlockMiner' }
           post :create, name_only_json
