@@ -71,6 +71,10 @@ describe BuildsController do
         FactoryGirl.create(:build, :project => project, :version => version)
       end
 
+      before do
+        project.users << user
+      end
+
       it "should send me the upload info" do
         create_build_response = {
           :message => 'Build created.',
