@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe BuildsController do
-  json = { :project_name => 'BlockMiner',
-           :build_number => 13,
-           :minecraft_version => '1.9',
-           :mod_version => '0.8.3',
-           :branch => 'develop',
-           :commit => '23wyedfjkk' }
+  json = {
+    :project_name => 'BlockMiner',
+    :build_number => 13,
+    :minecraft_version => '1.9',
+    :mod_version => '0.8.3',
+    :branch => 'develop',
+    :commit => '23wyedfjkk'
+  }
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -61,14 +63,37 @@ describe BuildsController do
     end
 
     describe "with good build parameters" do
-      it "should upload the file" do
-        good_json = json.dup
-        good_json[:artifacts] = [{
-          :name => 'universal',
-          :file => 'universal.jar',
-          :file_data => 'ZGF0YWlzY29vbA=='
-        }]
-        expect{ post :create, good_json }.to change(Artifact, :count).by(1)
+      let(:project) { FactoryGirl.create(:project, :name => 'BaconCraft') }
+      let(:version) { FactoryGirl.create(:version, :project => project) }
+      let(:build) { FactoryGirl.create(:build, :project => project,
+        :version => version) }
+
+      before do
+        @create_build_response = {
+          :build_id => build.id
+        }
+      end
+
+      it "should send me the upload info" do
+        post :create, json
+        response.should == @create_build_response
+      end
+
+      it "should upload the artifact" do
+        upload_json = {
+          :build_id => build.id,
+          :file_name => 'QuantumCraft-universal-1.7.2-0.7.1.null.jar',
+          :file_type => 'universal',
+          :file => Rack::Test::UploadedFile.new(File.join(
+            Rails.root,
+            'spec',
+            'factories',
+            'files',
+            'universal.jar'
+          ))
+        }
+
+        expect { post :create, upload_json }.to change(Artifact, :count).by(1)
       end
     end
   end
