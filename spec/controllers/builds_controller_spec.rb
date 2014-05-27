@@ -65,8 +65,9 @@ describe BuildsController do
     describe "with good build parameters" do
       let(:project) { FactoryGirl.create(:project, :name => 'BaconCraft') }
       let(:version) { FactoryGirl.create(:version, :project => project) }
-      let(:build) { FactoryGirl.create(:build, :project => project,
-        :version => version) }
+      let(:build) do
+        FactoryGirl.create(:build, :project => project, :version => version) }
+      end
 
       before do
         @create_build_response = {
