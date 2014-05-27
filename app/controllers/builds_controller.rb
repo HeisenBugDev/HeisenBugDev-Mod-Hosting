@@ -104,12 +104,6 @@ private
   end
 
   def upload_artifacts(build)
-    params[:artifacts].each do |artifact|
-      io = PatchedStringIO.new(Base64.decode64(artifact[:file_data]))
-      io.original_filename = artifact[:file]
-      artifact = build.artifacts.build(:name => artifact[:name])
-      artifact.artifact = io
-      artifact.save
-    end
+
   end
 end
