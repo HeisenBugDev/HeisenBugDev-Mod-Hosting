@@ -4,23 +4,24 @@
     "minecraft_version": "1.7.2",
     "mod_version": "0.7.1",
     "branch": "17-update",
-    "commit": "93ee2bbdaf18f9563bbc50b93ee0831ee9e55725",
-    "artifacts": [
-        {
-            "name": "universal",
-            "file": "QuantumCraft-universal-1.7.2-0.7.1.null.jar"
-        },
-        {
-            "name": "deobf",
-            "file": "QuantumCraft-deobf-1.7.2-0.7.1.null.jar"
-        },
-        {
-            "name": "source",
-            "file": "QuantumCraft-src-1.7.2-0.7.1.null.jar"
-        },
-        {
-            "name": "javadoc",
-            "file": "QuantumCraft-deobf-1.7.2-0.7.1.null.jar"
-        }
-    ]
+    "commit": "93ee2bbdaf18f9563bbc50b93ee0831ee9e55725"
+    // "commit": "93ee2bbdaf18f9563bbc50b93ee0831ee9e55725",
+    // "artifacts": [
+    //     {
+    //         "name": "universal",
+    //         "file": "QuantumCraft-universal-1.7.2-0.7.1.null.jar"
+    //     },
+    //     {
+    //         "name": "deobf",
+    //         "file": "QuantumCraft-deobf-1.7.2-0.7.1.null.jar"
+    //     },
+    //     {
+    //         "name": "source",
+    //         "file": "QuantumCraft-src-1.7.2-0.7.1.null.jar"
+    //     },
+    //     {
+    //         "name": "javadoc",
+    //         "file": "QuantumCraft-deobf-1.7.2-0.7.1.null.jar"
+    //     }
+    // ]
 }

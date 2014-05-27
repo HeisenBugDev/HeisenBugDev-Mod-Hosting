@@ -66,25 +66,25 @@ describe BuildsController do
     describe "with good build parameters" do
       let(:project) { FactoryGirl.create(:project, :name => 'BaconCraft') }
       let(:version) { FactoryGirl.create(:version, :project => project) }
-      let(:build) do
-        FactoryGirl.create(:build, :project => project, :version => version) }
-      end
 
-      before do
-        @create_build_response = {
-          :build_id => build.id
-        }
+      let(:build) do
+        FactoryGirl.create(:build, :project => project, :version => version)
       end
 
       it "should send me the upload info" do
+        create_build_response = {
+          :message => 'Build created.',
+          :upload_path => "/builds/#{build.id + 1}"
+        }.to_json
+
         post :create, json
-        response.should == @create_build_response
+
+        response.body.should match(create_build_response)
       end
 
       it "should upload the artifact" do
         upload_json = {
-          :build_id => build.id,
-          :file_name => 'QuantumCraft-universal-1.7.2-0.7.1.null.jar',
+          :id => build.id,
           :file_type => 'universal',
           :file => Rack::Test::UploadedFile.new(File.join(
             Rails.root,
@@ -95,7 +95,7 @@ describe BuildsController do
           ))
         }
 
-        expect { post :create, upload_json }.to change(Artifact, :count).by(1)
+        expect { post :artifact_upload, upload_json }.to change(Artifact, :count).by(1)
       end
     end
   end

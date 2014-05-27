@@ -65,14 +65,31 @@ class BuildsController < ApplicationController
     build.version = version
 
     if build.save
-      render :text => "All is good."
+      render :json => {
+        :message => 'Build created.',
+        :upload_path => artifact_upload_path(build)
+      }
     else
       render :text => build.errors.full_messages,
              :status => :bad_request
-      return
     end
+  end
 
-    upload_artifacts(build)
+  def artifact_upload
+    @build = Build.find(params[:id])
+    artifact = @build.artifacts.build(:name => params[:file_type])
+    artifact.artifact = params[:file]
+
+    if artifact.save
+      render :json => {
+        :message => 'Artifact uploaded.'
+      }
+    else
+      render :json => {
+        :message => 'Unsuccessful save. Errors are listed.',
+        :errors => user.errors.full_messages
+      }
+    end
   end
 
   def download
@@ -101,9 +118,5 @@ class BuildsController < ApplicationController
 private
   def upload_params
     params.permit(:build_number, :commit, :minecraft_version, :branch)
-  end
-
-  def upload_artifacts(build)
-
   end
 end
