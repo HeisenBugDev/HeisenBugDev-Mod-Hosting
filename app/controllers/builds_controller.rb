@@ -77,6 +77,14 @@ class BuildsController < ApplicationController
 
   def artifact_upload
     @build = Build.find(params[:id])
+
+    unless can? :manage, @build
+      render :json => {
+        :message => 'You do not have permission to do that!'
+      }, :status => :unauthorized
+      return
+    end
+
     artifact = @build.artifacts.build(:name => params[:file_type])
     artifact.artifact = params[:file]
 
