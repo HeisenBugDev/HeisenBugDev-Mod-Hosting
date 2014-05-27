@@ -95,7 +95,8 @@ describe BuildsController do
           ))
         }
 
-        expect { post :artifact_upload, upload_json }.to change(Artifact, :count).by(1)
+        expect { post :artifact_upload, upload_json }.
+          to change(Artifact, :count).by(1)
       end
     end
   end
