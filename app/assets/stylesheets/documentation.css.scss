@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+#doc-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
 #doc-article {
   .doc-title {
     background-color: $bright-blue;
@@ -19,12 +24,30 @@
   h3 { font-size: 50px; }
   h4 { font-size: 45px; }
   h5 { font-size: 40px; }
-  p { font-size: 25px; }
+  p {
+    font-size: 25px;
+    code {
+      font-size: 15px;
+      background-color: #f0f0f0;
+      padding: 6px 5px 6px 5px;
+      color: black;
+    }
+  }
+
+  code { border-radius: 3px; }
+
+  pre {
+    code {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
 }
 
 #doc-sidebar {
+  position: absolute;
   background-color: $primary-blue;
-  height: 100%;
+  min-height: 100%;
   padding: 0;
 
   h1 {
