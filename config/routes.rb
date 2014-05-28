@@ -30,6 +30,9 @@ HeisenBugDev::Application.routes.draw do
 
   resources 'builds', :only => [:create]
 
+  get '/documentation', :to => 'documentation#index'
+  get '/documentation/:id', :to => 'documentation#show', :as => :documentation_show
+
   resources 'projects' do
     resources 'builds', :except => [:create] do
       resources 'artifacts', :only => [] do

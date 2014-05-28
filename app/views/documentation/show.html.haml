@@ -1,17 +1,17 @@
-= render 'layouts/mod_header', {:project => @article.wiki.project}
+%h1 HeisenBugDev Docs
 .row
   .large-4.columns
-    %ul.side-nav#wiki-nav
+    %ul
       - get_articles(@wiki).each do |article|
         %li
-          %h4= render article
+          %h4= render 'article', :article => article
       - get_categories(@wiki).each do |category|
         %li.wiki-nav
-          %h4= render category
+          %h4= render 'category', :category => category
   .large-8.columns
-    #wiki-article
+    #doc-article
       %h1
         #{@article.title.capitalize.split('_').join(' ') unless @article.title == 'home'}
-      #article-content
+      #doc-article-content
         :plain
           #{GitHub::Markdown.render(@article.body)}
