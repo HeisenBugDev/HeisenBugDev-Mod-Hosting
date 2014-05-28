@@ -27,8 +27,17 @@ class Wiki::RepoUpdateWorker
       start = File.join(repo_tmp_dir, 'projects')
       start_full = File.join(start, a_wiki.project.name)
 
+      a_wiki.articles.each do |article|
+        article.destroy
+      end
+
+      a_wiki.categories.each do |category|
+        category.destroy
+      end
+
       @files.each do |file|
         if file.start_with?(start_full) && File.file?(file)
+          full_file_path = file.dup
           file.sub!(start_full, '')
 
           wiki_attrs = a_wiki.repo.split('/')
@@ -48,7 +57,8 @@ class Wiki::RepoUpdateWorker
             :repo_name => wiki_attrs[1],
             :mod_name => a_wiki.project.name,
             :categories => category_folders,
-            :file => base_file
+            :file => base_file,
+            :file_path => full_file_path
           }
 
           case folders[0]
