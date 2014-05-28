@@ -14,9 +14,6 @@ HeisenBugDev::Application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
-
   namespace :projects do
     get :autocomplete_user_name
     delete :remove_user
