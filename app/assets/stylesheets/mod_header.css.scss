@@ -11,6 +11,10 @@
 
   .title {
     color: #B3B5BD;
+
+    &:hover {
+      color: #4a78b0;
+    }
   }
 
   h1, h3 {

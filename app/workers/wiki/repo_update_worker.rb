@@ -1,7 +1,9 @@
+require 'fileutils'
+
 class Wiki::RepoUpdateWorker
   include Sidekiq::Worker
 
-  def perform(wiki_id, hard_reload)
+  def perform(wiki_id)
     wiki = Wiki::Wiki.find(wiki_id)
     repo = wiki.repo
 
@@ -13,54 +15,60 @@ class Wiki::RepoUpdateWorker
     tmp_dir = File.join(Rails.root, 'tmp', 'wikis')
     repo_tmp_dir = File.join(tmp_dir, repo)
 
-    if File.directory?(repo_tmp_dir)
-      Dir.chdir(repo_tmp_dir) do
-        @old_commit = `git rev-parse HEAD`
-        `git pull`
-        @new_commit = `git rev-parse HEAD`
-        commits = "#{@old_commit.delete("\n")} #{@new_commit.delete("\n")}"
-        @files = `git diff --name-only --diff-filter=AM #{commits}`.split("\n")
-        @renamed_files = `git diff --name-only --diff-filter=R #{commits}`
-        .split("\n")
-        del_file_command = "git diff --diff-filter=D --name-only #{commits}"
-        @deleted_files = `#{del_file_command}`.split("\n")
-
-        [@files, @deleted_files].each do |array|
-          array.map! do |file|
-            File.absolute_path(file)
-          end
-        end
-      end
-    else
-      FileUtils.mkpath(tmp_dir)
-      Dir.chdir(tmp_dir) do
-        `git clone https://github.com/#{repo}.git #{repo}`
-      end
-      @files = Dir["#{repo_tmp_dir}/**/*"]
+    FileUtils.rm_rf(repo_tmp_dir)
+    FileUtils.mkpath(tmp_dir)
+    Dir.chdir(tmp_dir) do
+      `git clone --depth 1 https://github.com/#{repo}.git #{repo}`
     end
 
-    if hard_reload
-      @files = Dir["#{repo_tmp_dir}/**/*"]
-    end
+    @files = Dir["#{repo_tmp_dir}/**/*"]
 
     @wikis.each do |a_wiki|
-      start = File.join(repo_tmp_dir, 'projects', a_wiki.project.name)
+      start = File.join(repo_tmp_dir, 'projects')
+      start_full = File.join(start, a_wiki.project.name)
+
+      a_wiki.articles.each do |article|
+        article.destroy
+      end
+
+      a_wiki.categories.each do |category|
+        category.destroy
+      end
 
       @files.each do |file|
-        if file.start_with?(start) && File.file?(file)
-          folder_search = file.sub(start, '')
-          # Stuff like v12.3.0 or b233
-          Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id, folder_search)
-        end
-      end
-    end
+        if file.start_with?(start_full) && File.file?(file)
+          full_file_path = file.dup
+          file.sub!(start_full, '')
 
-    unless @deleted_files.nil?
-      @deleted_files.each do |file|
-        if file.start_with?(start)
-          folder_search = file.sub(start, '')
-          Wiki::ArticleUpdateWorker.perform_async(file, a_wiki.id,
-            folder_search, true)
+          wiki_attrs = a_wiki.repo.split('/')
+          base_file = file.reverse.split('/')[0].reverse
+          folders = file.sub(base_file, '').sub('/', '').split('/')
+
+          if !folders[0].nil? && folders[0].match(/^(v|b).*/)
+            category_folders = folders.drop(1)
+          else
+            category_folders = folders
+          end
+
+          file_params = {
+            :wiki_id => wiki.id,
+            :prefix => start,
+            :repo_owner => wiki_attrs[0],
+            :repo_name => wiki_attrs[1],
+            :mod_name => a_wiki.project.name,
+            :categories => category_folders,
+            :file => base_file,
+            :file_path => full_file_path
+          }
+
+          case folders[0]
+          when /^v.*/
+            file_params[:version] = folders[0][1..-1]
+          when /^b.*/
+            file_params[:build] = folders[0][1..-1]
+          end
+
+          Wiki::ArticleUpdateWorker.perform_async(file_params)
         end
       end
     end
