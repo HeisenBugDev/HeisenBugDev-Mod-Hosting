@@ -5,7 +5,6 @@ class Wiki::ArticleUpdateWorker
 
   def perform(file_params)
     file_params.symbolize_keys!
-    puts file_params
     file_data = File.read(file_params[:file_path])
     wiki = Wiki::Wiki.find(file_params[:wiki_id])
 
