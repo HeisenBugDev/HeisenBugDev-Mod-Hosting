@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  title       :string(255)
-#  body        :string(255)
+#  body        :text
 #  wiki_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
