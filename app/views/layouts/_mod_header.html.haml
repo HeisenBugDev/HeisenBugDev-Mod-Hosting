@@ -21,6 +21,6 @@
       %h1.title
         = link_to "#{project.name} - #{project.downloads} Downloads", project_path(project), :class => 'title'
         = link_to project_wiki_path(project, project.wiki) do
-          = image_tag 'wiki-favicon-white.svg', :class => 'wiki-icon'
+          = image_tag 'wiki-favicon-white.svg', :class => 'wiki-icon', 'data-tooltip' => true, 'title' => 'Wiki'
       %h3.subtitle.show-for-medium-up
         = best_in_place_if can?(:modify, project), project, :subtitle, :classes => ['best_in_place_direct']
