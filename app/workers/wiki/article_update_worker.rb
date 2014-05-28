@@ -36,7 +36,10 @@ class Wiki::ArticleUpdateWorker
     end
 
     article = wiki.articles.find_or_initialize_by(:title => title,
-      :build_id => version_id, :version_id => build_id, :category_id => cat_id)
+                                                  :build_id => version_id,
+                                                  :version_id => build_id,
+                                                  :category_id => cat_id)
+
     article.update_attributes(:body => file_data.to_s)
     article.save
   end

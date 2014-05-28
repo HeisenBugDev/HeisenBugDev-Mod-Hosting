@@ -42,7 +42,7 @@ class Wiki::RepoUpdateWorker
 
           wiki_attrs = a_wiki.repo.split('/')
           base_file = file.reverse.split('/')[0].reverse
-          folders = file.sub(base_file, '').sub('/','').split('/')
+          folders = file.sub(base_file, '').sub('/', '').split('/')
 
           if !folders[0].nil? && folders[0].match(/^(v|b).*/)
             category_folders = folders.drop(1)
