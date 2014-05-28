@@ -1,9 +1,7 @@
-$blue-bg: #3a5875;
-$bright-gray: #E9E9E9;
-$orange-bg: #98642f;
+@import 'variables';
 
 .hero {
-  background-color: $blue-bg;
+  background-color: $light-blue;
 }
 
 .hero-title {
@@ -13,7 +11,7 @@ $orange-bg: #98642f;
 
 .hero-subtitle {
   margin-top: -3em;
-  color: $bright-gray;
+  color: $almost-white;
 }
 
 .hero-image {
@@ -24,33 +22,33 @@ $orange-bg: #98642f;
 }
 
 .primary-row {
-  background-color: $orange-bg;
+  background-color: $primary-orange;
 
   .blended-link {
     color: inherit;
     text-decoration:underline;
 
     &:hover {
-      color: $blue-bg;
+      color: $light-blue;
     }
   }
 }
 
 .secondary-row {
-  background-color: $blue-bg;
+  background-color: $light-blue;
 
   .blended-link {
     color: inherit;
     text-decoration:underline;
 
     &:hover {
-      color: $orange-bg;
+      color: $primary-orange;
     }
   }
 }
 
 .row-header {
-  color: $bright-gray;
+  color: $almost-white;
 }
 
 .primary-row .row-subheader {
@@ -67,9 +65,9 @@ $orange-bg: #98642f;
 }
 
 .feature-subtitle {
-  color: $bright-gray;
+  color: $almost-white;
 }
 
 .feature-title {
-  color: $bright-gray;
+  color: $almost-white;
 }

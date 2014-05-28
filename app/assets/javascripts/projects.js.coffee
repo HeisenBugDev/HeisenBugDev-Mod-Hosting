@@ -29,6 +29,6 @@ $(document).foundation('reveal', {animation_speed: 100})
 $ ->
   $(document).on 'ready page:load', ->
     $('span[class$=-repo]').parent().mouseover ->
-      $(this).width($(this).find('span').width() + 20) if $(this).find('span').width() > 200
+      $(this).width($(this).find('span').width() + 20) if $(this).find('span').width() > 220
     $('span[class$=-repo]').parent().mouseout ->
       $(this).css('width', '') if $(this).width() > 220
