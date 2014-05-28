@@ -18,7 +18,7 @@ class Wiki::RepoUpdateWorker
     FileUtils.rm_rf(repo_tmp_dir)
     FileUtils.mkpath(tmp_dir)
     Dir.chdir(tmp_dir) do
-      `git clone https://github.com/#{repo}.git #{repo}`
+      `git clone --depth 1 https://github.com/#{repo}.git #{repo}`
     end
 
     @files = Dir["#{repo_tmp_dir}/**/*"]
