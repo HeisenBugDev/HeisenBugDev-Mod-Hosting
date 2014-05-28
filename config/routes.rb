@@ -23,12 +23,13 @@ HeisenBugDev::Application.routes.draw do
   end
 
   resources 'rasterizer', :only => [:create]
-  resources 'artifacts',  :only => [:create]
 
   resources 'users'
   resources 'flashes',    :only => [:index]
 
   resources 'builds', :only => [:create]
+
+  post '/builds/:id', :to => 'builds#artifact_upload', :as => :artifact_upload
 
   resources 'projects' do
     resources 'builds', :except => [:create] do
