@@ -22,6 +22,7 @@ class Wiki::RepoUpdateWorker
     end
 
     @files = Dir["#{repo_tmp_dir}/**/*"]
+    puts "files array #{@files}"
 
     @wikis.each do |a_wiki|
       start = File.join(repo_tmp_dir, 'projects')
@@ -36,6 +37,7 @@ class Wiki::RepoUpdateWorker
       end
 
       @files.each do |file|
+        puts "a single file #{file}"
         if file.start_with?(start_full) && File.file?(file)
           full_file_path = file.dup
           file.sub!(start_full, '')
@@ -67,7 +69,7 @@ class Wiki::RepoUpdateWorker
           when /^b.*/
             file_params[:build] = folders[0][1..-1]
           end
-
+          puts "now we're sending params #{file_params}"
           article_update(file_params)
         end
       end
@@ -78,6 +80,8 @@ class Wiki::RepoUpdateWorker
     file_params.symbolize_keys!
     file_data = File.read(file_params[:file_path])
     wiki = Wiki::Wiki.find(file_params[:wiki_id])
+
+    puts "just read in the data: #{file_data}"
 
     title = file_params[:file]
     title.scan(/(\.\w*)/).each do |match|
@@ -95,7 +99,7 @@ class Wiki::RepoUpdateWorker
     if category then cat_id = category.id else cat_id = nil end
 
     version_id = build_id = nil
-
+    puts "before the v/b switch"
     if file_params[:version]
       version = wiki.project.versions.find_by_version(file_params[:version])
       version_id = version.id unless version.nil?
@@ -113,5 +117,6 @@ class Wiki::RepoUpdateWorker
 
     article.update_attributes(:body => file_data.to_s)
     article.save
+    puts "saved article"
   end
 end
