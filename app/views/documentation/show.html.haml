@@ -1,17 +1,17 @@
-%h1 HeisenBugDev Docs
-.row
-  .large-4.columns
+.large-4.columns#doc-sidebar
+  %h1.doc-title HeisenBugDev
+  #doc-list
     %ul
       - get_articles(@wiki).each do |article|
         %li
-          %h4= render 'article', :article => article
+          = render 'article', :article => article
       - get_categories(@wiki).each do |category|
         %li.wiki-nav
-          %h4= render 'category', :category => category
-  .large-8.columns
-    #doc-article
-      %h1
-        #{@article.title.capitalize.split('_').join(' ') unless @article.title == 'home'}
-      #doc-article-content
-        :plain
-          #{GitHub::Markdown.render(@article.body)}
+          = render 'category', :category => category
+.large-8.columns#doc-article
+  %h1.doc-title\ \
+  %h1
+    #{@article.title.capitalize.split('_').join(' ') unless @article.title == 'home'}
+  #doc-article-content
+    :plain
+      #{GitHub::Markdown.render(@article.body)}
