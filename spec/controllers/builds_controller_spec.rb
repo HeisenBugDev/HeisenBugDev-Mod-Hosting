@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe BuildsController do
-  json = { :project_name => 'BlockMiner',
-           :build_number => 13,
-           :minecraft_version => '1.9',
-           :mod_version => '0.8.3',
-           :branch => 'develop',
-           :commit => '23wyedfjkk' }
+  json = {
+    :project_name => 'BlockMiner',
+    :build_number => 13,
+    :minecraft_version => '1.9',
+    :mod_version => '0.8.3',
+    :branch => 'develop',
+    :commit => '23wyedfjkk'
+  }
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -33,6 +35,7 @@ describe BuildsController do
         response.response_code.should eq(404)
       end
     end
+
     describe "with an invalid project" do
       it "should say to come back later" do
         bad_name = { :project_name => "SwagCraft" }
@@ -42,7 +45,7 @@ describe BuildsController do
     end
 
     describe "with bad build parameters" do
-       describe "missing parameters" do
+      describe "missing parameters" do
         it "give me a missing parameters error" do
           name_only_json = { :project_name => 'BlockMiner' }
           post :create, name_only_json
@@ -61,14 +64,43 @@ describe BuildsController do
     end
 
     describe "with good build parameters" do
-      it "should upload the file" do
-        good_json = json.dup
-        good_json[:artifacts] = [{
-          :name => 'universal',
-          :file => 'universal.jar',
-          :file_data => 'ZGF0YWlzY29vbA=='
-        }]
-        expect{ post :create, good_json }.to change(Artifact, :count).by(1)
+      let(:project) { FactoryGirl.create(:project, :name => 'BaconCraft') }
+      let(:version) { FactoryGirl.create(:version, :project => project) }
+
+      let(:build) do
+        FactoryGirl.create(:build, :project => project, :version => version)
+      end
+
+      before do
+        project.users << user
+      end
+
+      it "should send me the upload info" do
+        create_build_response = {
+          :message => 'Build created.',
+          :upload_path => "/builds/#{build.id + 1}"
+        }.to_json
+
+        post :create, json
+
+        response.body.should match(create_build_response)
+      end
+
+      it "should upload the artifact" do
+        upload_json = {
+          :id => build.id,
+          :file_type => 'universal',
+          :file => Rack::Test::UploadedFile.new(File.join(
+            Rails.root,
+            'spec',
+            'factories',
+            'files',
+            'universal.jar'
+          ))
+        }
+
+        expect { post :artifact_upload, upload_json }.
+          to change(Artifact, :count).by(1)
       end
     end
   end

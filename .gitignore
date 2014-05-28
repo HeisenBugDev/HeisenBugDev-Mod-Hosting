@@ -84,3 +84,6 @@ pickle-email-*.html
 .env
 .powenv
 .secret
+
+# Sublimetext fancyness
+*.sublime-*

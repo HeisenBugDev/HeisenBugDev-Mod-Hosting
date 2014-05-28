@@ -23,7 +23,6 @@ HeisenBugDev::Application.routes.draw do
   end
 
   resources 'rasterizer', :only => [:create]
-  resources 'artifacts',  :only => [:create]
 
   resources 'users'
   resources 'flashes',    :only => [:index]
@@ -32,6 +31,7 @@ HeisenBugDev::Application.routes.draw do
 
   get '/documentation', :to => 'documentation#index'
   get '/documentation/:id', :to => 'documentation#show', :as => :documentation_show
+  post '/builds/:id', :to => 'builds#artifact_upload', :as => :artifact_upload
 
   resources 'projects' do
     resources 'builds', :except => [:create] do
