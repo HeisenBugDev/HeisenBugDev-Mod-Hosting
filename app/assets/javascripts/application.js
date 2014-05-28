@@ -22,3 +22,10 @@
 $(document).on('ready page:load', function () {
   jQuery(".best_in_place").best_in_place();
 });
+
+$(document).on('page:change',  function() {
+  $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+});
+$(document).on('page:restore', function() {
+  $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+});

@@ -1,0 +1,96 @@
+// Place all the styles related to the Documentation controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+#doc-wrapper {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+#doc-article {
+  .doc-title {
+    background-color: $bright-blue;
+    color: transparent;
+  }
+
+  padding: 0px;
+}
+
+#doc-article-content {
+  padding: 20px;
+  h1 { font-size: 60px; }
+  h2 { font-size: 55px; }
+  h3 { font-size: 50px; }
+  h4 { font-size: 45px; }
+  h5 { font-size: 40px; }
+  p {
+    font-size: 25px;
+    code {
+      font-size: 15px;
+      background-color: #f0f0f0;
+      padding: 6px 5px 6px 5px;
+      color: black;
+    }
+  }
+
+  code { border-radius: 3px; }
+
+  pre {
+    code {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+#doc-sidebar {
+  position: absolute;
+  background-color: $primary-blue;
+  min-height: 100%;
+  padding: 0;
+
+  h1 {
+    background-color: $dark-blue;
+    padding-left: 35%;
+  }
+
+  #doc-list {
+    width: 100%;
+    padding-left: 30%;
+    padding-top: 20px;
+
+    ul {
+      list-style-type: none;
+      font-size: 25px;
+      color: $almost-white;
+
+      a {
+        color: $almost-white;
+        display: inline-block;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: 300;
+        width: 100%;
+
+        &:hover{
+          background-color: $very-dark-blue;
+        }
+      }
+
+      .category {
+        font-weight: 800;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.doc-title {
+  color: white;
+  margin: -1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

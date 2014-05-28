@@ -2,16 +2,16 @@
 .row
   .large-4.columns
     %ul.side-nav#wiki-nav
-      - get_articles.each do |article|
+      - get_articles(@wiki).each do |article|
         %li
           %h4= render article
-      - get_categories.each do |category|
+      - get_categories(@wiki).each do |category|
         %li.wiki-nav
           %h4= render category
   .large-8.columns
     #wiki-article
       %h1
-        #{@article.title.capitalize}
+        #{@article.title.capitalize.split('_').join(' ') unless @article.title == 'home'}
       #article-content
         :plain
           #{GitHub::Markdown.render(@article.body)}

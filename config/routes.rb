@@ -29,6 +29,8 @@ HeisenBugDev::Application.routes.draw do
 
   resources 'builds', :only => [:create]
 
+  get '/documentation', :to => 'documentation#index'
+  get '/documentation/:id', :to => 'documentation#show', :as => :documentation_show
   post '/builds/:id', :to => 'builds#artifact_upload', :as => :artifact_upload
 
   resources 'projects' do
