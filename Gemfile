@@ -28,6 +28,8 @@ gem 'gravatar_image_tag'
 gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 gem 'remotipart'
 gem 'google-analytics-turbolinks'
+gem 'ember-rails'
+gem 'ember-source', '~> 1.5.1.1'
 
 group :production do
   gem 'pg'

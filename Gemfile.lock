@@ -18,6 +18,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.3)
       activesupport (= 4.0.3)
       builder (~> 3.1.0)
@@ -40,6 +42,10 @@ GEM
     arel (4.0.2)
     ast (2.0.0)
     awesome_print (1.2.0)
+    barber (0.4.2)
+      ember-source
+      execjs
+      handlebars-source
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -122,6 +128,19 @@ GEM
     email_spec (1.5.0)
       launchy (~> 2.1)
       mail (~> 2.2)
+    ember-data-source (1.0.0.beta.7)
+      ember-source
+    ember-rails (0.15.0)
+      active_model_serializers
+      barber (>= 0.4.1)
+      ember-data-source (>= 1.0.0.beta.5)
+      ember-source (>= 1.1.0)
+      execjs (>= 1.2)
+      handlebars-source (> 1.0.0)
+      jquery-rails (>= 1.0.17)
+      railties (>= 3.1)
+    ember-source (1.5.1.1)
+      handlebars-source (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.33.0)
@@ -201,6 +220,7 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
+    handlebars-source (1.3.0)
     hashie (2.1.1)
     hike (1.2.3)
     hirb (0.7.1)
@@ -456,6 +476,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   email_spec
+  ember-rails
+  ember-source (~> 1.5.1.1)
   factory_girl_rails
   fog (~> 1.22.0)
   foundation-icons-sass-rails
