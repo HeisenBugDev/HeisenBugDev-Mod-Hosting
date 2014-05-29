@@ -10,7 +10,7 @@
 #  updated_at  :datetime
 #  build_id    :integer
 #  version_id  :integer
-#  category_id :string(255)
+#  category_id :integer
 #
 # Indexes
 #
