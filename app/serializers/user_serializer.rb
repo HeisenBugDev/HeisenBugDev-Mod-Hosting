@@ -3,16 +3,20 @@ class UserSerializer < ActiveModel::Serializer
     :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
     :last_sign_in_ip, :created_at, :updated_at
 
-  def filter(keys)
-    unless can? :edit, object
-      keys - [:email, :sign_in_count, :current_sign_in_at, :last_sign_in_at,
-        :current_sign_in_ip, :last_sign_in_ip]
+  def attributes
+    hash = super
+    remove_list = []
+    unless Ability.new(scope).can?(:edit, object)
+      (remove_list << [
+        :email, :sign_in_count, :current_sign_in_at,
+        :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip
+      ]).flatten!
     end
 
     unless scope == object
-      keys - [:authentication_token]
+      remove_list << :authentication_token
     end
 
-    keys
+    hash.except(*remove_list)
   end
 end
