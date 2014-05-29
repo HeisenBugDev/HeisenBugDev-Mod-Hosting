@@ -461,6 +461,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   annotate (~> 2.6.2)
   best_in_place!
   better_errors

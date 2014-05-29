@@ -30,6 +30,7 @@ gem 'remotipart'
 gem 'google-analytics-turbolinks'
 gem 'ember-rails'
 gem 'ember-source', '~> 1.5.1.1'
+gem "active_model_serializers"
 
 group :production do
   gem 'pg'
