@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529000320) do
+ActiveRecord::Schema.define(version: 20140529001104) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20140529000320) do
     t.datetime "updated_at"
     t.integer  "build_id"
     t.integer  "version_id"
-    t.integer  "category_id", limit: 255
+    t.integer  "category_id"
   end
 
   add_index "wiki_articles", ["build_id"], name: "index_wiki_articles_on_build_id"
