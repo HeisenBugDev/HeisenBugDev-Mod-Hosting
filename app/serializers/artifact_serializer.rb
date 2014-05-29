@@ -3,6 +3,8 @@ class ArtifactSerializer < ActiveModel::Serializer
     {:url => object.artifact.url}
   end
 
-  attributes :id, :name, :file, :build_id, :created_at, :updated_at,
+  attributes :id, :name, :file, :created_at, :updated_at,
     :downloads, :file_size
+
+  has_one :build, :embed => :ids
 end

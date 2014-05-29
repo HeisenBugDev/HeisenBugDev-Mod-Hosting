@@ -3,4 +3,6 @@ class BuildSerializer < ActiveModel::Serializer
     :updated_at, :branch, :build_state
   has_one :project, :embed => :ids
   has_one :version, :embed => :ids
+  has_many :artifacts, :embed => :ids
+  has_many :articles, :embed => :ids
 end
