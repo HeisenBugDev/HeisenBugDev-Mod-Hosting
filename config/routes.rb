@@ -48,4 +48,6 @@ HeisenBugDev::Application.routes.draw do
       get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
     end
   end
+
+  get '*path', to: 'home#index'
 end
