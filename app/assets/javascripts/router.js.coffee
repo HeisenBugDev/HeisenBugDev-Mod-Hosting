@@ -1,5 +1,8 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 HeisenBugDev.Router.map ()->
-  # @resource('posts')
+  @route "home"
 
+HeisenBugDev.IndexRoute = Ember.Route.extend
+  beforeModel: (transition) ->
+    @transitionTo 'home'
