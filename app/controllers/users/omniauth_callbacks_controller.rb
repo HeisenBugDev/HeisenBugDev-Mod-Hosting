@@ -5,9 +5,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_github_oauth(request.env["omniauth.auth"])
     if @user.save
       # this will throw if @user is not activated
-      sign_in_and_redirect @user, :event => :authentication
+      params[:omni] = request.env["omniauth.auth"]
+      session[:user_id] = @user.id
+      notice = "been signed in!"
+      # redirect_to root_path
+      # _and_redirect @user, :event => :authentication
     else
-      redirect_to root_path, :flash => { :warning => "Could not save user." }
+      # redirect_to root_path, :flash => { :warning => "Could not save user." }
+      render :text => 'ohno'
     end
   end
 end

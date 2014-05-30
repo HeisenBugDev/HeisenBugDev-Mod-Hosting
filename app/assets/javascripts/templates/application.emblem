@@ -1,0 +1,9 @@
+header
+  if userSignedIn
+    link-to "user" signedInUser | Welcome {{signedInUser.name}}
+    a click="signOut" href="sign-out" Sign out
+  else
+    link-to "sign-in" | Sign in
+
+main
+  = outlet

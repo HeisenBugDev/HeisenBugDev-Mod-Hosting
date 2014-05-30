@@ -1,0 +1,1 @@
+HeisenBugDev.ApplicationRoute = Ember.Route.extend()
