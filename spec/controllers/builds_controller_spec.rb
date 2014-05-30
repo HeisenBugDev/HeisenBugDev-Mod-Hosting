@@ -78,7 +78,7 @@ describe BuildsController do
       it "should send me the upload info" do
         create_build_response = {
           :message => 'Build created.',
-          :upload_path => "/builds/#{build.id + 1}"
+          :upload_path => "/api/builds/#{build.id + 1}"
         }.to_json
 
         post :create, json
