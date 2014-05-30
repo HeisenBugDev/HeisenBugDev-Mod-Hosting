@@ -3,7 +3,7 @@ HeisenBugDev::Application.routes.draw do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
 
-  root 'home#home'
+  root 'home#index'
 
   namespace :users do
     put 'update_token', :to => 'token#update'
