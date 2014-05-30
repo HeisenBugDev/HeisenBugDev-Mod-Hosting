@@ -2,9 +2,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :beta_logged_in
 
   def github
+    puts current_user.name
     @user = User.find_for_github_oauth(request.env["omniauth.auth"])
     if @user.save
       # this will throw if @user is not activated
+      sign_in @user, :event => :authentication
+      @user.save
       params[:omni] = request.env["omniauth.auth"]
       session[:user_id] = @user.id
       notice = "been signed in!"

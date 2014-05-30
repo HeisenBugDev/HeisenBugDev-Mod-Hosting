@@ -3,7 +3,7 @@ h1 Users
 #users
   each user in model
     h4
-      link-to user
+      link-to "user"
         = user.name
   else
     h2 No users yet

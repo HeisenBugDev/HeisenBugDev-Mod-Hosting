@@ -1,4 +1,6 @@
 # For more information see: http://emberjs.com/guides/routing/
+# HeisenBugDev.Router.reopen
+#   location: 'history'
 
 HeisenBugDev.Router.map ()->
   @route "home"
@@ -7,6 +9,7 @@ HeisenBugDev.Router.map ()->
   @route 'user', path: '/users/:user_id'
 
   @route 'sign-in'
+  @route 'sign-out', path: '/users/sign_out/:user_id'
   @route 'oauth_callbacks', path: '/auth/:provider/callback'
   @route 'missing', path: '*:'
 

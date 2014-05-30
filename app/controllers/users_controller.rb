@@ -6,5 +6,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    render :json => @users
   end
 end
