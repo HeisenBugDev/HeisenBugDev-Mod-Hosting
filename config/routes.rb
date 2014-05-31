@@ -6,13 +6,13 @@ HeisenBugDev::Application.routes.draw do
   root 'home#index'
 
   scope :api do
-    namespace :users do
-      put 'update_token', :to => 'token#update'
-    end
-
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
       get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
       delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+    end
+
+    namespace :users do
+      put 'update_token', :to => 'token#update'
     end
 
     namespace :projects do
