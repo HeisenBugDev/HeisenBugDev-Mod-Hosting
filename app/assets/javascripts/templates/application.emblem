@@ -5,6 +5,7 @@
 /       link-to "sign-out" |  Sign out
 /   else
 /     link-to "sign-in" | Sign in
-
+header
+  a click="signOut" href="#" Sign Out
 main
   = outlet

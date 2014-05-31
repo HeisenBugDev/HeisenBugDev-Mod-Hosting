@@ -7,17 +7,19 @@ HeisenBugDev::Application.routes.draw do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
 
-  devise_for :users, controllers: { sessions: 'ember_devise_simple_auth/sessions' }, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
-    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  end
-
   root 'home#index'
 
   scope :api do
     namespace :users do
       put 'update_token', :to => 'token#update'
     end
+
+    devise_for :users, controllers: { sessions: 'ember_devise_simple_auth/sessions' }, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+      get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+    end
+
+    resources 'users'
 
     namespace :projects do
       get :autocomplete_user_name
@@ -26,7 +28,6 @@ HeisenBugDev::Application.routes.draw do
 
     resources 'rasterizer', :only => [:create]
 
-    resources 'users'
     resources 'flashes',    :only => [:index]
 
     resources 'builds', :only => [:create]

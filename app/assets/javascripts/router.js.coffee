@@ -7,7 +7,7 @@ HeisenBugDev.Router.map ()->
   @resource 'users', path: '/users', ->
     @route 'edit', path: 'edit'
   @route 'user', path: '/users/:user_id'
-  @route 'omniauth_callbacks', path: '/users/auth/:provider/callback'
+  @route 'omniauth_callbacks', path: '/api/users/auth/:provider/callback'
   @route 'missing', path: '*:'
 
 HeisenBugDev.MissingRoute = Ember.Route.extend
@@ -16,4 +16,4 @@ HeisenBugDev.MissingRoute = Ember.Route.extend
 
 HeisenBugDev.OmniAuthCallbacks = Ember.Route.extend
   redirect: ->
-    @transitionTo 'application'
+    @transitionTo 'home'

@@ -57,8 +57,8 @@ define("ember-devise-simple-auth/configuration",
     "use strict";
     var defaults = {
       signInPath: "/sign-in",
-      deviseSignInPath: "/users/sign_in",
-      deviseSignOutPath: "/users/sign_out",
+      deviseSignInPath: "/api/users/sign_in",
+      deviseSignOutPath: "/api/users/sign_out",
       userModelType: "user",
       currentSessionPath: "/sessions/current"
     };
