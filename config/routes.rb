@@ -1,16 +1,20 @@
 HeisenBugDev::Application.routes.draw do
+  devise_scope :user do
+    get "/sessions/current" => "ember_devise_simple_auth/sessions#show"
+  end
+
   constraints subdomain: 'www' do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
+  end
+
+  devise_for :users, controllers: { sessions: 'ember_devise_simple_auth/sessions' }, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
   root 'home#index'
 
   scope :api do
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
-      get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-    end
-
     namespace :users do
       put 'update_token', :to => 'token#update'
     end

@@ -32,6 +32,7 @@ gem 'ember-rails'
 gem 'ember-source', '~> 1.5.1.1'
 gem "active_model_serializers"
 gem 'emblem-rails'
+gem "ember_devise_simple_auth"
 
 group :production do
   gem 'pg'
