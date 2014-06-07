@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   BETA_USERS = %w(hunterboerner forkk sammko k2b6s9j eydamos abrarsyed jadar
     trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
     endershadow HotelCalifornia thejereman13 XixeBombilla jakerm2002
-    modmuss50 DylanGore
+    modmuss50 DylanGore penne12
     ).map(&:downcase)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
