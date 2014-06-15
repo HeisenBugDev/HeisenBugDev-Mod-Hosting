@@ -5,7 +5,7 @@ HeisenBugDev Website
 
 This is the website repo for HeisenBugDev. Which will be going live very soon. If you are a developer, please create an issue to the right so we can get you ready to switch to the system.
 
-Beta user sign in: http://heisenbugdev.com/users/auth/github
+# [Please sign up for the newletter to get info about new things!](http://eepurl.com/WZC3j)
 
 # Got a question? Create a GitHub issue!
 
