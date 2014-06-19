@@ -1,8 +1,9 @@
-.large-12.columns.hero
-  .row
-    %h1.huge-text.text-center.hero-title HeisenBugDev
-    = image_tag 'hero_screenshot.png', :class => 'hero-image'
-    %h2.hero-subtitle.text-center A Minecraft mod resource hub built for the user and developer in mind.
+- provide(:navbar_status, 'off')
+.large-12.columns.hero.secondary-row
+  .row.top-row
+    -# %h1.huge-text.text-center.hero-title HeisenBugDev
+    = image_tag 'heisenbugdev_logo.png', :class => 'text-center heisenbugdev-logo hero-title'
+    %h2.hero-subtitle.text-center A Minecraft mod resource hub built for the user and developer.
 .large-12.columns.primary-row
   .row
     %h1.text-center.row-header No more waiting for a new release.
@@ -60,5 +61,18 @@
   .row
     %h1.text-center.row-header What are you waiting for?
     %h1.row-subheader.text-center
-      %a.blended-link{:href => "https://github.com/HeisenBugDev/HeisenBugDev/issues/new"} Request beta access today!
-    %h4.text-center Note: GitHub account required.
+      %a.blended-link{:href => "http://discourse.heisenbugdev.com/t/reply-for-beta-access/26"} Request beta access today!
+    %h4.row-subheader.text-center Note: GitHub account required.
+.large-12.columns.primary-row
+  .row.text-center
+    %h1 Already added to beta list?
+    - if user_signed_in?
+      %h2.row-subheader
+        = link_to "Welcome #{current_user.name}", edit_user_registration_path
+      %h2.row-subheader
+        = link_to 'Sign out', destroy_user_session_path, :method => 'delete', :class => 'item'
+      %h2.row-subheader
+        = link_to "Mods", projects_path
+    - else
+      %h2.row-subheader
+        = link_to "Sign in with GitHub", user_omniauth_authorize_path(:github)

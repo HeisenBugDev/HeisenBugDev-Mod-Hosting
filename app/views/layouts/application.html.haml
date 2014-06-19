@@ -21,7 +21,8 @@
     ga('create', 'UA-46421630-1', 'heisenbugdev.com');
     ga('send', 'pageview');
   %body
-    = render 'layouts/navigation'
+    - unless yield(:navbar_status) == 'off'
+      = render 'layouts/navigation'
     %main{:role => "main"}
       #flash-message
       = yield
