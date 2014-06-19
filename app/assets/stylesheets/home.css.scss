@@ -26,13 +26,12 @@
 
 .primary-row {
   background-color: $primary-blue;
-
-  .blended-link {
-    color: inherit;
+  a {
+    color: $primary-orange;
     text-decoration:underline;
 
     &:hover {
-      color: $primary-orange;
+      color: $almost-white;
     }
   }
 }
@@ -40,8 +39,8 @@
 .secondary-row {
   background-color: $primary-orange;
 
-  .blended-link {
-    color: inherit;
+  a {
+    color: $almost-white;
     text-decoration:underline;
 
     &:hover {
@@ -61,14 +60,6 @@
 
 .primary-row .row-subheader {
   color: black;
-
-  a {
-    color: $primary-orange;
-
-    &:hover {
-      color: $almost-white;
-    }
-  }
 }
 
 .secondary-row .row-subheader {

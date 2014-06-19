@@ -38,7 +38,7 @@
   .row
     %h1.text-center.row-header For the community by the community.
     %h3.row-subheader.text-center
-      %a.blended-link{:href => "https://github.com/HeisenBugDev/HeisenBugDev"} Open Source
+      %a{:href => "https://github.com/HeisenBugDev/HeisenBugDev"} Open Source
       so anyone can contribute and make it better.
   .row
     .large-3.columns.text-center
@@ -61,11 +61,15 @@
   .row
     %h1.text-center.row-header What are you waiting for?
     %h1.row-subheader.text-center
-      %a.blended-link{:href => "http://discourse.heisenbugdev.com/t/reply-for-beta-access/26"} Request beta access today!
+      %a{:href => "http://discourse.heisenbugdev.com/t/reply-for-beta-access/26"} Request beta access today!
     %h4.row-subheader.text-center Note: GitHub account required.
 .large-12.columns.primary-row
   .row.text-center
-    %h1 Already added to beta list?
+    %h1
+      %a{:href => "http://discourse.heisenbugdev.com"} Until it's ready, talk about it on the forums.
+.large-12.columns.secondary-row
+  .row.text-center
+    %h1.row-header Already added to beta list?
     - if user_signed_in?
       %h2.row-subheader
         = link_to "Welcome #{current_user.name}", edit_user_registration_path
