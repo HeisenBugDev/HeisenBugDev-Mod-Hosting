@@ -22,7 +22,7 @@ NO! It is far faster, prettier, and less evil! CurseForge is bloated and run by 
 We are going to try to use adsense in a way that doesn't bother you. If you are a developer and put your mod on the website, you will see no ads when you login. Also, we try to give back the money the ads bring in to you.
 
 # Issues and Trello
-Trello is meant to be used for tracking the **status** of work on something (has someone started on it? Are we about to? Just an idea? Testing?) whereas GH Issues and PRs are for details about that (checklist, dicussions, x needs to be rewritten for y to work, etc).
+Trello is meant to be used for tracking the **status** of work on something (has someone started on it? Are we about to? Just an idea? Testing?) whereas the Discourse category (HeisenBugDev) and PRs are for details about that (checklist, dicussions, x needs to be rewritten for y to work, etc).
 
 Here is the Trello board for people who want to see the status of things https://trello.com/b/TSoCaDP5/heisenbugdev
 
