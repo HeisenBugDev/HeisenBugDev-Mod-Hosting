@@ -1,10 +1,13 @@
 @import 'variables';
 
-.hero {
-  background-color: $light-blue;
+.heisenbugdev-logo {
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 20vw !important;
 }
 
 .hero-title {
+  margin-top: 0vw;
   margin-bottom: -2vw;
   color: #e5e5e5;
 }
@@ -22,27 +25,26 @@
 }
 
 .primary-row {
-  background-color: $primary-orange;
-
-  .blended-link {
-    color: inherit;
+  background-color: $primary-blue;
+  a {
+    color: $primary-orange;
     text-decoration:underline;
 
     &:hover {
-      color: $light-blue;
+      color: $almost-white;
     }
   }
 }
 
 .secondary-row {
-  background-color: $light-blue;
+  background-color: $primary-orange;
 
-  .blended-link {
-    color: inherit;
+  a {
+    color: $almost-white;
     text-decoration:underline;
 
     &:hover {
-      color: $primary-orange;
+      color: $primary-blue;
     }
   }
 }
@@ -51,21 +53,34 @@
   color: $almost-white;
 }
 
+.row {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
 .primary-row .row-subheader {
   color: black;
 }
 
 .secondary-row .row-subheader {
-  color: black;
+  color: $almost-white;
 }
 
 .feature-icon {
   font-size: 60pt;
-  color: #071728;
+  color: $primary-orange;
+}
+
+.secondary-row .feature-icon {
+  color: $primary-blue;
 }
 
 .feature-subtitle {
   color: $almost-white;
+}
+
+.top-row {
+  margin-top: 15vw;
 }
 
 .feature-title {
