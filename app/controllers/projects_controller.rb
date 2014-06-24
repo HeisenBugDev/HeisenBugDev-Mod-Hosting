@@ -46,7 +46,6 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-
     unless can? :edit, @project
       redirect_to :back, :status => :unauthorized
       return

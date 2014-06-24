@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :beta_logged_in
   after_filter :flash_to_headers
 
+  def current_user
+    return nil unless params[:user_token]
+    User.find_by authentication_token: params[:user_token]
+  end
+
   private
   def beta_logged_in
     unless Rails.env.test?

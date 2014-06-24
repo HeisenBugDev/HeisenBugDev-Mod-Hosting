@@ -7,7 +7,6 @@ describe ProjectsController do
 
   describe 'creating a project without permissions' do
     before do
-      sign_in user
       request.env['HTTP_REFERER'] = 'where_i_came_from'
     end
 
@@ -19,7 +18,6 @@ describe ProjectsController do
 
   describe 'creating a project with permissions' do
     before do
-      sign_in user
       user.add_role 'admin'
     end
 
@@ -35,7 +33,11 @@ describe ProjectsController do
     ))
 
     it 'should create a project' do
-      expect {post :create, {:project => project_json}}.
+      expect {post :create, {
+          :project => project_json,
+          :user_token => user.authentication_token,
+          :user_email => user.email
+        }}.
         to change(Project, :count).by(1)
     end
   end
@@ -43,17 +45,16 @@ describe ProjectsController do
   describe 'Editing a project without permissions' do
     describe "update action" do
       before do
-        sign_in user
         request.env['HTTP_REFERER'] = 'where_i_came_from'
       end
 
-      it 'should return unauthorized' do
+      it 'should redirect to login' do
         edit_json = {
-          :id => project.id
+          :id => project.id,
         }
 
         put :update, edit_json
-        response.response_code.should eq(401)
+        response.response_code.should eq(302)
       end
     end
 
@@ -62,12 +63,14 @@ describe ProjectsController do
         @other_user = FactoryGirl.create(:user, :name => 'Bill')
       end
 
-      it 'should respond with success' do
+      it 'should redirect you' do
         user_add_json = {
           :id => project.id,
           :project => {
             :users => [@other_user.name]
-          }
+          },
+          :user_token => user.authentication_token,
+          :user_email => user.email
         }
 
         put :update, user_add_json
@@ -79,7 +82,6 @@ describe ProjectsController do
   describe 'Editing a project with permissions' do
     before do
       user.projects << project
-      sign_in user
     end
 
     describe 'Adding a user' do
@@ -89,6 +91,8 @@ describe ProjectsController do
 
       it 'should respond with success' do
         user_add_json = {
+          :user_token => user.authentication_token,
+          :user_email => user.email,
           :id => project.id,
           :project => {
             :users => [@other_user.name]
@@ -105,7 +109,9 @@ describe ProjectsController do
         user_remove_json = {
           :format => 'js',
           :project_id => project.id,
-          :user_id => user.id
+          :user_id => user.id,
+          :user_token => user.authentication_token,
+          :user_email => user.email
         }
 
         expect do
@@ -120,11 +126,13 @@ describe ProjectsController do
           :id => project.id,
           :project => {
             :code_repo => 'hai/hai',
-          }
+          },
+          :user_token => user.authentication_token,
+          :user_email => user.email
         }
 
         expect do
-          put :update, code_repo_change_json
+          patch :update, code_repo_change_json
           project.reload
         end.to change(project, :code_repo)
 

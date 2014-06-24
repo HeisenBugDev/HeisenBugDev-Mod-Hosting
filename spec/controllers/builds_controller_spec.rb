@@ -13,13 +13,11 @@ describe BuildsController do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
-    sign_in user
     user.projects << FactoryGirl.create(:project)
   end
 
   describe "logged out" do
     it "should not accept it" do
-      sign_out user
       post :create, json
       response.should redirect_to(new_user_session_path)
     end
@@ -30,6 +28,8 @@ describe BuildsController do
       it "should say come back later" do
         FactoryGirl.create(:project, :name => 'BlockMiner123')
         bad_json = json.dup
+        bad_json[:user_token] = user.authentication_token
+        bad_json[:user_email] = user.email
         replace_hash_value(bad_json, {:project_name => 'BlockMiner123'})
         post :create, bad_json
         response.response_code.should eq(404)
@@ -39,6 +39,8 @@ describe BuildsController do
     describe "with an invalid project" do
       it "should say to come back later" do
         bad_name = { :project_name => "SwagCraft" }
+        bad_name[:user_token] = user.authentication_token
+        bad_name[:user_email] = user.email
         post :create, bad_name
         response.response_code.should eq(404)
       end
@@ -48,6 +50,8 @@ describe BuildsController do
       describe "missing parameters" do
         it "give me a missing parameters error" do
           name_only_json = { :project_name => 'BlockMiner' }
+          name_only_json[:user_token] = user.authentication_token
+          name_only_json[:user_email] = user.email
           post :create, name_only_json
           response.response_code.should eq(400)
         end
@@ -56,6 +60,8 @@ describe BuildsController do
       describe "bad build number" do
         it "should give me an error" do
           request_json = json.dup
+          request_json[:user_token] = user.authentication_token
+          request_json[:user_email] = user.email
           replace_hash_value(request_json, {:build_number => -1})
           post :create, request_json
           response.response_code.should eq(400)
@@ -81,7 +87,11 @@ describe BuildsController do
           :upload_path => "/api/builds/#{build.id + 1}"
         }.to_json
 
-        post :create, json
+        jsonb = json.dup
+        jsonb[:user_token] = user.authentication_token
+        jsonb[:user_email] = user.email
+
+        post :create, jsonb
 
         response.body.should match(create_build_response)
       end
@@ -98,6 +108,9 @@ describe BuildsController do
             'universal.jar'
           ))
         }
+
+        upload_json[:user_token] = user.authentication_token
+        upload_json[:user_email] = user.email
 
         expect { post :artifact_upload, upload_json }.
           to change(Artifact, :count).by(1)

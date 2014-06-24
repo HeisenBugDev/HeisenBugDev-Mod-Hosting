@@ -1,5 +1,0 @@
-h1 User sign in
-if auth.signedIn
-  h2 You're already signed in
-else
- a href="/users/auth/github" Github
