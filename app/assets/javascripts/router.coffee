@@ -4,9 +4,9 @@ HeisenBugDev.Router.reopen
 
 HeisenBugDev.Router.map ()->
   @route "home"
-  @resource 'users', path: '/users', ->
-    @route 'edit', path: 'edit'
-  @route 'user', path: '/users/:user_id'
+  @resource 'users', ->
+    @route 'show', { path: '/:user_id' }
+  @route 'sign-in'
   @route 'omniauth_callbacks', path: '/api/users/auth/:provider/callback'
   @route 'missing', path: '*:'
 

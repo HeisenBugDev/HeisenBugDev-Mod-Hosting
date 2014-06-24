@@ -1,4 +1,4 @@
-class SessionsController < BaseController
+class SessionsController < ApplicationController
   def create
     unless (params[:email] && params[:password]) || (params[:remember_token])
       return missing_params
@@ -11,11 +11,12 @@ class SessionsController < BaseController
     end
     return invalid_credentials unless @user
 
-    @user.ensure_authentication_token!
+    @user.authentication_token = nil
+    @user.save!
 
     data = {
       user_id: @user.id,
-      auth_token: @user.authentication_token
+      user_token: @user.authentication_token
     }
     if params[:remember]
       @user.remember_me!
@@ -26,9 +27,9 @@ class SessionsController < BaseController
   end
 
   def destroy
-    return missing_params unless params[:auth_token]
+    return missing_params unless params[:user_token]
 
-    @user = User.find_by authentication_token: params[:auth_token]
+    @user = User.find_by authentication_token: params[:user_token]
     return invalid_credentials unless @user
 
     @user.reset_authentication_token!

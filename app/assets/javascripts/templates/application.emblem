@@ -5,7 +5,13 @@
 /       link-to "sign-out" |  Sign out
 /   else
 /     link-to "sign-in" | Sign in
-header
-  a click="signOut" href="#" Sign Out
+/ header
+/ a click="signOut" href="#" Sign Out
+render 'auth'
+
+nav
+  link-to 'users.index'
+    | Users list
+
 main
-  = outlet
+  outlet

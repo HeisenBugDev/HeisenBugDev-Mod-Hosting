@@ -1,0 +1,4 @@
+h1
+  name
+link-to 'users.index'
+  | Back to users list

@@ -1,9 +1,11 @@
-h1 Users
+/ h1 Users
 
-#users
-  each user in model
-    h4
-      link-to "user" user
-        = user.name
-  else
-    h2 No users yet
+/ #users
+/   each user in model
+/     h4
+/       link-to "user" user
+/         = user.name
+/   else
+/     h2 No users yet
+
+outlet
