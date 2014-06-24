@@ -1,8 +1,4 @@
 HeisenBugDev::Application.routes.draw do
-  devise_scope :user do
-    get "/sessions/current" => "ember_devise_simple_auth/sessions#show"
-  end
-
   constraints subdomain: 'www' do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
