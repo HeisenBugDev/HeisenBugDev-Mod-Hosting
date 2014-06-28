@@ -1,4 +1,5 @@
 h1
   name
+h2 Email (if allowed) #{email}
 link-to 'users.index'
   | Back to users list
