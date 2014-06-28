@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   private
   def beta_logged_in
-    unless Rails.env.test?
+    if Rails.env.production?
       redirect_to root_path if current_user.nil?
     end
   end
