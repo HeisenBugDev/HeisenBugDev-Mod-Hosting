@@ -3,6 +3,7 @@ namespace :db do
   task :populate => :environment do
     warning_print("Resetting database in 3 seconds")
     sleep(3)
+    warning_print("Resetting database")
     Rake::Task["db:reset"].invoke
     download_assets
     make_users

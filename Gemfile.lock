@@ -528,7 +528,6 @@ DEPENDENCIES
   rolify
   rspec-rails
   rubocop
-  ruby-progressbar
   ruby_gntp
   sass-rails (~> 4.0.0)
   shoulda-matchers (~> 2.5.0)
