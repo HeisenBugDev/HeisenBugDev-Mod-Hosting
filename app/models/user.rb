@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def beta_user?
-    unless Rails.env.test?
+    if Rails.env.production?
       unless BETA_USERS.include?(name.downcase)
         errors.add :name, 'Not on the beta list'
       end

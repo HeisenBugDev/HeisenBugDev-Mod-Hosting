@@ -32,6 +32,7 @@ gem 'ember-rails'
 gem 'ember-source', '~> 1.5.1.1'
 gem "active_model_serializers"
 gem 'emblem-rails'
+gem 'term-ansicolor'
 
 group :production do
   gem 'pg'
@@ -65,6 +66,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'faker'
   gem 'rspec-rails'
   gem "shoulda-matchers", "~> 2.5.0"
 end
