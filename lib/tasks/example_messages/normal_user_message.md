@@ -1,0 +1,1 @@
+99 normal users were created with random names. All the passwords are: foobarbaz. One of the user's #to_json will be printed below.

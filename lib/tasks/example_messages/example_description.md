@@ -1,0 +1,1 @@
+Welcome to my amazing mod, {{name}}. This mod will save your life. I am not liable for any life saving not done. It is your fault because you clearly did not play this mod.
