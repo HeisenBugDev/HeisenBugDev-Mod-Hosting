@@ -13,33 +13,48 @@ namespace :db do
   end
 end
 
+@max_padding = 9
+
+#
+# Prints thor like lines
+# @param string [String] The string you want to print
+# @param label [String] Label for command (run, exists, etc)
+# @param color [String] color for label
+#
+# @return [nil]
+def print_command(string, label, color, prefix=nil, print_method=:puts)
+  padding = @max_padding - label.length
+  Object.send(print_method, "#{prefix}#{' ' * padding}#{label.send(color)}  "\
+    " #{string}")
+end
+
 def run(command)
-  puts "      #{"run".blue}   #{command}"
-  puts `      #{command}`
+  print_command(command, 'run', :blue)
+  puts `#{command}`
 end
 
 def create_print(string)
-  puts "   #{"create".green}   #{string}"
+  print_command(string, 'create', :green)
 end
 
 def download_print(string)
-  puts " #{"download".green}   #{string}"
+  print_command(string, 'download', :green)
 end
 
 def exists_print(string)
-  puts "   #{"exists".yellow}   #{string}"
+  print_command(string, 'exists', :yellow)
 end
 
 def status_print(string)
-  puts "   #{"status".white}   #{string}"
+  print_command(string, 'status', :white)
 end
 
 def warning_print(string)
-  puts "  #{"warning".red}   #{string}"
+  print_command(string, 'warning', :red)
 end
 
 def progress_print(current, max)
-  print "\r #{"progress"}   #{current}/#{max}"
+  print_command("#{current}/#{max}", 'progress', :to_s, "\r", :print)
   puts '' if current == max
 end
 
