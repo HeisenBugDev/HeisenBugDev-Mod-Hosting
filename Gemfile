@@ -49,15 +49,12 @@ group :development do
   gem 'dotenv-rails'
   gem 'rubocop'
   gem "annotate", "~> 2.6.2"
-  gem 'ruby_gntp'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
-  gem 'guard-cucumber'
   gem 'guard-redis'
   gem 'guard-rspec'
   gem 'guard-rails'
-  gem 'guard-livereload', require: false
   gem 'html2haml'
   gem 'rails_layout'
   gem 'rb-fchange', :require=>false
@@ -78,7 +75,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
   gem 'capybara'
-  gem 'cucumber-rails', :require=>false
   gem 'database_cleaner', '~> 1.2'
   gem 'email_spec'
   gem 'launchy'

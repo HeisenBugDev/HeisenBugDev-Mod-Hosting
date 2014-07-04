@@ -41,10 +41,6 @@ build:
         - script:
             name: rspec
             code: bundle exec rspec -c spec -fd
-
-        - script:
-            name: cucumber
-            code: bundle exec cucumber features
 deploy:
     steps:
         - heroku-deploy:
