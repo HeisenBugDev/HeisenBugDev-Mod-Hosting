@@ -18,8 +18,9 @@ describe BuildsController do
 
   describe "logged out" do
     it "should not accept it" do
+      request.accept = 'application/json'
       post :create, json
-      response.should redirect_to(new_user_session_path)
+      response.response_code.should eq(401)
     end
   end
 

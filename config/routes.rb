@@ -5,16 +5,22 @@ HeisenBugDev::Application.routes.draw do
 
   root 'home#index'
 
-  scope :api do
+  scope :api, :defaults => { :format => 'json' }, :constraints => { :format => 'json' } do
     namespace :users do
       put 'update_token', :to => 'token#update'
     end
 
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
-        :sessions => :sessions , :sessions => 'sessions'} do
-      get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+    #:controllers =>
+   # { :omniauth_callbacks => "users/omniauth_callbacks",
+   #   :sessions => :sessions },
+
+    devise_for :users, :only => []
+    devise_scope :user do
+      post   'sign_in'  => 'sessions#create'
+      delete 'sign_out' => 'sessions#destroy'
     end
+      # get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
+      # delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
 
     resources 'users'
 

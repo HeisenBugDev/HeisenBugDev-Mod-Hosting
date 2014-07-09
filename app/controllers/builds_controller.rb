@@ -1,11 +1,9 @@
 class BuildsController < ApplicationController
   skip_before_filter :beta_logged_in, :only => [:create]
-  acts_as_token_authentication_handler_for User
-  before_filter :authenticate_entity_from_token!, :only => :create
-  before_filter :authenticate_entity!, :only => :create
+  acts_as_token_authentication_handler_for User, fallback_to_devise: false
+  before_filter :authenticate_entity_from_token!, :only => [:create, :destroy]
+  before_filter :authenticate_entity!, :only => [:create, :destroy]
   include ApplicationHelper
-
-  protect_from_forgery :except => :create
 
   def update
     @build = Build.find(params[:id])
