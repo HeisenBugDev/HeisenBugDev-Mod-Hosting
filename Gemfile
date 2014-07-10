@@ -29,7 +29,7 @@ gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
 gem 'remotipart'
 gem 'google-analytics-turbolinks'
 gem 'ember-rails'
-gem 'ember-source', '~> 1.5.1.1'
+gem 'ember-source', '1.6.0.beta.2'
 gem "active_model_serializers"
 gem 'emblem-rails'
 gem 'term-ansicolor'
