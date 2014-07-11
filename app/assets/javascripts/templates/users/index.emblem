@@ -1,3 +1,7 @@
 ul: each user in controller
   li: link-to 'users.show' user
     user.name
+if isLoading
+  p Loading more...
+else
+  div.load-more{action 'getMore'}
