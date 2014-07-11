@@ -1,20 +1,23 @@
 HeisenBugDev.UsersIndexController = Ember.ArrayController.extend
   page: 1
+  paginatedObjectName: 'user'
 
-HeisenBugDev.UsersIndexView = Ember.View.extend
+HeisenBugDev.PaginatedView = Ember.Mixin.create
+  checkLoadMore: ->
+    if @isElementInViewport($('.load-more'))
+      @get('controller').send('loadNextPage')
+
   didInsertElement: ->
-    $(window).on('scroll', $.proxy(this.didScroll, this));
+    @checkLoadMore()
+    $(window).on 'DOMContentLoaded load resize scroll', $.proxy(@checkLoadMore, this)
 
   willDestroyElement: ->
-    $(window).off('scroll', $.proxy(this.didScroll, this));
+    $(window).off 'DOMContentLoaded load resize scroll', $.proxy(@checkLoadMore, this)
 
-  didScroll: ->
-    if this.isScrolledToBottom()
-      this.get('controller').send('getMore')
+  isElementInViewport: (el) ->
+    el = el[0]  if el instanceof jQuery
+    return unless el
+    rect = el.getBoundingClientRect()
+    rect.top >= 0 and rect.left >= 0 and rect.bottom <= (window.innerHeight or document.documentElement.clientHeight) and rect.right <= (window.innerWidth or document.documentElement.clientWidth)
 
-  isScrolledToBottom: ->
-    # distanceToViewportTop = $(document).height() - $(window).height()
-    # viewPortTop = $(document).scrollTop()
-    return true if $('.load-more').is(":visible")
-    # return false if viewPortTop == 0
-    # return (viewPortTop - distanceToViewportTop == 0)
+HeisenBugDev.UsersIndexView = Ember.View.extend HeisenBugDev.PaginatedView

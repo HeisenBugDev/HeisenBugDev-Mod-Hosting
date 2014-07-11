@@ -27,7 +27,7 @@
 .primary-row {
   background-color: $primary-blue;
   a {
-    color: $primary-orange;
+    color: $primary-gray;
     text-decoration:underline;
 
     &:hover {
@@ -37,7 +37,7 @@
 }
 
 .secondary-row {
-  background-color: $primary-orange;
+  background-color: $primary-gray;
 
   a {
     color: $almost-white;
@@ -68,7 +68,7 @@
 
 .feature-icon {
   font-size: 60pt;
-  color: $primary-orange;
+  color: $primary-gray;
 }
 
 .secondary-row .feature-icon {

@@ -1,7 +1,7 @@
 HeisenBugDev.UsersRoute = Em.Route.extend
   authRedirectable: true
 
-HeisenBugDev.Paginated = Ember.Mixin.create
+HeisenBugDev.PaginatedRoute = Ember.Mixin.create
   # Return an empty array immediately from the model hook.
   model: ->
     @set "cursor", null
@@ -28,12 +28,16 @@ HeisenBugDev.Paginated = Ember.Mixin.create
   setupController: (controller, model) ->
     @setCanLoadMore true
     controller.set "canLoadMore", @get("canLoadMore")
+    controller.set "cannotLoadMore", !(@get("canLoadMore"))
     controller.set "model", model
 
   # Set `canLoadMore` on the route and, if possible, on the controller.
   setCanLoadMore: (canLoadMore) ->
+    @controller.set('content', @store.all(@controller.get('paginatedObjectName'))) if @controller
     @set "canLoadMore", canLoadMore
+    @set "cannotLoadMore", !canLoadMore
     @controller.set "canLoadMore", canLoadMore  if @controller
+    @controller.set "cannotLoadMore", !canLoadMore  if @controller
 
   setCurrent: (current) ->
     @set "currentlyFetchingPage", current
@@ -46,13 +50,13 @@ HeisenBugDev.Paginated = Ember.Mixin.create
         @fetchPageProxy(@get("cursor")).then (objects) ->
           that.controller.get("content").addObjects objects
 
-HeisenBugDev.UsersIndexRoute = Em.Route.extend HeisenBugDev.Paginated,
+HeisenBugDev.UsersIndexRoute = Em.Route.extend HeisenBugDev.PaginatedRoute,
   fetchPage: ->
     controller = @get('controller')
     page = controller.get('page')
     controller.set('page', controller.get('page') + 1)
-    @store.find 'user', page: page
+    @store.find controller.get('paginatedObjectName'), page: page
 
 HeisenBugDev.UsersShowRoute = Em.Route.extend
   serialize: (model) ->
-    user_id: model.get 'param'
+    user_id: model.get 'id'

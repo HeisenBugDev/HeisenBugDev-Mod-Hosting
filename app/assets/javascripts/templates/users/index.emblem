@@ -1,8 +1,20 @@
-ul: each user in controller
-  li: link-to 'users.show' user
-    user.name
+.row
+  .large-12.columns
+    table.center.full-table.text-center
+      tr
+        th NAME
+        th EMAIL
+      each user in controller
+        tr
+          td: link-to 'users.show' user
+            user.name
+          td: link-to 'users.show' user
+            user.email
 
-if currentlyFetchingPage
-  h1 Loooooaddddinnggg!
-else
-  h1.load-more{action 'loadNextPage'} MOAR
+    if currentlyFetchingPage
+      render 'spinner'
+    else
+      div.load-more.text-center{action "loadNextPage"}
+
+    if cannotLoadMore
+      h3.text-center That's the end!
