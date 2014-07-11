@@ -1,7 +1,8 @@
 ul: each user in controller
   li: link-to 'users.show' user
     user.name
-if isLoading
-  p Loading more...
+
+if currentlyFetchingPage
+  h1 Loooooaddddinnggg!
 else
-  div.load-more{action 'getMore'}
+  h1.load-more{action 'loadNextPage'} MOAR
