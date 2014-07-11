@@ -1,7 +1,3 @@
-HeisenBugDev.UsersIndexController = Ember.ArrayController.extend
-  page: 1
-  paginatedObjectName: 'user'
-
 HeisenBugDev.PaginatedView = Ember.Mixin.create
   checkLoadMore: ->
     if @isElementInViewport($('.load-more'))
@@ -19,5 +15,3 @@ HeisenBugDev.PaginatedView = Ember.Mixin.create
     return unless el
     rect = el.getBoundingClientRect()
     rect.top >= 0 and rect.left >= 0 and rect.bottom <= (window.innerHeight or document.documentElement.clientHeight) and rect.right <= (window.innerWidth or document.documentElement.clientWidth)
-
-HeisenBugDev.UsersIndexView = Ember.View.extend HeisenBugDev.PaginatedView
