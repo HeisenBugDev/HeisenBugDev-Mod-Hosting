@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
     endershadow HotelCalifornia thejereman13 XixeBombilla jakerm2002
     modmuss50 DylanGore penne12 Flenix PaleoCrafter mistertime
-    rainfur EnriqueCanals
+    rainfur EnriqueCanals Ri5ux
     ).map(&:downcase)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
