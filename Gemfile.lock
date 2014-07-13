@@ -181,6 +181,8 @@ GEM
     foundation_rails_helper (0.4)
       actionpack (>= 3.0)
       railties (>= 3.0)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     fssm (0.2.10)
     github-markdown (0.6.5)
     google-analytics-turbolinks (0.0.4)
@@ -476,6 +478,7 @@ DEPENDENCIES
   foundation-icons-sass-rails
   foundation-rails (~> 5.2)
   foundation_rails_helper
+  friendly_id (~> 5.0.0)
   github-markdown
   google-analytics-turbolinks
   gravatar_image_tag

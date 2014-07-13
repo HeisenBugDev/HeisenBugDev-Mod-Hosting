@@ -34,6 +34,7 @@ gem 'ember-source', '1.6.0.beta.2'
 gem "active_model_serializers"
 gem 'emblem-rails'
 gem 'term-ansicolor'
+gem 'friendly_id', '~> 5.0.0'
 
 group :production do
   gem 'pg'

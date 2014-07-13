@@ -19,12 +19,14 @@
 #  uid                    :string(255)
 #  name                   :string(255)
 #  authentication_token   :string(255)
+#  slug                   :string(255)
 #
 # Indexes
 #
 #  index_users_on_authentication_token  (authentication_token)
 #  index_users_on_name                  (name)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

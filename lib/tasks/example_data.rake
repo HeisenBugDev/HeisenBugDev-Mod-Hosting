@@ -121,7 +121,7 @@ end
 
 def make_users
   create_print "admin/owner user"
-  admin = User.create!(name: "admin",
+  admin = User.create!(name: "adminuser",
                        email: "admin@example.com",
                        password: "adminpassword",
                        password_confirmation: "adminpassword")
