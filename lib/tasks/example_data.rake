@@ -1,3 +1,4 @@
+require 'colorize'
 require 'json'
 require_relative 'example_data_messages'
 include ExampleDataMessages
