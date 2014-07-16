@@ -1,5 +1,4 @@
-HeisenBugDev.UsersIndexController = Ember.ArrayController.extend
-  page: 1
+HeisenBugDev.UsersIndexController = Ember.ArrayController.extend HeisenBugDev.PaginatedController,
   paginatedObjectName: 'user'
   filterName: '' # This sets a default value
 

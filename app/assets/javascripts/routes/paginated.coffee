@@ -40,6 +40,12 @@ HeisenBugDev.PaginatedRoute = Ember.Mixin.create
     @set "currentlyFetchingPage", current
     @controller.set "currentlyFetchingPage", current if @controller
 
+  fetchPage: ->
+    controller = @get('controller')
+    page = controller.get('page')
+    controller.set('page', controller.get('page') + 1)
+    @store.find controller.get('paginatedObjectName'), page: page
+
   actions:
     loadNextPage: ->
       that = this
