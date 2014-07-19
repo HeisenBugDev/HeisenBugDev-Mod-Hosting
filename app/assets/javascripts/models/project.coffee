@@ -8,6 +8,5 @@ HeisenBugDev.Project = DS.Model.extend
   icon: DS.attr 'string'
   wiki: DS.belongsTo 'wiki'
   builds: DS.hasMany 'builds'
-
-  # == Leave commented out until models implemented ==
-  # versions: DS.hasMany 'versions'
+  versions: DS.hasMany 'versions'
+  downloads: DS.attr 'number'

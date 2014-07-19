@@ -3,7 +3,7 @@ HeisenBugDev.Wiki = DS.Model.extend
   created_at: DS.attr 'date'
   updated_at: DS.attr 'date'
   project: DS.belongsTo 'project'
+  articles: DS.hasMany 'articles'
 
   # == Leave commented out until models implemented ==
-  # articles: DS.hasMany 'articles'
   # categories: DS.hasMany 'categories'

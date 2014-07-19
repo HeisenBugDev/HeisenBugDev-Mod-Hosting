@@ -8,8 +8,6 @@ HeisenBugDev.Build = DS.Model.extend
   build_state: DS.attr 'string'
   downloads: DS.attr 'number'
   project: DS.belongs_to 'project'
-
-  # == Leave commented out until models implemented ==
-  # version: DS.belongs_to 'version'
-  # artifacts: DS.hasMany 'artifacts'
-  # articles: DS.hasMany 'articles'
+  version: DS.belongs_to 'version'
+  articles: DS.hasMany 'articles'
+  artifacts: DS.hasMany 'artifacts'
