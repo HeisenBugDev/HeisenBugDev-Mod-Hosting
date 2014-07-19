@@ -1,4 +1,4 @@
-HeisenBugDev.Project = DS.Model.extend
+HeisenBugDev.Build = DS.Model.extend
   build_number: DS.attr 'number'
   commit: DS.attr 'string'
   minecraft_version: DS.attr 'string'
