@@ -4,6 +4,4 @@ HeisenBugDev.Wiki = DS.Model.extend
   updated_at: DS.attr 'date'
   project: DS.belongsTo 'project'
   articles: DS.hasMany 'articles'
-
-  # == Leave commented out until models implemented ==
-  # categories: DS.hasMany 'categories'
+  categories: DS.hasMany 'categories'
