@@ -35,6 +35,7 @@ gem "active_model_serializers"
 gem 'emblem-rails'
 gem 'colorize'
 gem 'friendly_id', '~> 5.0.0'
+gem 'bourbon'
 
 group :production do
   gem 'pg'

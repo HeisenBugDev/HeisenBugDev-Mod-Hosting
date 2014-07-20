@@ -55,6 +55,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (3.2.3)
+      sass (~> 3.2)
+      thor
     bugsnag (2.0.1)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
@@ -459,6 +462,7 @@ DEPENDENCIES
   best_in_place!
   better_errors
   binding_of_caller
+  bourbon
   bugsnag
   cancancan (~> 1.7)
   capybara
