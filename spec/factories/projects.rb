@@ -2,15 +2,16 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#  code_repo   :string(255)
-#  subtitle    :string(255)
-#  icon        :string(255)
-#  slug        :string(255)
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  code_repo      :string(255)
+#  subtitle       :string(255)
+#  icon           :string(255)
+#  slug           :string(255)
+#  owner_sentence :string(255)
 #
 # Indexes
 #

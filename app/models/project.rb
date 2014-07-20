@@ -2,15 +2,16 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#  code_repo   :string(255)
-#  subtitle    :string(255)
-#  icon        :string(255)
-#  slug        :string(255)
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  description    :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  code_repo      :string(255)
+#  subtitle       :string(255)
+#  icon           :string(255)
+#  slug           :string(255)
+#  owner_sentence :string(255)
 #
 # Indexes
 #
@@ -50,7 +51,20 @@ class Project < ActiveRecord::Base
 
   validates_uniqueness_of :name, :case_sensitive => false
 
+  before_save :set_owner_sentence
+
   after_initialize :init
+
+  def set_owner_sentence
+    owners = (self.users.map {|user| user.name}).uniq
+
+    if owners.size <= 2
+      self.owner_sentence = owners.to_sentence
+    else
+      sentence = [owners[0..1], "#{owners[2..-1].size} others"].flatten.to_sentence
+      self.owner_sentence = sentence
+    end
+  end
 
   def init
     self.code_repo ||= "HeisenBugDev/#{self.name}"

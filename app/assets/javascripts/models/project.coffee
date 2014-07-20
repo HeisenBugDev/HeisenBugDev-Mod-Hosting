@@ -11,3 +11,4 @@ HeisenBugDev.Project = DS.Model.extend
   versions: DS.hasMany 'versions'
   downloads: DS.attr 'number'
   slug: DS.attr 'string'
+  owner_sentence: DS.attr 'string'
