@@ -1,5 +1,7 @@
 nav
   link-to 'users.index'
     | Users list
+  link-to 'projects.index'
+    | Projects
 
 outlet
