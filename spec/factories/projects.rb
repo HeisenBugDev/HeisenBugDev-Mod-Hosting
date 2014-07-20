@@ -10,6 +10,11 @@
 #  code_repo   :string(255)
 #  subtitle    :string(255)
 #  icon        :string(255)
+#  slug        :string(255)
+#
+# Indexes
+#
+#  index_projects_on_slug  (slug) UNIQUE
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

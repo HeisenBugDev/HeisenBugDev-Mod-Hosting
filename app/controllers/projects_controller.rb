@@ -12,8 +12,14 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
-    @users = @project.users
+    @project = Project.friendly.find(params[:id])
+    # @users = @project.users
+    render :json => @project
+  end
+
+  def index
+    @projects = Project.paginate(page: params[:page])
+    render :json => @projects
   end
 
   def new

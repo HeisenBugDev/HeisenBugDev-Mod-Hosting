@@ -10,10 +10,19 @@
 #  code_repo   :string(255)
 #  subtitle    :string(255)
 #  icon        :string(255)
+#  slug        :string(255)
 #
+# Indexes
+#
+#  index_projects_on_slug  (slug) UNIQUE
+#
+
 require 'file_size_validator'
 
 class Project < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_one :wiki, :class_name => 'Wiki::Wiki', :dependent => :destroy
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader

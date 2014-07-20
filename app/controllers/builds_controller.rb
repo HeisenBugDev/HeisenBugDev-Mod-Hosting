@@ -36,6 +36,11 @@ class BuildsController < ApplicationController
     end
   end
 
+  def index
+    @build = Build.find(params[:ids])
+    render :json => @build
+  end
+
   def create
     name = params[:project_name]
     if can? :manage, :all

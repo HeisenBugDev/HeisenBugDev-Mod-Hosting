@@ -7,6 +7,8 @@ HeisenBugDev.Router.map ()->
     @route 'show', { path: '/:user_id' }
   @route "home", path: '/'
   @route 'missing', path: '*:'
+  @resource 'projects', ->
+    @route 'show', { path: '/:project_id' }
 
 HeisenBugDev.MissingRoute = Ember.Route.extend
   redirect: ->
