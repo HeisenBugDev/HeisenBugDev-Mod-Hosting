@@ -1,3 +1,37 @@
 @import "bourbon";
 @import "base/base";
 @import "neat";
+
+body {
+  margin: 0;
+}
+
+* {
+  font-weight: 300;
+}
+
+div.container {
+  @include outer-container;
+}
+
+.mod-header {
+  background-color: #e8e8e8;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 15px solid #ebaf3c;
+
+  h1 {
+    font-size: 48px;
+    color: #e9662c;
+  }
+
+  h3 {
+    margin-top: 6px;
+    color: #ebaf3c;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+

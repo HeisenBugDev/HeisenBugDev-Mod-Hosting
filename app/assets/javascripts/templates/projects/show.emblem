@@ -1,3 +1,7 @@
-h1 = name
-each build in builds
-  = build.commit
+.mod-header
+  .container
+    h1 = name
+    / each build in builds
+    h3
+      | by&#32;
+      a hunterboerner
