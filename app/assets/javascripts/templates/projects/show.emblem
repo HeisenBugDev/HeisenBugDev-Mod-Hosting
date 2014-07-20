@@ -4,3 +4,10 @@
     h3
       | by&#32;
       a = owner_sentence
+      / a href= sdjkf
+    each build in builds
+      h3 = build.commit
+      each artifact in build.artifacts
+        h3 = artifact.downloads
+        h3 = artifact.name
+        a href=artifact.file_url sdjkf
