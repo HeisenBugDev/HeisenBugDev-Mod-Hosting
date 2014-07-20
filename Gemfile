@@ -36,6 +36,7 @@ gem 'emblem-rails'
 gem 'colorize'
 gem 'friendly_id', '~> 5.0.0'
 gem 'bourbon'
+gem 'neat'
 
 group :production do
   gem 'pg'

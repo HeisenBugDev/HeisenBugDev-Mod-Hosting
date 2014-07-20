@@ -276,6 +276,9 @@ GEM
     multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.0)
@@ -500,6 +503,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   mini_magick
+  neat
   newrelic_rpm
   omniauth-github
   pg
