@@ -12,6 +12,7 @@
 #  icon           :string(255)
 #  slug           :string(255)
 #  owner_sentence :string(255)
+#  downloads      :string(255)
 #
 # Indexes
 #

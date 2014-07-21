@@ -12,6 +12,7 @@
 #  icon           :string(255)
 #  slug           :string(255)
 #  owner_sentence :string(255)
+#  downloads      :string(255)
 #
 # Indexes
 #
@@ -52,8 +53,15 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
 
   before_save :set_owner_sentence
+  before_save :set_downloads
+  # before_save :set_download_sentence
 
   after_initialize :init
+
+  # def set_download_sentence
+  #   self.download_sentence = ActionController::Base.helpers.
+  #     number_to_human(self.downloads)
+  # end
 
   def set_owner_sentence
     owners = (self.users.map {|user| user.name}).uniq
@@ -72,7 +80,7 @@ class Project < ActiveRecord::Base
     self.wiki ||= Wiki::Wiki.new
   end
 
-  def downloads
-    self.builds.collect{|b| b.downloads }.sum
+  def set_downloads
+    self.downloads = self.builds.collect{|b| b.downloads }.sum
   end
 end

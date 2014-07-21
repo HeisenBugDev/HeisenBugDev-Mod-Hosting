@@ -12,6 +12,7 @@
 #  branch            :string(255)
 #  version_id        :integer
 #  build_state       :string(255)
+#  downloads         :string(255)
 #
 # Indexes
 #
@@ -37,6 +38,8 @@ class Build < ActiveRecord::Base
   validates_presence_of :project
   validates_presence_of :version
 
+  before_save :set_downloads
+
   validates_numericality_of :build_number, :only_integer => true,
                                            :greater_than => 0,
                                            :message => "Build number must be"\
@@ -48,7 +51,8 @@ class Build < ActiveRecord::Base
     self.build_state ||= 'normal'
   end
 
-  def downloads
-    self.artifacts.sum('downloads')
+  def set_downloads
+    self.downloads = self.artifacts.sum('downloads')
+    self.project.set_downloads
   end
 end
