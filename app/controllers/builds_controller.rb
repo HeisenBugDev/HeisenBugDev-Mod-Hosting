@@ -119,7 +119,6 @@ class BuildsController < ApplicationController
     end
 
     @artifact.increment!(:downloads)
-    @artifact.build.set_downloads
 
     respond_to do |format|
       format.js { render :action => 'update' }

@@ -2,17 +2,18 @@
 #
 # Table name: projects
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)
-#  description    :text
-#  created_at     :datetime
-#  updated_at     :datetime
-#  code_repo      :string(255)
-#  subtitle       :string(255)
-#  icon           :string(255)
-#  slug           :string(255)
-#  owner_sentence :string(255)
-#  downloads      :string(255)
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  description       :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#  code_repo         :string(255)
+#  subtitle          :string(255)
+#  icon              :string(255)
+#  slug              :string(255)
+#  owner_sentence    :string(255)
+#  downloads         :string(255)
+#  download_sentence :string(255)
 #
 # Indexes
 #
@@ -54,14 +55,14 @@ class Project < ActiveRecord::Base
 
   before_save :set_owner_sentence
   before_save :set_downloads
-  # before_save :set_download_sentence
+  before_save :set_download_sentence
 
   after_initialize :init
 
-  # def set_download_sentence
-  #   self.download_sentence = ActionController::Base.helpers.
-  #     number_to_human(self.downloads)
-  # end
+  def set_download_sentence
+    num = ActionController::Base.helpers.number_to_human(self.downloads)
+    self.download_sentence = "#{num} Downloads"
+  end
 
   def set_owner_sentence
     owners = (self.users.map {|user| user.name}).uniq

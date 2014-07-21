@@ -7,7 +7,7 @@
         a = owner_sentence
     .right
       a.button href=main_download Download
-      h3 = downloads
+      h3 = download_sentence
     / each build in builds
     /   h3 = build.commit
     /   each artifact in build.artifacts
