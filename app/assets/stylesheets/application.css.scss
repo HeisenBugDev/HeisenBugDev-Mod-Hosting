@@ -4,6 +4,8 @@
 
 @import "spinner";
 
+// remember! trbl
+
 body {
   margin: 0;
 }
@@ -14,9 +16,20 @@ body {
 
 div.container {
   @include outer-container;
+
+  .left {
+    @include span-columns(8);
+    float: left;
+  }
+
+  .right {
+    @include span-columns(4);
+    float: right;
+  }
 }
 
 .mod-header {
+  // todo use vars for colors
   background-color: #e8e8e8;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -37,3 +50,26 @@ div.container {
   }
 }
 
+.button {
+  @include transition-duration(0s);
+  padding: 3px 25px 5px 25px;
+  border: 2px solid #e9662c;
+  border-radius: 10px;
+  color: #e9662c;
+  margin-top: 31px;
+  top: 11px;
+  position: relative;
+  font-size: 30px;
+
+  &:hover {
+    @include transition-duration(0s);
+    transition: 0;
+    border: 2px solid #2b2b2b;
+    background-color: #2b2b2b;
+    color: white;
+  }
+}
+
+a.button {
+  text-decoration: none;
+}

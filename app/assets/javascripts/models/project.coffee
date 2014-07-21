@@ -5,6 +5,7 @@ HeisenBugDev.Project = DS.Model.extend
   updated_at: DS.attr 'string'
   code_repo: DS.attr 'string'
   subtitle: DS.attr 'string'
+  main_download: DS.attr 'string'
   icon: DS.attr 'string'
   wiki: DS.belongsTo 'wiki', async: true
   builds: DS.hasMany 'builds', async: true

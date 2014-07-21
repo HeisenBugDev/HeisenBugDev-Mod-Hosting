@@ -1,13 +1,12 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :created_at, :updated_at, :code_repo,
-    :subtitle, :icon, :downloads, :slug, :owner_sentence
+  include ApplicationHelper
 
-  # def main_download
-  #   build = object.builds.
-  #   artifact = object.artifacts.find_by_name('universal')
-  #   return if artifact.nil?
-  #   artifact.artifact.url
-  # end
+  attributes :id, :name, :description, :created_at, :updated_at, :code_repo,
+    :subtitle, :icon, :downloads, :slug, :owner_sentence, :main_download
+
+  def main_download
+    latest_stable(object).artifacts.find_by_name('universal').artifact.url
+  end
 
   has_one :wiki, :embed => :ids
   has_many :builds, :embed => :ids
