@@ -6,11 +6,25 @@
         | by&#32;
         a = owner_sentence
     .right
-      a.button href=main_download Download
-      h3 = download_sentence
-    / each build in builds
-    /   h3 = build.commit
-    /   each artifact in build.artifacts
-    /     h3 = artifact.downloads
-    /     h3 = artifact.name
-    /     a href=artifact.file_url sdjkf
+      download-button this 'main_download'
+      h3.text-right.float-right = download_sentence
+.container
+  .row
+    .description
+      p = description
+  .row
+    .three-c
+      .download-card
+        h1 Latest Release
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        download-button this '' 'release'
+    .three-c
+      .download-card
+        h1 Latest Beta
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        download-button this '' 'beta'
+    .three-c
+      .download-card
+        h1 Latest
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+        download-button this '' 'normal'

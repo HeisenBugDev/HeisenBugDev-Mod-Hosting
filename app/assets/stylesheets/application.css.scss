@@ -18,14 +18,24 @@ div.container {
   @include outer-container;
 
   .left {
-    @include span-columns(8);
+    @include span-columns(9);
     float: left;
   }
 
   .right {
-    @include span-columns(4);
+    @include span-columns(3);
     float: right;
   }
+
+  .three-c {
+    @include span-columns(3.8);
+    margin-right: 4%;
+  }
+}
+
+.row {
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .mod-header {
@@ -45,6 +55,10 @@ div.container {
     color: #ebaf3c;
   }
 
+  a.button {
+    float: right;
+  }
+
   .right h3 {
     margin-top: 20px;
   }
@@ -52,28 +66,59 @@ div.container {
   a {
     text-decoration: underline;
   }
-}
 
-.button {
-  @include transition-duration(0s);
-  padding: 3px 25px 5px 25px;
-  border: 2px solid #e9662c;
-  border-radius: 10px;
-  color: #e9662c;
-  margin-top: 31px;
-  top: 11px;
-  position: relative;
-  font-size: 30px;
+  a.button {
+    text-decoration: none;
+  }
 
-  &:hover {
-    @include transition-duration(0s);
-    transition: 0;
-    border: 2px solid #2b2b2b;
-    background-color: #2b2b2b;
-    color: white;
+  .float-right {
+    float: right;
   }
 }
 
-a.button {
-  text-decoration: none;
+@mixin button($color) {
+  display: inline-block;
+  @include transition-duration(0s);
+  border: 2px solid $color;
+  border-radius: 10px;
+  color: $color;
+  top: 11px;
+  position: relative;
+  font-size: 30px;
+  width: 220px;
+  padding: 0px 15px 1px 15px;
+
+  &:hover {
+    @include transition-duration(0s);
+    background-color: $color;
+    color: white;
+  }
+
+  span {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+
+  .button-label {
+    font-weight: 600;
+  }
+}
+
+.button { @include button($orange) }
+.release-button { @include button($green) }
+.beta-button { @include button($blue) }
+.normal-button { @include button($gray) }
+
+.download-card p, .download-card h1 { font-weight: 400; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right }
+
+.description {
+  margin-top: 25px;
+
+  p {
+    font-weight: 400;
+  }
 }
