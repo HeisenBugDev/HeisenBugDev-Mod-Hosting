@@ -8,7 +8,6 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  code_repo         :string(255)
-#  subtitle          :string(255)
 #  icon              :string(255)
 #  slug              :string(255)
 #  owner_sentence    :string(255)
@@ -33,10 +32,8 @@ describe Project do
   it { should validate_presence_of(:wiki) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:code_repo) }
-  it { should validate_presence_of(:subtitle) }
 
   it { should ensure_length_of(:name).is_at_most(30) }
-  it { should ensure_length_of(:subtitle).is_at_most(40) }
 
   it { should validate_uniqueness_of(:name) }
 

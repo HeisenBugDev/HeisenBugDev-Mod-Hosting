@@ -2,7 +2,7 @@ class ProjectSerializer < ActiveModel::Serializer
   include ApplicationHelper
 
   attributes :id, :name, :description, :created_at, :updated_at, :code_repo,
-    :subtitle, :icon, :downloads, :slug, :owner_sentence, :main_download,
+    :icon, :downloads, :slug, :owner_sentence, :main_download,
     :download_sentence
 
   def main_download

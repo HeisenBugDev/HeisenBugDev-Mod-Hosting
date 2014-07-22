@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721160217) do
+ActiveRecord::Schema.define(version: 20140722222915) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20140721160217) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code_repo"
-    t.string   "subtitle"
     t.string   "icon"
     t.string   "slug"
     t.string   "owner_sentence"

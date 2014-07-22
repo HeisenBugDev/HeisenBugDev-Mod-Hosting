@@ -8,7 +8,6 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  code_repo         :string(255)
-#  subtitle          :string(255)
 #  icon              :string(255)
 #  slug              :string(255)
 #  owner_sentence    :string(255)
@@ -26,7 +25,6 @@ FactoryGirl.define do
     name "BlockMiner"
     code_repo "HeisenBugDev/BlockMiner"
     description "Mine the blocks and stuff"
-    subtitle "Something short and tasty"
 
     # Warning: icon will be a string, not a file!
     icon { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec',

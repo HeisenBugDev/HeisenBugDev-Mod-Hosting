@@ -8,7 +8,6 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  code_repo         :string(255)
-#  subtitle          :string(255)
 #  icon              :string(255)
 #  slug              :string(255)
 #  owner_sentence    :string(255)
@@ -44,12 +43,10 @@ class Project < ActiveRecord::Base
   validates_presence_of :wiki
   validates_presence_of :description
   validates_presence_of :code_repo
-  validates_presence_of :subtitle
 
   validates_format_of :code_repo, :with => /(.*)\/(.*)/
 
   validates_length_of :name, :maximum => 30
-  validates_length_of :subtitle, :maximum => 40
 
   validates_uniqueness_of :name, :case_sensitive => false
 

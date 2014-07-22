@@ -160,7 +160,6 @@ def make_projects
   write_header_to_help_file('Projects')
   create_print "Projects"
   code_repo = "HeisenBugDev/ExampleRepo"
-  subtitle = "Yet another awesome mod"
 
   project = nil
   99.times do |n|
@@ -178,7 +177,6 @@ def make_projects
     project = Project.create!(name: name,
                               code_repo: code_repo,
                               description: description,
-                              subtitle: subtitle,
                               icon: icon)
     userp = (0..99).to_a.sort{ rand() - 0.5 }[0..3]
     project.users << User.find_all_by_id(userp)
