@@ -3,7 +3,7 @@ HeisenBugDev::Application.routes.draw do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
 
-  root 'home#index'
+  root 'ember#index'
 
   scope :api, :defaults => { :format => 'json' }, :constraints => { :format => 'json' } do
     namespace :users do
@@ -58,5 +58,5 @@ HeisenBugDev::Application.routes.draw do
       end
     end
   end
-  get '*path', to: 'home#index'
+  get '*path', to: 'ember#index'
 end
