@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : 'HeisenBugDev' %>
+    </title>
+    <meta content="<%= 'HeisenBugDev is a site designed to improve Minecraft modding, both for the developer and user.' %>" name="description"/>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= favicon_link_tag 'favicon.png' %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <link href="http://yandex.st/highlightjs/8.0/styles/default.min.css" rel="stylesheet"></link>
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
