@@ -60,11 +60,13 @@ class Project < ActiveRecord::Base
   after_initialize :init
 
   def set_download_sentence
+    return unless self.respond_to?(:download_sentence)
     num = ActionController::Base.helpers.number_to_human(self.downloads)
     self.download_sentence = "#{num} Downloads"
   end
 
   def set_owner_sentence
+    return unless self.respond_to?(:owner_sentence)
     owners = (self.users.map {|user| user.name}).uniq
 
     if owners.size <= 2
@@ -82,6 +84,7 @@ class Project < ActiveRecord::Base
   end
 
   def set_downloads
+    return unless self.respond_to?(:downloads)
     self.downloads = self.builds.collect{|b| b.downloads }.sum
   end
 end
