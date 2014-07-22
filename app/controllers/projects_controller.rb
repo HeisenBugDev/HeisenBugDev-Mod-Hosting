@@ -98,9 +98,7 @@ class ProjectsController < ApplicationController
     end
     flash[:success] = 'User removed'
     @users = @project.users
-    respond_to do |format|
-      format.js { render :action => 'update' }
-    end
+    render :json => { :message => 'success' }
   end
 
   def downloads
