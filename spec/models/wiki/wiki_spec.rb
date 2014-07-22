@@ -6,7 +6,6 @@
 #  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  repo       :string(255)
 #
 # Indexes
 #

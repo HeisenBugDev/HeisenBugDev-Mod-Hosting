@@ -4,14 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)
-#  parent_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
 #  wiki_id    :integer
-#
-# Indexes
-#
-#  index_wiki_categories_on_parent_id  (parent_id)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722222915) do
+ActiveRecord::Schema.define(version: 20140722233030) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -133,34 +133,24 @@ ActiveRecord::Schema.define(version: 20140722222915) do
   create_table "wiki_articles", force: true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "wiki_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "build_id"
-    t.integer  "version_id"
     t.integer  "category_id"
   end
 
-  add_index "wiki_articles", ["build_id"], name: "index_wiki_articles_on_build_id"
   add_index "wiki_articles", ["category_id"], name: "index_wiki_articles_on_category_id"
-  add_index "wiki_articles", ["version_id"], name: "index_wiki_articles_on_version_id"
-  add_index "wiki_articles", ["wiki_id"], name: "index_wiki_articles_on_wiki_id"
 
   create_table "wiki_categories", force: true do |t|
     t.string   "title"
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "wiki_id"
   end
-
-  add_index "wiki_categories", ["parent_id"], name: "index_wiki_categories_on_parent_id"
 
   create_table "wiki_wikis", force: true do |t|
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "repo"
   end
 
   add_index "wiki_wikis", ["project_id"], name: "index_wiki_wikis_on_project_id"

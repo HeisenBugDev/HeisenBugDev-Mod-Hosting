@@ -29,7 +29,6 @@ class Build < ActiveRecord::Base
   belongs_to :version
 
   has_many :artifacts, :dependent => :destroy
-  has_many :articles, :dependent => :destroy, :class_name => 'Wiki::Article'
 
   validates_presence_of :build_number
   validates_presence_of :commit
