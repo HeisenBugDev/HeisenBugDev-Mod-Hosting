@@ -1,8 +1,0 @@
-$('#developers-list').html("<%= raw(remove_newlines(single_quoter(render(:partial => 'developers')))) %>")
-<% if @new_image %>
-$('#mod-header').replaceWith("<%= raw(remove_newlines(single_quoter(render(:partial => 'layouts/mod_header', :locals => {:project => @project})))) %>")
-<% end %>
-$('#repo-info').replaceWith("<%= raw(remove_newlines(single_quoter(render(:partial => 'repo_info')))) %>")
-$(document).foundation();
-$('a.close-reveal-modal').trigger('click')
-$(document).trigger('page:load');
