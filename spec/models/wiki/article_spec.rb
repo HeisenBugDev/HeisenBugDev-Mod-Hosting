@@ -19,11 +19,11 @@ require 'spec_helper'
 describe Wiki::Article do
   let(:project) { FactoryGirl.create(:project) }
   let(:wiki) { FactoryGirl.create(:wiki_wiki, :project => project) }
-  let(:article) { FactoryGirl.create(:wiki_article, :wiki => wiki) }
+  let(:category) { FactoryGirl.create(:wiki_category, :wiki => wiki) }
+  let(:article) { FactoryGirl.create(:wiki_article, :category => category) }
 
   subject { article }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
-  it { should validate_presence_of(:wiki) }
 end

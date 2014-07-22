@@ -17,6 +17,4 @@ class Wiki::Wiki < ActiveRecord::Base
   has_many :categories, :dependent => :destroy
 
   validates_presence_of :project, on: :update
-  validates_presence_of :repo
-  validates_format_of :repo, :with => /(.*)\/(.*)/
 end

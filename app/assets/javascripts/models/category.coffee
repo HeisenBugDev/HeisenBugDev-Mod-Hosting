@@ -4,5 +4,3 @@ HeisenBugDev.Category = DS.Model.extend
   updated_at: DS.attr 'string'
   wiki: DS.belongsTo 'wiki'
   articles: DS.hasMany 'articles'
-  subcategories: DS.hasMany 'categories'
-  parent_category: DS.belongsTo 'category'

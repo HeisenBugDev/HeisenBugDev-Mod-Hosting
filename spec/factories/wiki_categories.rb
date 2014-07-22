@@ -14,6 +14,5 @@
 FactoryGirl.define do
   factory :wiki_category, :class => 'Wiki::Category' do
     title "MyString"
-    parent nil
   end
 end

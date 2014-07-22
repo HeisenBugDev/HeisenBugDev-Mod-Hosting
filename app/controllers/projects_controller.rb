@@ -116,8 +116,7 @@ private
       :name,
       :description,
       :icon,
-      :code_repo,
-      :wiki_attributes => [:repo]
+      :code_repo
     )
   end
 end

@@ -37,13 +37,6 @@ describe Project do
 
   it { should validate_uniqueness_of(:name) }
 
-  describe "when wiki_repo is not specified" do
-    it "should be defaulted" do
-      expect(@constructor_init_project.wiki.repo).to(
-        eq("HeisenBugDev/HeisenBugDev-content"))
-    end
-  end
-
   describe "invalid repo format" do
     before { @project.code_repo = 'hai' }
     it { should_not be_valid }
