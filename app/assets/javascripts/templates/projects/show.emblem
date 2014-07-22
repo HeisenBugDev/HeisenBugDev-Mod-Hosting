@@ -6,7 +6,8 @@
         | by&#32;
         a = owner_sentence
     .right
-      download-button this 'main_download'
+      .float-right
+        download-button this 'main_download'
       h3.text-right.float-right = download_sentence
 .container
   .row

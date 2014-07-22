@@ -14,7 +14,31 @@ body {
   font-weight: 300;
 }
 
+@mixin striped-background($foreground-color, $background-color, $angle: -45deg, $size: 100px) {
+  background-color: $background-color;
+  @include background-image(linear-gradient($angle, $foreground-color 25%, transparent 25%, transparent 50%, $foreground-color 50%, $foreground-color 75%, transparent 75%, transparent));
+  @include background-size($size $size);
+}
+
+$strip-color: #cc1c4a;
+
+.striped {
+  @include striped-background($strip-color, darken($strip-color, 5), -45deg, $size: 80px);
+}
+
+.striped-horizontal {
+  @include striped-background($strip-color, darken($strip-color, 5), 0deg, $size: 50px);
+}
+
+.striped-vertical {
+  @include striped-background($strip-color, darken($strip-color, 5), 90deg, $size: 80px);
+}
+
 div.container {
+  a.button, a.deactivated-button {
+    text-decoration: none;
+  }
+
   @include outer-container;
 
   .left {
@@ -67,10 +91,6 @@ div.container {
     text-decoration: underline;
   }
 
-  a.button {
-    text-decoration: none;
-  }
-
   .float-right {
     float: right;
   }
@@ -109,6 +129,15 @@ div.container {
 .release-button { @include button($green) }
 .beta-button { @include button($blue) }
 .normal-button { @include button($gray) }
+.deactivated-button {
+  @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+  @include button($light-gray);
+  color: $medium-gray;
+  &:hover {
+    @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+    color: $medium-gray;
+  }
+}
 
 .download-card p, .download-card h1 { font-weight: 400; }
 

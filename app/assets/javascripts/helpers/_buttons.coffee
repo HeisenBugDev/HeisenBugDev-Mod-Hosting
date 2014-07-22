@@ -15,8 +15,10 @@ Ember.Handlebars.helper 'download-button', (object, url_attr, type, options) ->
     else
       button_class = 'button'
 
-  [label, center] = ['', '']
+  [label, center, href, main_text] = ['', '', '', 'Download']
   label = "<span class='button-label'>#{button_label}</span>" if button_label
   center = "text-center" unless button_label
-  url = '' if url = ''
-  new Handlebars.SafeString "<a href='#{url}' class='#{center} #{button_class}'>#{label}<span>Download</span></a>"
+  href = "href='#{url}'" if url
+  main_text = 'Download' unless url
+  button_class = 'deactivated-button' unless url
+  new Handlebars.SafeString "<a #{href} class='#{center} #{button_class}'>#{label}<span>#{main_text}</span></a>"

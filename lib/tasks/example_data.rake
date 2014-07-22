@@ -180,6 +180,9 @@ def make_projects
                               description: description,
                               subtitle: subtitle,
                               icon: icon)
+    userp = (0..99).to_a.sort{ rand() - 0.5 }[0..3]
+    project.users << User.find_all_by_id(userp)
+
   end
 
   write_to_help_file(@@projects_message)
