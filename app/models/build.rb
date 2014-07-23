@@ -38,7 +38,7 @@ class Build < ActiveRecord::Base
   validates_presence_of :version
 
   before_save :set_downloads
-  after_save :update_parent_downloads
+  after_save :save_parent
 
   validates_numericality_of :build_number, :only_integer => true,
                                            :greater_than => 0,
@@ -55,7 +55,7 @@ class Build < ActiveRecord::Base
     self.downloads = self.artifacts.sum('downloads')
   end
 
-  def update_parent_downloads
+  def save_parent
     self.project.save
   end
 end

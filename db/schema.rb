@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722233030) do
+ActiveRecord::Schema.define(version: 20140723165720) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -66,6 +66,10 @@ ActiveRecord::Schema.define(version: 20140722233030) do
     t.string   "owner_sentence"
     t.string   "downloads"
     t.string   "download_sentence"
+    t.string   "main_download"
+    t.string   "latest_release_file"
+    t.string   "latest_beta_file"
+    t.string   "latest_normal_file"
   end
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true

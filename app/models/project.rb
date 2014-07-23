@@ -2,17 +2,21 @@
 #
 # Table name: projects
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  description       :text
-#  created_at        :datetime
-#  updated_at        :datetime
-#  code_repo         :string(255)
-#  icon              :string(255)
-#  slug              :string(255)
-#  owner_sentence    :string(255)
-#  downloads         :string(255)
-#  download_sentence :string(255)
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  description         :text
+#  created_at          :datetime
+#  updated_at          :datetime
+#  code_repo           :string(255)
+#  icon                :string(255)
+#  slug                :string(255)
+#  owner_sentence      :string(255)
+#  downloads           :string(255)
+#  download_sentence   :string(255)
+#  main_download       :string(255)
+#  latest_release_file :string(255)
+#  latest_beta_file    :string(255)
+#  latest_normal_file  :string(255)
 #
 # Indexes
 #
@@ -22,6 +26,8 @@
 require 'file_size_validator'
 
 class Project < ActiveRecord::Base
+  include ApplicationHelper
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -30,7 +36,7 @@ class Project < ActiveRecord::Base
   mount_uploader :icon, ProjectIconUploader
 
   validates :icon,
-    :presence => true,
+    # :presence => true,
     :file_size => {
       :maximum => 0.5.megabytes.to_i
     }
@@ -53,8 +59,31 @@ class Project < ActiveRecord::Base
   before_save :set_owner_sentence
   before_save :set_downloads
   before_save :set_download_sentence
+  before_save :set_download_urls
 
   after_initialize :init
+
+  def set_download_urls
+    ['release', 'beta', 'normal'].each do |type|
+      self.send("latest_#{type}_file=", '')
+      usetype = type
+      usetype = '' if type == 'normal'
+      build = self.builds.order('build_number DESC').limit(1).
+        where(:build_state => usetype).first
+
+      artifacts = build.artifacts if build
+      artifact = artifacts.find_by_name('universal') if artifacts
+      url = artifact.artifact.url if artifact
+      self.send("latest_#{type}_file=", url)
+    end
+
+    self.main_download = ''
+    build = latest_stable(self)
+    artifacts = build.artifacts if build
+    artifact = artifacts.find_by_name('universal') if artifacts
+    url = artifact.artifact.url if artifact
+    self.main_download = url
+  end
 
   def set_download_sentence
     return unless self.respond_to?(:download_sentence)
@@ -82,6 +111,6 @@ class Project < ActiveRecord::Base
 
   def set_downloads
     return unless self.respond_to?(:downloads)
-    self.downloads = self.builds.collect{|b| b.downloads }.sum
+    self.downloads = self.builds.collect{|b| b.downloads.to_i }.sum
   end
 end
