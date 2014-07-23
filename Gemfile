@@ -37,6 +37,7 @@ gem 'colorize'
 gem 'friendly_id', '~> 5.0.0'
 gem 'bourbon'
 gem 'neat'
+gem 'rack-mini-profiler'
 
 group :production do
   gem 'pg'
