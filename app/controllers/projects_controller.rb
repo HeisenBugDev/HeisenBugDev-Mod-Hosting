@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.paginate(page: params[:page])
+    @projects = Project.includes(:wiki).paginate(page: params[:page])
     render :json => @projects
   end
 

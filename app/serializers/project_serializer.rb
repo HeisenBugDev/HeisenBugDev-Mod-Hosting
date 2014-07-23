@@ -2,8 +2,8 @@ class ProjectSerializer < ActiveModel::Serializer
   include ApplicationHelper
 
   attributes :id, :name, :description, :created_at, :updated_at, :code_repo,
-    :icon, :downloads, :slug, :owner_sentence, :main_download,
-    :download_sentence, :latest_release_file, :latest_beta_file, :latest_normal_file
+    :icon, :downloads, :slug, :owner_sentence, :latest_release_file, :latest_beta_file, :latest_normal_file,
+    :download_sentence
 
   def latest_file(type)
     type = "" if type
