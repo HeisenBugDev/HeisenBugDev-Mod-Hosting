@@ -13,7 +13,7 @@ namespace :db do
     download_assets
     make_users
     make_projects
-    # make_builds
+    make_builds
     # make_articles
     close_file
   end
@@ -178,7 +178,7 @@ def make_projects
                               code_repo: code_repo,
                               description: description,
                               icon: icon)
-    userp = (0..99).to_a.sort{ rand() - 0.5 }[0..3]
+    userp = (0..(User.count - 1)).to_a.sort{ rand() - 0.5 }[0..3]
     project.users << User.find_all_by_id(userp)
 
   end
@@ -186,4 +186,29 @@ def make_projects
   write_to_help_file(@@projects_message)
   write_record_markdown(project)
   status_print "Projects created!"
+end
+
+def make_builds
+  create_print('Builds')
+  Project.find_each do |project|
+    ['', 'beta', 'release'].each_with_index do |type, index|
+      file = File.open(File.join(Rails.root,
+        'utils/upload_data/QuantumCraft-deobf-1.7.2-0.7.1.null.jar'))
+
+      version = Version.create!(:version => "7.3.5.#{index}", :project => project)
+      build = Build.create!(:project => project,
+                          :version => version,
+                          :build_number => index + 1,
+                          :commit => 'ksjdfk',
+                          :minecraft_version => "7.123",
+                          :branch => 'master',
+                          :build_state => type)
+
+      artifact = Artifact.create!(:name => 'universal',
+                                 :build => build,
+                                 :artifact => file)
+    end
+
+    status_print('Builds created!')
+  end
 end
