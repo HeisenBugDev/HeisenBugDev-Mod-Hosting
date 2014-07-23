@@ -6,6 +6,9 @@ HeisenBugDev.Project = DS.Model.extend
   code_repo: DS.attr 'string'
   download_sentence: DS.attr 'string'
   main_download: DS.attr 'string'
+  latest_release_file: DS.attr 'string'
+  latest_beta_file: DS.attr 'string'
+  latest_normal_file: DS.attr 'string'
   icon: DS.attr 'string'
   wiki: DS.belongsTo 'wiki', async: true
   builds: DS.hasMany 'builds', async: true
