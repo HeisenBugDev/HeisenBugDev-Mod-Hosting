@@ -37,6 +37,8 @@ $strip-color: #cc1c4a;
 div.container {
   a.button, a.deactivated-button {
     text-decoration: none;
+
+    &:focus {text-decoration: underline;}
   }
 
   @include outer-container;
@@ -112,6 +114,16 @@ div.container {
     @include transition-duration(0s);
     background-color: $color;
     color: white;
+  }
+
+  &:active {
+    background-color: initial;
+    color: $color;
+  }
+
+  &:focus {
+    color: $color;
+    text-decoration: underline;
   }
 
   span {
