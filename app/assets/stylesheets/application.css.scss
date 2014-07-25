@@ -1,8 +1,11 @@
 @import "bourbon";
 @import "base/base";
 @import "neat";
+@import "layout/layout";
 
 @import "spinner";
+@import "mod_header";
+@import "projects";
 
 // remember! trbl
 
@@ -12,154 +15,4 @@ body {
 
 * {
   font-weight: 300;
-}
-
-@mixin striped-background($foreground-color, $background-color, $angle: -45deg, $size: 100px) {
-  background-color: $background-color;
-  @include background-image(linear-gradient($angle, $foreground-color 25%, transparent 25%, transparent 50%, $foreground-color 50%, $foreground-color 75%, transparent 75%, transparent));
-  @include background-size($size $size);
-}
-
-$strip-color: #cc1c4a;
-
-.striped {
-  @include striped-background($strip-color, darken($strip-color, 5), -45deg, $size: 80px);
-}
-
-.striped-horizontal {
-  @include striped-background($strip-color, darken($strip-color, 5), 0deg, $size: 50px);
-}
-
-.striped-vertical {
-  @include striped-background($strip-color, darken($strip-color, 5), 90deg, $size: 80px);
-}
-
-div.container {
-  a.button, a.deactivated-button {
-    text-decoration: none;
-
-    &:focus {text-decoration: underline;}
-  }
-
-  @include outer-container;
-
-  .left {
-    @include span-columns(9);
-    float: left;
-  }
-
-  .right {
-    @include span-columns(3);
-    float: right;
-  }
-
-  .three-c {
-    @include span-columns(3.8);
-    margin-right: 4%;
-  }
-}
-
-.row {
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.mod-header {
-  // todo use vars for colors
-  background-color: #e8e8e8;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  border-bottom: 15px solid #ebaf3c;
-
-  h1 {
-    font-size: 48px;
-    color: #e9662c;
-  }
-
-  h3 {
-    margin-top: 6px;
-    color: #ebaf3c;
-  }
-
-  a.button {
-    float: right;
-  }
-
-  .right h3 {
-    margin-top: 20px;
-  }
-
-  a {
-    text-decoration: underline;
-  }
-
-  .float-right {
-    float: right;
-  }
-}
-
-@mixin button($color) {
-  display: inline-block;
-  @include transition-duration(0s);
-  border: 2px solid $color;
-  border-radius: 10px;
-  color: $color;
-  top: 11px;
-  position: relative;
-  font-size: 30px;
-  width: 220px;
-  padding: 0px 15px 1px 15px;
-
-  &:hover {
-    @include transition-duration(0s);
-    background-color: $color;
-    color: white;
-  }
-
-  &:active {
-    background-color: initial;
-    color: $color;
-  }
-
-  &:focus {
-    color: $color;
-    text-decoration: underline;
-  }
-
-  span {
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: center;
-  }
-
-  .button-label {
-    font-weight: 600;
-  }
-}
-
-.button { @include button($orange) }
-.release-button { @include button($green) }
-.beta-button { @include button($blue) }
-.normal-button { @include button($gray) }
-.deactivated-button {
-  @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
-  @include button($light-gray);
-  color: $medium-gray;
-  &:hover {
-    @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
-    color: $medium-gray;
-  }
-}
-
-.download-card p, .download-card h1 { font-weight: 400; }
-
-.text-center { text-align: center; }
-.text-right { text-align: right }
-
-.description {
-  margin-top: 25px;
-
-  p {
-    font-weight: 400;
-  }
 }

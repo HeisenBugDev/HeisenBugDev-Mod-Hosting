@@ -1,0 +1,5 @@
+@mixin striped-background($foreground-color, $background-color, $angle: -45deg, $size: 100px) {
+  background-color: $background-color;
+  @include background-image(linear-gradient($angle, $foreground-color 25%, transparent 25%, transparent 50%, $foreground-color 50%, $foreground-color 75%, transparent 75%, transparent));
+  @include background-size($size $size);
+}

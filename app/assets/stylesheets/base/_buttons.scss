@@ -8,3 +8,19 @@ input[type="submit"] {
   vertical-align: middle;
   white-space: nowrap;
 }
+
+.button { @include button($orange); }
+.release-button { @include button($green); }
+.beta-button { @include button($blue); }
+.normal-button { @include button($gray); }
+
+.deactivated-button {
+  @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+  @include button($light-gray);
+  color: $medium-gray;
+
+  &:hover {
+    @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+    color: $medium-gray;
+  }
+}

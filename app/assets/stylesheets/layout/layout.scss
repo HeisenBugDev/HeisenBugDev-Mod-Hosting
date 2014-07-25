@@ -1,0 +1,26 @@
+// HeisenBugDev layout
+div.container {
+  @include outer-container;
+
+  .left {
+    @include span-columns(9);
+    float: left;
+  }
+
+  .right {
+    @include span-columns(3);
+    float: right;
+  }
+
+  .three-c {
+    @include span-columns(3.8);
+    margin-right: 4%;
+  }
+}
+
+.row {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.download-card p, .download-card h1 { font-weight: 400; }
