@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723165720) do
+ActiveRecord::Schema.define(version: 20140725143637) do
 
   create_table "artifacts", force: true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140723165720) do
     t.integer  "version_id"
     t.string   "build_state"
     t.string   "downloads"
+    t.string   "main_url"
   end
 
   add_index "builds", ["build_number"], name: "index_builds_on_build_number"
@@ -67,9 +68,9 @@ ActiveRecord::Schema.define(version: 20140723165720) do
     t.string   "downloads"
     t.string   "download_sentence"
     t.string   "main_download"
-    t.string   "latest_release_file"
-    t.string   "latest_beta_file"
-    t.string   "latest_normal_file"
+    t.string   "latest_release_build_id"
+    t.string   "latest_beta_build_id"
+    t.string   "latest_normal_build_id"
   end
 
   add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true

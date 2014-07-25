@@ -2,21 +2,21 @@
 #
 # Table name: projects
 #
-#  id                  :integer          not null, primary key
-#  name                :string(255)
-#  description         :text
-#  created_at          :datetime
-#  updated_at          :datetime
-#  code_repo           :string(255)
-#  icon                :string(255)
-#  slug                :string(255)
-#  owner_sentence      :string(255)
-#  downloads           :string(255)
-#  download_sentence   :string(255)
-#  main_download       :string(255)
-#  latest_release_file :string(255)
-#  latest_beta_file    :string(255)
-#  latest_normal_file  :string(255)
+#  id                      :integer          not null, primary key
+#  name                    :string(255)
+#  description             :text
+#  created_at              :datetime
+#  updated_at              :datetime
+#  code_repo               :string(255)
+#  icon                    :string(255)
+#  slug                    :string(255)
+#  owner_sentence          :string(255)
+#  downloads               :string(255)
+#  download_sentence       :string(255)
+#  main_download           :string(255)
+#  latest_release_build_id :string(255)
+#  latest_beta_build_id    :string(255)
+#  latest_normal_build_id  :string(255)
 #
 # Indexes
 #

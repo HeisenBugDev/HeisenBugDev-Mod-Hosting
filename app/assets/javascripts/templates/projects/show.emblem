@@ -18,14 +18,14 @@
       .download-card
         h1 Latest Release
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button this 'latest_release_file' 'release'
+        download-button latestReleaseBuild 'main_url' 'release'
     .three-c
       .download-card
         h1 Latest Beta
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button this 'latest_beta_file' 'beta'
+        download-button latestBetaBuild 'main_url' 'beta'
     .three-c
       .download-card
         h1 Latest
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button this 'latest_normal_file' 'normal'
+        download-button latestBetaBuild 'main_url' 'normal'

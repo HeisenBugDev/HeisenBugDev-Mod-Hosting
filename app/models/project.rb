@@ -2,21 +2,21 @@
 #
 # Table name: projects
 #
-#  id                  :integer          not null, primary key
-#  name                :string(255)
-#  description         :text
-#  created_at          :datetime
-#  updated_at          :datetime
-#  code_repo           :string(255)
-#  icon                :string(255)
-#  slug                :string(255)
-#  owner_sentence      :string(255)
-#  downloads           :string(255)
-#  download_sentence   :string(255)
-#  main_download       :string(255)
-#  latest_release_file :string(255)
-#  latest_beta_file    :string(255)
-#  latest_normal_file  :string(255)
+#  id                      :integer          not null, primary key
+#  name                    :string(255)
+#  description             :text
+#  created_at              :datetime
+#  updated_at              :datetime
+#  code_repo               :string(255)
+#  icon                    :string(255)
+#  slug                    :string(255)
+#  owner_sentence          :string(255)
+#  downloads               :string(255)
+#  download_sentence       :string(255)
+#  main_download           :string(255)
+#  latest_release_build_id :string(255)
+#  latest_beta_build_id    :string(255)
+#  latest_normal_build_id  :string(255)
 #
 # Indexes
 #
@@ -34,6 +34,10 @@ class Project < ActiveRecord::Base
   has_one :wiki, :class_name => 'Wiki::Wiki', :dependent => :destroy
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader
+
+  belongs_to :latest_release_build, :class_name => 'Build'
+  belongs_to :latest_beta_build, :class_name => 'Build'
+  belongs_to :latest_normal_build, :class_name => 'Build'
 
   validates :icon,
     # :presence => true,
@@ -59,22 +63,20 @@ class Project < ActiveRecord::Base
   before_save :set_owner_sentence
   before_save :set_downloads
   before_save :set_download_sentence
-  before_save :set_download_urls
+  before_save :set_main_builds
 
   after_initialize :init
 
-  def set_download_urls
+  def set_main_builds
     ['release', 'beta', 'normal'].each do |type|
-      self.send("latest_#{type}_file=", '')
+      self.send("latest_#{type}_build=", nil)
       usetype = type
       usetype = '' if type == 'normal'
       build = self.builds.order('build_number DESC').limit(1).
         where(:build_state => usetype).first
 
-      artifacts = build.artifacts if build
-      artifact = artifacts.find_by_name('universal') if artifacts
-      url = artifact.artifact.url if artifact
-      self.send("latest_#{type}_file=", url)
+      return unless build
+      self.send("latest_#{type}_build=", build)
     end
 
     self.main_download = ''

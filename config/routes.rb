@@ -33,7 +33,7 @@ HeisenBugDev::Application.routes.draw do
 
     resources 'flashes',    :only => [:index]
 
-    resources 'builds', :only => [:create, :index]
+    resources 'builds', :only => [:create, :index, :show]
 
     get '/documentation', :to => 'documentation#index'
     get '/documentation/:id', :to => 'documentation#show', :as => :documentation_show

@@ -13,6 +13,7 @@
 #  version_id        :integer
 #  build_state       :string(255)
 #  downloads         :string(255)
+#  main_url          :string(255)
 #
 # Indexes
 #
@@ -38,6 +39,7 @@ class Build < ActiveRecord::Base
   validates_presence_of :version
 
   before_save :set_downloads
+  before_save :set_main_url
   after_save :save_parent
 
   validates_numericality_of :build_number, :only_integer => true,
@@ -53,6 +55,13 @@ class Build < ActiveRecord::Base
 
   def set_downloads
     self.downloads = self.artifacts.sum('downloads')
+  end
+
+  def set_main_url
+    self.main_url = ''
+    artifacts = self.artifacts
+    artifact = artifacts.find_by_name('universal') if artifacts
+    self.main_url = artifact.artifact.url if artifact
   end
 
   def save_parent

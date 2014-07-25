@@ -208,7 +208,7 @@ def make_builds
                                  :build => build,
                                  :artifact => file)
     end
-
-    status_print('Builds created!')
   end
+
+  status_print('Builds created!')
 end
