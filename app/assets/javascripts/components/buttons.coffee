@@ -3,6 +3,11 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
   attributeBindings: ['href']
   classNameBindings: ['button_class', 'textCenter']
 
+  bootstrap: (->
+    @set('isLoading', true)
+    this.send('sethref')
+  ).on('init')
+
   setupBuild: (->
     self = this
 
@@ -37,10 +42,14 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
     @set('href', @get('project').get(@get('project_attribute')))
   ).on('init')
 
-  sethref: (->
-    return unless @get('build')?
-    build_attribute = @get('build_attribute')
-    self = this
-    @get('build').then (build) ->
-      self.set('href', build.get(build_attribute))
-  ).on('init')
+  actions:
+    sethref: (->
+      @set('isLoading', false)
+      return unless @get('build')?
+      build_attribute = @get('build_attribute')
+      self = this
+      @get('build').then (build) ->
+        self.set('href', build.get(build_attribute))
+    )
+
+HeisenBugDev.LoadingSpinnerComponent = Ember.Component.extend()

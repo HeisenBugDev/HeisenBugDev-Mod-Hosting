@@ -1,3 +1,6 @@
-if label
-  span.button-label = label
-span Download
+if isLoading
+  loading-spinner
+else
+  if label
+    span.button-label = label
+  span Download

@@ -9,6 +9,7 @@
   font-size: 30px;
   width: 220px;
   padding: 0px 15px 1px 15px;
+  height: 51px;
 
   &:hover {
     @include transition-duration(0s);

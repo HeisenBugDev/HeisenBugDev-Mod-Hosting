@@ -7,7 +7,7 @@
             project.name
 
     if currentlyFetchingPage
-      render 'spinner'
+      loading-spinner
     else
       div.load-more.text-center{action "loadNextPage"}
 
