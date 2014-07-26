@@ -8,3 +8,7 @@
 #= require_tree ./routes
 #= require ./router
 #= require_self
+
+HeisenBugDev.helpers =
+  capitalize: (string) ->
+    string.charAt(0).toUpperCase() + string.slice(1)

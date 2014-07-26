@@ -24,3 +24,14 @@ input[type="submit"] {
     color: $medium-gray;
   }
 }
+
+.bugged-button {
+  @include striped-background($light-red, darken($light-red, 5), -45deg, $size: 80px);
+  @include button($light-red);
+  color: darken($light-red, 20);
+
+  &:hover {
+    @include striped-background($light-red, darken($light-red, 5), -45deg, $size: 80px);
+    color: darken($light-red, 20);
+  }
+}

@@ -13,7 +13,7 @@
 #  version_id        :integer
 #  build_state       :string(255)
 #  downloads         :string(255)
-#  main_url          :string(255)
+#  main_download     :string(255)
 #
 # Indexes
 #

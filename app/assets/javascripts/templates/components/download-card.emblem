@@ -1,0 +1,5 @@
+h1
+  | Latest
+  = type
+p = changelog
+download-button build=build
