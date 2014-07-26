@@ -30,7 +30,7 @@ HeisenBugDev::Application.routes.draw do
     end
 
     resources 'rasterizer', :only => [:create]
-
+    resources 'versions',   :only => [:show]
     resources 'flashes',    :only => [:index]
 
     resources 'builds', :only => [:create, :index, :show]

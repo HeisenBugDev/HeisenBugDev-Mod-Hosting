@@ -4,3 +4,14 @@ h1
 p
   breaklines build.brief_changelog
 download-button build=build
+
+table.split-list
+  tr
+    td Build
+    td = build.build_number
+  tr
+    td MC
+    td = build.minecraft_version
+  tr
+    td Version
+    td = build.version.version

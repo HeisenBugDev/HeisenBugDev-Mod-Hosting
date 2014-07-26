@@ -8,8 +8,8 @@ HeisenBugDev.Build = DS.Model.extend
   branch: DS.attr 'string'
   build_state: DS.attr 'string'
   downloads: DS.attr 'number'
-  project: DS.belongsTo 'project'
-  version: DS.belongsTo 'version'
+  project: DS.belongsTo 'project', async: true
+  version: DS.belongsTo 'version', async: true
   articles: DS.hasMany 'articles'
   artifacts: DS.hasMany 'artifacts'
   brief_changelog: DS.attr 'string'
