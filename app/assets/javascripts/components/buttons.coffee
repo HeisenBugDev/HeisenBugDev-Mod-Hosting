@@ -25,9 +25,11 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
         when 'normal'
           self.set('button_class', 'normal-button')
           self.set('textCenter', true)
+          self.set('label', null)
         else
           self.set('textCenter', true)
           self.set('button_class', 'button')
+          self.set('label', null)
   ).observes('build.build_state').on('init')
 
   setupProject: (->
