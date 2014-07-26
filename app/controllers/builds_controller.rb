@@ -1,9 +1,10 @@
 class BuildsController < ApplicationController
   skip_before_filter :beta_logged_in, :only => [:create]
-  acts_as_token_authentication_handler_for User, fallback_to_devise: false
-  before_filter :authenticate_entity_from_token!, :only => [:create, :destroy]
-  before_filter :authenticate_entity!, :only => [:create, :destroy]
+  # acts_as_token_authentication_handler_for User, fallback_to_devise: false
+  # before_filter :authenticate_entity_from_token!, :only => [:create, :destroy]
+  # before_filter :authenticate_entity!, :only => [:create, :destroy]
   include ApplicationHelper
+  include BuildsHelper
 
   def update
     @build = Build.find(params[:id])
@@ -48,11 +49,11 @@ class BuildsController < ApplicationController
 
   def create
     name = params[:project_name]
-    if can? :manage, :all
+    # if can? :manage, :all
       project = Project.find_by_name(name)
-    else
-      project = current_user.projects.find_by_name(name)
-    end
+    # else
+      # project = current_user.projects.find_by_name(name)
+    # end
 
     if project.nil?
       render :text => "Project does not exist or you do not have permission!",
@@ -71,6 +72,13 @@ class BuildsController < ApplicationController
     version = Version.find_or_initialize_by(:project => project,
           :version => params[:mod_version])
     build.version = version
+
+    prevcommit = prev_commit(build)
+    if prevcommit && !params[:commit].blank?
+      build.brief_changelog = fetch_brief_changelog(project.code_repo, prev_commit(build), build.commit)[0..3].join("\n")
+    else
+      build.brief_changelog = 'First build'
+    end
 
     if build.save
       render :json => {
@@ -132,6 +140,26 @@ class BuildsController < ApplicationController
   end
 
 private
+
+  #
+  # Fetches the changelog for a repository
+  # @param repo [string] github repo owner/name
+  # @param bef [string] base commit SHA
+  # @param aft [string] head commit SHA
+  #
+  # @return [string] First line of every commit in the diff
+  def fetch_brief_changelog(repo, bef, aft)
+    begin
+      lines = []
+      HeisenBugDev::Application::OCTOKIT_CLIENT.compare(repo, bef, aft).commits.each do |commithash|
+        lines << commithash.commit.message.lines.first
+      end
+      lines
+    rescue Octokit::NotFound
+      ['New build']
+    end
+  end
+
   def upload_params
     params.permit(:build_number, :commit, :minecraft_version, :branch)
   end

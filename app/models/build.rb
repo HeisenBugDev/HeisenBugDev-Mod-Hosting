@@ -14,6 +14,7 @@
 #  build_state       :string(255)
 #  downloads         :string(255)
 #  main_download     :string(255)
+#  brief_changelog   :text
 #
 # Indexes
 #
@@ -39,7 +40,7 @@ class Build < ActiveRecord::Base
   validates_presence_of :version
 
   before_save :set_downloads
-  before_save :set_main_url
+  before_save :set_main_download
   before_save :set_build_state
   after_save :save_parent
 
@@ -58,11 +59,11 @@ class Build < ActiveRecord::Base
     self.downloads = self.artifacts.sum('downloads')
   end
 
-  def set_main_url
-    self.main_url = ''
+  def set_main_download
+    self.main_download = ''
     artifacts = self.artifacts
     artifact = artifacts.find_by_name('universal') if artifacts
-    self.main_url = artifact.artifact.url if artifact
+    self.main_download = artifact.artifact.url if artifact
   end
 
   def set_build_state

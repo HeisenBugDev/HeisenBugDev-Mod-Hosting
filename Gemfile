@@ -38,6 +38,7 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'bourbon'
 gem 'neat'
 gem 'rack-mini-profiler'
+gem 'octokit'
 
 group :production do
   gem 'pg'

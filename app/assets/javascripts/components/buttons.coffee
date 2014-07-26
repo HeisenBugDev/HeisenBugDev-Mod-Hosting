@@ -7,7 +7,8 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
     self = this
 
     unless @get('build')?
-      @set('button_class', 'disabled-button') unless @get('project')?
+      if !@get('project') || !@get('project').get('main_download')
+        @set('button_class', 'disabled-button button')
       @set('textCenter', true)
       return
 
@@ -30,18 +31,26 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
           self.set('textCenter', true)
           self.set('button_class', 'button')
           self.set('label', null)
+
+      unless build.get('main_download')
+        self.set('button_class', 'disabled-button')
   ).observes('build.build_state').on('init')
 
   setupProject: (->
     return unless @get('project')?
     self = this
-    @set('button_class', 'button')
-    @set('href', @get('project').get('main_download'))
+    main_dl = @get('project').get('main_download')
+    if main_dl
+      @set('button_class', 'button')
+    else
+      @set('button_class', 'disabled-button button')
+
+    @set('href', main_dl || null)
   ).observes('project.main_download').on('init')
 
   sethref: (->
     return unless @get('build')?
     self = this
     @get('build').then (build) ->
-      self.set('href', build.get('main_download'))
+      self.set('href', build.get('main_download') || null)
   ).observes('build.main_download').on('init')

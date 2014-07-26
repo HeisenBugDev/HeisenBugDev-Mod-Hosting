@@ -14,6 +14,7 @@
 #  build_state       :string(255)
 #  downloads         :string(255)
 #  main_download     :string(255)
+#  brief_changelog   :text
 #
 # Indexes
 #

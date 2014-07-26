@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+require 'octokit'
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -31,6 +32,10 @@ module HeisenBugDev
   module_function :set_db_connection_pool_size!
 
   class Application < Rails::Application
+    OCTOKIT_CLIENT = Octokit::Client.new(
+      :client_id => ENV['GITHUB_KEY'],
+      :client_secret => ENV['GITHUB_SECRET']
+    )
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
