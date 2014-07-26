@@ -179,7 +179,7 @@ def make_projects
                               description: description,
                               icon: icon)
     userp = (0..(User.count - 1)).to_a.sort{ rand() - 0.5 }[0..3]
-    project.users << User.find_all_by_id(userp)
+    project.users << User.find(userp)
 
   end
 

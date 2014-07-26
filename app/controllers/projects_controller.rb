@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   autocomplete :user, :name
-  acts_as_token_authentication_handler_for User
+  # acts_as_token_authentication_handler_for User
   before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
   before_filter :authenticate_entity!, :only => [:edit, :update]
 
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.includes(:wiki, :versions, :builds).paginate(page: params[:page])
+    @projects = Project.includes(:wiki, :versions, :builds, :latest_release_build, :latest_beta_build, :latest_normal_build).paginate(page: params[:page])
     render :json => @projects
   end
 

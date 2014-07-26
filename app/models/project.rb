@@ -68,14 +68,14 @@ class Project < ActiveRecord::Base
   after_initialize :init
 
   def set_main_builds
-    ['release', 'beta', 'normal'].each do |type|
-      self.send("latest_#{type}_build=", nil)
-      build = self.builds.order('build_number DESC').limit(1).
-        where(:build_state => type).first
+    self.latest_release_build = self.builds.order('build_number DESC').limit(1).
+      where(:build_state => 'release').first
 
-      return unless build
-      self.send("latest_#{type}_build=", build)
-    end
+    self.latest_beta_build = self.builds.order('build_number DESC').limit(1).
+      where(:build_state => 'beta').first
+
+    self.latest_normal_build = self.builds.order('build_number DESC').limit(1).
+      where(:build_state => 'normal').first
 
     self.main_download = ''
     build = latest_stable(self)
