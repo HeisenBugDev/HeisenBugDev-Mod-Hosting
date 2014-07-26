@@ -1,5 +1,5 @@
 h1
   | Latest
   = type
-p = changelog
+p = build.brief_changelog
 download-button build=build

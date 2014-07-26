@@ -1,6 +1,5 @@
 HeisenBugDev.DownloadCardComponent = Ember.Component.extend
   classNames: ['download-card']
-  changelog: 'blajdskf'
 
   setType: ( ->
     self = this

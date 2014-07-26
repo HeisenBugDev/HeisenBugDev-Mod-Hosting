@@ -12,3 +12,4 @@ HeisenBugDev.Build = DS.Model.extend
   version: DS.belongsTo 'version'
   articles: DS.hasMany 'articles'
   artifacts: DS.hasMany 'artifacts'
+  brief_changelog: DS.attr 'string'
