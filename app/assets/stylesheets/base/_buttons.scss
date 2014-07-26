@@ -14,7 +14,7 @@ input[type="submit"] {
 .beta-button { @include button($blue); }
 .normal-button { @include button($gray); }
 
-.deactivated-button {
+.disabled-button {
   @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
   @include button($light-gray);
   color: $medium-gray;

@@ -14,9 +14,9 @@
 #  downloads               :string(255)
 #  download_sentence       :string(255)
 #  main_download           :string(255)
-#  latest_release_build_id :string(255)
-#  latest_beta_build_id    :string(255)
-#  latest_normal_build_id  :string(255)
+#  latest_release_build_id :integer
+#  latest_beta_build_id    :integer
+#  latest_normal_build_id  :integer
 #
 # Indexes
 #

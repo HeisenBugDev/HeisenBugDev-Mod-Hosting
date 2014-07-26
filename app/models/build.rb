@@ -40,6 +40,7 @@ class Build < ActiveRecord::Base
 
   before_save :set_downloads
   before_save :set_main_url
+  before_save :set_build_state
   after_save :save_parent
 
   validates_numericality_of :build_number, :only_integer => true,
@@ -62,6 +63,10 @@ class Build < ActiveRecord::Base
     artifacts = self.artifacts
     artifact = artifacts.find_by_name('universal') if artifacts
     self.main_url = artifact.artifact.url if artifact
+  end
+
+  def set_build_state
+    self.build_state = 'normal' if self.build_state == ''
   end
 
   def save_parent

@@ -7,8 +7,8 @@
         a = owner_sentence
     .right
       .float-right
-        download-button this 'main_download'
-      h3.text-right.float-right = download_sentence
+        download-button project=this project_attribute='main_download'
+        h3.text-right.float-right = download_sentence
 .container
   .row
     .description
@@ -18,14 +18,14 @@
       .download-card
         h1 Latest Release
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button latestReleaseBuild 'main_url' 'release'
+        download-button build=latestReleaseBuild build_attribute='main_url'
     .three-c
       .download-card
         h1 Latest Beta
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button latestBetaBuild 'main_url' 'beta'
+        download-button build=latestBetaBuild build_attribute='main_url'
     .three-c
       .download-card
         h1 Latest
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        download-button latestBetaBuild 'main_url' 'normal'
+        download-button build=latestNormalBuild build_attribute='main_url'

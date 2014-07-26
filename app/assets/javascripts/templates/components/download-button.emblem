@@ -1,1 +1,3 @@
-a href=url class=''
+if label
+  span.button-label = label
+span Download

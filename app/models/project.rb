@@ -14,9 +14,9 @@
 #  downloads               :string(255)
 #  download_sentence       :string(255)
 #  main_download           :string(255)
-#  latest_release_build_id :string(255)
-#  latest_beta_build_id    :string(255)
-#  latest_normal_build_id  :string(255)
+#  latest_release_build_id :integer
+#  latest_beta_build_id    :integer
+#  latest_normal_build_id  :integer
 #
 # Indexes
 #
@@ -70,10 +70,8 @@ class Project < ActiveRecord::Base
   def set_main_builds
     ['release', 'beta', 'normal'].each do |type|
       self.send("latest_#{type}_build=", nil)
-      usetype = type
-      usetype = '' if type == 'normal'
       build = self.builds.order('build_number DESC').limit(1).
-        where(:build_state => usetype).first
+        where(:build_state => type).first
 
       return unless build
       self.send("latest_#{type}_build=", build)
