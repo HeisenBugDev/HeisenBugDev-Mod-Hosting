@@ -48,6 +48,7 @@ group :production do
 end
 
 group :development do
+  gem 'bullet'
   gem 'sqlite3'
   gem 'jazz_hands'
   gem 'railroady'
