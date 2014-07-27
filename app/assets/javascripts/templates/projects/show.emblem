@@ -20,3 +20,7 @@
       download-card build=latestBetaBuild
     .three-c
       download-card build=latestNormalBuild
+  .row
+    .all-downloads-column
+      link-to 'projects.builds' this
+        .all-downloads-button: span All Downloads
