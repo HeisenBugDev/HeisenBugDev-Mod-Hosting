@@ -1,4 +1,13 @@
 .mod-header {
+  a.project-title-link {
+    color: $orange;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   a.button, a.deactivated-button {
     text-decoration: none;
 

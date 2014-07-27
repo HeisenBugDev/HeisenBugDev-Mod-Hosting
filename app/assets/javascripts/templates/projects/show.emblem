@@ -1,14 +1,4 @@
-.mod-header
-  .container
-    .left
-      h1 = name
-      h3
-        | by&#32;
-        a = owner_sentence
-    .right
-      .float-right
-        download-button project=this
-        h3.text-right.float-right = download_sentence
+mod-header project=this
 .container
   .row
     .description

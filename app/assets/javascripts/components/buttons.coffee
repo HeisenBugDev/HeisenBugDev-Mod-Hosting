@@ -12,28 +12,13 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
       @set('textCenter', true)
       return
 
-    @get('build').then (build) ->
-      switch build.get('build_state')
-        when 'release'
-          self.set('button_class', 'release-button')
-          self.set('label', 'R')
-        when 'beta'
-          self.set('button_class', 'beta-button')
-          self.set('label', 'B')
-        when 'bugged'
-          self.set('button_class', 'bugged-button')
-          self.set('label', 'G')
-        when 'normal'
-          self.set('button_class', 'normal-button')
-          self.set('textCenter', true)
-          self.set('label', null)
-        else
-          self.set('textCenter', true)
-          self.set('button_class', 'button')
-          self.set('label', null)
+    build = @get('build')
+    unless build.then
+      @send('switchData')
 
-      unless build.get('main_download')
-        self.set('button_class', 'disabled-button')
+    build.then? (build) ->
+      self.send('switchData')
+
   ).observes('build.build_state').on('init')
 
   setupProject: (->
@@ -51,6 +36,34 @@ HeisenBugDev.DownloadButtonComponent = Ember.Component.extend
   sethref: (->
     return unless @get('build')?
     self = this
-    @get('build').then (build) ->
+    build = @get('build')
+    unless build.then
+      self.set('href', build.get('main_download') || null)
+
+    build.then? (build) ->
       self.set('href', build.get('main_download') || null)
   ).observes('build.main_download').on('init')
+
+  actions:
+    switchData: ->
+      switch @get('build').get('build_state')
+        when 'release'
+          @set('button_class', 'release-button')
+          @set('label', 'R')
+        when 'beta'
+          @set('button_class', 'beta-button')
+          @set('label', 'B')
+        when 'bugged'
+          @set('button_class', 'bugged-button')
+          @set('label', 'G')
+        when 'normal'
+          @set('button_class', 'normal-button')
+          @set('textCenter', true)
+          @set('label', null)
+        else
+          @set('textCenter', true)
+          @set('button_class', 'button')
+          @set('label', null)
+
+      unless @get('build').get('main_download')
+        @set('button_class', 'disabled-button')
