@@ -5,6 +5,6 @@ HeisenBugDev.ProjectsShowRoute = Em.Route.extend
   serialize: (model) ->
     project_id: model.get 'slug'
 
-HeisenBugDev.ProjectsBuildsRoute = Em.Route.extend
+HeisenBugDev.ProjectsBuildsRoute = Em.Route.extend HeisenBugDev.PaginatedRoute
   serialize: (model) ->
     project_id: model.get 'slug'
