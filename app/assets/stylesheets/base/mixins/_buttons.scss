@@ -6,6 +6,7 @@
   color: $color;
   top: 11px;
   position: relative;
+  text-align: center;
   font-size: 30px;
   width: $button-width;
   padding: 0px 15px 1px 15px;
@@ -30,7 +31,6 @@
   span {
     padding-left: 10px;
     padding-right: 10px;
-    text-align: center;
   }
 
   .button-label {

@@ -24,9 +24,9 @@ div.container {
 
   .all-downloads-column {
     margin-top: 30px;
-    @include outer-container;
-    @include span-columns(5);
-    @include shift(3)
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -35,12 +35,9 @@ div.container {
   @include row();
 }
 
-.download-card p, .download-card h1 { font-weight: 400; }
-
 .download-card {
   table.split-list {
     margin-top: 20px;
-    width: $button-width;
 
     tr {
       td {

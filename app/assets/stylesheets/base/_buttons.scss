@@ -17,7 +17,6 @@ input[type="submit"] {
 .all-downloads-button {
   @include button($gray);
   width: 100%;
-  text-align: center;
 }
 
 .disabled-button {

@@ -5,3 +5,31 @@
     font-weight: 400;
   }
 }
+
+.download-card {
+  margin-top: 1%;
+  margin-bottom:  1%;
+}
+
+.download-card-body {
+  .button, .release-button, .beta-button, .normal-button, .disabled-button { width: 100%; }
+
+  padding: 17px;
+  background-color: #ffffff;
+  border: 1px solid #a3a3a3;
+}
+
+.download-card p, .download-card h1 { font-weight: 400; }
+
+.download-card p {
+  margin-top: 30px;
+}
+
+.download-card h1 {
+  background-color: $green;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #ffffff;
+  padding-left: 20px;
+  font-size: 33px;
+}
