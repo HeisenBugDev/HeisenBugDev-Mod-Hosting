@@ -7,8 +7,6 @@ This is the website repo for HeisenBugDev. Which will be going live very soon. I
 
 # [Submit bug reports to the forums](http://discourse.heisenbugdev.com)
 
-## [Please sign up for the newsletter to get info about new things!](http://eepurl.com/WZC3j)
-
 # Got a question? Create a GitHub issue!
 
 # Wut the wut?
