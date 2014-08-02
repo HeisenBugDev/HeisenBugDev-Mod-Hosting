@@ -14,6 +14,7 @@
 .download-card-body {
   .button, .release-button, .beta-button, .normal-button, .disabled-button { width: 100%; }
 
+  min-height: 250px;
   padding: 17px;
   background-color: #ffffff;
   border: 1px solid #a3a3a3;
