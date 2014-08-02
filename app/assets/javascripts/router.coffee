@@ -8,7 +8,7 @@ HeisenBugDev.Router.map ()->
   @route "home", path: '/'
   @route 'missing', path: '*:'
   @resource 'projects', ->
-    @route 'show', { path: ':project_id' }
+    @route 'show', { path:   ':project_id' }
     @route 'builds', { path: ':project_id/builds' }
 
 HeisenBugDev.MissingRoute = Ember.Route.extend

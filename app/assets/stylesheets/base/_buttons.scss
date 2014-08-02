@@ -12,10 +12,10 @@ input[type="submit"] {
 .button { @include button($orange); }
 .release-button { @include button($green); }
 .beta-button { @include button($blue); }
-.normal-button { @include button($gray); }
+.normal-button { @include button($black); }
 
 .all-downloads-button {
-  @include button($gray);
+  @include button($black);
   width: 100%;
 }
 

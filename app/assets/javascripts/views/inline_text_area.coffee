@@ -12,6 +12,9 @@ HeisenBugDev.InlineTextArea = Ember.View.extend(
     @$("textarea").val val
 
   textArea: Ember.TextArea.extend(
+    didInsertElement: ->
+      $('#'+this.get('elementId')).autosize();
+
     focusOut: ->
       @save()
 

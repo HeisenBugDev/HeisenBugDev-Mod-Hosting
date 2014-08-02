@@ -2,22 +2,44 @@
   margin-top: 25px;
 
   p {
+    padding:     9px;
+    padding-top: 6px;
     font-weight: 400;
+    word-wrap:   break-word;
+  }
+
+  textarea {
+    line-height:      $base-line-height;
+    font-weight:      400;
+    margin:           0;
+    color:            $dark-gray;
+    border-radius:    0;
+    box-shadow:       none;
+    background-color: $gray;
+
+    &:focus {
+      background-color: #F7F7F7;
+      border-color:     $black;
+    }
+
+    &:hover {
+      border-color: $black;
+    }
   }
 }
 
 .download-card {
   margin-top: 1%;
-  margin-bottom:  1%;
+  margin-bottom: 1%;
 }
 
 .download-card-body {
   .button, .release-button, .beta-button, .normal-button, .disabled-button { width: 100%; }
 
-  min-height: 250px;
-  padding: 17px;
+  min-height:       250px;
+  padding:          17px;
   background-color: #ffffff;
-  border: 1px solid #a3a3a3;
+  border:           1px solid #a3a3a3;
 }
 
 .download-card p, .download-card h1 { font-weight: 400; }
@@ -28,9 +50,9 @@
 
 .download-card h1 {
   background-color: $green;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: #ffffff;
-  padding-left: 20px;
-  font-size: 33px;
+  padding-top:      8px;
+  padding-bottom:   8px;
+  color:            #ffffff;
+  padding-left:     20px;
+  font-size:        33px;
 }

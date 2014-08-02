@@ -1,4 +1,5 @@
 #= require jquery
+#= require jquery.autosize.min
 #= require handlebars
 #= require ember
 #= require ember-data
