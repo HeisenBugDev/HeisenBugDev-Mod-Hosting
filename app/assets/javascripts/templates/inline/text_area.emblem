@@ -1,0 +1,4 @@
+if view.isEditing
+  view view.textArea valueBinding='view.value' action=save
+else
+ yield

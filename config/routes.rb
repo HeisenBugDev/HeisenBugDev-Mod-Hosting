@@ -24,8 +24,11 @@ HeisenBugDev::Application.routes.draw do
 
     resources 'users'
 
+    scope :module => :wiki do
+      resources 'wikis'
+    end
+
     namespace :projects do
-      get :autocomplete_user_name
       delete :remove_user
     end
 
@@ -49,13 +52,6 @@ HeisenBugDev::Application.routes.draw do
       end
       get 'download', :to => 'builds#download', :as => :download
       get :downloads
-
-      scope :module => :wiki do
-        resources 'wikis' do
-          resources 'articles'
-        end
-        get ':id/refresh_wiki', :to => 'wikis#update_wiki', :as => :refresh_wiki
-      end
     end
   end
   get '*path', to: 'ember#index'

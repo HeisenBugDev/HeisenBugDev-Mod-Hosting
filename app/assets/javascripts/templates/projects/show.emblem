@@ -2,7 +2,8 @@ mod-header project=this
 .container
   .row
     .description
-      p = description
+      view HeisenBugDev.InlineTextArea valueBinding='description'
+        p#description = description
   .row
     .three-c
       download-card build=latestReleaseBuild

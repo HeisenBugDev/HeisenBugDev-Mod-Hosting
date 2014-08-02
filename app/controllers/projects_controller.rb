@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
-  autocomplete :user, :name
   # acts_as_token_authentication_handler_for User
-  before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
-  before_filter :authenticate_entity!, :only => [:edit, :update]
+  # before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
+  # before_filter :authenticate_entity!, :only => [:edit, :update]
 
   def edit
     @project = Project.find(params[:id])
@@ -51,10 +50,6 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    unless can? :edit, @project
-      redirect_to :back, :status => :unauthorized
-      return
-    end
 
     user = User.find_by_name(params[:project][:users])
     unless user.nil?
