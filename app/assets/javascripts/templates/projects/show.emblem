@@ -3,6 +3,7 @@ mod-header project=this
   .row
     .description
       view HeisenBugDev.InlineTextArea valueBinding='description'
+        span.left-tip Double click to edit.
         p#description = description
   .row
     .three-c

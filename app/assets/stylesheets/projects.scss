@@ -1,4 +1,12 @@
 .description {
+  span.left-tip {
+    float: left;
+    margin-left: -160px;
+    color: $medium-gray;
+    font-weight: 400;
+    padding-top: 6px;
+  }
+
   margin-top: 25px;
 
   p {
@@ -27,6 +35,7 @@
     }
   }
 }
+
 
 .download-card {
   margin-top: 1%;
