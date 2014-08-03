@@ -1,4 +1,5 @@
 if view.isEditing
+  span.left-tip Click to save.
   view view.textArea valueBinding='view.value' action=save
 else
  yield
