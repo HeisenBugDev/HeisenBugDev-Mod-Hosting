@@ -24,7 +24,7 @@ HeisenBugDev.InlineTextArea = Ember.View.extend(
     save: ->
       parentView = @get("parentView")
       controller = parentView.get("controller")
-      controller.save()  if controller.save
+      controller.send('save')
       parentView.set "isEditing", false
   )
 )

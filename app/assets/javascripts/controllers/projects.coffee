@@ -2,5 +2,6 @@ HeisenBugDev.ProjectsIndexController = Ember.ArrayController.extend HeisenBugDev
   paginatedObjectName: 'project'
 
 HeisenBugDev.ProjectsShowController = Ember.ObjectController.extend
-  save: ->
-    this.get('model').save()
+  actions:
+    save: ->
+      @get('model').save().then((->), (->))

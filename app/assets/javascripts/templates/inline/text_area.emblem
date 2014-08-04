@@ -1,5 +1,9 @@
 if view.isEditing
   span.left-tip Click to save.
+  .right-tip
+    h4= view.rightTitle
+    .body
+      p= view.rightTip
   view view.textArea valueBinding='view.value' action=save
 else
  yield

@@ -1,10 +1,14 @@
 mod-header project=this
 .container
-  .row
-    .description
-      view HeisenBugDev.InlineTextArea valueBinding='description'
-        span.left-tip Double click to edit.
-        p#description = description
+  .narrow
+    .row
+      each error in errors.description
+        span = error.message
+    .row
+      .description
+        view HeisenBugDev.InlineTextArea valueBinding='description' rightTitle='Description' rightTip='Write something that explains the theme and an overview of what this mod will do, and how it will make the game better.'
+          span.left-tip Double click to edit.
+          p#description = description
   .row
     .three-c
       download-card build=latestReleaseBuild
