@@ -20,3 +20,6 @@ mod-header project=this
     .all-downloads-column
       link-to 'projects.builds' this
         .all-downloads-button: span All Downloads
+  .row
+    link-to 'projects.new_build' this
+      | hmmmm

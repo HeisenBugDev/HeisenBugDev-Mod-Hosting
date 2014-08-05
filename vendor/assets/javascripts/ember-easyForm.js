@@ -29,7 +29,10 @@ Ember.EasyForm.Config = Ember.Namespace.create({
       inputTemplate: 'easyForm/input',
       errorTemplate: 'easyForm/error',
       labelTemplate: 'easyForm/label',
-      hintTemplate: 'easyForm/hint'
+      hintTemplate: 'easyForm/hint',
+      wrapControls: false,
+      controlsWrapperClass: '',
+      buttonClass: ''
     }
   },
   modulePrefix: 'appkit',
@@ -53,11 +56,7 @@ Ember.EasyForm.Config = Ember.Namespace.create({
     this._templates[name] = template;
   },
   getTemplate: function(name) {
-    if (typeof requirejs !== 'undefined' && typeof requirejs._eak_seen !== 'undefined' && requirejs._eak_seen[name]) {
-      return require(this.modulePrefix + '/templates/' + name, null, null, true);
-    } else {
-      return Ember.TEMPLATES[name] || this._templates[name];
-    }
+    return this._templates[name];
   }
 });
 
@@ -277,6 +276,7 @@ Ember.Handlebars.registerHelper('submit', function(value, options) {
 
 (function() {
 Ember.EasyForm.BaseView = Ember.View.extend({
+  classNameBindings: ['property'],
   wrapper: function() {
     var wrapperView = this.nearestWithProperty('wrapper');
     if (wrapperView) {
@@ -289,7 +289,13 @@ Ember.EasyForm.BaseView = Ember.View.extend({
     return Ember.EasyForm.Config.getWrapper(this.get('wrapper'));
   }.property('wrapper'),
   templateForName: function(name) {
-    return Ember.EasyForm.Config.getTemplate(name);
+    var template;
+
+    if (this.container) {
+      template = this.container.lookup('template:' + name);
+    }
+
+    return template || Ember.EasyForm.Config.getTemplate(name);
   },
   formForModel: function(){
     var formForModelPath = this.get('templateData.keywords.formForModelPath');
@@ -407,7 +413,7 @@ Ember.EasyForm.Input = Ember.EasyForm.BaseView.extend({
   dependentValidationKeyCanTrigger: false,
   tagName: 'div',
   classNames: ['string'],
-  classNameBindings: ['wrapperConfig.inputClass'],
+  classNameBindings: ['wrapperConfig.inputClass', 'focused', 'valid'],
   didInsertElement: function() {
     var name = 'label-field-'+this.elementId,
         label = this.get(name);
@@ -416,7 +422,7 @@ Ember.EasyForm.Input = Ember.EasyForm.BaseView.extend({
   },
   concatenatedProperties: ['inputOptions', 'bindableInputOptions'],
   inputOptions: ['as', 'collection', 'optionValuePath', 'optionLabelPath', 'selection', 'value', 'multiple', 'name'],
-  bindableInputOptions: ['placeholder', 'prompt'],
+  bindableInputOptions: ['placeholder', 'prompt', 'disabled'],
   defaultOptions: {
     name: function(){
       if (this.property) {
@@ -457,15 +463,22 @@ Ember.EasyForm.Input = Ember.EasyForm.BaseView.extend({
   }.property(),
   focusOut: function() {
     this.set('hasFocusedOut', true);
+    this.set('focused', false)
+    this.showValidationError();
+  },
+  focusIn: function() {
+    this.set('focused', true)
+  },
+  keyDown: function() {
     this.showValidationError();
   },
   showValidationError: function() {
-    if (this.get('hasFocusedOut')) {
-      if (Ember.isEmpty(this.get('formForModel.errors.' + this.property))) {
-        this.set('canShowValidationError', false);
-      } else {
-        this.set('canShowValidationError', true);
-      }
+    if (Ember.isEmpty(this.get('formForModel.errors.' + this.property))) {
+      this.set('canShowValidationError', false);
+      this.set('valid', true)
+    } else {
+      this.set('valid', false)
+      this.set('canShowValidationError', true);
     }
   },
   input: function() {
@@ -509,6 +522,7 @@ Ember.EasyForm.Select = Ember.Select.extend();
 Ember.EasyForm.Submit = Ember.EasyForm.BaseView.extend({
   tagName: 'input',
   attributeBindings: ['type', 'value', 'disabled'],
+  classNameBindings: ['wrapperConfig.buttonClass'],
   type: 'submit',
   disabled: function() {
     return !this.get('formForModel.isValid');

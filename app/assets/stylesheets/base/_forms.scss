@@ -1,7 +1,7 @@
 fieldset {
   background: lighten($base-border-color, 10);
   border: 1px solid $base-border-color;
-  margin: 0 0 ($base-line-height / 2) 0;
+  margin: 0 0 ($base-line-height / 2);
   padding: $base-line-height;
 }
 
@@ -60,7 +60,45 @@ input[type="search"] {
   @include appearance(none);
 }
 
-input[type="checkbox"], input[type="radio"] {
+.fieldWithErrors input[type="text"],
+.fieldWithErrors .focused input[type="text"] {
+  border: 2px solid $orange;
+  border-color: $orange;
+
+  &:focus {
+    border: 2px solid $orange;
+    border-color: $orange;
+  }
+}
+
+.fieldWithErrors span.hint { background-color: $orange; }
+.valid span.hint { background-color: $green; }
+
+.valid input[type="text"],
+.valid .focused input[type="text"] {
+  border: 2px solid $green;
+  border-color: $green;
+
+  &:focus {
+    border: 2px solid $green;
+    border-color: $green;
+  }
+}
+
+input[type="text"]:focus {
+  box-shadow: none;
+  border: 2px solid $blue;
+  border-color: $blue;
+}
+
+.focused {
+  span.hint {
+    visibility: visible;
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
   display: inline;
   margin-right: $base-line-height / 4;
 }
@@ -71,8 +109,34 @@ input[type="file"] {
   width: 100%;
 }
 
+input[type="text"] {
+  border-width: 2px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+span.hint {
+  visibility: hidden;
+  float: right;
+  padding: 0 6px 3px;
+  color: #fff;
+  background-color: $blue;
+  // background-color: #00ac65;
+  margin-top: -12px;
+}
+
+input[disabled] {
+  background-color: $gray;
+
+  &:hover {
+    background-color: $gray;
+  }
+}
+
+span.error { float: left; margin-top: -10px;}
+
 select {
-  width: auto;
-  max-width: 100%;
   margin-bottom: $base-line-height;
+  max-width: 100%;
+  width: auto;
 }

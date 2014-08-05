@@ -62,9 +62,26 @@ div.container {
   }
 }
 
+.very-narrow {
+  @include span-columns(6);
+  margin-left: auto;
+  margin-right: auto;
+  float: center;
+
+  &:last-child {
+    margin-right: auto;
+  }
+}
+
 .row {
   margin-top: 30px;
   @include row();
+}
+
+form {
+  .row {
+    margin-top: 0;
+  }
 }
 
 .download-card {

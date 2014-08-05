@@ -48,9 +48,8 @@ class BuildsController < ApplicationController
   end
 
   def create
-    name = params[:project_name]
     # if can? :manage, :all
-      project = Project.find_by_name(name)
+    project = Project.find(params[:build][:project_id])
     # else
       # project = current_user.projects.find_by_name(name)
     # end
@@ -61,33 +60,29 @@ class BuildsController < ApplicationController
       return
     end
 
-    if params[:build_number].blank?
+    if params[:build][:build_number].blank?
       latest = latest_builds(project, 1, nil)[0]
       num = latest.build_number + 1 unless latest.nil?
       num ||= 1
-      params[:build_number] = num
+      params[:build][:build_number] = num
     end
 
     build = project.builds.build(upload_params)
     version = Version.find_or_initialize_by(:project => project,
-          :version => params[:mod_version])
+          :version => params[:build][:mod_version])
     build.version = version
 
     prevcommit = prev_commit(build)
-    if prevcommit && !params[:commit].blank?
+    if prevcommit && !params[:build][:commit].blank?
       build.brief_changelog = fetch_brief_changelog(project.code_repo, prev_commit(build), build.commit)[0..3].join("\n")
     else
       build.brief_changelog = 'First build'
     end
 
     if build.save
-      render :json => {
-        :message => 'Build created.',
-        :upload_path => artifact_upload_path(build)
-      }
+      render :json => build
     else
-      render :text => build.errors.full_messages,
-             :status => :bad_request
+      render :json => json_resource_errors, status: :unprocessable_entity
     end
   end
 
@@ -161,6 +156,6 @@ private
   end
 
   def upload_params
-    params.permit(:build_number, :commit, :minecraft_version, :branch)
+    params.require(:build).permit(:build_number, :commit, :minecraft_version, :branch)
   end
 end

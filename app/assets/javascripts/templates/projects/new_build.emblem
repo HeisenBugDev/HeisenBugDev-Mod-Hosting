@@ -1,0 +1,13 @@
+mod-header project=project
+.container.very-narrow
+  .row
+    h1 New Build
+  .row
+    form-for this
+      .row
+        = input commit hint="Long version of your Git commit"
+      .row
+        = input minecraft_version hint="Minecraft version"
+      .row
+        = input branch hint="Git branch"
+      = submit
