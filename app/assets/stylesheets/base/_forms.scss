@@ -61,7 +61,9 @@ input[type="search"] {
 }
 
 .fieldWithErrors input[type="text"],
-.fieldWithErrors .focused input[type="text"] {
+.fieldWithErrors .focused input[type="text"],
+.fieldWithErrors .focused textarea,
+.fieldWithErrors textArea {
   border: 2px solid $orange;
   border-color: $orange;
 
@@ -71,11 +73,13 @@ input[type="search"] {
   }
 }
 
-.fieldWithErrors span.hint { background-color: $orange; }
+.fieldWithErrors span.hint, { background-color: $orange; }
 .valid span.hint { background-color: $green; }
 
 .valid input[type="text"],
-.valid .focused input[type="text"] {
+.valid .focused input[type="text"],
+.valid .focused textarea,
+.valid textarea {
   border: 2px solid $green;
   border-color: $green;
 
@@ -85,7 +89,7 @@ input[type="search"] {
   }
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, textarea:focus {
   box-shadow: none;
   border: 2px solid $blue;
   border-color: $blue;
@@ -109,7 +113,7 @@ input[type="file"] {
   width: 100%;
 }
 
-input[type="text"] {
+input[type="text"], textarea {
   border-width: 2px;
   border-radius: 0;
   box-shadow: none;
@@ -125,7 +129,7 @@ span.hint {
   margin-top: -12px;
 }
 
-input[disabled] {
+input[disabled], textarea[disabled] {
   background-color: $gray;
 
   &:hover {
@@ -133,7 +137,16 @@ input[disabled] {
   }
 }
 
-span.error { float: left; margin-top: -10px;}
+.change-label {
+  float: left;
+  margin-left: -45px;
+}
+
+span.error {
+  float: left;
+  margin-top: -10px;
+  font-weight: 400;
+}
 
 select {
   margin-bottom: $base-line-height;

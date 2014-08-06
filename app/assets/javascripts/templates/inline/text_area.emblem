@@ -1,9 +1,8 @@
 if view.isEditing
-  span.left-tip Click to save.
-  .right-tip
-    h4= view.rightTitle
-    .body
-      p= view.rightTip
-  view view.textArea valueBinding='view.value' action=save
+  span.change-label Save
+  yield
 else
- yield
+  label
+    = view.label
+    span.change-label click="edit target='view'"  Edit
+  p= view.value

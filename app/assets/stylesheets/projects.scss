@@ -15,25 +15,6 @@
     font-weight: 400;
     word-wrap:   break-word;
   }
-
-  textarea {
-    line-height:      $base-line-height;
-    font-weight:      400;
-    margin:           0;
-    color:            $dark-gray;
-    border-radius:    0;
-    box-shadow:       none;
-    background-color: $gray;
-
-    &:focus {
-      background-color: #F7F7F7;
-      border-color:     $black;
-    }
-
-    &:hover {
-      border-color: $black;
-    }
-  }
 }
 
 

@@ -6,9 +6,10 @@ mod-header project=this
         span = error.message
     .row
       .description
-        view HeisenBugDev.InlineTextArea valueBinding='description' rightTitle='Description' rightTip='Write something that explains the theme and an overview of what this mod will do, and how it will make the game better.'
-          span.left-tip Double click to edit.
-          p#description = description
+        view HeisenBugDev.InlineTextArea valueBinding='description' label='Description' model=this
+          form-for this
+            = input description as='textareapp' hint='Something that explains what your mod is.'
+
   .row
     .three-c
       download-card build=latestReleaseBuild

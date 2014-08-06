@@ -1,30 +1,17 @@
-HeisenBugDev.InlineTextArea = Ember.View.extend(
+HeisenBugDev.InlineTextArea = Ember.View.extend Ember.Validations.Mixin,
   layoutName: "inline/text_area"
+
+  actions:
+    edit: ->
+      unless @get("isEditing")
+        @set "isEditing", true
+        Ember.run.scheduleOnce "afterRender", this, @focusTextField
+
   doubleClick: ->
-    unless @get("isEditing")
-      @set "isEditing", true
-      Ember.run.scheduleOnce "afterRender", this, @focusTextField
+    @send('edit')
 
   focusTextField: ->
     val = @$("textarea").val()
     @$("textarea").focus()
     @$("textarea").val ""
     @$("textarea").val val
-
-  textArea: Ember.TextArea.extend(
-    didInsertElement: ->
-      $('#'+this.get('elementId')).autosize();
-
-    focusOut: ->
-      @save()
-
-    keyDown: (e) ->
-      @save() if e.keyCode == 13 && (e.metaKey || e.ctrlKey)
-
-    save: ->
-      parentView = @get("parentView")
-      controller = parentView.get("controller")
-      controller.send('save')
-      parentView.set "isEditing", false
-  )
-)

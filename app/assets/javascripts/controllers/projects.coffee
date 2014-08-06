@@ -1,7 +1,10 @@
 HeisenBugDev.ProjectsIndexController = Ember.ArrayController.extend HeisenBugDev.PaginatedController,
   paginatedObjectName: 'project'
 
-HeisenBugDev.ProjectsShowController = Ember.ObjectController.extend
+HeisenBugDev.ProjectsShowController = Ember.ObjectController.extend Ember.Validations.Mixin,
+  validations:
+    description:
+      presence: true
   actions:
     save: ->
       @get('model').save().then((->), (->))
