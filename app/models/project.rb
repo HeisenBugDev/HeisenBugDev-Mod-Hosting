@@ -111,6 +111,6 @@ class Project < ActiveRecord::Base
 
   def set_downloads
     return unless self.respond_to?(:downloads)
-    self.downloads = builds.map { |b| b.downloads.to_i }.sum
+    self.downloads = builds.map { |b| b.downloads }.sum
   end
 end
