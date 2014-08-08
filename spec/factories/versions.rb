@@ -17,7 +17,7 @@
 
 FactoryGirl.define do
   factory :version do
-    version "0.7.1"
+    version '0.7.1'
     project nil
   end
 end

@@ -1,6 +1,6 @@
 class ChangeProjectBuildsToInts < ActiveRecord::Migration
   def change
-    if ActiveRecord::Base.connection.adapter_name == "PostgreSQL"
+    if ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
       execute 'ALTER TABLE projects ALTER latest_release_build_id TYPE integer USING latest_release_build_id::int'
       execute 'ALTER TABLE projects ALTER latest_beta_build_id TYPE integer USING latest_beta_build_id::int'
       execute 'ALTER TABLE projects ALTER latest_normal_build_id TYPE integer USING latest_normal_build_id::int'

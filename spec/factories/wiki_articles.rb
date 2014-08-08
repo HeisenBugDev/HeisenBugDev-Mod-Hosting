@@ -17,9 +17,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :wiki_article, :class => 'Wiki::Article' do
-    title "MyString"
-    body "Such body. Much article."
+  factory :wiki_article, class: 'Wiki::Article' do
+    title 'MyString'
+    body 'Such body. Much article.'
     category nil
   end
 end

@@ -1,7 +1,7 @@
 module ExampleDataMessages
   def self.read_file(name)
-    File.open(File.join(Rails.root, 'lib', 'tasks', "example_messages",
-      "#{name}.md"), "rb").read
+    File.open(File.join(Rails.root, 'lib', 'tasks', 'example_messages',
+                        "#{name}.md"), 'rb').read
   end
 
   @@start_message = read_file('start_message')
@@ -11,4 +11,3 @@ module ExampleDataMessages
   @@normal_user_message = read_file('normal_user_message')
   @@projects_message = read_file('projects_message')
 end
-

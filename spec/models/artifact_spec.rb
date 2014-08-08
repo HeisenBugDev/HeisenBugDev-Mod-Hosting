@@ -20,10 +20,10 @@ require 'spec_helper'
 
 describe Artifact do
   let(:project) { FactoryGirl.create(:project) }
-  let(:version) { FactoryGirl.create(:version, :project => project) }
-  let(:build) { FactoryGirl.create(:build, :project => project,
-    :version => version) }
-  let(:artifact) { FactoryGirl.create(:artifact, :build => build) }
+  let(:version) { FactoryGirl.create(:version, project: project) }
+  let(:build) do FactoryGirl.create(:build, project: project,
+                                            version: version) end
+  let(:artifact) { FactoryGirl.create(:artifact, build: build) }
 
   subject { artifact }
   it { should validate_presence_of(:name) }

@@ -15,7 +15,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :wiki_wiki, :class => 'Wiki::Wiki' do
+  factory :wiki_wiki, class: 'Wiki::Wiki' do
     project nil
   end
 end

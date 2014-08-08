@@ -18,9 +18,9 @@ require 'spec_helper'
 
 describe Wiki::Article do
   let(:project) { FactoryGirl.create(:project) }
-  let(:wiki) { FactoryGirl.create(:wiki_wiki, :project => project) }
-  let(:category) { FactoryGirl.create(:wiki_category, :wiki => wiki) }
-  let(:article) { FactoryGirl.create(:wiki_article, :category => category) }
+  let(:wiki) { FactoryGirl.create(:wiki_wiki, project: project) }
+  let(:category) { FactoryGirl.create(:wiki_category, wiki: wiki) }
+  let(:article) { FactoryGirl.create(:wiki_article, category: category) }
 
   subject { article }
 

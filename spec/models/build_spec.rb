@@ -27,9 +27,9 @@ require 'spec_helper'
 
 describe Build do
   let(:project) { FactoryGirl.create(:project) }
-  let(:version) { FactoryGirl.create(:version, :project => project) }
-  let(:build) { FactoryGirl.create(:build, :project => project,
-    :version => version) }
+  let(:version) { FactoryGirl.create(:version, project: project) }
+  let(:build) do FactoryGirl.create(:build, project: project,
+                                            version: version) end
 
   subject { build }
 
