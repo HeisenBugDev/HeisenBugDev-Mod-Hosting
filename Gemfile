@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
+
 ruby '2.1.1'
+
 gem 'rails', '4.0.3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'compass-rails'
@@ -40,6 +43,9 @@ gem 'neat'
 gem 'rack-mini-profiler'
 gem 'octokit'
 
+# Rails-assets
+gem 'rails-assets-ember-uploader'
+
 group :production do
   gem 'pg'
   gem "bugsnag"
@@ -64,9 +70,9 @@ group :development do
   gem 'guard-rails'
   gem 'html2haml'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
+  gem 'rb-fchange', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-inotify', :require => false
 end
 
 group :development, :test do

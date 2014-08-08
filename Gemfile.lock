@@ -8,6 +8,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.0.3)
       actionpack (= 4.0.3)
@@ -356,6 +357,13 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.3)
       sprockets-rails (~> 2.0.0)
+    rails-assets-ember (1.6.1)
+      rails-assets-handlebars (>= 1.0.0, < 2.0.0)
+      rails-assets-jquery (>= 1.7.0, <= 2.1.0)
+    rails-assets-ember-uploader (0.2.8)
+      rails-assets-ember (>= 1.2.0)
+    rails-assets-handlebars (1.3.0)
+    rails-assets-jquery (2.1.0)
     rails3-jquery-autocomplete (1.0.14)
       rails (>= 3.0)
     rails_12factor (0.0.2)
@@ -524,6 +532,7 @@ DEPENDENCIES
   rack-mini-profiler
   railroady
   rails (= 4.0.3)
+  rails-assets-ember-uploader
   rails3-jquery-autocomplete
   rails_12factor
   rails_layout

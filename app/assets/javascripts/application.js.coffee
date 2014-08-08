@@ -5,6 +5,7 @@
 #= require ember-data
 #= require ember-validations
 #= require ember-easyForm
+#= require ember-uploader
 #= require_self
 #= require heisen_bug_dev
 
