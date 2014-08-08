@@ -11,7 +11,7 @@
 #  icon                    :string(255)
 #  slug                    :string(255)
 #  owner_sentence          :string(255)
-#  downloads               :string(255)
+#  downloads               :integer
 #  download_sentence       :string(255)
 #  main_download           :string(255)
 #  latest_release_build_id :integer

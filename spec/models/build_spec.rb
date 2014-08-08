@@ -12,7 +12,7 @@
 #  branch            :string(255)
 #  version_id        :integer
 #  build_state       :string(255)
-#  downloads         :string(255)
+#  downloads         :integer
 #  main_download     :string(255)
 #  brief_changelog   :text
 #
