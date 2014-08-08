@@ -4,7 +4,7 @@ class ArtifactSerializer < ActiveModel::Serializer
   end
 
   attributes :id, :name, :file_url, :created_at, :updated_at,
-    :downloads, :file_size
+             :downloads, :file_size
 
-  has_one :build, :embed => :ids
+  has_one :build, embed: :ids
 end

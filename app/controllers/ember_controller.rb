@@ -4,6 +4,6 @@ class EmberController < ApplicationController
   # for default routes, it doesn't have to be a fancy one.
 
   def index
-    render :text => '', :layout => true
+    render text: '', layout: true
   end
 end

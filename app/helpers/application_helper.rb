@@ -10,18 +10,18 @@ module ApplicationHelper
     if branch.nil?
       query.to_a
     else
-      query.where(:branch => branch).to_a
+      query.where(branch: branch).to_a
     end
   end
 
   def latest_stable(project)
     query = project.builds.order('build_number DESC').limit(1).
-      where.not(:build_state => 'bugged')
+      where.not(build_state: 'bugged')
 
-    if query.where(:branch => :master).blank?
+    if query.where(branch: :master).blank?
       query.to_a[0]
     else
-      query.where(:branch => :master).to_a[0]
+      query.where(branch: :master).to_a[0]
     end
   end
 

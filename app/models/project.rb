@@ -31,34 +31,34 @@ class Project < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_one :wiki, :class_name => 'Wiki::Wiki', :dependent => :destroy
+  has_one :wiki, class_name: 'Wiki::Wiki', dependent: :destroy
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader
 
-  belongs_to :latest_release_build, :class_name => 'Build'
-  belongs_to :latest_beta_build, :class_name => 'Build'
-  belongs_to :latest_normal_build, :class_name => 'Build'
+  belongs_to :latest_release_build, class_name: 'Build'
+  belongs_to :latest_beta_build, class_name: 'Build'
+  belongs_to :latest_normal_build, class_name: 'Build'
 
   validates :icon,
     # :presence => true,
-    :file_size => {
-      :maximum => 0.5.megabytes.to_i
-    }
+            file_size: {
+              maximum: 0.5.megabytes.to_i
+            }
 
   has_and_belongs_to_many :users
-  has_many :builds, :dependent => :destroy
-  has_many :versions, :dependent => :destroy
+  has_many :builds, dependent: :destroy
+  has_many :versions, dependent: :destroy
 
   validates_presence_of :name
   validates_presence_of :wiki
   validates_presence_of :description
   validates_presence_of :code_repo
 
-  validates_format_of :code_repo, :with => /(.*)\/(.*)/
+  validates_format_of :code_repo, with: /(.*)\/(.*)/
 
-  validates_length_of :name, :maximum => 30
+  validates_length_of :name, maximum: 30
 
-  validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :name, case_sensitive: false
 
   before_save :set_owner_sentence
   before_save :set_downloads
@@ -68,14 +68,14 @@ class Project < ActiveRecord::Base
   after_initialize :init
 
   def set_main_builds
-    self.latest_release_build = self.builds.order('build_number DESC').limit(1).
-      where(:build_state => 'release').first
+    self.latest_release_build = builds.order('build_number DESC').limit(1).
+      where(build_state: 'release').first
 
-    self.latest_beta_build = self.builds.order('build_number DESC').limit(1).
-      where(:build_state => 'beta').first
+    self.latest_beta_build = builds.order('build_number DESC').limit(1).
+      where(build_state: 'beta').first
 
-    self.latest_normal_build = self.builds.order('build_number DESC').limit(1).
-      where(:build_state => 'normal').first
+    self.latest_normal_build = builds.order('build_number DESC').limit(1).
+      where(build_state: 'normal').first
 
     self.main_download = ''
     build = latest_stable(self)
@@ -87,13 +87,13 @@ class Project < ActiveRecord::Base
 
   def set_download_sentence
     return unless self.respond_to?(:download_sentence)
-    num = ActionController::Base.helpers.number_to_human(self.downloads)
+    num = ActionController::Base.helpers.number_to_human(downloads)
     self.download_sentence = "#{num} Downloads"
   end
 
   def set_owner_sentence
     return unless self.respond_to?(:owner_sentence)
-    owners = (self.users.map {|user| user.name}).uniq
+    owners = (users.map { |user| user.name }).uniq
 
     if owners.size <= 2
       self.owner_sentence = owners.to_sentence
@@ -104,13 +104,13 @@ class Project < ActiveRecord::Base
   end
 
   def init
-    self.code_repo ||= "HeisenBugDev/#{self.name}"
-    self.description ||= "Such description! Much information!"
+    self.code_repo ||= "HeisenBugDev/#{name}"
+    self.description ||= 'Such description! Much information!'
     self.wiki ||= Wiki::Wiki.new
   end
 
   def set_downloads
     return unless self.respond_to?(:downloads)
-    self.downloads = self.builds.collect{|b| b.downloads.to_i }.sum
+    self.downloads = builds.map { |b| b.downloads.to_i }.sum
   end
 end

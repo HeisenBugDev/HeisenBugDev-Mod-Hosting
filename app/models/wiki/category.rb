@@ -14,5 +14,5 @@ class Wiki::Category < ActiveRecord::Base
 
   validates_presence_of :wiki
 
-  has_many :articles, :dependent => :destroy
+  has_many :articles, dependent: :destroy
 end

@@ -28,7 +28,7 @@ class Artifact < ActiveRecord::Base
   after_save :update_parent_downloads
 
   def update_parent_downloads
-    self.build.save
+    build.save
   end
 
   private

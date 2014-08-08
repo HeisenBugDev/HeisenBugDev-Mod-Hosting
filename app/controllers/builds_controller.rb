@@ -1,5 +1,5 @@
 class BuildsController < ApplicationController
-  skip_before_filter :beta_logged_in, :only => [:create]
+  skip_before_filter :beta_logged_in, only: [:create]
   # acts_as_token_authentication_handler_for User, fallback_to_devise: false
   # before_filter :authenticate_entity_from_token!, :only => [:create, :destroy]
   # before_filter :authenticate_entity!, :only => [:create, :destroy]
@@ -39,12 +39,12 @@ class BuildsController < ApplicationController
 
   def index
     @build = Build.find(params[:ids])
-    render :json => @build
+    render json: @build
   end
 
   def show
     @build = Build.find(params[:id])
-    render :json => @build
+    render json: @build
   end
 
   def create
@@ -55,8 +55,8 @@ class BuildsController < ApplicationController
     # end
 
     if project.nil?
-      render :text => "Project does not exist or you do not have permission!",
-        :status => :not_found
+      render text: 'Project does not exist or you do not have permission!',
+             status: :not_found
       return
     end
 
@@ -68,8 +68,8 @@ class BuildsController < ApplicationController
     end
 
     build = project.builds.build(upload_params)
-    version = Version.find_or_initialize_by(:project => project,
-          :version => params[:build][:mod_version])
+    version = Version.find_or_initialize_by(project: project,
+                                            version: params[:build][:mod_version])
     build.version = version
 
     prevcommit = prev_commit(build)
@@ -80,9 +80,9 @@ class BuildsController < ApplicationController
     end
 
     if build.save
-      render :json => build
+      render json: build
     else
-      render :json => json_resource_errors, status: :unprocessable_entity
+      render json: json_resource_errors, status: :unprocessable_entity
     end
   end
 
@@ -90,23 +90,23 @@ class BuildsController < ApplicationController
     @build = Build.find(params[:id])
 
     unless can? :manage, @build
-      render :json => {
-        :message => 'You do not have permission to do that!'
-      }, :status => :unauthorized
+      render json: {
+        message: 'You do not have permission to do that!'
+      },     status: :unauthorized
       return
     end
 
-    artifact = @build.artifacts.build(:name => params[:file_type])
+    artifact = @build.artifacts.build(name: params[:file_type])
     artifact.artifact = params[:file]
 
     if artifact.save
-      render :json => {
-        :message => 'Artifact uploaded.'
+      render json: {
+        message: 'Artifact uploaded.'
       }
     else
-      render :json => {
-        :message => 'Unsuccessful save. Errors are listed.',
-        :errors => user.errors.full_messages
+      render json: {
+        message: 'Unsuccessful save. Errors are listed.',
+        errors: user.errors.full_messages
       }
     end
   end
@@ -129,12 +129,12 @@ class BuildsController < ApplicationController
     @artifact.increment!(:downloads)
 
     respond_to do |format|
-      format.js { render :action => 'update' }
+      format.js { render action: 'update' }
       format.all { redirect_to @artifact.artifact.url }
     end
   end
 
-private
+  private
 
   #
   # Fetches the changelog for a repository
@@ -144,15 +144,13 @@ private
   #
   # @return [string] First line of every commit in the diff
   def fetch_brief_changelog(repo, bef, aft)
-    begin
-      lines = []
-      HeisenBugDev::Application::OCTOKIT_CLIENT.compare(repo, bef, aft).commits.each do |commithash|
-        lines << commithash.commit.message.lines.first
-      end
-      lines
-    rescue Octokit::NotFound
-      ['New build']
+    lines = []
+    HeisenBugDev::Application::OCTOKIT_CLIENT.compare(repo, bef, aft).commits.each do |commithash|
+      lines << commithash.commit.message.lines.first
     end
+    lines
+  rescue Octokit::NotFound
+    ['New build']
   end
 
   def upload_params

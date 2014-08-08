@@ -2,11 +2,11 @@ module RasterizerHelper
   def main_post
     size = params[:s].to_i
     size = 250 if size < 1
-    images = { :top => nil, :side => nil, :front => nil }
+    images = { top: nil, side: nil, front: nil }
 
     verified_parameters = verify_parameters(params, size, images)
 
-    unless verified_parameters == nil
+    unless verified_parameters.nil?
       verified_parameters.call
       return
     end
@@ -77,15 +77,15 @@ module RasterizerHelper
 
     unless missing_params.empty?
       return proc do
-        render :json => {:error => "parameters are missing or broken!"},
-             :status => :bad_request
+        render json: { error: 'parameters are missing or broken!' },
+               status: :bad_request
       end
     end
 
     if size > 1000
       return proc do
-        render :json => {:error => 'Size too big! Max size 1000!'},
-             :status => :bad_request
+        render json: { error: 'Size too big! Max size 1000!' },
+               status: :bad_request
       end
     end
 
@@ -95,11 +95,9 @@ module RasterizerHelper
       images[:front] = MiniMagick::Image.open(params[:front])
     rescue Errno::ENOENT
       return proc do
-        render :json => {:error => 'One or more files does not exist.'},
-             :status => :failed_dependency
+        render json: { error: 'One or more files does not exist.' },
+               status: :failed_dependency
       end
     end
-
-    return
-  end
+      end
 end

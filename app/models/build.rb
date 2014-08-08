@@ -30,7 +30,7 @@ class Build < ActiveRecord::Base
   belongs_to :project
   belongs_to :version
 
-  has_many :artifacts, :dependent => :destroy
+  has_many :artifacts, dependent: :destroy
 
   validates_presence_of :build_number
   validates_presence_of :commit
@@ -44,19 +44,19 @@ class Build < ActiveRecord::Base
   before_save :set_build_state
   after_save :save_parent
 
-  validates_numericality_of :build_number, :only_integer => true,
-                                           :greater_than => 0,
-                                           :message => "Build number must be"\
-                                           "greater than 0"
+  validates_numericality_of :build_number, only_integer: true,
+                                           greater_than: 0,
+                                           message: 'Build number must be'\
+                                           'greater than 0'
 
-  validates_uniqueness_of :build_number, :scope => :project_id
+  validates_uniqueness_of :build_number, scope: :project_id
 
   def init
     self.build_state ||= 'normal'
   end
 
   def set_downloads
-    self.downloads = self.artifacts.sum('downloads')
+    self.downloads = artifacts.sum('downloads')
   end
 
   def set_main_download
@@ -71,6 +71,6 @@ class Build < ActiveRecord::Base
   end
 
   def save_parent
-    self.project.save
+    project.save
   end
 end

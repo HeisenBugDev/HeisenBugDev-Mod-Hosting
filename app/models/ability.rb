@@ -7,9 +7,9 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can :edit, Project, :id => user.project_ids
-      can :edit, Wiki::Wiki, :project_id => user.project_ids
-      can :manage, Build, :project_id => user.project_ids
+      can :edit, Project, id: user.project_ids
+      can :edit, Wiki::Wiki, project_id: user.project_ids
+      can :manage, Build, project_id: user.project_ids
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -34,10 +34,10 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   BETA_USERS = %w(hunterboerner forkk sammko k2b6s9j eydamos abrarsyed jadar
-    trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
-    endershadow HotelCalifornia thejereman13 XixeBombilla jakerm2002
-    modmuss50 DylanGore penne12 Flenix PaleoCrafter mistertime
-    rainfur EnriqueCanals Ri5ux wuppy29
+                  trainerguy22 matalcdev xelitexirish orochimarufan viliml dodolend
+                  endershadow HotelCalifornia thejereman13 XixeBombilla jakerm2002
+                  modmuss50 DylanGore penne12 Flenix PaleoCrafter mistertime
+                  rainfur EnriqueCanals Ri5ux wuppy29
     ).map(&:downcase)
   before_validation :beta_user?
   has_and_belongs_to_many :projects
@@ -46,8 +46,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable,
-  :omniauthable, :omniauth_providers => [:github]
+         :recoverable, :rememberable, :trackable,
+         :omniauthable, omniauth_providers: [:github]
   validates_presence_of :name
   validates_uniqueness_of :name
 
@@ -57,8 +57,8 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.github_data'] && session['devise.github_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email unless auth.info.email.nil?
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.nickname # assuming the user model has a name
     end
 

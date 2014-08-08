@@ -14,7 +14,7 @@
 
 class Wiki::Wiki < ActiveRecord::Base
   belongs_to :project
-  has_many :categories, :dependent => :destroy
+  has_many :categories, dependent: :destroy
 
   validates_presence_of :project, on: :update
 end

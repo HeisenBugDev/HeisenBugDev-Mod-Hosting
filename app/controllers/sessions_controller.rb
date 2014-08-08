@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    return missing_params unless (params[:email] && params[:password])
+    return missing_params unless params[:email] && params[:password]
     @user = user_from_credentials
     return invalid_credentials unless @user
 
