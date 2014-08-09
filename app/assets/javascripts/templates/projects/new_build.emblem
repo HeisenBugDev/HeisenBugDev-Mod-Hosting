@@ -10,4 +10,6 @@ mod-header project=project
         = input minecraft_version hint="Minecraft version"
       .row
         = input branch hint="Git branch"
+
+      file-upload url='/hihihi'
       = submit

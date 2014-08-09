@@ -13,10 +13,29 @@ HeisenBugDev.ProjectsNewBuildController = Ember.ObjectController.extend Ember.Va
   validations:
     minecraft_version:
       presence: true
+      inclusion:
+        in: [
+          '1.6.1'
+          '1.6.2'
+          '1.6.4'
+          '1.7.2'
+          '1.7.10'
+        ]
+        message: "That version is not supported"
     commit:
       presence: true
+      format:
+        with: /^([a-f0-9]*)$/
+        message: "That is not a valid SHA"
+      length:
+        'is': 40
+        messages:
+          wrongLength: "The commit must be a 40 character SHA"
     branch:
       presence: true
+      format:
+        with: /^[\x00-\x1F\x21-\x7F]+$/
+        message: "Invalid format"
 
   actions:
     submit: ->
