@@ -35,7 +35,7 @@ HeisenBugDev.ProjectsNewBuildController = Ember.ObjectController.extend Ember.Va
       presence: true
       format:
         with: /^[\x00-\x1F\x21-\x7F]+$/
-        message: "Invalid format"
+        message: "No unicode or spaces!"
 
   actions:
     submit: ->
