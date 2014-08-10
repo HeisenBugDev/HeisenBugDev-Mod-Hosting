@@ -7,6 +7,13 @@
   box-sizing: border-box;
 }
 
+.loading {
+  .spinner {
+    visibility: visible;
+    display: block;
+  }
+}
+
 .circle {
   position: absolute;
   width: 0;
@@ -22,6 +29,7 @@
   -webkit-transition: all 200ms ease;
   transition: all 200ms ease;
 }
+
 .circle:nth-child(1) {
   z-index: 2;
   background: $orange;
@@ -31,6 +39,7 @@
   -webkit-animation-delay: 0;
   -webkit-animation-iteration-count: infinite;
 }
+
 .circle:nth-child(2) {
   background: $blue;
   -webkit-animation-name: explode;
@@ -59,6 +68,7 @@
 }
 
 .spinner {
+  display: none;
   font-size: 10px;
   margin-top: 13%;
   margin-left: auto;

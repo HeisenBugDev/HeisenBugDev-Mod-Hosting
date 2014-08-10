@@ -10,13 +10,17 @@ HeisenBugDev.ProjectsBuildsRoute = Ember.Route.extend
     project_id: model.get 'slug'
 
 HeisenBugDev.ProjectsNewBuildRoute = Ember.Route.extend
-  setupController: ->
-    self = this
-    @store.find('project', 1).then (project) ->
-      build = self.store.createRecord('build', {commit: '12kjsdf'})
-      project.get('builds').then (builds) ->
-        builds.addObject(build)
-        self.get('controller').set('model', build)
+  setupController: (controller, model) ->
+    build = @store.createRecord('build', {commit: '12kjsdf'})
+    model.get('builds').then (builds) ->
+      builds.addObject(build)
+      controller.set('model', build)
+      Ember.run.scheduleOnce 'afterRender', this, ->
+        Ember.$('body').removeClass('loading')
 
   serialize: (model) ->
-    project_id: model.get 'slug'
+    project_id: model.get('slug')
+
+  model: (params) ->
+    Ember.$('body').addClass('loading')
+    @store.find('project', params.project_id)

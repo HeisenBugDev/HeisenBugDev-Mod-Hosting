@@ -6,4 +6,8 @@ nav
   link-to 'projects.index'
     | Projects
 
+div.spinner
+  div.circle
+  div.circle
+
 outlet

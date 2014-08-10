@@ -1,3 +1,5 @@
-div.spinner
-  div.circle
-  div.circle
+/ This is easier than messing with css
+.loading
+  div.spinner
+    div.circle
+    div.circle
