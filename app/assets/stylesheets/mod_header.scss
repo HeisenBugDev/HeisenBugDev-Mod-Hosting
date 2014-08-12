@@ -31,7 +31,11 @@
   }
 
   a.button {
-    float: right;
+    @include media($large-screen) {
+      float: right;
+    }
+
+    float: left;
   }
 
   .right h3 {
@@ -43,6 +47,8 @@
   }
 
   .float-right {
-    float: right;
+    @include media($large-screen) {
+      float: right;
+    }
   }
 }

@@ -9,17 +9,23 @@ div.container {
   @include outer-container;
 
   .left {
-    @include span-columns(9);
-    float: left;
+    @include media($large-screen) {
+      @include span-columns(9);
+      float: left;
+    }
   }
 
   .right {
-    @include span-columns(3);
-    float: right;
+    @include media($large-screen) {
+      @include span-columns(3);
+      float: right;
+    }
   }
 
   .three-c {
-    @include span-columns(4);
+    @include media($large-screen) {
+      @include span-columns(4);
+    }
   }
 
   .right-tip {
@@ -110,6 +116,12 @@ form {
 
 .build-grid {
   .download-card {
-    @include span-columns(3.9);
+    @include media($medium-screen) {
+      @include span-columns(5.8);
+    }
+
+    @include media($large-screen) {
+      @include span-columns(3.9);
+    }
   }
 }
