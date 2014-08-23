@@ -1,4 +1,7 @@
 HeisenBugDev::Application.configure do
+  # Show SQL in console!
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+
   config.ember.variant = :development
   # Settings specified here will take precedence over those in config/application.rb.
 

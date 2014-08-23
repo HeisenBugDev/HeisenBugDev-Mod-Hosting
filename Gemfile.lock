@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/HeisenBugDev/aviators.git
+  revision: b77de9c7feec994217f02f932565404fd70f610a
+  branch: master
+  specs:
+    aviators (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -447,6 +454,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate (~> 2.6.2)
+  aviators!
   better_errors
   binding_of_caller
   bourbon

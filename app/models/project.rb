@@ -40,13 +40,13 @@ class Project < ActiveRecord::Base
   belongs_to :latest_normal_build, class_name: 'Build'
 
   validates :icon,
-    # :presence => true,
+    :presence => true,
             file_size: {
               maximum: 0.5.megabytes.to_i
             }
 
   has_and_belongs_to_many :users
-  has_many :builds, dependent: :destroy
+  has_many :builds, -> { order "build_number ASC" }, dependent: :destroy
   has_many :versions, dependent: :destroy
 
   validates_presence_of :name
@@ -67,6 +67,32 @@ class Project < ActiveRecord::Base
 
   after_initialize :init
 
+  #
+  # dsf
+  # @param branch: [String] git branch name. If nil, the results will not be filtered by branch.
+  # @param limit: [Integer] Max amount of builds to return.
+  # @param extra_where_params: Extra params to be added to the where search.
+  #
+  # @return [Array<Build>] Array of builds.
+  def latest_builds(branch: 'master', limit: 5, extra_where_params: {})
+    (branch_lookup = branch ? { branch: branch } : {}).merge!(extra_where_params)
+    self.builds.where(branch_lookup).last(limit)
+  end
+
+
+  #
+  # Get the latest stable builds (either BETA or RELEASE build_state)
+  # @param options [Hash] Params to be passed to {#latest_builds}
+  #
+  # @return [Array<Builds>] Array of builds.
+  def latest_stable(options = {})
+    latest_builds(extra_where_params: options.merge(build_state: ['beta', 'release']))
+  end
+
+  def branches
+    Build.uniq.where(project: self).pluck(:branch)
+  end
+
   def set_main_builds
     self.latest_release_build = builds.order('build_number DESC').limit(1).
       where(build_state: 'release').first
@@ -78,7 +104,7 @@ class Project < ActiveRecord::Base
       where(build_state: 'normal').first
 
     self.main_download = ''
-    build = latest_stable(self)
+    build = self.latest_stable[0]
     artifacts = build.artifacts if build
     artifact = artifacts.find_by_name('universal') if artifacts
     url = artifact.artifact.url if artifact

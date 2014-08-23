@@ -57,6 +57,9 @@ gem 'neat'
 gem 'rack-mini-profiler'
 gem 'octokit'
 
+# Aviators
+gem "aviators", :github => 'HeisenBugDev/aviators', :branch => 'master'
+
 # Rails-assets
 # You can add any bower package using this. Simply add the gem as:
 # rails-assets-BOWER_PACKAGE_NAME
