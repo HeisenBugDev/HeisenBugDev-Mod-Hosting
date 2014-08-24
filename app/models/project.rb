@@ -46,7 +46,7 @@ class Project < ActiveRecord::Base
             }
 
   has_and_belongs_to_many :users
-  has_many :builds, -> { order "build_number ASC" }, dependent: :destroy
+  has_many :builds, -> { order "build_number DESC" }, dependent: :destroy
   has_many :versions, dependent: :destroy
 
   validates_presence_of :name
@@ -69,24 +69,25 @@ class Project < ActiveRecord::Base
 
   #
   # dsf
-  # @param branch: [String] git branch name. If nil, the results will not be filtered by branch.
+  # @param state [Symbol] Build state. :stable, :beta, :bugged, etc.
+  #   Not providing it or nil will ignore the build_state.
+  # @param branch: [String] git branch name. If nil, the results will not be
+  #   filtered by branch.
   # @param limit: [Integer] Max amount of builds to return.
   # @param extra_where_params: Extra params to be added to the where search.
   #
   # @return [Array<Build>] Array of builds.
-  def latest_builds(branch: 'master', limit: 5, extra_where_params: {})
-    (branch_lookup = branch ? { branch: branch } : {}).merge!(extra_where_params)
-    self.builds.where(branch_lookup).last(limit)
-  end
+  def latest_builds(state=nil, branch: 'master', limit: 5, extra_where_params: {})
+    hashes = Build::STATES.find { |state| state.is_a? Hash }
+    state_lookup = (hashes[state] if hashes.include?(state)) ||
+      (state if Build::STATES.include?(state))
 
+    (branch_lookup = branch ? { branch: branch} : {}).
+      merge!(extra_where_params)
 
-  #
-  # Get the latest stable builds (either BETA or RELEASE build_state)
-  # @param options [Hash] Params to be passed to {#latest_builds}
-  #
-  # @return [Array<Builds>] Array of builds.
-  def latest_stable(options = {})
-    latest_builds(extra_where_params: options.merge(build_state: ['beta', 'release']))
+    branch_lookup.merge!({build_state: state_lookup}) if state_lookup
+
+    self.builds.where(branch_lookup).first(limit)
   end
 
   def branches

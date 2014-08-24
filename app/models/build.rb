@@ -24,6 +24,8 @@
 #
 
 class Build < ActiveRecord::Base
+  STATES = [:beta, :bugged, :release, :normal, stable: [:beta, :release]]
+
   after_initialize :init
 
   resourcify
