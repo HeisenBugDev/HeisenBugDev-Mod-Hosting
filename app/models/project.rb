@@ -68,7 +68,7 @@ class Project < ActiveRecord::Base
   after_initialize :init
 
   #
-  # dsf
+  # Get the latest builds for a project.
   # @param state [Symbol] Build state. :stable, :beta, :bugged, etc.
   #   Not providing it or nil will ignore the build_state.
   # @param branch: [String] git branch name. If nil, the results will not be
