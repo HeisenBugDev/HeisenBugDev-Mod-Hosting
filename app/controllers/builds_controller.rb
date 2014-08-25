@@ -61,7 +61,7 @@ class BuildsController < ApplicationController
     end
 
     if params[:build][:build_number].blank?
-      latest = latest_builds(project, 1, nil)[0]
+      latest = project.latest_builds(limit: 1, branch: nil)[0]
       num = latest.build_number + 1 unless latest.nil?
       num ||= 1
       params[:build][:build_number] = num
@@ -122,7 +122,7 @@ class BuildsController < ApplicationController
       @build = Build.find(params[:build_id])
       @artifact = @build.artifacts.find_by_name(file_type)
     else
-      @build = latest_stable(@project)
+      @build = @project.latest_builds(:stable, limit: 1)
       @artifact = @build.artifacts.find_by_name(file_type)
     end
 
