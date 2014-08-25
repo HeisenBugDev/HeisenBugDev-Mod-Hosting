@@ -1,2 +1,1 @@
-HeisenBugDev.ApplicationController = Ember.Controller.extend
-  isLoading: false
+HeisenBugDev.ApplicationController = Ember.Controller.extend()

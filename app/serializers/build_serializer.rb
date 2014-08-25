@@ -3,6 +3,6 @@ class BuildSerializer < ActiveModel::Serializer
              :updated_at, :branch, :build_state, :downloads, :main_download, :brief_changelog
 
   has_one :project, embed: :ids
-  has_one :version, embed: :ids
+  has_one :version, embed: :ids, include: true
   has_many :artifacts, embed: :ids, include: true
 end

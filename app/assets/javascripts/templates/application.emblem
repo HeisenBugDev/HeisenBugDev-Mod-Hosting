@@ -1,5 +1,3 @@
-if isLoading
-  h1 BACON
 nav
   link-to 'users.index'
     | Users list
