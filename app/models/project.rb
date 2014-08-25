@@ -60,10 +60,10 @@ class Project < ActiveRecord::Base
 
   validates_uniqueness_of :name, case_sensitive: false
 
-  before_save :set_owner_sentence
-  before_save :set_downloads
-  before_save :set_download_sentence
-  before_save :set_main_builds
+  after_save :set_owner_sentence
+  after_save :set_downloads
+  after_save :set_download_sentence
+  after_save :set_main_builds
 
   after_initialize :init
 
@@ -105,7 +105,7 @@ class Project < ActiveRecord::Base
       where(build_state: 'normal').first
 
     self.main_download = ''
-    build = self.latest_stable[0]
+    build = self.latest_builds(:stable)[0]
     artifacts = build.artifacts if build
     artifact = artifacts.find_by_name('universal') if artifacts
     url = artifact.artifact.url if artifact

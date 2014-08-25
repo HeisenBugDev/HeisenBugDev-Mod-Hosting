@@ -24,7 +24,8 @@
 #
 
 class Build < ActiveRecord::Base
-  STATES = [:beta, :bugged, :release, :normal, stable: [:beta, :release]]
+  STATES = [:beta, :bugged, :release, :normal, stable: [:beta, :release],
+    fine: [:beta, :release, :normal]]
 
   after_initialize :init
 
