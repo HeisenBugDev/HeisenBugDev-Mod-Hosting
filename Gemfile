@@ -24,6 +24,8 @@ gem 'foundation-rails', '~> 5.2'
 gem 'haml-rails'
 gem 'puma'
 
+gem 'pry-byebug'
+
 # We will remove this when we rewrite the rasterizer
 gem "mini_magick"
 
