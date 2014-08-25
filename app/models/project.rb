@@ -41,9 +41,9 @@ class Project < ActiveRecord::Base
 
   validates :icon,
     :presence => true,
-            file_size: {
-              maximum: 0.5.megabytes.to_i
-            }
+    file_size: {
+      maximum: 0.5.megabytes.to_i
+    }
 
   has_and_belongs_to_many :users
   has_many :builds, -> { order "build_number DESC" }, dependent: :destroy
