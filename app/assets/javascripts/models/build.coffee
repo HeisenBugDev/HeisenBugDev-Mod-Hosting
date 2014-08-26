@@ -6,6 +6,7 @@ HeisenBugDev.Build = DS.Model.extend
   main_download: DS.attr 'string'
   updated_at: DS.attr 'string'
   branch: DS.attr 'string'
+  modVersion: DS.attr 'string'
   build_state: DS.attr 'string'
   downloads: DS.attr 'number'
   project: DS.belongsTo 'project', async: true, inverse: 'builds'
