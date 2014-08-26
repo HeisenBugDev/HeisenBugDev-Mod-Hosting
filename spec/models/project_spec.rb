@@ -130,6 +130,30 @@ describe Project do
     end
   end
 
+  describe "main builds" do
+    before do
+      version = @project.versions.create(version: '1.1.1')
+
+      build_number = 0
+      @build_release = @project.builds.create(version: version, build_number: build_number += 1,
+        minecraft_version: '1.8', commit: 'omgsometfhing', branch: 'master', build_state: 'release')
+
+      @build_beta = @project.builds.create(version: version, build_number: build_number += 1,
+        minecraft_version: '1.8', commit: 'omgsomethsing', branch: 'master', build_state: 'beta')
+
+      @build_normal = @project.builds.create(version: version, build_number: build_number += 1,
+        minecraft_version: '1.8', commit: 'omgsomethiang', branch: 'master', build_state: 'normal')
+
+      @project.reload
+    end
+
+    it "should set main builds" do
+      @project.latest_release_build.should eq(@build_release)
+      @project.latest_beta_build.should    eq(@build_beta)
+      @project.latest_normal_build.should  eq(@build_normal)
+    end
+  end
+
   describe "giving me branches" do
     before do
       version = @project.versions.create(version: '1.1.1')

@@ -60,10 +60,10 @@ class Project < ActiveRecord::Base
 
   validates_uniqueness_of :name, case_sensitive: false
 
-  after_save :set_owner_sentence
-  after_save :set_downloads
-  after_save :set_download_sentence
-  after_save :set_main_builds
+  before_save :set_owner_sentence
+  before_save :set_downloads
+  before_save :set_download_sentence
+  before_save :set_main_builds
 
   after_initialize :init
 
@@ -95,9 +95,10 @@ class Project < ActiveRecord::Base
   end
 
   def set_main_builds
-    self.latest_release_build = latest_builds(:release, limit: 1)
-    self.latest_beta_build    = latest_builds(:beta, limit: 1)
-    self.latest_normal_build  = latest_builds(:normal, limit: 1)
+    # binding.pry
+    self.latest_release_build = latest_builds(:release, limit: 1)[0]
+    self.latest_beta_build    = latest_builds(:beta, limit: 1)[0]
+    self.latest_normal_build  = latest_builds(:normal, limit: 1)[0]
 
     self.main_download = ''
     build = self.latest_builds(:stable)[0]

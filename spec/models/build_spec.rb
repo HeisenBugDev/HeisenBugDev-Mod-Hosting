@@ -43,4 +43,8 @@ describe Build do
   it { should_not allow_value(0, -1, -37).for(:build_number) }
 
   it { should validate_uniqueness_of(:build_number).scoped_to(:project_id) }
+
+  it "should default build_state" do
+    expect(build.build_state).to eq('normal')
+  end
 end
