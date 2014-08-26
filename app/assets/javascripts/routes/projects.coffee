@@ -20,21 +20,9 @@ HeisenBugDev.ProjectsBuildsRoute = Ember.Route.extend
     Em.RSVP.all [project.get('builds'), project.get('builds').get('version')]
 
 HeisenBugDev.ProjectsNewBuildRoute = Ember.Route.extend
-  # No, this doesn't work :|
-  setupController: (controller, model) ->
-    build = @store.createRecord('build', {commit: '12kjsdf'})
-    model.get('builds').then (builds) ->
-      builds.addObject(build)
-      controller.set('model', build)
-      # Ember.run.scheduleOnce 'afterRender', this, ->
-        # Ember.$('body').removeClass('loading')
+  setupController: (controller, project) ->
+    build = @store.createRecord('build', {commit: '12kjsdf', project: project})
+    controller.set('model', build)
 
   serialize: (model) ->
     project_id: model.get('slug')
-
-  afterModel: (model) ->
-    Em.RSVP.all([model.get('project')])
-
-  # model: (params) ->
-    # Ember.$('body').addClass('loading')
-    # @store.find('project', params.project_id)
