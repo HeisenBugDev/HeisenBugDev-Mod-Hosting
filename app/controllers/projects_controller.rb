@@ -10,19 +10,23 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Emberified!
   def show
     @project = Project.friendly.find(params[:id])
     render json: @project
   end
 
+  # Emberified!
   def index
-    @projects = Project.includes(:wiki, :versions, :builds, :latest_release_build, :latest_beta_build, :latest_normal_build).paginate(page: params[:page])
+    @projects = Project.includes(:wiki, :versions, :builds,
+      :latest_release_build, :latest_beta_build, :latest_normal_build).
+        paginate(page: params[:page])
     render json: @projects
   end
 
   def new
     unless can? :manage, :all
-      redirect_to :back, flash:         { warning: 'You do not have permission to view that page' }
+      redirect_to :back, flash: { warning: 'You do not have permission to view that page' }
       return
     end
 
@@ -32,8 +36,8 @@ class ProjectsController < ApplicationController
 
   def create
     unless can? :manage, :all
-      redirect_to :back, flash:         { warning: 'You do not have permission to view that page' },
-                         status: :unauthorized
+      redirect_to :back, flash: { warning: 'You do not have permission to view that page' },
+        status: :unauthorized
       return
     end
 
