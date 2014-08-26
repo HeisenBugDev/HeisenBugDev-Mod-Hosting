@@ -95,14 +95,9 @@ class Project < ActiveRecord::Base
   end
 
   def set_main_builds
-    self.latest_release_build = builds.order('build_number DESC').limit(1).
-      where(build_state: 'release').first
-
-    self.latest_beta_build = builds.order('build_number DESC').limit(1).
-      where(build_state: 'beta').first
-
-    self.latest_normal_build = builds.order('build_number DESC').limit(1).
-      where(build_state: 'normal').first
+    self.latest_release_build = latest_builds(:release, limit: 1)
+    self.latest_beta_build    = latest_builds(:beta, limit: 1)
+    self.latest_normal_build  = latest_builds(:normal, limit: 1)
 
     self.main_download = ''
     build = self.latest_builds(:stable)[0]
