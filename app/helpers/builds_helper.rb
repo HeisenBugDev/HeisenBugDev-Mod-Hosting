@@ -1,7 +1,4 @@
 module BuildsHelper
-  attr_reader :STATE_NAMES
-  STATE_NAMES = ['beta', 'bugged', 'release', 'normal']
-
   def prev_commit(build)
     prev_build = build.project.builds.order('build_number DESC')
       .where('build_number < ?', build.build_number).first

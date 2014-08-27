@@ -25,6 +25,11 @@ class Artifact < ActiveRecord::Base
   validates_presence_of :build
 
   before_save :update_artifact_attributes
+  after_save :update_parent_downloads
+
+  def update_parent_downloads
+    build.save
+  end
 
   private
 

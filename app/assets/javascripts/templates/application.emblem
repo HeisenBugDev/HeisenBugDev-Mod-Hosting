@@ -1,0 +1,11 @@
+nav
+  link-to 'users.index'
+    | Users list
+  link-to 'projects.index'
+    | Projects
+
+div.spinner
+  div.circle
+  div.circle
+
+outlet

@@ -12,6 +12,9 @@
 #  branch            :string(255)
 #  version_id        :integer
 #  build_state       :string(255)
+#  downloads         :integer
+#  main_download     :string(255)
+#  brief_changelog   :text
 #
 # Indexes
 #
@@ -25,8 +28,8 @@
 FactoryGirl.define do
   factory :build do
     build_number 1
-    commit "ce6d688"
-    branch "1337-this-better-be-awesome"
-    minecraft_version "1.7.2"
+    commit 'ce6d688'
+    branch '1337-this-better-be-awesome'
+    minecraft_version '1.7.2'
   end
 end

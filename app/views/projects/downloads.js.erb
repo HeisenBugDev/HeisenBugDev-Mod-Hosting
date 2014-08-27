@@ -1,3 +1,0 @@
-$('.downloads').replaceWith("<%= raw(remove_newlines(single_quoter(render(:partial => 'builds/downloads', :locals => {:project => @project, :branch => @branch})))) %>")
-$(document).foundation();
-$(document).trigger('page:load');

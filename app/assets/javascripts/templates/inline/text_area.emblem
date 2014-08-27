@@ -1,0 +1,8 @@
+if view.isEditing
+  span.change-label Save
+  yield
+else
+  label
+    = view.label
+    span.change-label click="edit target='view'"  Edit
+  p= view.value

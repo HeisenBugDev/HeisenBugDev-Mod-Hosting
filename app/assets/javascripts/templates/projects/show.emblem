@@ -1,0 +1,26 @@
+mod-header project=this
+.container
+  .narrow
+    .row
+      each error in errors.description
+        span = error.message
+    .row
+      .description
+        view HeisenBugDev.InlineTextArea valueBinding='description' label='Description' model=this
+          form-for this
+            = input description as='textareapp' hint='Something that explains what your mod is.'
+
+  .row
+    .three-c
+      download-card build=latestReleaseBuild
+    .three-c
+      download-card build=latestBetaBuild
+    .three-c
+      download-card build=latestNormalBuild
+  .row
+    .all-downloads-column
+      link-to 'projects.builds' this
+        .all-downloads-button: span All Downloads
+  .row
+    link-to 'projects.new_build' this
+      | hmmmm

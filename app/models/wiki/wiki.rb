@@ -6,7 +6,6 @@
 #  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  repo       :string(255)
 #
 # Indexes
 #
@@ -15,18 +14,7 @@
 
 class Wiki::Wiki < ActiveRecord::Base
   belongs_to :project
-  has_many :articles, :dependent => :destroy
-  has_many :categories, :dependent => :destroy
-
-  before_save { self.repo = repo.downcase }
+  has_many :categories, dependent: :destroy
 
   validates_presence_of :project, on: :update
-  validates_presence_of :repo
-  validates_format_of :repo, :with => /(.*)\/(.*)/
-
-  after_initialize :init
-
-  def init
-    self.repo ||= "HeisenBugDev/HeisenBugDev-content"
-  end
 end

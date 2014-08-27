@@ -1,0 +1,54 @@
+.mod-header {
+  a.project-title-link {
+    color: $orange;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  a.button, a.deactivated-button {
+    text-decoration: none;
+
+    &:focus {text-decoration: underline;}
+  }
+
+  // todo use vars for colors
+  background-color: #e8e8e8;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 15px solid #ebaf3c;
+
+  h1 {
+    font-size: 48px;
+    color: #e9662c;
+  }
+
+  h3 {
+    margin-top: 6px;
+    color: #ebaf3c;
+  }
+
+  a.button {
+    @include media($large-screen) {
+      float: right;
+    }
+
+    float: left;
+  }
+
+  .right h3 {
+    margin-top: 20px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .float-right {
+    @include media($large-screen) {
+      float: right;
+    }
+  }
+}

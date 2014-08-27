@@ -1,0 +1,23 @@
+.row
+  .large-12.columns
+
+    = input type="text" placeholder="Filter here" value=filterName
+
+    table.center.full-table.text-center
+      tr
+        th NAME
+        th EMAIL
+      each user in filteredUsers
+        tr
+          td: link-to 'users.show' user
+            user.name
+          td: link-to 'users.show' user
+            user.email
+
+    if currentlyFetchingPage
+      render 'spinner'
+    else
+      div.load-more.text-center{action "loadNextPage"}
+
+    if cannotLoadMore
+      h3.text-center That's the end!

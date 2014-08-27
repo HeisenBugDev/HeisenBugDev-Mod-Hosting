@@ -1,9 +1,0 @@
-.large-12.columns
-  %h1.text-center Mods
-  %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-4
-    - Project.where.not(:name => 'HeisenBugDev').find_each do |project|
-      %li
-        .panel
-          = image_tag project.icon, :class => 'mod-icon no-aa-image'
-          %h2= link_to project.name, project
-          %h3= project.subtitle

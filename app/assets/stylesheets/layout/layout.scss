@@ -1,0 +1,131 @@
+// HeisenBugDev layout
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.container {
+  @include outer-container;
+
+  .left {
+    @include media($large-screen) {
+      @include span-columns(9);
+      float: left;
+    }
+  }
+
+  .right {
+    @include media($large-screen) {
+      @include span-columns(3);
+      float: right;
+    }
+  }
+
+  .three-c {
+    @include media($large-screen) {
+      @include span-columns(4);
+    }
+  }
+
+  .right-tip {
+    $width: 240px;
+    width: $width;
+    margin-right: -20px - $width;
+    float: right;
+
+    h4 {
+      padding: 5px;
+      padding-left: 12px;
+      background-color: $green;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    .body {
+      padding: 5px;
+      border: 1px solid #a3a3a3;
+      background-color: #ffffff;
+    }
+  }
+
+  .all-downloads-column {
+    margin-top: 30px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.narrow {
+  @include span-columns(10);
+  margin-left: auto;
+  margin-right: auto;
+  float: center;
+
+  &:last-child {
+    margin-right: auto;
+  }
+}
+
+.very-narrow {
+  @include span-columns(6);
+  margin-left: auto;
+  margin-right: auto;
+  float: center;
+
+  &:last-child {
+    margin-right: auto;
+  }
+}
+
+.row {
+  margin-top: 30px;
+  @include row();
+}
+
+form {
+  .row {
+    margin-top: 0;
+  }
+}
+
+table.split-list {
+  margin-top: 20px;
+
+  tr {
+    td {
+      border: none;
+      font-size: 25px;
+      padding: 0;
+      line-height: 1.2;
+    }
+
+    td:nth-child(1) {
+      color: #2b2b2b;
+    }
+
+    td:nth-child(2) {
+      color: #e9662c;
+      text-align: right;
+    }
+  }
+
+  &.small-center {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.build-grid {
+  .download-card {
+    @include media($medium-screen) {
+      @include span-columns(5.8);
+    }
+
+    @include media($large-screen) {
+      @include span-columns(3.9);
+    }
+  }
+}

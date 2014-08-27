@@ -1,5 +1,5 @@
 class FlashesController < ApplicationController
   def index
-    render :text => 'Flashes in header.'
+    render text: 'Flashes in header.'
   end
 end

@@ -6,7 +6,6 @@
 #  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  repo       :string(255)
 #
 # Indexes
 #
@@ -16,8 +15,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :wiki_wiki, :class => 'Wiki::Wiki' do
+  factory :wiki_wiki, class: 'Wiki::Wiki' do
     project nil
-    repo 'HeisenBugDev/HBD-Content'
   end
 end

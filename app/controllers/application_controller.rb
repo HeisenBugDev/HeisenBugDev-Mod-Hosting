@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery
-  before_filter :beta_logged_in
+  # before_filter :beta_logged_in
   after_filter :flash_to_headers
+
+  def current_user
+    return nil unless params[:user_token]
+    User.find_by authentication_token: params[:user_token]
+  end
 
   private
   def beta_logged_in
-    unless Rails.env.test?
+    if Rails.env.production?
       redirect_to root_path if current_user.nil?
     end
   end

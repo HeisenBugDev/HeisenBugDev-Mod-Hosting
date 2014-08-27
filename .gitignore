@@ -87,3 +87,5 @@ pickle-email-*.html
 
 # Sublimetext fancyness
 *.sublime-*
+
+example_data_info.md

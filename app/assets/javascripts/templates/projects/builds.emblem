@@ -1,0 +1,4 @@
+mod-header project=this
+.container.build-grid
+  each build in builds
+    download-card build=build noState=true

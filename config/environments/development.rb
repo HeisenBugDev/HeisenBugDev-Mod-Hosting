@@ -1,4 +1,8 @@
 HeisenBugDev::Application.configure do
+  # Show SQL in console!
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+
+  config.ember.variant = :development
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -26,4 +30,13 @@ HeisenBugDev::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end

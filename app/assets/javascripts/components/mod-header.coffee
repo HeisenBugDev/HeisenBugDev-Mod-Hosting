@@ -1,0 +1,1 @@
+HeisenBugDev.ModHeaderComponent = Ember.Component.extend()

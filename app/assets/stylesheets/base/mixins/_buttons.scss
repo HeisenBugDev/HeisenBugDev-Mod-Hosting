@@ -1,0 +1,39 @@
+@mixin button($color) {
+  display: inline-block;
+  @include transition-duration(0s);
+  border: 2px solid $color;
+  border-radius: 10px;
+  color: $color;
+  top: 11px;
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  width: $button-width;
+  padding: 0px 15px 1px 15px;
+  height: 51px;
+
+  &:hover {
+    @include transition-duration(0s);
+    background-color: $color;
+    color: white;
+  }
+
+  &:active {
+    background-color: initial;
+    color: $color;
+  }
+
+  &:focus {
+    color: $color;
+    text-decoration: underline;
+  }
+
+  span {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .button-label {
+    font-weight: 600;
+  }
+}

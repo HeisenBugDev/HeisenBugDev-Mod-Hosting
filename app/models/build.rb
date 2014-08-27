@@ -12,6 +12,9 @@
 #  branch            :string(255)
 #  version_id        :integer
 #  build_state       :string(255)
+#  downloads         :integer
+#  main_download     :string(255)
+#  brief_changelog   :text
 #
 # Indexes
 #
@@ -21,14 +24,16 @@
 #
 
 class Build < ActiveRecord::Base
+  STATES = [:beta, :bugged, :release, :normal, stable: [:beta, :release],
+    fine: [:beta, :release, :normal]]
+
   after_initialize :init
 
   resourcify
   belongs_to :project
   belongs_to :version
 
-  has_many :artifacts, :dependent => :destroy
-  has_many :articles, :dependent => :destroy, :class_name => 'Wiki::Article'
+  has_many :artifacts, dependent: :destroy
 
   validates_presence_of :build_number
   validates_presence_of :commit
@@ -37,18 +42,38 @@ class Build < ActiveRecord::Base
   validates_presence_of :project
   validates_presence_of :version
 
-  validates_numericality_of :build_number, :only_integer => true,
-                                           :greater_than => 0,
-                                           :message => "Build number must be"\
-                                           "greater than 0"
+  before_save :set_downloads
+  before_save :set_main_download
+  before_save :set_build_state
+  after_save :save_parent
 
-  validates_uniqueness_of :build_number, :scope => :project_id
+  validates_numericality_of :build_number, only_integer: true,
+                                           greater_than: 0,
+                                           message: 'Build number must be'\
+                                           'greater than 0'
+
+  validates_uniqueness_of :build_number, scope: :project_id
 
   def init
     self.build_state ||= 'normal'
   end
 
-  def downloads
-    self.artifacts.sum('downloads')
+  def set_downloads
+    self.downloads = artifacts.sum('downloads')
+  end
+
+  def set_main_download
+    self.main_download = ''
+    artifacts = self.artifacts
+    artifact = artifacts.find_by_name('universal') if artifacts
+    self.main_download = artifact.artifact.url if artifact
+  end
+
+  def set_build_state
+    self.build_state = 'normal' if self.build_state == ''
+  end
+
+  def save_parent
+    project.save
   end
 end

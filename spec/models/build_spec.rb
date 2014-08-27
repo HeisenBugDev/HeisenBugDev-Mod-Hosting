@@ -12,6 +12,9 @@
 #  branch            :string(255)
 #  version_id        :integer
 #  build_state       :string(255)
+#  downloads         :integer
+#  main_download     :string(255)
+#  brief_changelog   :text
 #
 # Indexes
 #
@@ -24,9 +27,9 @@ require 'spec_helper'
 
 describe Build do
   let(:project) { FactoryGirl.create(:project) }
-  let(:version) { FactoryGirl.create(:version, :project => project) }
-  let(:build) { FactoryGirl.create(:build, :project => project,
-    :version => version) }
+  let(:version) { FactoryGirl.create(:version, project: project) }
+  let(:build) do FactoryGirl.create(:build, project: project,
+                                            version: version) end
 
   subject { build }
 
@@ -40,4 +43,8 @@ describe Build do
   it { should_not allow_value(0, -1, -37).for(:build_number) }
 
   it { should validate_uniqueness_of(:build_number).scoped_to(:project_id) }
+
+  it "should default build_state" do
+    expect(build.build_state).to eq('normal')
+  end
 end

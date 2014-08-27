@@ -1,0 +1,15 @@
+.row
+  .large-12.columns
+    table.center.full-table.text-center
+      each project in controller
+        tr
+          td: link-to 'projects.show' project
+            project.name
+
+    if currentlyFetchingPage
+      loading-spinner
+    else
+      div.load-more.text-center{action "loadNextPage"}
+
+    if cannotLoadMore
+      h3.text-center That's the end!

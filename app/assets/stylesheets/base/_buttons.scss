@@ -1,0 +1,42 @@
+button,
+input[type="submit"] {
+  @extend %button;
+  @include appearance(none);
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button { @include button($orange); }
+.release-button { @include button($green); }
+.beta-button { @include button($blue); }
+.normal-button { @include button($black); }
+
+.all-downloads-button {
+  @include button($black);
+  width: 100%;
+}
+
+.disabled-button {
+  @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+  @include button($light-gray);
+  color: $medium-gray;
+
+  &:hover {
+    @include striped-background($light-gray, darken($light-gray, 5), -45deg, $size: 80px);
+    color: $medium-gray;
+  }
+}
+
+.bugged-button {
+  @include striped-background($light-red, darken($light-red, 5), -45deg, $size: 80px);
+  @include button($light-red);
+  color: darken($light-red, 20);
+
+  &:hover {
+    @include striped-background($light-red, darken($light-red, 5), -45deg, $size: 80px);
+    color: darken($light-red, 20);
+  }
+}

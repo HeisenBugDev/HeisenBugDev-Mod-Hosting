@@ -1,25 +1,32 @@
 class ProjectsController < ApplicationController
-  autocomplete :user, :name
-  acts_as_token_authentication_handler_for User
-  before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
-  before_filter :authenticate_entity!, :only => [:edit, :update]
+  # acts_as_token_authentication_handler_for User
+  # before_filter :authenticate_entity_from_token!, :only => [:edit, :update]
+  # before_filter :authenticate_entity!, :only => [:edit, :update]
 
   def edit
     @project = Project.find(params[:id])
     if !@project.users.include?(current_user) && !can?(:manage, :all)
-      redirect_to :back, :flash => { :warning => 'You do not have permission to view that page' }
+      redirect_to :back, flash: { warning: 'You do not have permission to view that page' }
     end
   end
 
+  # Emberified!
   def show
-    @project = Project.find(params[:id])
-    @users = @project.users
+    @project = Project.friendly.find(params[:id])
+    render json: @project
+  end
+
+  # Emberified!
+  def index
+    @projects = Project.includes(:wiki, :versions, :builds,
+      :latest_release_build, :latest_beta_build, :latest_normal_build).
+        paginate(page: params[:page])
+    render json: @projects
   end
 
   def new
     unless can? :manage, :all
-      redirect_to :back, :flash =>
-        { :warning => 'You do not have permission to view that page' }
+      redirect_to :back, flash: { warning: 'You do not have permission to view that page' }
       return
     end
 
@@ -29,15 +36,14 @@ class ProjectsController < ApplicationController
 
   def create
     unless can? :manage, :all
-      redirect_to :back, :flash =>
-        { :warning => 'You do not have permission to view that page' },
-          :status  => :unauthorized
+      redirect_to :back, flash: { warning: 'You do not have permission to view that page' },
+        status: :unauthorized
       return
     end
 
     @project = Project.new(project_params)
     if @project.save
-      flash[:success] = "Project created!"
+      flash[:success] = 'Project created!'
       redirect_to @project
     else
       render 'new'
@@ -46,11 +52,6 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-
-    unless can? :edit, @project
-      redirect_to :back, :status => :unauthorized
-      return
-    end
 
     user = User.find_by_name(params[:project][:users])
     unless user.nil?
@@ -64,24 +65,29 @@ class ProjectsController < ApplicationController
       @users = @project.users
       respond_to do |format|
         format.js
-        format.all { render :text => 'It worked!' }
+        format.all { render text: 'It worked!' }
       end
       return
     end
     @users = @project.users
-    respond_to do |format|
-      old_icon = Digest::SHA1.hexdigest(@project.icon.read)
+    # respond_to do |format|
+      # old_icon = Digest::SHA1.hexdigest(@project.icon.read)
 
-      if @project.update_attributes(project_params)
-        @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read.to_s))
-        format.json { respond_with_bip(@project) }
-        format.js
-        format.all { render :text => 'Updated' }
-      else
-        format.json { respond_with_bip(@project) }
-        format.js
-        format.all { render :action => "edit" }
-      end
+      # if @project.update_attributes(project_params)
+      #   @new_image = (old_icon != Digest::SHA1.hexdigest(@project.icon.read.to_s))
+      #   format.json { respond_with_bip(@project) }
+      #   format.js
+      #   format.all { render :text => 'Updated' }
+      # else
+      #   format.json { respond_with_bip(@project) }
+      #   format.js
+      #   format.all { render :action => "edit" }
+      # end
+    # end
+    if @project.update_attributes(project_params)
+      render json: @project
+    else
+      render json: { errors: @project.errors }, status: :unprocessable_entity
     end
   end
 
@@ -93,9 +99,7 @@ class ProjectsController < ApplicationController
     end
     flash[:success] = 'User removed'
     @users = @project.users
-    respond_to do |format|
-      format.js { render :action => 'update' }
-    end
+    render json: { message: 'success' }
   end
 
   def downloads
@@ -107,15 +111,13 @@ class ProjectsController < ApplicationController
     end
   end
 
-private
+  private
   def project_params
     params.require(:project).permit(
-      :subtitle,
       :name,
       :description,
       :icon,
-      :code_repo,
-      :wiki_attributes => [:repo]
+      :code_repo
     )
   end
 end
