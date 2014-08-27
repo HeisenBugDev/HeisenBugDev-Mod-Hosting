@@ -16,3 +16,7 @@ HeisenBugDev.Build = DS.Model.extend
 
   # Temp field for the create action in build_controller.rb
   modVersion: DS.attr 'string'
+
+  shortCommit: (->
+    @get('commit').substring(0, 7)
+  ).property('commit')

@@ -5,17 +5,32 @@ mod-header project=project
   .row
     h1 New Build
   .row
-    form-for this class=isSavingBuild
-      .row
-        = input commit hint="Long version of your Git commit"
-      .row
-        = input minecraft_version hint="Minecraft version"
-      .row
-        = input branch hint="Git branch"
-      .row
-        = input modVersion hint="Version of your mod"
+    unless showArtifactUpload
+      form-for this class=isSavingBuild
+        .row
+          = input commit hint="Long version of your Git commit"
+        .row
+          = input minecraft_version hint="Minecraft version"
+        .row
+          = input branch hint="Git branch"
+        .row
+          = input modVersion hint="Version of your mod"
 
-      = submit
+        = submit
+    else
+      table.split-list.small-center
+        tr
+          td Commit
+          td = shortCommit
+        tr
+          td MC Version
+          td = minecraft_version
+        tr
+          td Branch
+          td = branch
+        tr
+          td Mod Version
+          td = version.version
 
   if showArtifactUpload
     h1 Omg next step (not to be confused with NeXTSTEP)
