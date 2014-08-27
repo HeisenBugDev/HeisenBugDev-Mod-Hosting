@@ -14,6 +14,7 @@ HeisenBugDev.ProjectsNewBuildController = Ember.ObjectController.extend Ember.Va
     minecraft_version:
       presence: true
       inclusion:
+        # TODO this
         in: [
           '1.6.1'
           '1.6.2'
@@ -39,4 +40,13 @@ HeisenBugDev.ProjectsNewBuildController = Ember.ObjectController.extend Ember.Va
 
   actions:
     submit: ->
-      @get('model').save().then((->), (->))
+      @set('isSavingBuild', true)
+      self = this
+      @get('model').save().then((->
+        self.set('isSavingBuild', false)
+        self.set('showGenericError', false)
+        self.set('showArtifactUpload', true)
+      ), (->
+        self.set('isSavingBuild', false)
+        self.set('showGenericError', true)
+      ))

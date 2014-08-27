@@ -6,7 +6,6 @@ HeisenBugDev.Build = DS.Model.extend
   main_download: DS.attr 'string'
   updated_at: DS.attr 'string'
   branch: DS.attr 'string'
-  modVersion: DS.attr 'string'
   build_state: DS.attr 'string'
   downloads: DS.attr 'number'
   project: DS.belongsTo 'project', async: true, inverse: 'builds'
@@ -14,3 +13,6 @@ HeisenBugDev.Build = DS.Model.extend
   articles: DS.hasMany 'articles'
   artifacts: DS.hasMany 'artifacts'
   brief_changelog: DS.attr 'string'
+
+  # Temp field for the create action in build_controller.rb
+  modVersion: DS.attr 'string'

@@ -1,3 +1,13 @@
+form.is-saving-build {
+  opacity: 0.5;
+  &:after {
+    content: "Saving...";
+    opacity: 1;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
 fieldset {
   background: lighten($base-border-color, 10);
   border: 1px solid $base-border-color;

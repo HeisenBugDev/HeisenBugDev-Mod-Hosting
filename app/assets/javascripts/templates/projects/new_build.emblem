@@ -1,9 +1,11 @@
 mod-header project=project
 .container.very-narrow
+  if showGenericError
+    h1 There was a problem saving the build. Please try again later.
   .row
     h1 New Build
   .row
-    form-for this
+    form-for this class=isSavingBuild
       .row
         = input commit hint="Long version of your Git commit"
       .row
@@ -14,3 +16,6 @@ mod-header project=project
         = input modVersion hint="Version of your mod"
 
       = submit
+
+  if showArtifactUpload
+    h1 Omg next step (not to be confused with NeXTSTEP)
