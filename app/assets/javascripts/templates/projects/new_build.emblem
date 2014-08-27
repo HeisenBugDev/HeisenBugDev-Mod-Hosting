@@ -1,7 +1,7 @@
 mod-header project=project
 .container.very-narrow
   if showGenericError
-    h1 There was a problem saving the build. Please try again later.
+    h1.error-header There was a problem saving the build. Please try again later.
   .row
     h1 New Build
   .row
