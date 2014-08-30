@@ -41,6 +41,11 @@ build:
         - script:
             name: rspec
             code: bundle exec rspec -c spec -fd
+    after-steps:
+        - sherzberg/slack-notify:
+            subdomain: heisenbugdev
+            token: $SLACK_TOKEN
+            channel: hbd
 deploy:
     steps:
         - heroku-deploy:
