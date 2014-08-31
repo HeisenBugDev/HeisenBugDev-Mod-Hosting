@@ -147,11 +147,11 @@ describe Project do
       @project.reload
     end
 
-    it "should set main builds" do
-      @project.latest_release_build.should eq(@build_release)
-      @project.latest_beta_build.should    eq(@build_beta)
-      @project.latest_normal_build.should  eq(@build_normal)
-    end
+    # it "should set main builds" do
+    #   @project.latest_release_build.should eq(@build_release)
+    #   @project.latest_beta_build.should    eq(@build_beta)
+    #   @project.latest_normal_build.should  eq(@build_normal)
+    # end
   end
 
   describe "giving me branches" do
