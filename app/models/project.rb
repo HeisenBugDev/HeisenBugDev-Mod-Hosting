@@ -35,10 +35,6 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader
 
-  belongs_to :latest_release_build, class_name: 'Build'
-  belongs_to :latest_beta_build, class_name: 'Build'
-  belongs_to :latest_normal_build, class_name: 'Build'
-
   validates :icon,
     :presence => true,
     file_size: {
@@ -95,10 +91,6 @@ class Project < ActiveRecord::Base
   end
 
   def set_main_builds
-    # self.latest_release_build = latest_builds(:release, limit: 1)[0]
-    # self.latest_beta_build    = latest_builds(:beta, limit: 1)[0]
-    # self.latest_normal_build  = latest_builds(:normal, limit: 1)[0]
-
     self.main_download = ''
     build = self.latest_builds(:stable)[0]
     artifacts = build.artifacts if build
