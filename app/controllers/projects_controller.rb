@@ -18,8 +18,7 @@ class ProjectsController < ApplicationController
 
   # Emberified!
   def index
-    @projects = Project.includes(:wiki, :versions, :builds,
-      :latest_release_build, :latest_beta_build, :latest_normal_build).
+    @projects = Project.includes(:wiki, :versions, :builds).
         paginate(page: params[:page])
     render json: @projects
   end
