@@ -75,9 +75,8 @@ class Project < ActiveRecord::Base
     state_lookup = (hashes[state] if hashes.include?(state)) ||
       (state if Build::STATES.include?(state))
 
-    (branch_lookup = branch ? { branch: branch} : {}).
-      merge!(extra_where_params)
-
+    branch_lookup = branch ? { branch: branch } : {}
+    branch_lookup.merge!(extra_where_params)
     branch_lookup.merge!({build_state: state_lookup}) if state_lookup
 
     self.builds.where(branch_lookup).first(limit)
