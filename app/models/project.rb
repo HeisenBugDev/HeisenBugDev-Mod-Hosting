@@ -2,21 +2,18 @@
 #
 # Table name: projects
 #
-#  id                      :integer          not null, primary key
-#  name                    :string(255)
-#  description             :text
-#  created_at              :datetime
-#  updated_at              :datetime
-#  code_repo               :string(255)
-#  icon                    :string(255)
-#  slug                    :string(255)
-#  owner_sentence          :string(255)
-#  downloads               :integer
-#  download_sentence       :string(255)
-#  main_download           :string(255)
-#  latest_release_build_id :integer
-#  latest_beta_build_id    :integer
-#  latest_normal_build_id  :integer
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  description       :text
+#  created_at        :datetime
+#  updated_at        :datetime
+#  code_repo         :string(255)
+#  icon              :string(255)
+#  slug              :string(255)
+#  owner_sentence    :string(255)
+#  downloads         :integer
+#  download_sentence :string(255)
+#  main_download     :string(255)
 #
 # Indexes
 #
@@ -34,10 +31,6 @@ class Project < ActiveRecord::Base
   has_one :wiki, class_name: 'Wiki::Wiki', dependent: :destroy
   accepts_nested_attributes_for :wiki
   mount_uploader :icon, ProjectIconUploader
-
-  belongs_to :latest_release_build, class_name: 'Build'
-  belongs_to :latest_beta_build, class_name: 'Build'
-  belongs_to :latest_normal_build, class_name: 'Build'
 
   validates :icon,
     :presence => true,
@@ -82,9 +75,8 @@ class Project < ActiveRecord::Base
     state_lookup = (hashes[state] if hashes.include?(state)) ||
       (state if Build::STATES.include?(state))
 
-    (branch_lookup = branch ? { branch: branch} : {}).
-      merge!(extra_where_params)
-
+    branch_lookup = branch ? { branch: branch } : {}
+    branch_lookup.merge!(extra_where_params)
     branch_lookup.merge!({build_state: state_lookup}) if state_lookup
 
     self.builds.where(branch_lookup).first(limit)
@@ -95,10 +87,6 @@ class Project < ActiveRecord::Base
   end
 
   def set_main_builds
-    self.latest_release_build = latest_builds(:release, limit: 1)[0]
-    self.latest_beta_build    = latest_builds(:beta, limit: 1)[0]
-    self.latest_normal_build  = latest_builds(:normal, limit: 1)[0]
-
     self.main_download = ''
     build = self.latest_builds(:stable)[0]
     artifacts = build.artifacts if build

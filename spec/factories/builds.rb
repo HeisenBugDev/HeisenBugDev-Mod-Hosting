@@ -29,7 +29,7 @@ FactoryGirl.define do
   factory :build do
     build_number 1
     commit 'ce6d688'
-    branch '1337-this-better-be-awesome'
+    branch 'master'
     minecraft_version '1.7.2'
   end
 end

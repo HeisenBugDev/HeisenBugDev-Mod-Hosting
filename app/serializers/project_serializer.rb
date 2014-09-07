@@ -5,9 +5,21 @@ class ProjectSerializer < ActiveModel::Serializer
              :icon, :downloads, :slug, :owner_sentence, :download_sentence,
              :main_download
 
-  has_one :latest_release_build, embed: :ids
-  has_one :latest_beta_build, embed: :ids
-  has_one :latest_normal_build, embed: :ids
+  has_one :latest_release_build, embed: :ids, include: true, root: :builds
+  has_one :latest_beta_build, embed: :ids, include: true, root: :builds
+  has_one :latest_normal_build, embed: :ids, include: true, root: :builds
+
+  def latest_release_build
+    object.latest_builds(:release)[0]
+  end
+
+  def latest_beta_build
+    object.latest_builds(:beta)[0]
+  end
+
+  def latest_normal_build
+    object.latest_builds(:normal)[0]
+  end
 
   has_one :wiki, embed: :ids
   has_many :builds, embed: :ids
