@@ -1,2 +1,3 @@
+CoffeeScript: Enabled: true 
 StringLiterals:
   Enabled: false
